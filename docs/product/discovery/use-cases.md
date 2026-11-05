@@ -1,6 +1,11 @@
+---
+id: discovery-use-cases
+status: draft
+---
+
 # Use cases, goals and objectives (discovery draft)
 
-Not a process artifact (no `id`, no status). This is the working record of the discovery conversation, for the approver to correct before stage 2 (requirements) begins. Items marked **[assumed]** are my inference and still need the approver's answer. Items marked **[site]** come from public project pages. Everything else is the approver's own statement or a point the approver confirmed on 2026-11-04.
+This is the working record of the discovery conversation (optional stage 1a). Items marked **[assumed]** are my inference and still need the approver's answer. Items marked **[site]** come from public project pages. Everything else is the approver's own statement or a point the approver confirmed on 2026-11-04.
 
 ## 1. What is being built
 
