@@ -66,7 +66,7 @@ Agent role: **draft, then a person approves** anything external or financial.
 | Rights and people | Contracts and licensing; asset provenance and AI-use records; crew and performer scheduling; cultural consultation tracking | |
 | Audience and operations | Venue and touring logistics; audience data and reporting; marketing and press | Ticketing and capacity |
 
-Confirmed: asset provenance with AI-use records, and cost tracking that includes generation, cloud and per-show running costs, are core to the pipeline. The other business tools are adjacent and can sit on existing software.
+Confirmed: asset provenance with AI-use records, and cost tracking that includes generation, cloud and per-show running costs, are core to the pipeline. The other business tools are built into the pipeline for a solo production and all belong to the first release, and they can connect to third-party tools for larger productions (approver's answer).
 
 ### Funding and grants
 
@@ -74,7 +74,7 @@ Confirmed: asset provenance with AI-use records, and cost tracking that includes
 - The approver writes most of it personally.
 - **First value:** one source of truth per project (descriptions, technical plan, budget, credits, samples), from which applications and reports are drafted. A person reviews and submits.
 - Confirmed: this "project facts" record is shared with production (brief, character and asset list, tech plan, costs).
-- Funders named in public material **[site]**: Canada Media Fund, Creative BC, Epic Mega Grants, an arts council. Not confirmed as the working list.
+- Working funder list (confirmed by the approver): Canada Media Fund, Creative BC, Epic MegaGrants, and an arts council (which one is not yet named).
 
 ## 10. Livestreamed virtual puppetry (UC-2)
 
