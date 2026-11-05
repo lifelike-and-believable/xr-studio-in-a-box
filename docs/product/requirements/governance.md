@@ -1,13 +1,13 @@
 ---
 id: requirements-governance
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Governance, provenance and consent requirements
 
-<!-- Draft. Source: discovery sections 8, 11, 12, 14. Legal terms below need review per jurisdiction. -->
+<!-- Source: discovery sections 8, 11, 12, 14. Legal terms below need review per jurisdiction. -->
 
 ## REQ-governance-1: Project policy record
 

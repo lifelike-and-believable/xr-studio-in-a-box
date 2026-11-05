@@ -1,11 +1,11 @@
 ---
 id: concept
-status: draft
+status: approved
 ---
 
 # Agentic XR Pipeline (working title)
 
-<!-- Stage 1 of the RFR process. Draft for approver review. Revised 2026-11-04 after the first discovery review (docs/product/discovery/use-cases.md). -->
+<!-- Stage 1 of the RFR process. Revised 2026-11-04 after the first discovery review (docs/product/discovery/use-cases.md). -->
 
 ## Problem
 

@@ -1,13 +1,13 @@
 ---
 id: requirements-showcontrol
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Show control and cues requirements
 
-<!-- Draft. Source: discovery sections 6, 12, 14. -->
+<!-- Source: discovery sections 6, 12, 14. -->
 
 ## REQ-showcontrol-1: Cue list
 

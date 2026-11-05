@@ -1,13 +1,13 @@
 ---
 id: requirements-business
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Business of the performance requirements
 
-<!-- Draft. Source: discovery sections 9, 14. Agents draft and a person approves. Ticketing is out of scope. -->
+<!-- Source: discovery sections 9, 14. Agents draft and a person approves. Ticketing is out of scope. -->
 
 All the business tools below are in the first release. They are built into the pipeline and sized for a solo production (REQ-business-13).
 

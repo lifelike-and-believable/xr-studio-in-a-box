@@ -1,13 +1,13 @@
 ---
 id: requirements-workflow
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Workflow and orchestration requirements
 
-<!-- Draft. Source: docs/product/discovery/use-cases.md sections 1, 2, 12, 14, 15. Values marked TBD need the approver. -->
+<!-- Source: docs/product/discovery/use-cases.md sections 1, 2, 12, 14, 15. Values marked TBD need the approver. -->
 
 ## REQ-workflow-1: Brief to build
 

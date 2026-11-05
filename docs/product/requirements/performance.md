@@ -1,13 +1,13 @@
 ---
 id: requirements-performance
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Performance capture and control requirements
 
-<!-- Draft. Source: discovery sections 3, 4, 6, 10. -->
+<!-- Source: discovery sections 3, 4, 6, 10. -->
 
 ## REQ-performance-1: Pluggable capture
 

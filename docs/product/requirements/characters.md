@@ -1,13 +1,13 @@
 ---
 id: requirements-characters
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Autonomous characters requirements
 
-<!-- Draft. Source: discovery sections 3 and 10. Autonomy is speculative; crowds and creatures come first. Conversational characters are later. -->
+<!-- Source: discovery sections 3 and 10. Autonomy is speculative; crowds and creatures come first. Conversational characters are later. -->
 
 "Autonomous" here means a character acts without a person driving it. Rule-based, procedural and AI methods all count, so crowds and creatures do not need a generative model at show time.
 

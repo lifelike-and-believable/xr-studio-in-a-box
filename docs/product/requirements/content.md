@@ -1,13 +1,13 @@
 ---
 id: requirements-content
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Characters, environments and assets requirements
 
-<!-- Draft. Source: discovery sections 1, 6, 7, 13, 14. Character design, meshing, rigging and environments are the stages that cost the most time today. -->
+<!-- Source: discovery sections 1, 6, 7, 13, 14. Character design, meshing, rigging and environments are the stages that cost the most time today. -->
 
 ## REQ-content-1: Character path
 
