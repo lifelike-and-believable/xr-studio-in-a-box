@@ -1,6 +1,11 @@
+---
+id: discovery-use-cases
+status: draft
+---
+
 # Use cases, goals and objectives (discovery draft)
 
-Not a process artifact (no `id`, no status). This is the working record of the discovery conversation, for the approver to correct before stage 2 (requirements) begins. Items marked **[assumed]** are my inference and still need the approver's answer. Items marked **[site]** come from public project pages. Everything else is the approver's own statement or a point the approver confirmed on 2026-11-04.
+This is the working record of the discovery conversation (optional stage 1a). Items marked **[assumed]** are my inference and still need the approver's answer. Items marked **[site]** come from public project pages. Everything else is the approver's own statement or a point the approver confirmed on 2026-11-04.
 
 ## 1. What is being built
 
@@ -66,7 +71,7 @@ Agent role: **draft, then a person approves** anything external or financial.
 | Rights and people | Contracts and licensing; asset provenance and AI-use records; crew and performer scheduling; cultural consultation tracking | |
 | Audience and operations | Venue and touring logistics; audience data and reporting; marketing and press | Ticketing and capacity |
 
-Confirmed: asset provenance with AI-use records, and cost tracking that includes generation, cloud and per-show running costs, are core to the pipeline. The other business tools are adjacent and can sit on existing software.
+Confirmed: asset provenance with AI-use records, and cost tracking that includes generation, cloud and per-show running costs, are core to the pipeline. The other business tools are built into the pipeline for a solo production and all belong to the first release, and they can connect to third-party tools for larger productions (approver's answer).
 
 ### Funding and grants
 
@@ -74,7 +79,7 @@ Confirmed: asset provenance with AI-use records, and cost tracking that includes
 - The approver writes most of it personally.
 - **First value:** one source of truth per project (descriptions, technical plan, budget, credits, samples), from which applications and reports are drafted. A person reviews and submits.
 - Confirmed: this "project facts" record is shared with production (brief, character and asset list, tech plan, costs).
-- Funders named in public material **[site]**: Canada Media Fund, Creative BC, Epic Mega Grants, an arts council. Not confirmed as the working list.
+- Working funder list (confirmed by the approver): Canada Media Fund, Creative BC, Epic MegaGrants, and an arts council (which one is not yet named).
 
 ## 10. Livestreamed virtual puppetry (UC-2)
 
@@ -132,7 +137,7 @@ The approver selected every option in each category.
 ### First-release priorities (approver's answers)
 
 - **Essential production views:** project status board; review and approval queue; cost and schedule view. The asset and provenance library is not in the first release's top tier.
-- **Essential show-time controls:** cue list and show control; performer and character routing. Capture and device health and the audience and output monitor come later.
+- **Essential show-time controls:** cue list and show control; performer and character routing. Capture and device health and the full audience and output monitor come later. The readable audience summary is in the first release (approver's later answer).
 - **Approval rights:** by project. Each project names its own approvers per stage, as the RFR process does.
 - **Operator hardware:** touchscreens or tablets, physical control surfaces, existing show-control systems (lighting consoles, audio software, cue systems), and a plain keyboard and mouse.
 
@@ -202,13 +207,13 @@ Implications (item 1 confirmed; the rest are **[assumed]**):
 ## 16. Open questions
 
 1. **Project A (UC-1).** POC date and audience; whether the living performance has the guest artist in capture; the rights route. Deferred by the approver.
-2. **Funding.** The working funder list; applications per year; a past application to use as a worked example; who reviews drafts besides the approver.
+2. **Funding.** Which arts council; applications per year; a past application to use as a worked example; who reviews drafts besides the approver.
 3. **Business tools.** Where records live now; who uses them; which outputs are client-facing.
-4. **Review gates.** The spend limit, per project; which approvals may never be delegated (for example contracts and licence terms, funding submissions); what turnaround the approver expects from the queue.
-5. **Deployment targets.** The LBVR hardware decision and its date; whether flat livestream and projection count as part of the PC target; which venues and networks the first shows run on.
+4. **Review gates.** The spend limit, per project; what turnaround the approver expects from the queue.
+5. **Deployment targets.** The LBVR hardware decision and its date; which venues and networks the first shows run on.
 6. **Team.** How large a typical team is; how often a person new to the pipeline joins mid-production; whether an in-house pipeline engineer exists or this role is shared or hired per project.
-7. **Audience avatars.** Typical numbers for in-venue and for remote audiences; the order in which touch, interaction and show-affecting features should arrive; the consent policy for likenesses.
-8. **Orchestration tools.** Which lighting console, audio and media systems the first show will really use, 
+7. **Audience avatars.** The order in which touch, interaction and show-affecting features should arrive; the consent policy for likenesses.
+8. **Orchestration tools.** Which lighting console, audio and media systems the first show will really use.
 
 ## Appendix: portfolio evidence
 

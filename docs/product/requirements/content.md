@@ -1,13 +1,13 @@
 ---
 id: requirements-content
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Characters, environments and assets requirements
 
-<!-- Draft. Source: discovery sections 1, 6, 7, 13, 14. Character design, meshing, rigging and environments are the stages that cost the most time today. -->
+<!-- Source: discovery sections 1, 6, 7, 13, 14. Character design, meshing, rigging and environments are the stages that cost the most time today. -->
 
 ## REQ-content-1: Character path
 
@@ -39,7 +39,7 @@ Each asset has lower-detail versions for weaker devices, generated or checked ag
 
 ## REQ-content-8: Reuse across projects
 
-Characters, rigs, environments and cue structures can be saved to a shared library and reused in new projects, keeping their provenance and terms (see REQ-governance-8).
+Characters, rigs, environments and cue structures can be saved to a shared library and reused in new projects, keeping their provenance and terms (see REQ-governance-8). The full view for browsing the library comes later. Provenance records exist from the first release (REQ-governance-3).
 
 ## REQ-content-9: Tool freedom for artists
 
@@ -60,4 +60,4 @@ Character voices, music, sound effects, and ambience and spatial audio are manag
 
 ## Success measures
 
-- To be set by the approver. Candidates: elapsed time from character brief to approved rig; share of generated assets that pass automatic checks first time; number of review rounds per asset.
+- Elapsed time from character brief to approved rig; share of generated assets that pass automatic checks first time; number of review rounds per asset. Each target is set after a baseline is measured on the first project.

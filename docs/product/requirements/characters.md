@@ -1,13 +1,13 @@
 ---
 id: requirements-characters
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Autonomous characters requirements
 
-<!-- Draft. Source: discovery sections 3 and 10. Autonomy is speculative; crowds and creatures come first. Conversational characters are later. -->
+<!-- Source: discovery sections 3 and 10. Autonomy is speculative; crowds and creatures come first. Conversational characters are later. -->
 
 "Autonomous" here means a character acts without a person driving it. Rule-based, procedural and AI methods all count, so crowds and creatures do not need a generative model at show time.
 
@@ -27,7 +27,7 @@ For a performer-led character, AI can add secondary motion and fill channels the
 
 ## REQ-characters-4: Behaviour specification
 
-Each autonomous character has a human-readable behaviour specification (what it does, what it may not do, how it reacts). The specification is reviewed at a gate, and the character's behaviour follows it.
+Each autonomous character has a human-readable behaviour specification (what it does, what it may not do, how it reacts). The specification is reviewed at a gate, and the character's behaviour follows it. Any AI use it describes is checked against the policy record at that gate (REQ-governance-2), because output during a show cannot wait for one.
 
 ## REQ-characters-5: Deterministic fallback
 

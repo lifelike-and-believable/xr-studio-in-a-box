@@ -1,13 +1,13 @@
 ---
 id: requirements-delivery
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Delivery and deployment requirements
 
-<!-- Draft. Source: discovery sections 6, 10, 13. LBVR hardware is undecided. -->
+<!-- Source: discovery sections 6, 10, 13. LBVR hardware is undecided. -->
 
 ## REQ-delivery-1: First-release targets
 

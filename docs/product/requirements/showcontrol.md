@@ -1,13 +1,13 @@
 ---
 id: requirements-showcontrol
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Show control and cues requirements
 
-<!-- Draft. Source: discovery sections 6, 12, 14. -->
+<!-- Source: discovery sections 6, 12, 14. -->
 
 ## REQ-showcontrol-1: Cue list
 
@@ -72,6 +72,14 @@ One check confirms that the build, capture sources, outputs, external links and 
 ## REQ-showcontrol-16: Routing control
 
 Operators can see and change who or what drives each character and channel from the show tools, including live handover (REQ-performance-4). This is a first-release control.
+
+## REQ-showcontrol-17 (later): Health and output monitors
+
+Operators get a full view of capture and device health and a full monitor of the audience and every output. Until then, the first release has automatic fallback and the performer's signal (REQ-performance-6), the pre-show check (REQ-showcontrol-15), and the audience summary (REQ-audience-6).
+
+## REQ-showcontrol-18: Solo operation
+
+A solo performer can run a public show with no separate operator. Emergency stop, pause and handover are available as performer-fired controls that work while performing, and they cannot be disarmed. Guest moderation and safety (REQ-audience-8, REQ-audience-11) run on rules set before the show. Wherever a requirement names an operator, a solo show meets it through these controls or through those rules.
 
 ## Constraints
 

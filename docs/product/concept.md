@@ -1,11 +1,11 @@
 ---
 id: concept
-status: draft
+status: approved
 ---
 
 # Agentic XR Pipeline (working title)
 
-<!-- Stage 1 of the RFR process. Draft for approver review. Revised 2026-11-04 after the first discovery review (docs/product/discovery/use-cases.md). -->
+<!-- Stage 1 of the RFR process. Revised 2026-11-04 after the first discovery review (docs/product/discovery/use-cases.md). -->
 
 ## Problem
 
@@ -32,10 +32,12 @@ One project delivers to PC, mobile, browser, projection and LBVR. Capture is plu
 
 The pipeline also covers the business of the performance, with agents drafting funding applications, budgets, reports and records, and people approving what goes out. Asset provenance and the terms agreed with each collaborator are tracked, so AI is used only where the collaborators have agreed to it.
 
+Taken together, this is an "XR Studio in a Box". The scope is large on purpose and there is no deadline for the first official release. Each component is built and tested carefully and iteratively, layer by layer, and each layer is proven before the next one depends on it.
+
 ## Non-goals
 
 - Replacing artists, directors or performers. The pipeline accelerates drafts and hand-offs; people set the bar and approve.
-- Building a new game engine or DCC tool. The pipeline joins commercial and open tools; where we build, it is glue, plugins and automation. Unreal Engine is the chosen engine for this pipeline.
+- Building a new game engine or DCC tool. The pipeline joins commercial and open tools; where we build, it is glue, plugins, automation, and the orchestration and business tools a solo production needs. Unreal Engine is the chosen engine for this pipeline.
 - Shipping AI output unreviewed. Every generated asset passes a quality and licence gate before it enters a project.
 - A general-purpose public product at this stage. The first goal is Shocap's own production use; packaging for others comes later, if at all.
 - Console delivery targets in the first release.

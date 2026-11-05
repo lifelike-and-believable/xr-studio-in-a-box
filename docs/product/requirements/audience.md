@@ -1,13 +1,13 @@
 ---
 id: requirements-audience
-status: draft
+status: approved
 derived-from:
-  - concept#vision:
+  - concept#vision: 3e44665fdea8
 ---
 
 # Audience and avatars requirements
 
-<!-- Draft. Source: discovery sections 6, 10, 11. Avatars rank above AI that responds to the audience. -->
+<!-- Source: discovery sections 6, 10, 11. Avatars rank above AI that responds to the audience. -->
 
 The first release includes avatars and reactions, the audience summary, and chat. Viewpoint choice and REQ-audience-9 come later.
 
@@ -80,4 +80,4 @@ A failure or overload in any audience system does not affect the performer loop 
 
 ## Success measures
 
-- To be set by the approver. Candidates: avatars connected per audience type at stable frame rate; performer rating of the audience summary in rehearsal.
+- Avatars connected per audience type at stable frame rate; performer rating of the audience summary in rehearsal. Each target is set after a baseline is measured on the first project.
