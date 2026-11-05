@@ -1,0 +1,84 @@
+---
+id: requirements-workflow
+status: draft
+derived-from:
+  - concept#vision:
+---
+
+# Workflow and orchestration requirements
+
+<!-- Draft. Source: docs/product/discovery/use-cases.md sections 1, 2, 12, 14, 15. Values marked TBD need the approver. -->
+
+## REQ-workflow-1: Brief to build
+
+Given a brief, the workflow produces a running, tested build by passing through defined stages. Each stage's output is stored, named and reviewable. In the first release, "tested" means automatic checks only: asset checks, a successful build, scripted scenarios, and performance measurements against the target's budget all pass. A person reviews the result afterwards at the gate. A rehearsal with people is a separate step, not part of "tested".
+
+## REQ-workflow-2: Review gates
+
+Each hand-off listed as gated in the review gates (discovery section 14) waits for approval from a person named for that project and area. Hand-offs not listed proceed without waiting. Agents work freely inside a stage. The four kinds of approval in REQ-workflow-7 are always given by a person and never by an AI. For every other gate, the project names who may approve, which may include an AI reviewer the project has chosen. An approval given by an AI is marked as such, and a person can reverse it. (Pending: the approver should confirm that AI approval of other gates is wanted at all, and for which.)
+
+## REQ-workflow-3: Iteration with history
+
+Any stage output can be revised with written feedback and regenerated. Earlier versions are kept and can be compared side by side and restored.
+
+## REQ-workflow-4: Review queue
+
+All pending approvals appear in one queue. Each item shows a preview, the stage, the requester and what changed. A reviewer can accept, request revision, or reject, singly or in a batch.
+
+## REQ-workflow-5: Status board
+
+For each project the board shows every stage and asset, its owner, and its state (in progress, waiting for review, blocked, done).
+
+## REQ-workflow-6: Cost and schedule view
+
+For each project the tools show budget against actual cost, including generation, cloud and per-show running costs, and the production schedule.
+
+## REQ-workflow-7: Per-project roles and delegates
+
+Each project assigns roles and names approvers and delegates per area. A new person can be given a role without writing code or editing configuration files by hand. Four kinds of approval may be delegated only to a named, dedicated team member and never to an AI: contracts and licence terms; funding applications and reports; publishing and marketing; audience-facing safety and consent. The project records who holds each of these.
+
+## REQ-workflow-8: Direct by conversation
+
+A person can direct the agents in conversation. Every agent action is recorded in an activity log that names the project, stage, tool, and the person who requested or approved it.
+
+## REQ-workflow-9: Agents out of the live path
+
+In show mode, no live function (cues, routing, fallbacks, outputs) depends on an agent being available or responsive. Losing every agent mid-show does not stop the show.
+
+## REQ-workflow-10: Extensible by technical users
+
+Technical artists and pipeline engineers can add or change workflow steps, integrations and checks without modifying the core. Changes are versioned and reviewed like other project work.
+
+## REQ-workflow-11: Replaceable tools
+
+Each external tool (generation, modelling, capture, engine plugins) is used through an adapter, so one tool can be replaced without rewriting the workflow that uses it.
+
+## REQ-workflow-12: Two modes
+
+Production mode (flexible, review-centred) and show mode (reliable, low-latency, offline-capable) are distinct. Switching between them is explicit and recorded.
+
+## REQ-workflow-13: Spend-limit enforcement
+
+Each project has a spend limit for generation, cloud and other metered cost. When a request would take spend past the limit, the agent stops and asks a person with the right role. In show mode, reaching the limit never stops the show: the affected service switches to its fallback (REQ-characters-5) and the operator is told. The limit's value is set per project (TBD).
+
+## REQ-workflow-14: Agent permissions
+
+Each agent can reach only the projects, tools and folders granted for its task. It cannot delete or overwrite approved work, change roles or limits, or send anything outside the project without a person's approval. Grants are recorded.
+
+## REQ-workflow-15: Notifications
+
+People are told when something waits for them, by the channel they choose, with a short summary and a link to the item. Notifications can be grouped so that a reviewer is not interrupted for each item.
+
+## REQ-workflow-16: Backup and version control
+
+Project state and large binary assets (models, textures, levels, captures) are versioned, recoverable to an earlier version, and backed up. Recovery is tested.
+
+## Constraints
+
+- Unreal Engine is the engine (concept, non-goals).
+- Everything needed at show time runs on the venue network without internet (see REQ-delivery-5).
+- Artists, performers, operators and attendants must not need code or the command line.
+
+## Success measures
+
+- Time from brief to first reviewable build. The target is set after a baseline is measured on the first project.
