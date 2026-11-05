@@ -132,7 +132,7 @@ The approver selected every option in each category.
 ### First-release priorities (approver's answers)
 
 - **Essential production views:** project status board; review and approval queue; cost and schedule view. The asset and provenance library is not in the first release's top tier.
-- **Essential show-time controls:** cue list and show control; performer and character routing. Capture and device health and the audience and output monitor come later.
+- **Essential show-time controls:** cue list and show control; performer and character routing. Capture and device health and the full audience and output monitor come later. The readable audience summary is in the first release (approver's later answer).
 - **Approval rights:** by project. Each project names its own approvers per stage, as the RFR process does.
 - **Operator hardware:** touchscreens or tablets, physical control surfaces, existing show-control systems (lighting consoles, audio software, cue systems), and a plain keyboard and mouse.
 
@@ -202,13 +202,13 @@ Implications (item 1 confirmed; the rest are **[assumed]**):
 ## 16. Open questions
 
 1. **Project A (UC-1).** POC date and audience; whether the living performance has the guest artist in capture; the rights route. Deferred by the approver.
-2. **Funding.** The working funder list; applications per year; a past application to use as a worked example; who reviews drafts besides the approver.
+2. **Funding.** Which arts council; applications per year; a past application to use as a worked example; who reviews drafts besides the approver.
 3. **Business tools.** Where records live now; who uses them; which outputs are client-facing.
-4. **Review gates.** The spend limit, per project; which approvals may never be delegated (for example contracts and licence terms, funding submissions); what turnaround the approver expects from the queue.
-5. **Deployment targets.** The LBVR hardware decision and its date; whether flat livestream and projection count as part of the PC target; which venues and networks the first shows run on.
+4. **Review gates.** The spend limit, per project; what turnaround the approver expects from the queue.
+5. **Deployment targets.** The LBVR hardware decision and its date; which venues and networks the first shows run on.
 6. **Team.** How large a typical team is; how often a person new to the pipeline joins mid-production; whether an in-house pipeline engineer exists or this role is shared or hired per project.
-7. **Audience avatars.** Typical numbers for in-venue and for remote audiences; the order in which touch, interaction and show-affecting features should arrive; the consent policy for likenesses.
-8. **Orchestration tools.** Which lighting console, audio and media systems the first show will really use, 
+7. **Audience avatars.** The order in which touch, interaction and show-affecting features should arrive; the consent policy for likenesses.
+8. **Orchestration tools.** Which lighting console, audio and media systems the first show will really use.
 
 ## Appendix: portfolio evidence
 

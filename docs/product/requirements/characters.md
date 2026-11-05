@@ -27,7 +27,7 @@ For a performer-led character, AI can add secondary motion and fill channels the
 
 ## REQ-characters-4: Behaviour specification
 
-Each autonomous character has a human-readable behaviour specification (what it does, what it may not do, how it reacts). The specification is reviewed at a gate, and the character's behaviour follows it.
+Each autonomous character has a human-readable behaviour specification (what it does, what it may not do, how it reacts). The specification is reviewed at a gate, and the character's behaviour follows it. Any AI use it describes is checked against the policy record at that gate (REQ-governance-2), because output during a show cannot wait for one.
 
 ## REQ-characters-5: Deterministic fallback
 

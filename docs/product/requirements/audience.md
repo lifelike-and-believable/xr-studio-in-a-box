@@ -80,4 +80,4 @@ A failure or overload in any audience system does not affect the performer loop 
 
 ## Success measures
 
-- To be set by the approver. Candidates: avatars connected per audience type at stable frame rate; performer rating of the audience summary in rehearsal.
+- Avatars connected per audience type at stable frame rate; performer rating of the audience summary in rehearsal. Each target is set after a baseline is measured on the first project.

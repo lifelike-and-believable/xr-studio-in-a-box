@@ -35,7 +35,7 @@ Collaborators and funders can be given limited access to review and sign off spe
 
 ## REQ-governance-7: Likeness and voice consent
 
-A guest's likeness, voice or body data is captured or stored only after consent is recorded for that show. By default, this data is used live only and is deleted when the show ends. Keeping it longer, for example for a later show, needs a separate opt-in from the guest. Each show declares what is kept, for how long, and where it is processed. Data can be deleted on request. Shows with guest data in Canada, the United States, the UK or EU, and Japan or elsewhere in Asia each need legal review of the applicable privacy and biometric rules before they run (pending; this is not legal advice).
+A guest's likeness, voice or body data is captured or stored only after consent is recorded for that show. By default, this data is used live only and is deleted when the show ends. Keeping it longer, for example for a later show, needs a separate opt-in from the guest. Each show declares what is kept, for how long, and where it is processed. Data can be deleted on request. Guest data is kept out of project backups (REQ-workflow-16), so deletion is complete. The consent record itself is kept (REQ-business-17). Shows with guest data in Canada, the United States, the UK or EU, and Japan or elsewhere in Asia each need legal review of the applicable privacy and biometric rules before they run (pending; this is not legal advice).
 
 ## REQ-governance-8: Reuse keeps terms
 
@@ -43,7 +43,7 @@ When an asset, character or environment is reused, the terms of its original pro
 
 ## REQ-governance-9: Performer consent
 
-Each performer's agreement is recorded per project: what may be captured (body, face, voice, motion) and how it may be used, including AI uses such as training, synthesis, transformation, continuing a performance in the performer's style (REQ-characters-11), or driving a character after the performance. The policy gate (REQ-governance-2) checks this record before a generative tool uses a performer's data, and each asset derived from it names the performer in its provenance record. A performer's agreement can be changed, with a dated history. What a change means for assets already made is pending the approver's decision.
+Each performer's agreement is recorded per project: what may be captured (body, face, voice, motion) and how it may be used, including AI uses such as training, synthesis, transformation, continuing a performance in the performer's style (REQ-characters-11), or driving a character after the performance. The policy gate (REQ-governance-2) checks this record before a generative tool uses a performer's data, and each asset derived from it names the performer in its provenance record. A performer's agreement can be changed, with a dated history. By default, assets the new agreement no longer allows are flagged and cannot be used in new work or new shows. Past shows and work already delivered stand as they are. A contract can set different terms. This default needs legal review (pending; this is not legal advice).
 
 ## Constraints
 

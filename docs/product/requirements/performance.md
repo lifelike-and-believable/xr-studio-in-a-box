@@ -19,7 +19,7 @@ A character's performance is divided into channels: body, hands, face, voice, ga
 
 ## REQ-performance-3: Drivers on a spectrum
 
-Each channel can be driven by full-body capture, by a device, or by AI, and control can pass between any two of these in either direction while the show runs.
+Each channel can be driven by full-body capture, by a device, or by AI, and control can pass between any two of these in either direction while the show runs. In the first release, AI fills channels and holds poses (REQ-characters-3, REQ-performance-6). Handing a performer's channel to AI mid-scene comes later (REQ-characters-11).
 
 ## REQ-performance-4: Live handover
 
@@ -27,7 +27,7 @@ Changing a channel's driver does not stop the show, restart a system, or cause a
 
 ## REQ-performance-5: Performer loop latency
 
-From a performer's movement to the rendered puppet takes under 100 ms on the show's target hardware. The pipeline measures it and shows the result. Delay for viewers may be seconds.
+From a performer's movement to the rendered puppet takes under 100 ms on the show's target hardware. The pipeline measures it and shows the result. Delay for stream viewers may be seconds (REQ-audience-10).
 
 ## REQ-performance-6: Fallback on failure
 
@@ -43,7 +43,7 @@ One performer with one character is a case of any number of performers and chara
 
 ## REQ-performance-9: Session recording
 
-Capture sessions are recorded so they can be replayed, cleaned up and used in rehearsal or tests.
+Capture sessions are recorded so they can be replayed, cleaned up and used in rehearsal or tests. Recording and each use follow the performer's agreement (REQ-governance-9).
 
 ## REQ-performance-10: Network streaming
 

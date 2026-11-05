@@ -15,7 +15,16 @@ Given a brief, the workflow produces a running, tested build by passing through 
 
 ## REQ-workflow-2: Review gates
 
-Each hand-off listed as gated in the review gates (discovery section 14) waits for approval from a person named for that project and area. Hand-offs not listed proceed without waiting. Agents work freely inside a stage. The four kinds of approval in REQ-workflow-7 are always given by a person and never by an AI. For every other gate, the project names who may approve, which may include an AI reviewer the project has chosen. An approval given by an AI is marked as such, and a person can reverse it. (Pending: the approver should confirm that AI approval of other gates is wanted at all, and for which.)
+Each hand-off in the gate list below waits for approval from a person named for that project and area. Hand-offs not listed proceed without waiting. Agents work freely inside a stage. Every gate is approved by a person, never by an AI. An AI reviewer may pre-check an item and recommend a result, and its recommendation is marked as such. The four kinds of approval in REQ-workflow-7 also have a stricter rule on who may hold them.
+
+| Area | Gated hand-offs |
+|---|---|
+| Creative | Look and concept art; character design; mesh and rig; environments |
+| Performance and behaviour | Motion and performance quality; AI behaviour, voice and dialogue; cue list; audience-facing safety and consent |
+| Builds and operations | Build for a public show; update to a remote venue; changes during a live run |
+| Business | Funding applications and reports; contracts and licence terms; spend above a limit; publishing and marketing; AI-use statements and credits |
+
+A build for rehearsal is not gated.
 
 ## REQ-workflow-3: Iteration with history
 
@@ -73,10 +82,16 @@ People are told when something waits for them, by the channel they choose, with 
 
 Project state and large binary assets (models, textures, levels, captures) are versioned, recoverable to an earlier version, and backed up. Recovery is tested.
 
+## REQ-workflow-17: One set of facts, several surfaces
+
+People work through four surfaces: panels inside the Unreal Editor, a web dashboard, chat with the agent, and a dedicated operator console. All of them show the same project state. Each person sees only what their role needs.
+
 ## Constraints
 
+- In all requirements files, a requirement marked (later) is not in the first release. All others are.
+
 - Unreal Engine is the engine (concept, non-goals).
-- Everything needed at show time runs on the venue network without internet (see REQ-delivery-5).
+- What performers, operators and the venue audience need at show time runs on the venue network without internet (see REQ-delivery-5).
 - Artists, performers, operators and attendants must not need code or the command line.
 
 ## Success measures

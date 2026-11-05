@@ -81,7 +81,7 @@ Contracts, proof of spend and approvals are kept for as long as each funder, tax
 
 ## Constraints
 
-- External and financial actions need a person (discovery section 14).
+- External and financial actions need a person (REQ-workflow-2).
 - Funder formats and rules change and are checked against the funder's current documents.
 - The first funder formats are Canada Media Fund, Creative BC, Epic MegaGrants and an arts council (which one is pending).
 - Payroll and tax filing carry legal rules. Prepared figures are a draft for a person to check, not professional advice.
