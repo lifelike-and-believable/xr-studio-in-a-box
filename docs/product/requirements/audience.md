@@ -9,7 +9,9 @@ derived-from:
 
 <!-- Source: discovery sections 6, 10, 11. Avatars rank above AI that responds to the audience. -->
 
-The first release includes avatars and reactions, the audience summary, and chat. Viewpoint choice and REQ-audience-9 come later.
+The first release includes avatars and reactions, the audience summary, chat, and audience-fired cues. Viewpoint choice and REQ-audience-9 come later.
+
+Headsets, avatars and guest devices are options, not assumptions. A show can have none of them, with guests present in a physical space and nothing to wear or carry.
 
 ## REQ-audience-1: Audience avatars
 
@@ -19,13 +21,15 @@ Audience members, in the venue and remote, can appear as avatars inside the worl
 
 A show chooses one or more appearance tiers for its avatars: abstract or symbolic forms, stylised figures from a set, guest-customised avatars, and likenesses of the guest. Likenesses require REQ-governance-7.
 
+An avatar can be a playable character designed as part of the show, of any kind, with its own form, movement and abilities. It is made through the character path (REQ-content-1), what it can do is designed under REQ-interaction-1, and it must fit the show's performance budgets (REQ-delivery-8) at the guest counts the show plans for (REQ-audience-4).
+
 ## REQ-audience-3: Embodiment tiers
 
 An avatar follows a guest using the best input available on the guest's device: headset and hand tracking, full-body inside-out tracking, browser or phone input, or passive guided movement. It falls back gracefully when input quality drops.
 
 ## REQ-audience-4: Mixed scale
 
-A show can combine a few high-fidelity avatars (for example in the venue) with a large simplified remote crowd in one world. The design plans for hundreds of guests in the venue and tens of thousands remote. The counts each release must reach, per audience type, are TBD.
+A show can combine a few high-fidelity avatars (for example in the venue) with simpler avatars for interactive remote guests, up to the limit the show sets (REQ-audience-10). Stream viewers are not in the world, but a show can represent them there as a simulated crowd (REQ-characters-1) driven by their combined reaction (REQ-performance-13). The design plans for hundreds of guests in the venue and tens of thousands remote. The counts each release must reach, per audience type, are TBD.
 
 ## REQ-audience-5: Presence and reactions
 
@@ -43,13 +47,13 @@ Remote viewers can choose their camera or viewpoint, within limits the show sets
 
 Viewers can send text and reaction input that reaches the performer, the scene or both. Each show sets its moderation, and a person approves the rules (REQ-workflow-7). Automatic filters may apply those rules during the show.
 
-## REQ-audience-9 (later): Touch, interaction and effect on the show
+## REQ-audience-9 (later): Touch and interaction
 
-Avatars can touch or interact with performers, characters and each other, and collective or individual action can change the scene. The order of these features is TBD.
+Avatars can touch or interact with performers, characters and each other. The order of these features is TBD. Audience action that fires a cue and so changes the scene is in the first release (REQ-showcontrol-10).
 
-## REQ-audience-10: Two remote tiers
+## REQ-audience-10: Remote tiers
 
-Remote guests join in one of two tiers. Interactive guests are in the live world with low delay, up to a limit the show sets. Stream viewers watch with seconds of delay, and their reactions reach the show as a combined summary. The delay target and limit for the interactive tier are TBD.
+Remote guests join in one of three tiers. Interactive guests are in the live world with low delay, up to a limit the show sets. Player guests, on the show's own player page, watch the stream with a light input layer on top: their own actions show at once on their screen, and reach the show individually or as a combined result, as the show sets, with no rendered session for each guest. Stream viewers watch with seconds of delay, and their reactions reach the show as a combined summary. The first release is designed for player guests, and the tier is built when the first show needs it. The delay target and limit for the interactive tier are TBD.
 
 ## REQ-audience-11: Avatar safety
 
@@ -57,7 +61,9 @@ Avatars keep a personal space around each guest. Guests can mute and block other
 
 ## REQ-audience-12: Accessibility and comfort
 
-Each show offers captions for speech, a seated option, and a low-motion option where its format allows. Guests are warned before the show about flashing light or intense motion. The show declares which options it offers.
+The pipeline supports captions for speech, audio description, a sign-interpreted view, a seated option and a low-motion option. Each show declares which of these it offers, and offers captions, a seated option and a low-motion option where its format allows. Guests are warned before the show about flashing light, intense motion or distressing content. Each show names an aftercare step, so it is clear what happens if a guest is upset.
+
+Captions of unscripted speech work in the venue with no internet, through local speech recognition or a person typing. Automatic captions are marked as an aid, because they make mistakes. Sign language is always performed by a person, and is never generated by AI.
 
 ## REQ-audience-13: Minors
 
@@ -65,15 +71,42 @@ Each show declares whether guests under the age of consent may attend. Where the
 
 ## REQ-audience-14: Joining and reconnecting
 
-A guest enters a show through a link or code issued by whatever ticketing the show uses. Guests can arrive late, and a guest who loses connection can rejoin with the same avatar.
+A guest enters a show through a link or code issued by whatever ticketing the show uses. A code can carry a tier, such as paid access to a trigger. Guests can arrive late, and a guest who loses connection can rejoin the same session with the same avatar.
 
 ## REQ-audience-15: Audience failures stay contained
 
 A failure or overload in any audience system does not affect the performer loop or stop the show for other audience types. If the remote systems fail, the show continues in the venue.
 
+## REQ-audience-16: Real-room guest safety
+
+Guests moving through a physical space are kept clear of hazards, obstacles and each other, whether or not they wear anything. A show that lets guests walk declares how it does this, for example through its layout, lighting, signs and staff, and a person approves it with the show's safety rules (REQ-workflow-7). Where guests wear headsets, boundaries are also shown in the headset, and the attendant or operator is warned. Insurance and local venue rules need review for each venue (pending; this is not legal advice).
+
+## REQ-audience-17: Languages
+
+Captions, on-screen text and dialogue are kept separate from the build, so a show can offer several languages, spoken or signed, without rework.
+
+## REQ-audience-18 (later): Live translation
+
+Live speech can be translated between languages during a show.
+
+## REQ-audience-19 (later): Persistent worlds and returning guests
+
+A world can keep its state between sessions, and a guest can return with their progress. This needs a guest identity and a separate opt-in (REQ-governance-7). The first release must not prevent it.
+
+## REQ-audience-20: Pre-show and guest entry
+
+A session has a pre-show state before its start. Guests can arrive early, enter in stages so a crowd does not all arrive or connect at once, and have any device checked. Where a show has controls, guests learn them through a short tutorial, which can sit inside the story. A show sets a time budget for this, which counts towards its comfort limits (REQ-audience-12).
+
+The pipeline provides a standard pre-show, saved as a reusable pattern (REQ-interaction-5), which a show can restyle or replace. Required steps, such as notices, consent (REQ-governance-7) and warnings (REQ-audience-12), always happen before a guest enters, even in a custom pre-show.
+
+## REQ-audience-21: Guest roles
+
+A show declares roles for its guests, covering what each can do, who can see and hear them, and what they hear. Guests are muted by default. Any guest voice follows REQ-governance-7.
+
 ## Constraints
 
 - Audience types use different devices and have different latency (see REQ-audience-10).
+- The accessibility requirements were written without input from Deaf or disabled artists. They need review by people with that experience on the first project that uses them (pending).
 - Avatars must not depend on AI responding to the audience, which is later (REQ-characters-9).
 - Remote audiences need internet. A show's venue functions do not (REQ-delivery-5).
 - Ticketing stays out of scope (concept, non-goals). The pipeline only accepts a link or code.

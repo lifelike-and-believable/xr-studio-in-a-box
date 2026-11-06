@@ -11,7 +11,7 @@ derived-from:
 
 ## REQ-governance-1: Project policy record
 
-Each project has a policy record listing its collaborators and the terms agreed with each, including limits on AI use, cultural protocols and rights restrictions. Terms can be added and changed with a dated history.
+Each project has a policy record listing its collaborators and the terms agreed with each, including limits on AI use, cultural protocols and rights restrictions. Terms can be added and changed with a dated history. A term can have an end date. Assets it covers are flagged before that date, and cannot be used in new work or new shows after it. A show still running at the end date alerts a person, who decides. Past shows and work already delivered stand as they are.
 
 ## REQ-governance-2: Policy gate on generation
 
@@ -35,7 +35,7 @@ Collaborators and funders can be given limited access to review and sign off spe
 
 ## REQ-governance-7: Likeness and voice consent
 
-A guest's likeness, voice or body data is captured or stored only after consent is recorded for that show. By default, this data is used live only and is deleted when the show ends. Keeping it longer, for example for a later show, needs a separate opt-in from the guest. Each show declares what is kept, for how long, and where it is processed. Data can be deleted on request. Guest data is kept out of project backups (REQ-workflow-16), so deletion is complete. The consent record itself is kept (REQ-business-17). Shows with guest data in Canada, the United States, the UK or EU, and Japan or elsewhere in Asia each need legal review of the applicable privacy and biometric rules before they run (pending; this is not legal advice).
+A guest's likeness, voice or body data is captured or stored only after consent is recorded for that session. By default, this data is used live only and is deleted when the session ends. Keeping it longer, for example for a later session or show, needs a separate opt-in from the guest. Each show declares what is kept, for how long, and where it is processed. Data can be deleted on request. A live room view that is never recorded, and is seen only by named cast and crew (REQ-performance-16), needs a clear notice to guests rather than each guest's consent. Any show may react to a guest's presence if nothing is kept or identified. A momentary depth point or skeleton that is never stored and cannot identify anyone is not body data, and needs a clear notice rather than each guest's consent. Safety cameras are a separate purpose, which a show declares. This use of sensing and cameras is part of the legal review below. Guest data is kept out of project backups (REQ-workflow-16), so deletion is complete. The consent record itself is kept (REQ-business-17). Shows with guest data in Canada, the United States, the UK or EU, and Japan or elsewhere in Asia each need legal review of the applicable privacy and biometric rules before they run (pending; this is not legal advice).
 
 ## REQ-governance-8: Reuse keeps terms
 
@@ -44,6 +44,10 @@ When an asset, character or environment is reused, the terms of its original pro
 ## REQ-governance-9: Performer consent
 
 Each performer's agreement is recorded per project: what may be captured (body, face, voice, motion) and how it may be used, including AI uses such as training, synthesis, transformation, continuing a performance in the performer's style (REQ-characters-11), or driving a character after the performance. The policy gate (REQ-governance-2) checks this record before a generative tool uses a performer's data, and each asset derived from it names the performer in its provenance record. A performer's agreement can be changed, with a dated history. By default, assets the new agreement no longer allows are flagged and cannot be used in new work or new shows. Past shows and work already delivered stand as they are. A contract can set different terms. This default needs legal review (pending; this is not legal advice).
+
+## REQ-governance-10: Performer brief
+
+Where the policy record limits how a character may be portrayed, for example by a rights holder or through a cultural protocol, those limits are given to its performers as a brief, and each performer acknowledges it. The pipeline does not filter a live performance: what happens on stage stays with the performer.
 
 ## Constraints
 
