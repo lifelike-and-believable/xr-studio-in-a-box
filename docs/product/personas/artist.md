@@ -5,7 +5,7 @@ derived-from:
   - concept#audience: f31bc32f2e88
 ---
 
-# Riley, character, environment or animation artist
+# Riley, character, environment, animation or effects artist
 
 <!-- Stories link to a section, for example persona-artist#goals. -->
 
@@ -19,7 +19,7 @@ derived-from:
 
 ## Skills and tools
 
-- Character, environment or animation craft in tools such as Blender, Character Creator and Unreal Engine.
+- Character, environment, animation or visual effects craft in tools such as Blender, Character Creator and Unreal Engine, including its Niagara effects system.
 - Generation tools such as Higgsfield and Tripo, used directly or through agents.
 - Does not use code or the command line, and does not need to know how the agents work.
 
@@ -33,7 +33,8 @@ Works at a workstation, inside the art tool or the Unreal Editor panels, and oft
 - Generated output looks finished before it is, and fixing it can take longer than starting over **[assumed]**.
 - Feedback arrives in scattered places and earlier versions are hard to find **[assumed]**.
 - Concern that AI use replaces artists or hides their contribution **[assumed]**. The concept's non-goals rule out replacement, and the design must show this in practice.
+- Effects that look right on a workstation run too slowly on weaker devices, and this is found late **[assumed]**.
 
 ## Evidence
 
-Named in discovery section 15 with its implication 3 (no code or command line) and in REQ-content-9 (tool freedom). No artist has been interviewed. Items marked **[assumed]** need checking with artists on the first project.
+Named in discovery section 15 with its implication 3 (no code or command line) and in REQ-content-9 (tool freedom). Effects artists were added on 2026-11-06, because their goals match and only their tools differ (REQ-content-12). No artist has been interviewed. Items marked **[assumed]** need checking with artists on the first project.
