@@ -9,11 +9,11 @@ derived-from:
 
 <!-- Source: discovery sections 9, 14. Agents draft and a person approves. Ticketing is out of scope. -->
 
-All the business tools below are in the first release. They are built into the pipeline and sized for a solo production (REQ-business-13).
+All the business tools below are in the first release, except those marked (later). They are built into the pipeline and sized for a solo production (REQ-business-13).
 
 ## REQ-business-1: Project facts record
 
-Each project has one record of its facts: description, technical plan, budget, credits, collaborators, schedule and work samples. Production tools and business documents both read from it.
+Each project has one record of its facts: description, technical plan, budget, credits, collaborators, schedule, work samples, and capacity figures (session length, changeover time, guests per hour and staff per session). Production tools and business documents both read from it.
 
 ## REQ-business-2: Funding applications
 
@@ -45,15 +45,15 @@ Quotes and invoices are drafted, and payroll and payment information is prepared
 
 ## REQ-business-9: Scheduling
 
-Crew and performer availability, rehearsals and shoots are scheduled, with call sheets drafted for approval.
+Crew and performer availability, rehearsals and shoots are scheduled, with call sheets drafted for approval. Scheduling tracks each performer's time in a headset or suit, against limits the production sets.
 
 ## REQ-business-10: Venue and touring logistics
 
-Equipment manifests, venue specifications, travel and set-up checklists are drafted and kept for each venue.
+Equipment manifests, travel and set-up checklists are drafted and kept for each venue. Venue specifications are kept in the venue profile (REQ-delivery-14), so logistics and the show read the same facts.
 
 ## REQ-business-11: Audience data and reporting
 
-Attendance, feedback and analytics are collected where consent allows (REQ-governance-7) and used for funder and partner reports.
+Attendance, feedback and analytics are collected by session where consent allows (REQ-governance-7) and used for funder and partner reports.
 
 ## REQ-business-12: Marketing and press
 
@@ -78,6 +78,10 @@ Agents never see bank details, tax numbers or similar identifiers. These are kep
 ## REQ-business-17: Records retention
 
 Contracts, proof of spend and approvals are kept for as long as each funder, tax rule or contract requires, including after a project ends. Each record shows why it is kept and until when. Retention periods need checking per funder and jurisdiction (pending).
+
+## REQ-business-18 (later): Client handover
+
+Source assets can be handed to a client at the end of a project, with their provenance and licence terms, as the contract sets.
 
 ## Constraints
 

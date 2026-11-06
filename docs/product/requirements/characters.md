@@ -47,7 +47,7 @@ Autonomous output is bounded by limits set for the project (what a character may
 
 ## REQ-characters-9 (later): Conversational and audience-responsive characters
 
-Characters that speak with, or react to, individual audience members are a later stage. This includes crowds and creatures reacting to audience avatars. They are not part of the first release, and the architecture must not prevent them. They depend on REQ-governance-7 and on latency and cost limits that are TBD.
+Characters that speak with, or react to, identified audience members are a later stage. This includes crowds and creatures reacting to audience avatars. Anonymous presence reaction is the exception (REQ-characters-12). They are not part of the first release, and the architecture must not prevent them. They depend on REQ-governance-7 and on latency and cost limits that are TBD.
 
 ## REQ-characters-10: Locked and free moments
 
@@ -56,6 +56,10 @@ Each scene or behaviour is marked as locked or free. A locked moment plays the s
 ## REQ-characters-11 (later): AI takeover from a performer
 
 When AI takes over a channel from a performer mid-scene, each show chooses what it does: it continues the character from its behaviour specification, or it continues in that performer's style, learned from their recorded sessions. Style continuation runs only where the performer's agreement allows it (REQ-governance-9). Handoffs are stage 3, but the first release's handover (REQ-performance-4) and session recording (REQ-performance-9) must not prevent them.
+
+## REQ-characters-12: Anonymous presence reaction
+
+Autonomous characters can react to a nearby presence (REQ-performance-19) with non-verbal, rule-based behaviour. Nothing is kept or identified. This is part of the first release, and does not bring forward stage 4. Reactions to identified guests, and conversation, stay in REQ-characters-9.
 
 ## Constraints
 
