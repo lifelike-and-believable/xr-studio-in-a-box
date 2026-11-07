@@ -37,7 +37,12 @@ A reviewer can clear every pending approval from one queue, quickly, and anyone 
 
 ## Stories
 
-- None yet.
+- story-review-and-status-see-review-queue
+- story-review-and-status-decide-on-items
+- story-review-and-status-hold-gated-hand-off
+- story-review-and-status-feedback-and-versions
+- story-review-and-status-status-board
+- story-review-and-status-notifications
 
 ## Release groups
 
@@ -50,8 +55,8 @@ A reviewer can clear every pending approval from one queue, quickly, and anyone 
 
 ## Open questions
 
-- What turnaround does the approver expect from the queue? This sets how notifications are grouped.
-- Which notification channels come first?
+- Answered: notifications default to a daily digest, with an immediate alert only when something is blocking work.
+- Answered: email and a dashboard badge come first. Other channels connect later.
 
 ## Out of scope
 

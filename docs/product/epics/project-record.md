@@ -35,7 +35,12 @@ A person can start a project, record its facts once, give people roles, and see 
 
 ## Stories
 
-- None yet.
+- story-project-record-start-project
+- story-project-record-record-facts
+- story-project-record-add-person
+- story-project-record-name-approvers
+- story-project-record-same-project-state
+- story-project-record-back-up-and-restore
 
 ## Release groups
 
@@ -48,8 +53,8 @@ A person can start a project, record its facts once, give people roles, and see 
 
 ## Open questions
 
-- Where do project facts live today, and is anything imported from those records?
-- Which surface comes first? The proposed stories use the web dashboard and chat. Editor panels and the operator console follow in later layers.
+- Answered: new projects start empty. An agent can draft facts from documents a person points it at, for that person to check. Layer 1 has no formal import.
+- Answered: the web dashboard and chat come first. Editor panels and the operator console follow in later layers.
 
 ## Out of scope
 

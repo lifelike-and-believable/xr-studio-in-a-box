@@ -36,7 +36,12 @@ Each project records what its collaborators have agreed. Generation that breaks 
 
 ## Stories
 
-- None yet.
+- story-provenance-and-policy-record-terms
+- story-provenance-and-policy-no-term-choice
+- story-provenance-and-policy-block-generation
+- story-provenance-and-policy-provenance-record
+- story-provenance-and-policy-quality-and-licence-gate
+- story-provenance-and-policy-collaborator-sign-off
 
 ## Release groups
 
@@ -51,8 +56,8 @@ Each project records what its collaborators have agreed. Generation that breaks 
 
 ## Open questions
 
-- What should a collaborator see on a review page when the item carries cultural or legal weight?
-- Which checks count as quality checks before the content layer defines asset checks?
+- Answered: a collaborator's review page shows the item, the term it relates to and a plain statement of what is asked. They can sign off, decline or comment, with no deadline pressure and no AI recommendation shown. This is a first draft, to check with a cultural consultant.
+- Answered: until epic-asset-checks exists, the quality checks are that the file opens, it is named correctly, its provenance and licence status are recorded, and a person has looked at it.
 
 ## Out of scope
 

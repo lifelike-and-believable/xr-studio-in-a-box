@@ -44,12 +44,14 @@ A performer can step into a capture source, complete a guided setup and drive a 
 
 ## Dependencies
 
-- A rigged character on the common skeleton, hand-made or from an earlier show, so this does not wait for the content layer.
+- Proxy characters on the common skeleton, such as the Unreal mannequin, a MetaHuman or a character from a past show. Layer 2 is built and tested on these, so it does not wait for the content layer.
+- For the first show (UC-2), one hand-made character, built outside the generation path. This is a small piece of art work, not a dependency on Layer 3.
 - A check of how far Open3DBroadcast and VMC Live Link already cover this.
 - Access to an optical studio for the real test. Until then, the optical story is tested against a recorded or simulated stream.
 
 ## Open questions
 
+- What is the common skeleton convention, and does it come from Character Creator, MetaHuman or something else? This must be answered before this epic's stories, and epic-character-path follows the answer.
 - Which capture source comes first? The proposal is the portable inertial suit, because it served past shows and is what a solo performer is likely to use.
 - How is the 100 ms measured end to end, and on which hardware? The first test should include a performer beside their character, to see what people notice.
 - Which optical system and studio come first, and when can a studio be booked for the real test?

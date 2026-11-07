@@ -50,11 +50,11 @@ A character can go from a brief and references to a rigged, engine-ready asset, 
 - epic-review-and-status, for gates.
 - epic-provenance-and-policy, for the policy gate and provenance record.
 - epic-agent-work, for tool adapters.
+- The common skeleton convention, which is decided in epic-live-puppet.
 
 ## Open questions
 
 - Which generation tools come first? The research notes treat several as trials, and output licences are not all checked.
-- What is the common skeleton convention, and does it come from Character Creator, MetaHuman or something else?
 - Which character style does the first show need?
 
 ## Out of scope
