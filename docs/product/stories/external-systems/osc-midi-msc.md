@@ -13,7 +13,7 @@ As Sam, the technical artist, I want incoming OSC, MIDI and MIDI show control me
 ## Acceptance criteria
 
 - Sam can set, without code and in production mode, which incoming OSC address, MIDI note or controller, or MIDI show control command (such as go, stop or resume, with a cue number and list) fires which cue (story-cue-list-build-a-cue-list) or the next go. Receiving OSC and MIDI is set up as in story-live-signals-osc and story-live-signals-midi.
-- A cue can send OSC, MIDI and MIDI show control messages, so the show can lead other systems.
+- A cue can send OSC, MIDI and MIDI show control messages, so the show can lead other systems. A show can also send a one-way message, such as a venue ready signal, over OSC or MIDI to a receiver Sam names.
 - Sam names the senders allowed to fire cues, by network address or device. Messages from any other sender fire nothing and are logged, so a stray message on the venue network cannot fire a cue.
 - A cue fired by an incoming message fires within the show's cue timing (story-cue-list-step-and-palette), measured from the moment the message arrives. The delay from the sender to its arrival is measured and shown on its own.
 - In show mode, only a person whose role allows it changes these settings, following the rules for changes during a live run (story-session-operations-live-changes). An agent cannot change them. Messages fire cues with every agent and the internet disconnected.

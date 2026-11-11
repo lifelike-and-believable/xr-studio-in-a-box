@@ -2,7 +2,7 @@
 id: epic-unattended-running
 status: approved
 derived-from:
-  - requirements-showcontrol#REQ-showcontrol-21: bc1a96e5d51d
+  - requirements-showcontrol#REQ-showcontrol-21: 013ea6c3e7d4
   - requirements-showcontrol#REQ-showcontrol-26: 272534f56e39
   - persona-venue-attendant#goals: ee33f70fd41e
   - persona-technical-artist#goals: 1fb2055dfdf2
@@ -48,6 +48,7 @@ A self-guided show can run with no staff present, recover from crashes and power
 
 - epic-branching-shows.
 - epic-session-operations.
+- epic-show-safety, for the safe state and the emergency stop.
 
 ## Open questions
 

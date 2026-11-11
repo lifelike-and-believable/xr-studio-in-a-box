@@ -12,7 +12,7 @@ As Quinn, the interaction designer, I want to record what a guest can do, how th
 
 ## Acceptance criteria
 
-- Quinn can record each interaction in the project's interaction design, without code: what the guest does, on which targets, and what responds, such as a character, a camera, the environment or a cue. An interaction that fires a cue names it, and the cue is simulated until show control arrives in Layer 4.
+- Quinn can record each interaction in the project's interaction design, without code: what the guest does, on which targets, and what responds, such as a character, a camera, the environment or a cue. An interaction that fires a cue names it (story-cue-list-build-a-cue-list).
 - The person who holds the interaction designer's role owns the design. The director holds this role unless the project names someone else, as on a small show with no separate interaction designer, and a technical artist can be named for the build side, which builds what patterns cannot cover (story-project-record-name-approvers). The project shows who holds each.
 - An agent can draft or revise the design, but only a person who holds the interaction designer's role can send it for review. The design waits at the interaction design gate until the person named for that area accepts it (story-review-and-status-hold-gated-hand-off). An agent cannot accept it.
 - The design is versioned, and earlier versions can be compared and restored (story-review-and-status-feedback-and-versions).

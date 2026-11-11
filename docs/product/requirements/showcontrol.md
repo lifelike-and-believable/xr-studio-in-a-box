@@ -91,7 +91,7 @@ A cue can depend on a condition, such as a guest's action, a combined audience r
 
 ## REQ-showcontrol-21: Unattended running
 
-A self-guided show (REQ-interaction-7) can run with no staff present. It starts and stops on a schedule, runs its own pre-show check, and holds an idle state when no guests are present. After a crash or power cut, it restarts and returns to the idle state. When it cannot recover, it shows a safe holding state and alerts a named person, which needs a network connection. Unattended shows use screens, projection and similar outputs. A show with headsets needs at least an attendant.
+A self-guided show (REQ-interaction-7) can run with no staff present. It starts and stops on a schedule, runs its own pre-show check, and holds an idle state when no guests are present. After a crash or power cut, it restarts and returns to the idle state. When it cannot recover, it shows a safe holding state and alerts a named person, which needs a network connection. Unattended shows use screens, projection and similar outputs. A show with headsets in a venue needs at least an attendant. A self-guided show that a guest runs at home on their own headset has no attendant: the guest is their own attendant, and the show's own safety controls take the attendant's place, at least a stop the guest can always reach and the safe state when the headset comes off or the guest leaves the play area.
 
 An unattended show captures no guest data: it does not store or identify anyone's likeness, voice or body data. Like any show, it may react to a guest's presence (REQ-governance-7).
 
