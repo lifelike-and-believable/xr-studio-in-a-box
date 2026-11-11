@@ -31,7 +31,11 @@ Assets are checked automatically before review, failures are shown to the review
 
 ## Stories
 
-- None yet.
+- story-asset-checks-check-against-budget
+- story-asset-checks-check-effects-and-audio
+- story-asset-checks-check-provenance
+- story-asset-checks-show-failures
+- story-asset-checks-lower-detail-versions
 
 ## Release groups
 
@@ -47,8 +51,8 @@ Assets are checked automatically before review, failures are shown to the review
 
 ## Open questions
 
-- What are the budgets per target? The approver sets them (REQ-delivery-8), and they are TBD.
-- Do lower-detail versions need their own review?
+- Answered: each target has a budget file, which the director or their delegate sets. The first numbers are set from measurements on proxy assets before story-asset-checks-check-against-budget is accepted. That story defines the budget file and what it means for an asset to pass the asset checks for a target.
+- Answered: lower-detail versions are checked automatically against their target's budget and compared with the full version. They go to review only when a check fails or the difference is above a threshold the technical artist sets, as in story-asset-checks-lower-detail-versions.
 
 ## Out of scope
 
