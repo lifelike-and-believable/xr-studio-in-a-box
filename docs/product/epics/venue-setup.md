@@ -36,7 +36,12 @@ A venue has a saved profile, a show knows whether it fits, the virtual world lin
 
 ## Stories
 
-- None yet.
+- story-venue-setup-venue-profile
+- story-venue-setup-fit-check
+- story-venue-setup-align-to-room
+- story-venue-setup-offline-show
+- story-venue-setup-failed-machine-plan
+- story-venue-setup-headset-list
 
 ## Release groups
 
@@ -51,11 +56,11 @@ A venue has a saved profile, a show knows whether it fits, the virtual world lin
 
 ## Open questions
 
-- What hardware does UC-1 use? This also decides the headset list.
-- How does a show model its staffing before that decision?
-- What are the restart and takeover time targets? They are TBD.
+- Answered: venue stories are written and tested against the first release's PC VR and projection kit. Standalone headsets and UC-1's touring kit get a separate epic once the hardware is chosen. The headset list is written for PC VR headsets, including wireless PC VR, in story-venue-setup-headset-list.
+- Answered: staffing is modelled per show from roles and counts the director or their delegate sets, in story-venue-setup-fit-check.
+- Answered: restart and takeover time targets are measured in rehearsal and set by the director or their delegate, in story-venue-setup-failed-machine-plan.
 
 ## Out of scope
 
-- Standalone headsets (REQ-delivery-9), which are later.
+- Standalone headsets (REQ-delivery-9) and UC-1's touring kit, which get a separate epic once the hardware is chosen.
 - Third-party LBVR platforms (REQ-delivery-22), which are later.
