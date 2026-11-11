@@ -15,4 +15,4 @@ As Kai, the performer, I want to drive a character's position and intent while p
 - Kai drives a proxy character's world position and travel, and its intent, such as heading, speed or a chosen action, and procedural motion moves the rest of its body.
 - Sam, the technical artist, chooses which channels Kai drives and which are procedural, and saves the choice as a mapping (story-shared-characters-map-a-different-body).
 - The channels Kai drives respond within the delay target (story-live-puppet-measure-delay).
-- Procedural motion runs without an agent. AI motion filling in the body comes with AI assists in Layer 7 and is not in this story.
+- Procedural motion runs without an agent. AI motion filling in the body is an AI-filled channel (story-crowds-and-creatures-ai-assists) and is not in this story.

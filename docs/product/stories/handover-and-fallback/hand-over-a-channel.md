@@ -12,7 +12,7 @@ As Casey, the capture crew, I want to hand a channel to another driver without a
 
 ## Acceptance criteria
 
-- Casey can hand a channel to another capture source, a device or a recording, while the session runs. Handing a performer's channel to AI mid-scene is not offered.
+- Casey can hand a channel to another capture source, a device or a recording, while the session runs. Handing a performer's channel to AI mid-scene is not offered. Taking over an autonomous character follows story-behaviour-and-limits-override.
 - Each handover uses one method: a blend over a set time, a pose match before switching, or a cover behind an effect or transformation. A handover with no method chosen uses the default blend, whose time Casey sets for each show, so a hard cut happens only when a person chooses one.
 - A visible jump is a joint moving further between two rendered frames than a limit the show sets. Casey and the performer set the limit by watching recorded output before the story is accepted. Recorded output of each method on a proxy character shows no visible jump.
 - A handover does not stop the show or restart a system, and the performer's measured delay stays within the show's delay target (story-live-puppet-measure-delay) during it.

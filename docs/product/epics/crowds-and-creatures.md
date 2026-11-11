@@ -34,7 +34,7 @@ Autonomous crowds and creatures fill a scene, respond to cues, performers and ne
 - Add secondary motion and fill undriven channels with AI, with a switch for the performer.
 - Mark a moment as locked or free.
 - React to a nearby presence with non-verbal, rule-based behaviour, with nothing kept.
-- Later, not written: trial a local generative model on the show machine, behind the scripted fallback (story-behaviour-and-limits-scripted-fallback). The first release uses rule-based and procedural methods only (approver's answer).
+- Later, not written: trial a local generative model on the show machine, behind the scripted fallback (story-behaviour-and-limits-scripted-fallback), including generative voice transformation of a performer's live voice. The first release uses rule-based and procedural methods only (approver's answer).
 
 ## Stories
 
