@@ -30,7 +30,11 @@ A technical artist can have a character whose body does not match the performer'
 
 ## Stories
 
-- None yet.
+- story-nearest-body-retargeting-match-nearest-body-plan
+- story-nearest-body-retargeting-correct-and-save
+- story-nearest-body-retargeting-drive-live
+- story-nearest-body-retargeting-add-body-plan
+- story-nearest-body-retargeting-rehearse-and-review
 
 ## Release groups
 
@@ -41,7 +45,7 @@ A technical artist can have a character whose body does not match the performer'
 
 - epic-live-puppet, for channels, the common interface and the UE5 mannequin skeleton.
 - epic-shared-characters, for the mapping asset and its rules.
-- Proxy characters with body plans different from the mannequin, such as a quadruped and a simple creature.
+- Proxy characters for the first known set beyond the mannequin: a quadruped and a creature with extra limbs, such as four arms.
 
 ## Open questions
 

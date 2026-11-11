@@ -46,6 +46,7 @@ A capture session can be recorded and replayed in rehearsal or tests, within wha
 - story-session-recording-change-agreement
 - story-session-recording-stream-between-machines
 - story-session-recording-remote-performer
+- story-session-recording-two-site-test
 
 ## Release groups
 
