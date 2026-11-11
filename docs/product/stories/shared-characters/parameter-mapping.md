@@ -16,4 +16,5 @@ As Sam, the technical artist, I want to map a performer's motion onto character 
 - The motion value is turned into the character value with the same settings as a signal mapping: input range, output range, curve, smoothing and limits (story-live-signals-map-a-signal). Unlike a signal, the input is a performer's capture, so it drives a character only once that performer's agreement is confirmed (story-session-recording-record-agreement).
 - A parameter mapping is a mapping asset and follows the rules in story-shared-characters-map-a-different-body. During rehearsal in production mode, Sam can change it and see the result with no new build or restart. The change is a new version, which runs in show mode only once approved.
 - Driven by the portable inertial suit, the character value changes within the show's delay target (story-live-puppet-measure-delay).
-- If the capture drops, the value uses its fallback (story-handover-and-fallback-define-fallback).
+- If the capture drops (story-handover-and-fallback-automatic-switch), the value uses its fallback (story-handover-and-fallback-define-fallback). A form and transformation value uses the same safe hold as a scene value: it keeps the last good value, then eases to a neutral value Casey sets.
+- With every agent and the internet disconnected, the value keeps following the performer.

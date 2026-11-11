@@ -46,6 +46,7 @@ A technical artist can have a character whose body does not match the performer'
 - epic-live-puppet, for channels, the common interface and the UE5 mannequin skeleton.
 - epic-shared-characters, for the mapping asset and its rules.
 - Proxy characters for the first known set beyond the mannequin: a quadruped and a creature with extra limbs, such as four arms.
+- A proxy character outside the first set, such as a winged creature, to test adding a body plan.
 
 ## Open questions
 

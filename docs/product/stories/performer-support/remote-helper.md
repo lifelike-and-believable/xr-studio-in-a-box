@@ -12,8 +12,8 @@ As Kai, the performer, I want a helper in another location to join the crew chan
 
 ## Acceptance criteria
 
-- Casey names a remote helper for the session, and only a named helper can join. The helper can talk by voice and send text on the crew channel (story-performer-support-crew-channel), with text read aloud and voice shown as captions to anyone who chooses them, as on the rest of the channel. An agent cannot name a helper.
-- The helper hears and sees only the crew channel, and nothing else of the show or project that their role does not need.
+- Casey names a remote helper for the session from people already on the project with a role (story-project-record-add-person), and only a named helper can join. The helper can talk by voice and send text on the crew channel (story-performer-support-crew-channel), with text read aloud and voice shown as captions to anyone who chooses them, as on the rest of the channel. An agent cannot name a helper.
+- The helper hears and sees only the crew channel, whether it is being recorded, and the delay reading below. Nothing else of the show or project is open to them through this link.
 - The show never needs the helper. When the helper's link is cut, or the internet is off, the crew channel keeps working for everyone at the venue and the show runs on. Everyone on the channel is told in text and with a sound when the helper's link drops or returns.
 - The crew channel's rules apply to the helper too: guests never hear the channel, it reaches no output, and it is not recorded unless everyone on it, the helper included, has agreed.
 - The delay between the venue and the helper is measured and shown to the helper and to Casey.

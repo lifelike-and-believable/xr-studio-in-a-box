@@ -16,3 +16,4 @@ As Sam, the technical artist, I want to add a body plan to the known set so that
 - A new body plan is versioned and goes to the review queue (story-review-and-status-see-review-queue). The automatic match offers it only once a person with the technical artist's role has approved it. An agent can draft a body plan but cannot approve it.
 - Adding or changing a body plan does not change existing mappings or the characters that use them. They keep the version of the plan they were matched to.
 - Sam can see which version of which body plan each mapping was matched to.
+- Once the new plan is approved, the automatic match chooses it for the proxy character it was made for.
