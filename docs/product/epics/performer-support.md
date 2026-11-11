@@ -36,7 +36,12 @@ While performing, a performer can sense the audience, see what they are playing 
 
 ## Stories
 
-- None yet.
+- story-performer-support-crew-channel
+- story-performer-support-room-view
+- story-performer-support-venue-audio
+- story-performer-support-audience-summary-signals
+- story-performer-support-stage-view
+- story-performer-support-motion-quality-check
 
 ## Release groups
 
@@ -53,9 +58,9 @@ While performing, a performer can sense the audience, see what they are playing 
 
 ## Open questions
 
-- What can a performer in a suit with no headset see and hear? This needs trying with a real performer.
-- Is motion correction built with Unreal's own tools, or bought from a vendor? It must stay within the show's delay target.
-- What should the notice to guests about a live room view say?
+- Answered: settled in story-performer-support-crew-channel by a test with a real performer in a suit with no headset, who sets the bar. The other stories in this epic use what that test finds.
+- Answered: settled in story-performer-support-motion-quality-check. Correction starts with Unreal's own tools, and buying from a vendor is considered only if they cannot meet the show's delay target, which any correction must stay within. This is a proposal for the approver to confirm.
+- Answered: settled in story-performer-support-room-view. The notice's content is defined by REQ-governance-7 and REQ-performance-16: the view is live only, never recorded, and seen only by named cast and crew. A person who holds the audience-facing safety and consent approval approves it.
 
 ## Out of scope
 
