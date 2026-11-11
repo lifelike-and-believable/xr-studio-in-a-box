@@ -61,7 +61,7 @@ Autonomous crowds and creatures fill a scene, respond to cues, performers and ne
 
 ## Open questions
 
-- Answered: the maximum crowd and creature counts for each target are measured in a load test on the first release's test kit (story-build-and-install-measure-against-budget) and set by the director or their delegate before each story is accepted. See story-crowds-and-creatures-place-a-crowd and story-crowds-and-creatures-add-creatures.
+- Answered: the maximum crowd and creature counts for each target are measured in a load test on the first release's test kit (story-build-and-install-measure-against-budget) and set by the director or their delegate before each story is accepted (approver's answer). See story-crowds-and-creatures-place-a-crowd and story-crowds-and-creatures-add-creatures.
 - Answered: yes for the first release. Crowds, creatures, secondary motion, AI-held poses and AI-filled channels use rule-based and procedural methods, with no generative model at show time, and every behaviour works offline (story-crowds-and-creatures-ai-assists). A local generative model on the show machine is a later trial behind the scripted fallback, listed in Proposed stories as later and not written (approver's answer).
 
 ## Out of scope

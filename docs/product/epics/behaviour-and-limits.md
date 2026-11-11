@@ -10,6 +10,7 @@ derived-from:
   - persona-director#goals: a92ca172be83
   - persona-show-operator#goals: 408315e4f8f6
   - persona-collaborator#goals: 72c41c51284f
+  - persona-technical-artist#goals: 1fb2055dfdf2
 ---
 
 # Autonomous behaviour that stays inside agreed limits
@@ -25,6 +26,7 @@ Each autonomous character has a reviewed behaviour specification, a scripted fal
 - persona-director: reviews specifications and limits.
 - persona-show-operator: can pause, redirect or take over.
 - persona-collaborator: knows cultural protocols bind what characters do.
+- persona-technical-artist: makes sure behaviours keep running on their fallbacks when agents and the internet are gone.
 
 ## Proposed stories
 
@@ -58,8 +60,8 @@ Each autonomous character has a reviewed behaviour specification, a scripted fal
 
 ## Open questions
 
-- Answered: recorded scenarios are made from simulated guests and recorded performer takes, used only where each performer's agreement allows it, and never from recordings of real guests (REQ-governance-7). Settled in story-behaviour-and-limits-scenario-tests.
-- Answered: any output outside the content limits fails the build, with zero tolerance across all recorded scenarios. Every other behaviour check passes at a rate the director or their delegate sets for each show from rehearsal, starting at 95 per cent. A failing build cannot pass the build for a public show gate (story-build-and-install-automatic-checks). Settled in story-behaviour-and-limits-scenario-tests.
+- Answered: recorded scenarios are made from simulated guests and recorded performer takes, used only where each performer's agreement allows it, and never from recordings of real guests (REQ-governance-7) (approver's answer). Settled in story-behaviour-and-limits-scenario-tests.
+- Answered: any output outside the content limits fails the build, with zero tolerance across all recorded scenarios. Every other behaviour check passes at a rate the director or their delegate sets for each show from rehearsal, starting at 95 per cent (approver's answer). A failing build cannot pass the build for a public show gate (story-build-and-install-automatic-checks). Settled in story-behaviour-and-limits-scenario-tests.
 
 ## Out of scope
 
