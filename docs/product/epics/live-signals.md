@@ -28,17 +28,21 @@ A live signal that is not capture, such as music, a controller, the audience's c
 ## Proposed stories
 
 - Drive a channel from live audio analysis, such as level or beat.
-- Drive a channel from MIDI, OSC or DMX.
+- Drive a channel from MIDI.
+- Drive a channel from OSC.
+- Drive a channel from DMX (Art-Net or sACN).
 - Map a signal onto a channel, and save the mapping as a reviewable asset.
 - Drive a channel from a performer's sensor, within their agreement.
 - Drive effects, materials and scene values from the audience's combined reaction.
-- Report guest presence from floor pads, beams or depth sensors, with a simulated crowd for testing and rehearsal.
+- Report guest presence from floor pads, with a simulated crowd for testing and rehearsal.
+- Report guest presence from beams.
+- Report guest presence from depth sensors, as momentary points or skeletons that cannot identify anyone, with a clear notice to guests (REQ-governance-7).
 - Use a channel's fallback when a signal drops.
 
 ## Stories
 
 - story-live-signals-audio-analysis
-- story-live-signals-midi-osc-dmx
+- story-live-signals-midi
 - story-live-signals-map-a-signal
 - story-live-signals-performer-sensor
 - story-live-signals-audience-reaction
@@ -65,7 +69,7 @@ A live signal that is not capture, such as music, a controller, the audience's c
 
 - Answered: audio analysis comes first (approver's answer), because the concert case needs it and it needs no extra hardware.
 - Answered: each show sets its own target for the delay from signal to picture, and the delay is measured and shown against it. Settled in story-live-signals-audio-analysis, which defines the signal delay.
-- Answered: a signal mapping is the same kind of asset as a body mapping (story-shared-characters-map-a-different-body), so the same review and versioning apply. See story-live-signals-map-a-signal. This is a proposal for the approver to confirm.
+- Answered: a signal mapping is the same kind of asset as a body mapping (story-shared-characters-map-a-different-body), so the same review and versioning apply. See story-live-signals-map-a-signal.
 
 ## Out of scope
 

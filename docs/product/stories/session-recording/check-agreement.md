@@ -15,5 +15,5 @@ As Kai, the performer, I want my agreement checked before anything is recorded a
 - Recording cannot start for a performer with no agreement (story-session-recording-record-agreement) in the project. Only the kinds of data the agreement allows are recorded, and the person starting the recording sees which kinds are left out and why.
 - Each use of a recording, such as replay in rehearsal or tests, or cleanup, runs only if the agreement allows it. A refused use names the part of the agreement that blocks it.
 - Before a generative tool uses Kai's data or an asset derived from it, the policy gate (story-provenance-and-policy-block-generation) checks Kai's agreement, and the request does not run if the agreement does not allow that AI use.
-- Only a person with the right role can override a refusal, by recording a changed agreement (story-session-recording-change-agreement). An agent cannot.
+- A refusal can be lifted only by a changed agreement that Kai confirms (story-session-recording-change-agreement). Nobody can override it otherwise, and an agent cannot.
 - Each refusal appears in the activity log.

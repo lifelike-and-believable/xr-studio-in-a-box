@@ -14,6 +14,6 @@ As Kai, the performer, I want to trigger a handover from a control I can use whi
 
 - Kai can trigger a set handover (story-handover-and-fallback-hand-over-a-channel) through a gesture, controller, pedal or device, without looking at a screen or using a keyboard.
 - A cue message can trigger a set handover. Until the cue list in the show control layer exists, this is tested with a simulated cue.
-- The performer's control can be armed and disarmed by section of the show, and a disarmed control does nothing. In a show declared as solo, with no operator, the handover control cannot be disarmed.
-- Kai gets the performer signal (story-handover-and-fallback-performer-signal) when the handover is done.
+- Casey, or the show's operator, can arm and disarm the performer's control by section of the show, and a disarmed control does nothing. In a show declared as solo, with no operator, the handover control cannot be disarmed. An agent cannot arm or disarm it in show mode. Until show sections and the solo declaration exist in the show control layer, both are simulated in the test.
+- Kai gets the performer signal's pattern for a finished handover (story-handover-and-fallback-performer-signal).
 - Each triggered handover is logged with the control or cue that started it.

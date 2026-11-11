@@ -8,7 +8,7 @@ derived-from:
 
 # Set up and calibrate a headset and hand controllers
 
-As Casey, the capture crew, I want a guided setup and calibration for a headset and hand controllers so that a performer can drive a character from a headset without a pipeline engineer.
+As Casey, the capture crew, I want a guided setup and calibration for a headset and hand controllers so that a headset and hand controllers are set up and calibrated through a guided process.
 
 ## Acceptance criteria
 

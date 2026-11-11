@@ -30,7 +30,8 @@ Several performers can share one character, one performer can drive several, pro
 - Split one character's channels between several performers, with each performer shown what they need to perceive of the others, settled by testing with real performers.
 - Drive several characters from one performer.
 - Drive a character or effect from a tracked prop.
-- Map chosen body parts or motion values onto a character with a different body, and save the mapping as a reviewable asset.
+- Map chosen body parts onto a character with a different body (mapped puppeteering), and save the mapping as a reviewable asset.
+- Map motion values onto character values such as energy, size or colour (parameter mapping).
 - Drive a character by position and intent, with procedural motion filling in the rest.
 - Swap the performer in a role between sessions, using that performer's saved calibration and mappings, with no rebuild.
 
@@ -60,11 +61,11 @@ Several performers can share one character, one performer can drive several, pro
 ## Open questions
 
 - Answered: mapped puppeteering is proved first, as the simplest of the four mapping methods, in story-shared-characters-map-a-different-body.
-- Answered: automatic retargeting to the nearest body plan is its own epic, not an eighth story here. See Out of scope.
+- Answered: automatic retargeting to the nearest body plan is its own epic, epic-nearest-body-retargeting, not a story here.
 - Answered: settled in story-shared-characters-split-a-character by a rehearsal test with at least two real performers sharing a proxy character, who set the bar before the story is accepted.
 
 ## Out of scope
 
 - Characters on the common skeleton, which are covered by epic-live-puppet.
 - Performers in different venues (REQ-delivery-4), which is later.
-- Automatic retargeting to the nearest body plan, which is a separate epic, to be written.
+- Automatic retargeting to the nearest body plan, which is covered by epic-nearest-body-retargeting.

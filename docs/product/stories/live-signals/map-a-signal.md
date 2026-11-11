@@ -14,6 +14,5 @@ As Sam, the technical artist, I want to map a signal onto a channel and save the
 
 - A signal mapping turns a signal value into a channel value. Sam can set the input range, the output range, the curve, the smoothing and limits the channel value never passes, without code. Other live-signals stories use this meaning.
 - Sam can rehearse a mapping by playing a recorded or simulated signal through it and watching a proxy character, before the mapping is approved.
-- A signal mapping is saved as the same kind of asset as a body mapping (story-shared-characters-map-a-different-body): it is versioned with a dated history, goes to the review queue, and an earlier version can be restored.
-- Only an approved mapping runs in show mode. A person approves it. An agent can draft or change a mapping but cannot approve it.
+- A signal mapping is a mapping asset as defined in story-shared-characters-map-a-different-body, and follows its rules for versions, restore, review, approval and show mode.
 - A saved mapping can be reused on another channel or character, and changed later with no rebuild.

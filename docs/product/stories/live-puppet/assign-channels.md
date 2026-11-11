@@ -15,5 +15,5 @@ As Casey, the capture crew, I want to assign a source to each of a character's c
 - Casey can assign a source to each channel of a character: body, hands, face, voice, gaze and attention, form and transformation, effects and materials, and world position and travel, with camera and prop channels where a show needs them.
 - Each channel has one source at a time. Casey sees which source drives each channel.
 - Casey can check an assignment live: when the performer moves a part, Casey sees which channel it drives.
-- The assignment is saved with the project. Only a person whose role allows it can change it, and an agent cannot change it in show mode.
+- The assignment is saved with the project. Only Casey, or another person with the capture crew's role, can change it, and an agent cannot change it in show mode.
 - Splitting one character between several performers is covered by story-shared-characters-split-a-character.

@@ -50,6 +50,7 @@ A performer can step into a capture source, complete a guided setup and drive a 
 
 ## Dependencies
 
+- epic-session-recording, for the performer's agreement: no source drives a character until the performer's agreement is confirmed (story-session-recording-record-agreement).
 - Proxy characters on the UE5 mannequin skeleton (Manny), such as the mannequin itself, a MetaHuman or a character from a past show retargeted to it with IK Retargeter. Layer 2 is built and tested on these, so it does not wait for the content layer.
 - For the first show (UC-2), one hand-made character, built outside the generation path. This is a small piece of art work, not a dependency on Layer 3.
 - A check of how far Open3DBroadcast and VMC Live Link already cover this.

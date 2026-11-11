@@ -34,7 +34,8 @@ A capture session can be recorded and replayed in rehearsal or tests, within wha
 - Clean up a recorded session, with the performer named in the provenance record.
 - Change an agreement, and flag the assets it no longer allows.
 - Send performance data between machines in real time in a documented open format.
-- Drive a character in a show from another location over the internet, with the delay measured and shown.
+- Drive a character in a show from another location over the internet, with the delay measured and shown, tested over a simulated link.
+- Test a remote performer between two real sites over the internet.
 
 ## Stories
 
