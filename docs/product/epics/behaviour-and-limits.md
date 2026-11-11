@@ -37,7 +37,12 @@ Each autonomous character has a reviewed behaviour specification, a scripted fal
 
 ## Stories
 
-- None yet.
+- story-behaviour-and-limits-write-specification
+- story-behaviour-and-limits-check-ai-use
+- story-behaviour-and-limits-scripted-fallback
+- story-behaviour-and-limits-override
+- story-behaviour-and-limits-content-limits
+- story-behaviour-and-limits-scenario-tests
 
 ## Release groups
 
@@ -53,8 +58,8 @@ Each autonomous character has a reviewed behaviour specification, a scripted fal
 
 ## Open questions
 
-- How are recorded scenarios made without keeping guest data?
-- What pass rate counts for a statistical check?
+- Answered: recorded scenarios are made from simulated guests and recorded performer takes, used only where each performer's agreement allows it, and never from recordings of real guests (REQ-governance-7). Settled in story-behaviour-and-limits-scenario-tests.
+- Answered: any output outside the content limits fails the build, with zero tolerance across all recorded scenarios. Every other behaviour check passes at a rate the director or their delegate sets for each show from rehearsal, starting at 95 per cent. A failing build cannot pass the build for a public show gate (story-build-and-install-automatic-checks). Settled in story-behaviour-and-limits-scenario-tests.
 
 ## Out of scope
 
