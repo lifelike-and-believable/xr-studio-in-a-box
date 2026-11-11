@@ -36,7 +36,12 @@ Remote guests join by link or code as interactive guests, player guests or strea
 
 ## Stories
 
-- None yet.
+- story-remote-guests-join-by-link-or-code
+- story-remote-guests-rejoin
+- story-remote-guests-interactive-guest
+- story-remote-guests-player-guest
+- story-remote-guests-move-past-the-limit
+- story-remote-guests-contain-failures
 
 ## Release groups
 
@@ -50,8 +55,8 @@ Remote guests join by link or code as interactive guests, player guests or strea
 
 ## Open questions
 
-- What are the delay target and limit for the interactive tier? They are TBD.
-- Which show needs player guests first?
+- Answered: interactive guests see the show within 1 second of a performer's movement, so their input feels live. The director or their delegate confirms or changes the target from a test on a real internet connection before story-remote-guests-interactive-guest is accepted. The tier's limit is its guest count, measured in a load test on the first release's test kit and set by the director or their delegate (story-audience-avatars-choose-an-avatar) (approver's answers).
+- Answered: UC-2, the livestreamed improvised puppetry show, is the first show with player guests (story-remote-guests-player-guest) (approver's answer).
 
 ## Out of scope
 

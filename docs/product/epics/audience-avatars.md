@@ -35,10 +35,16 @@ Guests can appear in the world as avatars or playable characters, follow the bes
 - React with cheers, gestures, light or sound.
 - Declare guest roles, with guests muted by default.
 - Show stream viewers in the world as a simulated crowd.
+- Later, not written: appear as a likeness of oneself, from a camera or scan. It waits for each guest's consent and the legal review (REQ-governance-7). The first release uses chosen avatars only (approver's answer).
 
 ## Stories
 
-- None yet.
+- story-audience-avatars-choose-an-avatar
+- story-audience-avatars-playable-character
+- story-audience-avatars-follow-best-input
+- story-audience-avatars-react
+- story-audience-avatars-guest-roles
+- story-audience-avatars-stream-viewer-crowd
 
 ## Release groups
 
@@ -54,8 +60,8 @@ Guests can appear in the world as avatars or playable characters, follow the bes
 
 ## Open questions
 
-- What counts must each release reach per audience type? REQ-audience-4 leaves them TBD.
-- Do likeness avatars belong in the first release, given the legal review?
+- Answered: each guest count per audience type is measured in a load test on the first release's test kit (story-build-and-install-measure-against-budget) and set by the director or their delegate before the story is accepted. UC-2's first show sets the starting targets (approver's answer). See story-audience-avatars-choose-an-avatar.
+- Answered: no. The first release uses chosen avatars only: stylised forms picked from a set, with no likeness (story-audience-avatars-choose-an-avatar). Likeness avatars are a later story, not yet written, that waits for each guest's consent and the legal review (REQ-governance-7) (approver's answer).
 
 ## Out of scope
 
