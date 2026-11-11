@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-38 epics, 217 proposed stories, 24 written, 72 open questions.
+38 epics, 217 proposed stories, 65 written, 54 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -98,15 +98,23 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [Nothing breaks when a source changes or fails](epics/handover-and-fallback.md) | 0 of 7 | 3 |
-| [A performer drives a character live](epics/live-puppet.md) | 0 of 7 | 4 |
-| [Music, sensors and the crowd drive the show](epics/live-signals.md) | 0 of 7 | 3 |
-| [The performer can sense the room and trust the motion](epics/performer-support.md) | 0 of 6 | 3 |
-| [Record, replay and share a performance](epics/session-recording.md) | 0 of 7 | 2 |
-| [Any number of performers, any kind of body](epics/shared-characters.md) | 0 of 7 | 3 |
+| [Nothing breaks when a source changes or fails](epics/handover-and-fallback.md) | 7 of 7 | 0 |
+| [A performer drives a character live](epics/live-puppet.md) | 7 of 7 | 0 |
+| [Music, sensors and the crowd drive the show](epics/live-signals.md) | 7 of 7 | 0 |
+| [The performer can sense the room and trust the motion](epics/performer-support.md) | 6 of 6 | 0 |
+| [Record, replay and share a performance](epics/session-recording.md) | 7 of 7 | 0 |
+| [Any number of performers, any kind of body](epics/shared-characters.md) | 7 of 7 | 0 |
 
 <details>
 <summary>Nothing breaks when a source changes or fails</summary>
+
+- [Switch to the fallback when a source drops](stories/handover-and-fallback/automatic-switch.md) (approved)
+- [Define a fallback for each channel](stories/handover-and-fallback/define-fallback.md) (approved)
+- [Hand a channel to another driver](stories/handover-and-fallback/hand-over-a-channel.md) (approved)
+- [Keep a channel legible or say so](stories/handover-and-fallback/legibility-bar.md) (approved)
+- [Tell the performer about a fallback](stories/handover-and-fallback/performer-signal.md) (approved)
+- [Return a recovered source to its channel](stories/handover-and-fallback/return-recovered-source.md) (approved)
+- [Trigger a handover while performing](stories/handover-and-fallback/trigger-handover.md) (approved)
 
 - Define a fallback for each channel: another source, a recording or loop, an AI-held pose or a safe hold.
 - Switch to the fallback automatically when a source drops.
@@ -121,18 +129,34 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>A performer drives a character live</summary>
 
+- [Assign sources to a character's channels](stories/live-puppet/assign-channels.md) (approved)
+- [Connect a capture source and drive a character](stories/live-puppet/connect-a-source.md) (approved)
+- [Set up and calibrate a headset and hand controllers](stories/live-puppet/headset-setup.md) (approved)
+- [Set up and calibrate a portable inertial suit](stories/live-puppet/inertial-suit-setup.md) (approved)
+- [Measure the delay from performer to puppet](stories/live-puppet/measure-delay.md) (approved)
+- [Connect an optical studio's live stream](stories/live-puppet/optical-studio-stream.md) (approved)
+- [Set up and calibrate webcam or phone capture](stories/live-puppet/webcam-or-phone-setup.md) (approved)
+
 - Connect a capture source through the common interface and drive a character.
-- Complete a guided setup and calibration for a portable inertial suit.
+- Complete a guided setup and calibration for a portable inertial suit, the first source.
 - Complete a guided setup and calibration for headset and hand controllers.
 - Complete a guided setup and calibration for webcam or phone capture.
 - Connect an optical studio's live capture stream through a guided setup, and map its performers to characters. The studio's own system and staff do the calibration.
 - Assign a source to a character's body, hands, face, voice and effects channels.
-- See the measured delay from performer to rendered puppet, and to what the audience sees on each output, on the show's hardware.
+- See the measured delay from performer to rendered puppet, and to what the audience sees on each output, measured end to end on the show's hardware. The first test puts a performer beside their character.
 
 </details>
 
 <details>
 <summary>Music, sensors and the crowd drive the show</summary>
+
+- [Drive the scene from the audience's combined reaction](stories/live-signals/audience-reaction.md) (approved)
+- [Drive a channel from live audio analysis](stories/live-signals/audio-analysis.md) (approved)
+- [Report guest presence from sensors](stories/live-signals/guest-presence.md) (approved)
+- [Map a signal onto a channel](stories/live-signals/map-a-signal.md) (approved)
+- [Drive a channel from MIDI, OSC or DMX](stories/live-signals/midi-osc-dmx.md) (approved)
+- [Drive a channel from a performer's sensor](stories/live-signals/performer-sensor.md) (approved)
+- [Fall back when a signal drops](stories/live-signals/signal-fallback.md) (approved)
 
 - Drive a channel from live audio analysis, such as level or beat.
 - Drive a channel from MIDI, OSC or DMX.
@@ -147,6 +171,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>The performer can sense the room and trust the motion</summary>
 
+- [Sense the audience through physical signals](stories/performer-support/audience-summary-signals.md) (approved)
+- [Talk privately with the crew](stories/performer-support/crew-channel.md) (approved)
+- [Check live motion against the show's bar](stories/performer-support/motion-quality-check.md) (approved)
+- [See a live view of the room](stories/performer-support/room-view.md) (approved)
+- [See the virtual character from the stage](stories/performer-support/stage-view.md) (approved)
+- [Hear the venue while performing](stories/performer-support/venue-audio.md) (approved)
+
 - Talk privately with crew by voice and text from inside a headset or suit, with a remote helper able to join and a venue intercom able to connect.
 - See a live view of the room, or a silhouette or depth view, with a clear notice to guests.
 - Hear venue audio while performing.
@@ -158,6 +189,14 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 <details>
 <summary>Record, replay and share a performance</summary>
+
+- [Change an agreement and flag what it no longer allows](stories/session-recording/change-agreement.md) (approved)
+- [Check the agreement before recording and generation](stories/session-recording/check-agreement.md) (approved)
+- [Clean up a recorded session](stories/session-recording/clean-up.md) (approved)
+- [Record a performer's agreement](stories/session-recording/record-agreement.md) (approved)
+- [Record a session and replay it](stories/session-recording/record-and-replay.md) (approved)
+- [Drive a character from another location](stories/session-recording/remote-performer.md) (approved)
+- [Stream performance data between machines](stories/session-recording/stream-between-machines.md) (approved)
 
 - Record a performer's agreement for a project: what may be captured, how it may be used, and their acknowledgement of any character brief.
 - Check that agreement before recording, and before a generative tool uses the data.
@@ -172,8 +211,16 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Any number of performers, any kind of body</summary>
 
+- [Drive a character by position and intent](stories/shared-characters/intent-and-procedural-motion.md) (approved)
+- [Map a performer onto a different body](stories/shared-characters/map-a-different-body.md) (approved)
+- [Drive several characters from one performer](stories/shared-characters/one-performer-several-characters.md) (approved)
+- [Run several performers on their own characters](stories/shared-characters/several-performers.md) (approved)
+- [Share one character between several performers](stories/shared-characters/split-a-character.md) (approved)
+- [Swap the performer in a role between sessions](stories/shared-characters/swap-performer.md) (approved)
+- [Drive a character or effect from a tracked prop](stories/shared-characters/tracked-prop.md) (approved)
+
 - Run several performers, each driving their own character.
-- Split one character's channels between several performers.
+- Split one character's channels between several performers, with each performer shown what they need to perceive of the others, settled by testing with real performers.
 - Drive several characters from one performer.
 - Drive a character or effect from a tracked prop.
 - Map chosen body parts or motion values onto a character with a different body, and save the mapping as a reviewable asset.

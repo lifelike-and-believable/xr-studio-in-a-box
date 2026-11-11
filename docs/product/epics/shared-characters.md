@@ -54,6 +54,8 @@ Several performers can share one character, one performer can drive several, pro
 
 - epic-live-puppet, for channels and sources.
 - epic-handover-and-fallback, so that shared characters keep the same failure behaviour.
+- epic-session-recording, for each performer's agreement when a role changes performer.
+- A proxy whose body differs from the UE5 mannequin, such as a simple hand-made creature, to test mapping a different body.
 
 ## Open questions
 

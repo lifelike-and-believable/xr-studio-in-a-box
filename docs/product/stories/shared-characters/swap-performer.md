@@ -15,5 +15,5 @@ As Casey, from the capture and technical crew, I want to put a different perform
 - Each performer's calibration and mappings are saved under their name.
 - A person whose role allows it can choose a different performer for a role between sessions. An agent cannot.
 - After the swap, the character uses the new performer's calibration and mappings, with no rebuild or re-import of the character.
-- The role shows the agreement of the performer now in it (epic-session-recording). One performer's agreement never applies to another.
-- Changing a channel's driver while the show runs is covered by epic-handover-and-fallback, not this story.
+- The role shows the agreement of the performer now in it (story-session-recording-record-agreement). One performer's agreement never applies to another.
+- Changing a channel's driver while the show runs is covered by story-handover-and-fallback-hand-over-a-channel, not this story.

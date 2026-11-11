@@ -38,7 +38,13 @@ A capture session can be recorded and replayed in rehearsal or tests, within wha
 
 ## Stories
 
-- None yet.
+- story-session-recording-record-agreement
+- story-session-recording-check-agreement
+- story-session-recording-record-and-replay
+- story-session-recording-clean-up
+- story-session-recording-change-agreement
+- story-session-recording-stream-between-machines
+- story-session-recording-remote-performer
 
 ## Release groups
 
@@ -52,8 +58,8 @@ A capture session can be recorded and replayed in rehearsal or tests, within wha
 
 ## Open questions
 
-- The default for a changed agreement needs legal review (REQ-governance-9). Can this epic ship before that review finishes?
-- Does Open3DBroadcast's format meet the documented open format requirement?
+- Answered: the stories can be approved now. story-session-recording-change-agreement, the only story whose behaviour depends on the default, carries a criterion that legal review confirms the default (REQ-governance-9) before the story is accepted. Until then, a changed agreement blocks every new use of the affected recordings and assets, which is the safest default. Past shows and work already delivered stand as they are, as REQ-governance-9 says, and a contract can still set different terms.
+- Answered: settled in story-session-recording-stream-between-machines, which defines a documented open format and checks Open3DBroadcast's format against that definition, with the result recorded, before the story is accepted.
 
 ## Out of scope
 

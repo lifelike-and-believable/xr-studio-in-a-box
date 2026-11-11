@@ -8,7 +8,7 @@ derived-from:
 
 # Change an agreement and flag what it no longer allows
 
-As Kai, the performer, I want to change my agreement and have the assets it no longer allows flagged so that I can change my decision on what may be captured and how it may be used.
+As Kai, the performer, I want to have my agreement changed, and the assets it no longer allows flagged so that I can change my decision on what may be captured and how it may be used.
 
 ## Acceptance criteria
 

@@ -16,4 +16,4 @@ As Sam, the technical artist, I want to send performance data between machines i
 - The format is open and documented: its specification is published, can be read without a fee or a non-disclosure agreement, and is complete enough to write a reader from it alone. A reader written from the specification alone reads a test stream correctly.
 - Before the story is accepted, Open3DBroadcast's format is checked against this definition, and the result is recorded in the project with what passed and what failed. If it fails, a person decides whether to close the gap or choose another format.
 - Streaming works on a local network with no agent and no internet.
-- If the stream drops, the receiving channels use their fallback (epic-handover-and-fallback).
+- If the stream drops, the receiving channels use their fallback (story-handover-and-fallback-automatic-switch).
