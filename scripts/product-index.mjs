@@ -20,16 +20,17 @@ const heading = text => (text.match(/^# (.+)$/m) || [])[1]?.trim() ?? '';
 function writtenStories(epic) {
   const dir = path.join(STORIES, epic);
   if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir).filter(f => f.endsWith('.md')).sort().map(f => {
-    const text = fs.readFileSync(path.join(dir, f), 'utf8');
-    return { file: `stories/${epic}/${f}`, title: heading(text), status: field(text, 'status') };
-  });
+  return fs.readdirSync(dir).filter(f => f.endsWith('.md')).sort()
+    .map(f => ({ f, text: fs.readFileSync(path.join(dir, f), 'utf8') }))
+    .filter(({ text }) => !field(text, 'withdrawn'))
+    .map(({ f, text }) => ({ file: `stories/${epic}/${f}`, title: heading(text), status: field(text, 'status') }));
 }
 
 const layers = new Map();
 for (const file of fs.readdirSync(EPICS).filter(f => f.endsWith('.md')).sort()) {
   const text = fs.readFileSync(path.join(EPICS, file), 'utf8');
-  const layer = (text.match(/<!-- (.+?)\.? -->/) || [])[1] ?? 'No layer';
+  // The layer is the comment's first sentence, and only a comment that names a layer counts.
+  const layer = (text.match(/<!-- ((?:Layer \d+|Business layer)[^.]*)/) || [])[1]?.trim() ?? 'No layer';
   const epic = file.replace(/\.md$/, '');
   const open = bullets(section(text, 'Open questions')).filter(q => !q.startsWith('Answered:')).length;
   const entry = { epic, title: heading(text), status: field(text, 'status'), open,

@@ -13,6 +13,7 @@ As Robin, a collaborator, I want to have my terms recorded, with their history a
 ## Acceptance criteria
 
 - A person with the right role can record Robin's terms, including limits on AI use, cultural protocols and rights.
-- Robin can see the terms recorded for them, with a dated history of changes.
-- A term can have an end date, and the assets it covers are flagged before that date.
-- After the end date, those assets cannot be used in new work or new shows.
+- Robin can see the terms recorded for them, with a dated history of changes, on the same limited page used for sign-off, and nothing else in the project.
+- A term can have an end date. The assets it covers are flagged a lead time before that date, which the project sets.
+- After the end date, those assets cannot be used in new work or new shows. Past shows and work already delivered stand as they are.
+- A show still running at the end date alerts a person, who decides.

@@ -57,7 +57,7 @@ Each project records what its collaborators have agreed. Generation that breaks 
 ## Open questions
 
 - Answered: a collaborator's review page shows the item, the term it relates to and a plain statement of what is asked. They can sign off, decline or comment, with no deadline pressure and no AI recommendation shown. This is a first draft, to check with a cultural consultant.
-- Answered: until epic-asset-checks exists, the quality checks are that the file opens, it is named correctly, its provenance and licence status are recorded, and a person has looked at it.
+- Answered: until epic-asset-checks exists, the quality checks are that the file opens, it is named correctly, and its provenance and licence status are recorded. A person looks at each asset, and the look is recorded, only when it leaves its stage at a gated hand-off, so agents still work freely inside a stage (REQ-workflow-2).
 
 ## Out of scope
 

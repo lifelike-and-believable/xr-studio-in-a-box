@@ -12,6 +12,7 @@ As Riley, the artist, I want to give written feedback on a draft and compare it 
 
 ## Acceptance criteria
 
-- Riley can see the reviewer's written feedback beside the item.
+- Riley can write feedback on a draft, and sees the reviewer's written feedback beside the item.
+- After feedback asks for a revision, the item can be revised or regenerated, and it comes back as a new version.
 - Riley can compare two versions side by side.
 - Riley can restore an earlier version, and the later versions are kept.

@@ -12,6 +12,6 @@ As Jordan, the producer, I want to see every stage and asset with its owner and 
 
 ## Acceptance criteria
 
-- Jordan sees each stage and asset for a project, with its owner and its state: in progress, waiting for review, blocked or done.
+- Jordan sees each stage and asset for a project, with its owner and its state: in progress, waiting for review, blocked or done. Work is blocked when it is waiting on a blocking item (as defined in story-review-and-status-see-review-queue).
 - Jordan can filter the board to show only blocked work.
 - An item's state changes on the board when work moves on, with no manual update.

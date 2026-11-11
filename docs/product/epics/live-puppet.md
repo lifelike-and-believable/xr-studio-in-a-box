@@ -44,7 +44,7 @@ A performer can step into a capture source, complete a guided setup and drive a 
 
 ## Dependencies
 
-- Proxy characters on the common skeleton, such as the Unreal mannequin, a MetaHuman or a character from a past show. Layer 2 is built and tested on these, so it does not wait for the content layer.
+- Proxy characters on, or retargeted to, the common skeleton once it is chosen, such as the Unreal mannequin, a MetaHuman or a character from a past show. Layer 2 is built and tested on these, so it does not wait for the content layer.
 - For the first show (UC-2), one hand-made character, built outside the generation path. This is a small piece of art work, not a dependency on Layer 3.
 - A check of how far Open3DBroadcast and VMC Live Link already cover this.
 - Access to an optical studio for the real test. Until then, the optical story is tested against a recorded or simulated stream.

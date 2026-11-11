@@ -13,6 +13,6 @@ As Jordan, the producer, I want to record and edit a project's facts in one plac
 ## Acceptance criteria
 
 - Jordan can enter and edit the description, plan, budget, credits, collaborators, schedule, work samples and capacity figures.
-- A saved change is visible to anyone on the project who opens the record.
+- A saved change is visible to anyone on the project whose role allows them to see that fact.
 - Jordan can see who last changed each fact, and when.
 - Jordan can point an agent at a document, and the agent's suggested facts are marked as drafts until Jordan accepts them.

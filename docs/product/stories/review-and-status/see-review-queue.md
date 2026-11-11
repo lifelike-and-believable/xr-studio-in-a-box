@@ -14,5 +14,5 @@ As Morgan, the director, I want to see everything waiting for me in one queue so
 
 - Morgan sees every item waiting for their approval in one list.
 - Each item shows a preview, the stage, who requested it and what changed.
-- An item that is blocking other work is marked as blocking.
+- An item is blocking when another stage or item is waiting on its decision. Blocking items are marked as blocking.
 - The queue shows only items Morgan can approve.

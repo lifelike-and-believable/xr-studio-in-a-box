@@ -14,5 +14,5 @@ As Robin, a collaborator, I want to have generation that breaks a term refused s
 
 - A generation request that breaks a recorded term does not run.
 - The person who asked is told which term blocked it.
-- The block can be overridden only by recording a new or changed term, with who did it and when.
+- The block can be overridden only by a person who holds the contracts and licence terms approval, by recording a new or changed term with who did it and when. An agent cannot record or change a term.
 - The refusal appears in the activity log.

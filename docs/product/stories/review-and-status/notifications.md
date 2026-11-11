@@ -12,7 +12,7 @@ As Riley, the artist, I want to be told when something is waiting for me so that
 
 ## Acceptance criteria
 
-- Riley gets a daily email digest of what is waiting, with a short summary and a link to each item.
-- An item that is blocking work sends an alert straight away.
-- The dashboard shows a badge with the number of items waiting.
 - Riley can choose email, the dashboard badge or both.
+- If Riley has chosen email, Riley gets a daily digest of what is waiting by default, with a short summary and a link to each item. Riley can change this to one email per item.
+- An item that is blocking (as defined in story-review-and-status-see-review-queue) sends an alert straight away, by each channel Riley has chosen.
+- If Riley has chosen the badge, the dashboard shows the number of items waiting.

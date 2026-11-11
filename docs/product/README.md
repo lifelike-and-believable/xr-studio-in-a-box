@@ -496,7 +496,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 </details>
 
-## Business layer, in parallel with the others. Funding comes first
+## Business layer, in parallel with the others
 
 | Epic | Stories written | Open questions |
 |---|---|---|

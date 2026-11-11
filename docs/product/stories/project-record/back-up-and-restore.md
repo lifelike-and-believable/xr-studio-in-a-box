@@ -15,5 +15,6 @@ As Jordan, the producer, I want to back up a project and restore an earlier vers
 - A project, including its large binary assets, is backed up without Jordan having to remember to do it.
 - Jordan can see when the last backup finished, and whether it succeeded.
 - Jordan can restore the project to an earlier version and see what it contains.
+- A restore never rolls back the policy record, recorded approvals and sign-offs, or the activity log, and the restore itself appears in the activity log.
 - A restore has been tested on a real project before real work relies on it.
 - Guest data is not in the backup.

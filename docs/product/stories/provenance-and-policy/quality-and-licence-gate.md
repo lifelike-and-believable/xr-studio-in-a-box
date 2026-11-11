@@ -12,6 +12,7 @@ As Morgan, the director, I want to keep a generated asset out of the project unt
 
 ## Acceptance criteria
 
-- A generated asset stays out of the project until it passes.
-- The checks are that the file opens, it is named correctly, its provenance and licence status are recorded, and a person has looked at it.
+- A generated asset stays out of the project until it passes the automatic checks: the file opens, it is named correctly, and its provenance and licence status are recorded.
+- Agents keep working with passed assets inside a stage without waiting for a person.
+- Before an asset leaves its stage at a gated hand-off, a person looks at it, and the project records who looked and when.
 - A failed asset shows what failed.
