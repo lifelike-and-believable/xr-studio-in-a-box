@@ -30,13 +30,19 @@ One control reaches a safe state with no agent or internet, a solo performer has
 
 - Switch explicitly between production and show mode.
 - Keep every live function working when all agents are gone.
-- Reach a safe state with one control, including house lights and a fire alarm input.
+- Declare a show's safe state for each kind of output, approved by a person.
+- Reach the safe state with one control, including house lights and a fire alarm input.
 - Run a solo show with stop, pause and handover as controls that cannot be disarmed.
 - Declare what continues if a whole layer or link is lost, and rehearse it.
 
 ## Stories
 
-- None yet.
+- story-show-safety-switch-modes
+- story-show-safety-without-agents
+- story-show-safety-declare-safe-state
+- story-show-safety-emergency-stop
+- story-show-safety-solo-show
+- story-show-safety-show-level-fallback
 
 ## Release groups
 
@@ -51,8 +57,8 @@ One control reaches a safe state with no agent or internet, a solo performer has
 
 ## Open questions
 
-- What is the safe state for each kind of output, and who approves it on a solo show?
-- Which performer gesture or device is reliable enough for an emergency stop?
+- Answered: the safe state for each kind of output, with a default for any the show leaves undeclared, is defined in story-show-safety-declare-safe-state, split from the emergency stop story so each stays one pull request. The holder of the audience-facing safety and consent approval approves it, on a solo show too: the producer, or the solo performer if they hold it.
+- Answered: the emergency stop is a wired or local physical button, tested for reliability in rehearsal (story-show-safety-emergency-stop, story-show-safety-solo-show). Gestures come later, once tests show they are reliable.
 
 ## Out of scope
 

@@ -16,4 +16,4 @@ As Sam, the technical artist, I want to set up a tracked prop to drive a charact
 - Sam can assign the prop to a character's channel, or to an effect, in the same way as a performer's source (story-live-puppet-assign-channels), without code.
 - The prop's movement reaches the character or effect within the delay target (story-live-puppet-measure-delay).
 - The test can use a recorded or simulated prop stream.
-- Props firing cues come with show control in Layer 4 and are not in this story.
+- Props firing cues are covered by story-cue-list-performer-fired, not this story.

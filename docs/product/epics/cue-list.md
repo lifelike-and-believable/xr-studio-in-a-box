@@ -37,7 +37,12 @@ A show has a cue list that can be drafted by agents, edited, rehearsed and appro
 
 ## Stories
 
-- None yet.
+- story-cue-list-build-a-cue-list
+- story-cue-list-step-and-palette
+- story-cue-list-performer-fired
+- story-cue-list-timecode-and-music
+- story-cue-list-audience-fired
+- story-cue-list-agent-drafts
 
 ## Release groups
 
@@ -52,8 +57,8 @@ A show has a cue list that can be drafted by agents, edited, rehearsed and appro
 
 ## Open questions
 
-- Where does the cue list live: in Unreal, or in a separate tool that drives Unreal?
-- What timing accuracy does the first show need? REQ-showcontrol-8 leaves it TBD.
+- Answered: in Unreal, as part of the project. It runs with the show with no extra machine, no agent and no internet, and can take cues from outside, such as OSC, MIDI show control and timecode, through epic-external-systems (approver's answer). See story-cue-list-build-a-cue-list.
+- Answered: the show's cue timing starts at one frame at the show's frame rate, measured on the show's hardware. The director or their delegate confirms or changes it from rehearsal results before story-cue-list-step-and-palette is accepted (approver's answer).
 
 ## Out of scope
 

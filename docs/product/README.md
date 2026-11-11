@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 233 proposed stories, 122 written, 38 open questions.
+39 epics, 240 proposed stories, 159 written, 26 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -424,26 +424,41 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [Shows that take different paths, with or without a performer](epics/branching-shows.md) | 0 of 5 | 2 |
-| [Build, rehearse and fire the cues of a show](epics/cue-list.md) | 0 of 6 | 2 |
-| [Work with the show systems a venue already has](epics/external-systems.md) | 0 of 6 | 2 |
-| [Run a session, and the next one](epics/session-operations.md) | 0 of 6 | 2 |
-| [A show stays safe, even with no agents and no crew](epics/show-safety.md) | 0 of 5 | 2 |
-| [A show that looks after itself](epics/unattended-running.md) | 0 of 6 | 2 |
+| [Shows that take different paths, with or without a performer](epics/branching-shows.md) | 6 of 6 | 0 |
+| [Build, rehearse and fire the cues of a show](epics/cue-list.md) | 6 of 6 | 0 |
+| [Work with the show systems a venue already has](epics/external-systems.md) | 6 of 9 | 0 |
+| [Run a session, and the next one](epics/session-operations.md) | 7 of 8 | 0 |
+| [A show stays safe, even with no agents and no crew](epics/show-safety.md) | 6 of 6 | 0 |
+| [A show that looks after itself](epics/unattended-running.md) | 6 of 6 | 0 |
 
 <details>
 <summary>Shows that take different paths, with or without a performer</summary>
+
+- [Make a cue depend on a condition](stories/branching-shows/conditional-cue.md) (approved)
+- [Split a show into paths and endings, and rejoin them](stories/branching-shows/paths-and-endings.md) (approved)
+- [Review every path at the gate, and test each with a script](stories/branching-shows/review-and-test-paths.md) (approved)
+- [Run a show as a self-guided experience](stories/branching-shows/self-guided-run.md) (approved)
+- [Keep a self-guided show safe with no attendant](stories/branching-shows/self-guided-safety.md) (approved)
+- [Show a condition built in Unreal as one item in the cue list](stories/branching-shows/unreal-condition.md) (approved)
 
 - Make a cue depend on a condition.
 - Split a show into paths and endings, and rejoin them.
 - Show a condition built in Unreal as one item in the cue list.
 - Review every path at the gate, and test each with a script.
 - Run a show as a self-guided experience, with cues fired by guests or timecode.
+- Keep a self-guided show safe with no attendant.
 
 </details>
 
 <details>
 <summary>Build, rehearse and fire the cues of a show</summary>
+
+- [Draft and revise a cue list with agents, and approve it](stories/cue-list/agent-drafts.md) (approved)
+- [Fire cues from the audience, with a count and an override](stories/cue-list/audience-fired.md) (approved)
+- [Build and edit a cue list in Unreal](stories/cue-list/build-a-cue-list.md) (approved)
+- [Fire cues while performing, armed by section](stories/cue-list/performer-fired.md) (approved)
+- [Step through a cue list, or fire cues from a palette](stories/cue-list/step-and-palette.md) (approved)
+- [Fire cues from timecode or a music track](stories/cue-list/timecode-and-music.md) (approved)
 
 - Build and edit a cue list that acts on scenes, lighting, sound, characters, cameras and outputs.
 - Step through a list, or fire cues from a free palette.
@@ -457,33 +472,61 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Work with the show systems a venue already has</summary>
 
+- [Choose whether a show leads or follows](stories/external-systems/lead-or-follow.md) (approved)
+- [Connect lighting through DMX and PosiStageNet](stories/external-systems/lighting.md) (approved)
+- [Fire and send cues through OSC, MIDI and MIDI show control](stories/external-systems/osc-midi-msc.md) (approved)
+- [Test the lighting-desk path against simulators and recorded sessions](stories/external-systems/simulators.md) (approved)
+- [Run a show from any surface, or with no external systems](stories/external-systems/surfaces-and-standalone.md) (approved)
+- [Exchange video through NDI, and LTC timecode](stories/external-systems/video-and-timecode.md) (approved)
+
 - Choose whether a show leads or follows, without a rebuild.
 - Connect through OSC, MIDI and MIDI show control.
 - Connect lighting through DMX over Art-Net or sACN, and PosiStageNet.
-- Exchange video through NDI, Spout, SRT and SDI, with timecode.
+- Exchange video through NDI, and LTC timecode.
 - Run a show from a touchscreen, a control surface or a keyboard and mouse, or with no external systems.
-- Test integrations against simulators or recorded sessions.
+- Test the lighting-desk path against simulators or recorded sessions.
+- Exchange video through Spout, SRT and SDI.
+- Send and receive MIDI timecode.
+- Test the other protocols (MIDI notes and controllers, PosiStageNet, video streams, MIDI timecode) against simulators.
 
 </details>
 
 <details>
 <summary>Run a session, and the next one</summary>
 
+- [Make a change during a live run](stories/session-operations/live-changes.md) (approved)
+- [Trim alignment or calibration during a session](stories/session-operations/live-trim.md) (approved)
+- [See a thumbnail of every output](stories/session-operations/output-thumbnails.md) (approved)
+- [Pause and resume, and jump to any cue on any path](stories/session-operations/pause-and-jump.md) (approved)
+- [Run one pre-show check, and a shorter one between sessions](stories/session-operations/pre-show-check.md) (approved)
+- [Reset for the next session, and signal that the show is ready](stories/session-operations/reset-for-next-session.md) (approved)
+- [See and change who drives each channel](stories/session-operations/routing-control.md) (approved)
+
 - Run one pre-show check, and a shorter one between sessions.
 - Pause and resume, and jump to any cue on any path.
 - See and change who drives each channel.
+- Make and approve a change during a live run, and tell the people it affects.
 - Trim alignment or calibration during a session, with each change logged.
 - Reset for the next session, and signal that the show is ready.
 - See a thumbnail of every output.
+- Run several sessions at once as separate copies, each with its own guests, performers, cue position and reset, where resetting one does not change another.
 
 </details>
 
 <details>
 <summary>A show stays safe, even with no agents and no crew</summary>
 
+- [Declare a show's safe state for each kind of output](stories/show-safety/declare-safe-state.md) (approved)
+- [Reach the safe state with one control](stories/show-safety/emergency-stop.md) (approved)
+- [Declare and rehearse what continues if a whole layer is lost](stories/show-safety/show-level-fallback.md) (approved)
+- [Run a solo show with controls that cannot be disarmed](stories/show-safety/solo-show.md) (approved)
+- [Switch explicitly between production and show mode](stories/show-safety/switch-modes.md) (approved)
+- [Keep every live function working when all agents are gone](stories/show-safety/without-agents.md) (approved)
+
 - Switch explicitly between production and show mode.
 - Keep every live function working when all agents are gone.
-- Reach a safe state with one control, including house lights and a fire alarm input.
+- Declare a show's safe state for each kind of output, approved by a person.
+- Reach the safe state with one control, including house lights and a fire alarm input.
 - Run a solo show with stop, pause and handover as controls that cannot be disarmed.
 - Declare what continues if a whole layer or link is lost, and rehearse it.
 
@@ -491,6 +534,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 <details>
 <summary>A show that looks after itself</summary>
+
+- [Show a safe holding state and alert a named person when recovery fails](stories/unattended-running/holding-state-and-alert.md) (approved)
+- [Hold an idle state when no guests are present](stories/unattended-running/idle-state.md) (approved)
+- [Use a maintenance mode, and read a log of failures and restarts](stories/unattended-running/maintenance-and-log.md) (approved)
+- [Restart after a crash or power cut, and return to idle](stories/unattended-running/restart-and-recover.md) (approved)
+- [Start and stop on a schedule, with an automatic pre-show check](stories/unattended-running/schedule-and-check.md) (approved)
+- [Run a soak test before a long run](stories/unattended-running/soak-test.md) (approved)
 
 - Start and stop on a schedule, with an automatic pre-show check.
 - Hold an idle state when no guests are present.

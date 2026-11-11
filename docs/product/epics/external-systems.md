@@ -29,13 +29,21 @@ A show can lead or follow external cue, lighting and audio systems through open 
 - Choose whether a show leads or follows, without a rebuild.
 - Connect through OSC, MIDI and MIDI show control.
 - Connect lighting through DMX over Art-Net or sACN, and PosiStageNet.
-- Exchange video through NDI, Spout, SRT and SDI, with timecode.
+- Exchange video through NDI, and LTC timecode.
 - Run a show from a touchscreen, a control surface or a keyboard and mouse, or with no external systems.
-- Test integrations against simulators or recorded sessions.
+- Test the lighting-desk path against simulators or recorded sessions.
+- Exchange video through Spout, SRT and SDI.
+- Send and receive MIDI timecode.
+- Test the other protocols (MIDI notes and controllers, PosiStageNet, video streams, MIDI timecode) against simulators.
 
 ## Stories
 
-- None yet.
+- story-external-systems-lead-or-follow
+- story-external-systems-osc-midi-msc
+- story-external-systems-lighting
+- story-external-systems-video-and-timecode
+- story-external-systems-surfaces-and-standalone
+- story-external-systems-simulators
 
 ## Release groups
 
@@ -49,8 +57,8 @@ A show can lead or follow external cue, lighting and audio systems through open 
 
 ## Open questions
 
-- Which external systems will the first show really use? Discovery leaves this open.
-- Is a lighting desk leading Unreal, as RSC Dream did, the model to test first?
+- Answered: a lighting desk first (approver's answer). The rest is settled in story-external-systems-lead-or-follow: before the first show's venue is chosen, the director or their delegate records the external systems each candidate venue has, each venue profile (epic-venue-setup) is checked against that list, and further protocols are built and tested in the order it needs.
+- Answered: yes. A lighting desk leading Unreal, as on RSC Dream, is tested first: the desk fires cues in Unreal over OSC or MIDI show control, and timecode follows (approver's answer). See story-external-systems-lead-or-follow and story-external-systems-osc-midi-msc.
 
 ## Out of scope
 
