@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 230 proposed stories, 78 written, 54 open questions.
+39 epics, 233 proposed stories, 122 written, 39 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -267,17 +267,23 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [Every asset fits every target before anyone reviews it](epics/asset-checks.md) | 0 of 5 | 2 |
-| [Characters that change form and move well on every device](epics/character-forms.md) | 0 of 5 | 2 |
-| [From a brief to a character a performer can drive](epics/character-path.md) | 0 of 6 | 2 |
-| [From a brief to an effect a show can drive](epics/effects-path.md) | 0 of 4 | 1 |
-| [From a brief to a world people can move through](epics/environment-path.md) | 0 of 5 | 2 |
-| [Design what guests can do, and try it early](epics/interaction-design.md) | 0 of 6 | 2 |
-| [Reuse work across projects, with its terms intact](epics/shared-library.md) | 0 of 4 | 1 |
-| [Sound that fits the show on every output](epics/sound-path.md) | 0 of 6 | 3 |
+| [Every asset fits every target before anyone reviews it](epics/asset-checks.md) | 5 of 5 | 0 |
+| [Characters that change form and move well on every device](epics/character-forms.md) | 5 of 5 | 0 |
+| [From a brief to a character a performer can drive](epics/character-path.md) | 6 of 6 | 0 |
+| [From a brief to an effect a show can drive](epics/effects-path.md) | 4 of 4 | 0 |
+| [From a brief to a world people can move through](epics/environment-path.md) | 7 of 7 | 0 |
+| [Design what guests can do, and try it early](epics/interaction-design.md) | 6 of 6 | 0 |
+| [Reuse work across projects, with its terms intact](epics/shared-library.md) | 5 of 5 | 0 |
+| [Sound that fits the show on every output](epics/sound-path.md) | 6 of 6 | 0 |
 
 <details>
 <summary>Every asset fits every target before anyone reviews it</summary>
+
+- [Check an asset against each target's budget before review](stories/asset-checks/check-against-budget.md) (approved)
+- [Check effect cost and audio format and loudness](stories/asset-checks/check-effects-and-audio.md) (approved)
+- [Check that provenance is complete](stories/asset-checks/check-provenance.md) (approved)
+- [Make and check lower-detail versions for each target](stories/asset-checks/lower-detail-versions.md) (approved)
+- [Show check results beside the item](stories/asset-checks/show-failures.md) (approved)
 
 - Check naming, polygon and texture budgets, rigs, textures and materials before review.
 - Check effect cost and audio format and loudness.
@@ -290,6 +296,12 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Characters that change form and move well on every device</summary>
 
+- [Change a character continuously while driving it](stories/character-forms/continuous-change.md) (approved)
+- [Dissolve and reassemble a character](stories/character-forms/dissolve-and-reassemble.md) (approved)
+- [Author hair, cloth and costume once for every device](stories/character-forms/hair-cloth-costume.md) (approved)
+- [Morph a character between two forms](stories/character-forms/morph.md) (approved)
+- [Swap a character behind an effect](stories/character-forms/swap-behind-effect.md) (approved)
+
 - Morph a character between two reviewed forms.
 - Swap a character behind an effect.
 - Dissolve and reassemble a character.
@@ -300,6 +312,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 <details>
 <summary>From a brief to a character a performer can drive</summary>
+
+- [Put a character on the common skeleton or retarget it](stories/character-path/common-skeleton.md) (approved)
+- [Turn a brief into design drafts and approve one](stories/character-path/design-drafts.md) (approved)
+- [Bring hand-made work into the character path](stories/character-path/hand-made-work.md) (approved)
+- [Lock a character before rehearsal](stories/character-path/lock-character.md) (approved)
+- [Make a mesh and rig from an approved design](stories/character-path/mesh-and-rig.md) (approved)
+- [Make any character style through the same path](stories/character-path/other-styles.md) (approved)
 
 - Turn a brief and references into design drafts, and approve one at the design gate.
 - Produce a mesh and rig from an approved design, and approve them at their gate.
@@ -313,6 +332,11 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>From a brief to an effect a show can drive</summary>
 
+- [Draft an effect from a brief](stories/effects-path/draft-an-effect.md) (approved)
+- [Expose an effect's values so a show can drive them](stories/effects-path/expose-values.md) (approved)
+- [Revise an effect from feedback and send it to the gate](stories/effects-path/revise-and-approve.md) (approved)
+- [See an effect's cost on each target while working](stories/effects-path/see-cost.md) (approved)
+
 - Turn a brief and references into a first draft of an effect.
 - Revise an effect from written feedback, and approve it at the gate.
 - Expose an effect's values so channels, props and cues can drive them.
@@ -323,16 +347,33 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>From a brief to a world people can move through</summary>
 
-- Turn a brief and references into a rough layout that can be walked.
+- [Approve layout, look and interactive features at the gate](stories/environment-path/approve-at-the-gate.md) (approved)
+- [Bring hand-made environment work into the path](stories/environment-path/bring-hand-made-work.md) (approved)
+- [Build a layout from a kit of approved assets](stories/environment-path/build-from-kit.md) (approved)
+- [Develop the look from approved concept art](stories/environment-path/develop-the-look.md) (approved)
+- [Check that a level is engine-ready for every target](stories/environment-path/engine-ready-level.md) (approved)
+- [Generate a rough world from a brief](stories/environment-path/generate-a-world.md) (approved)
+- [Place designed interactions in a level](stories/environment-path/place-interactions.md) (approved)
+
+- Generate a rough world that can be walked from a brief and references with World Labs Marble.
+- Build a rough layout from a kit of approved assets when a generated world does not serve.
 - Develop the look of an environment from approved concept art.
 - Bring hand-made environment work into the path.
 - Place designed interactions in a level.
+- Check that a level is engine-ready against each target's budget file.
 - Approve layout, look and interactive features at the gate.
 
 </details>
 
 <details>
 <summary>Design what guests can do, and try it early</summary>
+
+- [Declare how guests move on each target](stories/interaction-design/guest-movement.md) (approved)
+- [Map an interaction to each target's input](stories/interaction-design/input-per-target.md) (approved)
+- [Try an interaction in a playable prototype](stories/interaction-design/playable-prototype.md) (approved)
+- [Record what guests can do as a reviewable design](stories/interaction-design/record-design.md) (approved)
+- [Save and configure a reusable interaction pattern](stories/interaction-design/reusable-pattern.md) (approved)
+- [Run a scripted test of each interaction on each target](stories/interaction-design/scripted-tests.md) (approved)
 
 - Record what guests can do and what responds, as a reviewable design.
 - Try an interaction in a playable prototype with placeholder art.
@@ -346,15 +387,29 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Reuse work across projects, with its terms intact</summary>
 
+- [Block reuse the terms do not allow, and say why](stories/shared-library/block-reuse.md) (approved)
+- [Bring a library item into a new project](stories/shared-library/bring-into-project.md) (approved)
+- [Check a reused item's terms against the new project](stories/shared-library/check-terms.md) (approved)
+- [Share an item with another organisation by export](stories/shared-library/export-to-another-organisation.md) (approved)
+- [Save an item to the organisation's library](stories/shared-library/save-to-library.md) (approved)
+
 - Save an asset or cue structure to the shared library, with its provenance.
 - Bring a library item into a new project.
 - Check its original terms against the new project's policy record.
 - Block reuse the terms do not allow, and say why.
+- Share an item with another organisation by an export that carries its terms.
 
 </details>
 
 <details>
 <summary>Sound that fits the show on every output</summary>
+
+- [Turn a sound brief into drafts, and approve them](stories/sound-path/brief-to-drafts.md) (approved)
+- [Process a live voice within the performer's agreement](stories/sound-path/live-voice-processing.md) (approved)
+- [Set a mix for each output, in sync with picture](stories/sound-path/mix-per-output.md) (approved)
+- [Place sound in the world and hear it spatially](stories/sound-path/place-sound.md) (approved)
+- [Change levels and mixes in rehearsal without a new build](stories/sound-path/rehearsal-mix-changes.md) (approved)
+- [Manage sound as assets with gates and provenance](stories/sound-path/sound-assets.md) (approved)
 
 - Manage sound as assets with gates, provenance and policy checks.
 - Turn a brief into drafts of music, effects and ambience, and approve them.

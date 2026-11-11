@@ -8,7 +8,7 @@ derived-from:
 
 # Morph a character between two forms
 
-As Kai, the performer, I want my character to morph between two reviewed forms while I keep driving it so that I feel the puppet respond at once, within 100 ms of moving, while it changes.
+As Kai, the performer, I want my character to morph between two reviewed forms while I keep driving it so that I feel the puppet respond at once, within the show's delay target (story-live-puppet-measure-delay), while it changes.
 
 ## Acceptance criteria
 
