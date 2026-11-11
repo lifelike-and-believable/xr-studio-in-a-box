@@ -1,0 +1,20 @@
+---
+id: story-show-safety-declare-safe-state
+status: approved
+derived-from:
+  - epic-show-safety#outcome: f4a6fa9d5258
+  - persona-director#goals: a92ca172be83
+---
+
+# Declare a show's safe state for each kind of output
+
+As Morgan, the director, I want each show to declare what every kind of output does in its safe state, approved by the person who holds the audience-facing safety and consent approval, so that this approval stays with a person and never goes to an AI.
+
+## Acceptance criteria
+
+- The safe state is what the show's outputs do after an emergency stop (story-show-safety-emergency-stop). A show declares it for each kind of output it uses: house lights come up, where the show controls them, to a level it sets; headset guests see the real room, or a safe view where the headset cannot show the room; projection and screens show a safe view; sound and effects go to safe levels the show sets; remote viewers see a holding screen. A safe view is a still, level scene with no flashing and a short plain-language message the show sets. This story defines the safe state and the safe view. Other stories refer to them by this story's id.
+- A kind of output with nothing declared uses a default: house lights at full, the real room or a safe view in headsets, a safe view on projection and screens, sound faded to silence and effects off, and a holding screen for remote viewers. No output is left without a safe state.
+- The person the project records as holding the audience-facing safety and consent approval (story-project-record-name-approvers) approves each show's safe state and each change to it. On a solo show this is the same holder, such as the producer, or the solo performer if they hold it. An agent can draft a safe state but cannot approve it.
+- Before approving, the holder can put each output into its safe state in rehearsal and see and hear the result. The sound level of each output in its safe state is measured and shown beside the level the show sets.
+- The safe state can be changed only in production mode (story-show-safety-switch-modes), never during a session.
+- The story is tested in the Unreal Editor, with the show run as a standalone game on the budget file's test device (story-asset-checks-check-against-budget). House lights are tested against a simulated lighting desk (epic-external-systems), and headsets, projection and remote outputs, which arrive in Layer 5, are simulated.
