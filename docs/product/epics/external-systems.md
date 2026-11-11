@@ -52,9 +52,8 @@ A show can lead or follow external cue, lighting and audio systems through open 
 
 ## Release groups
 
-- OSC and standalone running ship first.
-- Each protocol can then ship on its own, in the order the first shows need.
-- Simulators ship with each protocol.
+- The lighting-desk path ships first: lead or follow, OSC and MIDI show control, lighting over DMX, LTC timecode and their simulators, with standalone running.
+- Each other protocol can then ship on its own, in the order the first shows need, with its simulator.
 
 ## Dependencies
 
