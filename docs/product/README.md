@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 230 proposed stories, 65 written, 56 open questions.
+39 epics, 230 proposed stories, 65 written, 54 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -101,7 +101,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | [Nothing breaks when a source changes or fails](epics/handover-and-fallback.md) | 7 of 7 | 0 |
 | [A performer drives a character live](epics/live-puppet.md) | 7 of 7 | 0 |
 | [Music, sensors and the crowd drive the show](epics/live-signals.md) | 7 of 11 | 0 |
-| [Retarget a performer to the nearest body plan](epics/nearest-body-retargeting.md) | 0 of 5 | 2 |
+| [Retarget a performer to the nearest body plan](epics/nearest-body-retargeting.md) | 0 of 5 | 0 |
 | [The performer can sense the room and trust the motion](epics/performer-support.md) | 6 of 8 | 0 |
 | [Record, replay and share a performance](epics/session-recording.md) | 7 of 8 | 0 |
 | [Any number of performers, any kind of body](epics/shared-characters.md) | 7 of 8 | 0 |
@@ -176,7 +176,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Retarget a performer to the nearest body plan</summary>
 
-- Match a character to the nearest known body plan automatically, and see which parts were matched and which were not.
+- Match a character to the nearest known body plan (biped, quadruped or extra limbs) automatically, and see which parts were matched and which were not. This story tests whether IK Retargeter is enough.
 - Correct the automatic result by hand, without code, and save it as a mapping asset (story-shared-characters-map-a-different-body).
 - Drive a retargeted character live, within the show's delay target (story-live-puppet-measure-delay).
 - Add a body plan to the known set, without modifying the core.

@@ -22,7 +22,7 @@ A technical artist can have a character whose body does not match the performer'
 
 ## Proposed stories
 
-- Match a character to the nearest known body plan automatically, and see which parts were matched and which were not.
+- Match a character to the nearest known body plan (biped, quadruped or extra limbs) automatically, and see which parts were matched and which were not. This story tests whether IK Retargeter is enough.
 - Correct the automatic result by hand, without code, and save it as a mapping asset (story-shared-characters-map-a-different-body).
 - Drive a retargeted character live, within the show's delay target (story-live-puppet-measure-delay).
 - Add a body plan to the known set, without modifying the core.
@@ -45,8 +45,8 @@ A technical artist can have a character whose body does not match the performer'
 
 ## Open questions
 
-- Which body plans make up the first known set? The proposal is the biped UE5 mannequin, a quadruped and one creature with extra limbs.
-- Does Unreal's IK Retargeter cover the automatic match, or is another tool needed? It must stay within the show's delay target.
+- Answered: the first known set is the biped UE5 mannequin, a quadruped and one creature with extra limbs, such as four arms. A legless creature comes later.
+- Answered: the first story tries Unreal's IK Retargeter on the three body plans and records whether it matches them and stays within the show's delay target (story-live-puppet-measure-delay). If it does not, a technical artist chooses another tool before that story is accepted.
 
 ## Out of scope
 
