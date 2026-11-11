@@ -29,9 +29,12 @@ A show can lead or follow external cue, lighting and audio systems through open 
 - Choose whether a show leads or follows, without a rebuild.
 - Connect through OSC, MIDI and MIDI show control.
 - Connect lighting through DMX over Art-Net or sACN, and PosiStageNet.
-- Exchange video through NDI, Spout, SRT and SDI, with timecode.
+- Exchange video through NDI, and LTC timecode.
 - Run a show from a touchscreen, a control surface or a keyboard and mouse, or with no external systems.
-- Test integrations against simulators or recorded sessions.
+- Test the lighting-desk path against simulators or recorded sessions.
+- Exchange video through Spout, SRT and SDI.
+- Send and receive MIDI timecode.
+- Test the other protocols (MIDI notes and controllers, PosiStageNet, video streams, MIDI timecode) against simulators.
 
 ## Stories
 

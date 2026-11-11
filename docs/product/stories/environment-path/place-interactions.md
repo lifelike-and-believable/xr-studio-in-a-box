@@ -13,7 +13,7 @@ As Quinn, the interaction designer, I want to place designed interactions in a l
 ## Acceptance criteria
 
 - Quinn can place an interaction whose design was accepted at the interaction design gate (story-interaction-design-record-design) at a position in a level in the Unreal Editor, without code. Each placed interaction shows which design and version it comes from.
-- Quinn can walk the level in the editor and try each placed interaction with a simulated guest. Interactions that fire cues name the cue (story-cue-list-build-a-cue-list).
+- Quinn can walk the level in the editor and try each placed interaction with a simulated guest. Interactions that fire cues name the cue (story-cue-list-build-a-cue-list), and use simulated cues until that story is built.
 - A change to a placement is a new version of the level, and the earlier one is kept (story-review-and-status-feedback-and-versions).
 - An agent can draft a placement, but only a person who holds the interaction designer's role can confirm it. The director holds this role unless the project names someone else (story-project-record-name-approvers). A technical artist can be named for the build side.
 - How each interaction maps to each target's input is covered by story-interaction-design-input-per-target, not by this story.

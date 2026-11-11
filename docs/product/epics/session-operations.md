@@ -38,6 +38,7 @@ An operator can check a show is ready, run a session, recover from problems, and
 - Trim alignment or calibration during a session, with each change logged.
 - Reset for the next session, and signal that the show is ready.
 - See a thumbnail of every output.
+- Run several sessions at once as separate copies, each with its own guests, performers, cue position and reset, where resetting one does not change another.
 
 ## Stories
 

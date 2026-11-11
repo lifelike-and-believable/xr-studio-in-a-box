@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 236 proposed stories, 159 written, 26 open questions.
+39 epics, 240 proposed stories, 159 written, 26 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -426,8 +426,8 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 |---|---|---|
 | [Shows that take different paths, with or without a performer](epics/branching-shows.md) | 6 of 6 | 0 |
 | [Build, rehearse and fire the cues of a show](epics/cue-list.md) | 6 of 6 | 0 |
-| [Work with the show systems a venue already has](epics/external-systems.md) | 6 of 6 | 0 |
-| [Run a session, and the next one](epics/session-operations.md) | 7 of 7 | 0 |
+| [Work with the show systems a venue already has](epics/external-systems.md) | 6 of 9 | 0 |
+| [Run a session, and the next one](epics/session-operations.md) | 7 of 8 | 0 |
 | [A show stays safe, even with no agents and no crew](epics/show-safety.md) | 6 of 6 | 0 |
 | [A show that looks after itself](epics/unattended-running.md) | 6 of 6 | 0 |
 
@@ -475,16 +475,19 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Choose whether a show leads or follows](stories/external-systems/lead-or-follow.md) (approved)
 - [Connect lighting through DMX and PosiStageNet](stories/external-systems/lighting.md) (approved)
 - [Fire and send cues through OSC, MIDI and MIDI show control](stories/external-systems/osc-midi-msc.md) (approved)
-- [Test integrations against simulators and recorded sessions](stories/external-systems/simulators.md) (approved)
+- [Test the lighting-desk path against simulators and recorded sessions](stories/external-systems/simulators.md) (approved)
 - [Run a show from any surface, or with no external systems](stories/external-systems/surfaces-and-standalone.md) (approved)
-- [Exchange video and timecode with other systems](stories/external-systems/video-and-timecode.md) (approved)
+- [Exchange video through NDI, and LTC timecode](stories/external-systems/video-and-timecode.md) (approved)
 
 - Choose whether a show leads or follows, without a rebuild.
 - Connect through OSC, MIDI and MIDI show control.
 - Connect lighting through DMX over Art-Net or sACN, and PosiStageNet.
-- Exchange video through NDI, Spout, SRT and SDI, with timecode.
+- Exchange video through NDI, and LTC timecode.
 - Run a show from a touchscreen, a control surface or a keyboard and mouse, or with no external systems.
-- Test integrations against simulators or recorded sessions.
+- Test the lighting-desk path against simulators or recorded sessions.
+- Exchange video through Spout, SRT and SDI.
+- Send and receive MIDI timecode.
+- Test the other protocols (MIDI notes and controllers, PosiStageNet, video streams, MIDI timecode) against simulators.
 
 </details>
 
@@ -506,6 +509,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Trim alignment or calibration during a session, with each change logged.
 - Reset for the next session, and signal that the show is ready.
 - See a thumbnail of every output.
+- Run several sessions at once as separate copies, each with its own guests, performers, cue position and reset, where resetting one does not change another.
 
 </details>
 
