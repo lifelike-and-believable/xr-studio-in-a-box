@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 244 proposed stories, 206 written, 11 open questions.
+39 epics, 245 proposed stories, 218 written, 7 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -713,11 +713,18 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [Autonomous behaviour that stays inside agreed limits](epics/behaviour-and-limits.md) | 0 of 6 | 2 |
-| [Crowds and creatures that fill the world](epics/crowds-and-creatures.md) | 0 of 6 | 2 |
+| [Autonomous behaviour that stays inside agreed limits](epics/behaviour-and-limits.md) | 6 of 6 | 0 |
+| [Crowds and creatures that fill the world](epics/crowds-and-creatures.md) | 6 of 7 | 0 |
 
 <details>
 <summary>Autonomous behaviour that stays inside agreed limits</summary>
+
+- [Check AI use in a specification against the policy record](stories/behaviour-and-limits/check-ai-use.md) (approved)
+- [Set content limits, and keep output outside them from the audience](stories/behaviour-and-limits/content-limits.md) (approved)
+- [Pause, redirect or take over an autonomous character](stories/behaviour-and-limits/override.md) (approved)
+- [Test behaviour with recorded scenarios, and block a failing build](stories/behaviour-and-limits/scenario-tests.md) (approved)
+- [Give every behaviour a scripted fallback that runs offline](stories/behaviour-and-limits/scripted-fallback.md) (approved)
+- [Write a behaviour specification and review it at a gate](stories/behaviour-and-limits/write-specification.md) (approved)
 
 - Write a human-readable behaviour specification, and review it at a gate.
 - Check any AI use in a specification against the policy record.
@@ -731,12 +738,20 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Crowds and creatures that fill the world</summary>
 
+- [Add autonomous creatures that react to cues and performers](stories/crowds-and-creatures/add-creatures.md) (approved)
+- [Add secondary motion and fill undriven channels, with a switch for the performer](stories/crowds-and-creatures/ai-assists.md) (approved)
+- [Conduct a crowd or creatures as one instrument](stories/crowds-and-creatures/conduct.md) (approved)
+- [Mark a moment as locked or free](stories/crowds-and-creatures/locked-or-free.md) (approved)
+- [Place a crowd in a scene, and choose and tune its behaviours](stories/crowds-and-creatures/place-a-crowd.md) (approved)
+- [React to a nearby presence, with nothing kept](stories/crowds-and-creatures/presence-reaction.md) (approved)
+
 - Place a crowd in a scene, and choose and tune its behaviours.
 - Add autonomous creatures that react to cues and performers.
 - Conduct a crowd or creature directly as one instrument.
 - Add secondary motion and fill undriven channels with AI, with a switch for the performer.
 - Mark a moment as locked or free.
 - React to a nearby presence with non-verbal, rule-based behaviour, with nothing kept.
+- Later, not written: trial a local generative model on the show machine, behind the scripted fallback (story-behaviour-and-limits-scripted-fallback), including generative voice transformation of a performer's live voice. The first release uses rule-based and procedural methods only (approver's answer).
 
 </details>
 
