@@ -38,23 +38,29 @@ A project can record what guests can do, try it in a playable prototype before a
 
 ## Stories
 
-- None yet.
+- story-interaction-design-record-design
+- story-interaction-design-playable-prototype
+- story-interaction-design-guest-movement
+- story-interaction-design-input-per-target
+- story-interaction-design-reusable-pattern
+- story-interaction-design-scripted-tests
 
 ## Release groups
 
 - The design record, the gate and the prototype ship first.
 - Movement, input mapping and tests follow.
-- Reusable patterns can ship once two shows need the same interaction.
+- Reusable patterns ship with the first pattern, presence or action triggering a response. Further patterns ship once two shows need the same interaction.
 
 ## Dependencies
 
 - epic-review-and-status.
 - epic-cue-list, for interactions that fire cues.
+- epic-shared-library, for saving patterns.
 
 ## Open questions
 
-- Who holds this role on small shows, the director or a technical artist? Quinn is mostly assumed.
-- Which interactions are worth saving as the first patterns?
+- Answered: on a small show the director holds the interaction designer's role unless the project names someone else, and a technical artist can be named for the build side (approver's answer). See story-interaction-design-record-design.
+- Answered: the first pattern is one the first show (UC-2) needs: a guest's presence or a performer's action triggers a response in the world (approver's answer). Viewpoint choice comes later (REQ-audience-7). Grabbing, using and following a guide are saved once two shows need them. See story-interaction-design-reusable-pattern.
 
 ## Out of scope
 

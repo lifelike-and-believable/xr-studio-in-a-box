@@ -29,7 +29,10 @@ A visual effect can go from a brief and references to an engine-ready asset that
 
 ## Stories
 
-- None yet.
+- story-effects-path-draft-an-effect
+- story-effects-path-revise-and-approve
+- story-effects-path-expose-values
+- story-effects-path-see-cost
 
 ## Release groups
 
@@ -43,7 +46,7 @@ A visual effect can go from a brief and references to an engine-ready asset that
 
 ## Open questions
 
-- How much of an effect can agents draft usefully in Niagara? This is untested.
+- Answered: settled in story-effects-path-draft-an-effect by a trial on the first show's effects, in which Sam records which parts agents drafted usefully.
 
 ## Out of scope
 

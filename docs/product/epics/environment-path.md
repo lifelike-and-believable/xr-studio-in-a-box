@@ -26,15 +26,23 @@ An environment, with its interactive features, can go from a brief and reference
 
 ## Proposed stories
 
-- Turn a brief and references into a rough layout that can be walked.
+- Generate a rough world that can be walked from a brief and references with World Labs Marble.
+- Build a rough layout from a kit of approved assets when a generated world does not serve.
 - Develop the look of an environment from approved concept art.
 - Bring hand-made environment work into the path.
 - Place designed interactions in a level.
+- Check that a level is engine-ready against each target's budget file.
 - Approve layout, look and interactive features at the gate.
 
 ## Stories
 
-- None yet.
+- story-environment-path-generate-a-world
+- story-environment-path-build-from-kit
+- story-environment-path-develop-the-look
+- story-environment-path-bring-hand-made-work
+- story-environment-path-place-interactions
+- story-environment-path-engine-ready-level
+- story-environment-path-approve-at-the-gate
 
 ## Release groups
 
@@ -46,11 +54,12 @@ An environment, with its interactive features, can go from a brief and reference
 - epic-review-and-status, for gates.
 - epic-provenance-and-policy.
 - epic-interaction-design.
+- epic-asset-checks, for the checks and each target's budget file.
 
 ## Open questions
 
-- Which generation route for environments is good enough to adopt? The research notes treat this as unproven.
-- What does an engine-ready level mean for mobile stream, PC VR and projection at once?
+- Answered: World Labs Marble comes first, generating whole worlds, with a kit of approved assets, generated or hand-made, as the fallback (approver's answer). RealityScan photogrammetry and Gaussian splats come later. The proposed stories assumed one unnamed route that blocked out a layout first and added the look after. Marble generates layout and look together, so the first story now generates a world with Marble, and a story for the kit fallback is added. See story-environment-path-generate-a-world and story-environment-path-build-from-kit.
+- Answered: a level is engine-ready when it passes the asset checks (story-asset-checks-check-against-budget) against the budget file of each target the project uses, checked in the editor or on the test device that budget file names. A story is added for this check. See story-environment-path-engine-ready-level.
 
 ## Out of scope
 

@@ -29,10 +29,15 @@ Characters, rigs, environments and cue structures can be saved and reused in new
 - Bring a library item into a new project.
 - Check its original terms against the new project's policy record.
 - Block reuse the terms do not allow, and say why.
+- Share an item with another organisation by an export that carries its terms.
 
 ## Stories
 
-- None yet.
+- story-shared-library-save-to-library
+- story-shared-library-bring-into-project
+- story-shared-library-check-terms
+- story-shared-library-block-reuse
+- story-shared-library-export-to-another-organisation
 
 ## Release groups
 
@@ -45,7 +50,7 @@ Characters, rigs, environments and cue structures can be saved and reused in new
 
 ## Open questions
 
-- Is the library one store for all projects, or per organisation?
+- Answered: there is one library per organisation, defined in story-shared-library-save-to-library. Sharing between organisations is an export that carries the terms, so a story for it was added: story-shared-library-export-to-another-organisation.
 
 ## Out of scope
 

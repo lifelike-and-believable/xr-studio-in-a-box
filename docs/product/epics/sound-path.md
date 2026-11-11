@@ -8,6 +8,7 @@ derived-from:
   - persona-sound-designer#goals: 70f155e30dc6
   - persona-director#goals: a92ca172be83
   - persona-show-operator#goals: 408315e4f8f6
+  - persona-performer#goals: 9de25c7bbe59
 ---
 
 # Sound that fits the show on every output
@@ -23,6 +24,7 @@ Voices, music, effects and ambience go from a brief to sound placed in a show, u
 - persona-sound-designer: drafts, places and mixes sound, and tunes it in rehearsal.
 - persona-director: approves sound and music at their gate.
 - persona-show-operator: runs the mixes during a show.
+- persona-performer: decides how their live voice may be processed.
 
 ## Proposed stories
 
@@ -35,7 +37,12 @@ Voices, music, effects and ambience go from a brief to sound placed in a show, u
 
 ## Stories
 
-- None yet.
+- story-sound-path-sound-assets
+- story-sound-path-brief-to-drafts
+- story-sound-path-place-sound
+- story-sound-path-mix-per-output
+- story-sound-path-live-voice-processing
+- story-sound-path-rehearsal-mix-changes
 
 ## Release groups
 
@@ -48,13 +55,17 @@ Voices, music, effects and ambience go from a brief to sound placed in a show, u
 - epic-review-and-status.
 - epic-provenance-and-policy.
 - epic-outputs-and-streaming, for outputs.
+- epic-cue-list and epic-live-signals, for mixes that follow cues and signals.
+- epic-venue-setup, for venue speaker layouts.
+- epic-session-recording, for the performer's agreement on their voice.
 
 ## Open questions
 
-- Does the first show mix in Unreal, in an audio workstation, or both?
-- Which spatial audio format and venue speaker systems come first?
-- How is sync measured on a stream with seconds of delay?
+- Answered: both. Sound designers prepare stems in their audio workstation, and the live show mixes in Unreal with MetaSounds and submixes, so it runs with no extra machine and follows cues and signals (approver's answer). See story-sound-path-sound-assets and story-sound-path-mix-per-output.
+- Answered: binaural for headsets and stereo for the stream and the browser come first. Speaker layouts for venues are added per venue later. See story-sound-path-place-sound.
+- Answered: settled in story-sound-path-mix-per-output by measuring the sound-to-picture offset at each output with a test signal, a flash and a click, against a target that a person with the director's role, or their delegate, sets for the show.
 
 ## Out of scope
 
 - Generated voices of real people without consent, which the policy gate blocks.
+- Generated voices, which come later. The first show uses the performer's live voice (approver's decision).
