@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 230 proposed stories, 65 written, 54 open questions.
+39 epics, 230 proposed stories, 78 written, 54 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -100,11 +100,11 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 |---|---|---|
 | [Nothing breaks when a source changes or fails](epics/handover-and-fallback.md) | 7 of 7 | 0 |
 | [A performer drives a character live](epics/live-puppet.md) | 7 of 7 | 0 |
-| [Music, sensors and the crowd drive the show](epics/live-signals.md) | 7 of 11 | 0 |
-| [Retarget a performer to the nearest body plan](epics/nearest-body-retargeting.md) | 0 of 5 | 0 |
-| [The performer can sense the room and trust the motion](epics/performer-support.md) | 6 of 8 | 0 |
-| [Record, replay and share a performance](epics/session-recording.md) | 7 of 8 | 0 |
-| [Any number of performers, any kind of body](epics/shared-characters.md) | 7 of 8 | 0 |
+| [Music, sensors and the crowd drive the show](epics/live-signals.md) | 11 of 11 | 0 |
+| [Retarget a performer to the nearest body plan](epics/nearest-body-retargeting.md) | 5 of 5 | 0 |
+| [The performer can sense the room and trust the motion](epics/performer-support.md) | 8 of 8 | 0 |
+| [Record, replay and share a performance](epics/session-recording.md) | 8 of 8 | 0 |
+| [Any number of performers, any kind of body](epics/shared-characters.md) | 8 of 8 | 0 |
 
 <details>
 <summary>Nothing breaks when a source changes or fails</summary>
@@ -153,9 +153,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 - [Drive the scene from the audience's combined reaction](stories/live-signals/audience-reaction.md) (approved)
 - [Drive a channel from live audio analysis](stories/live-signals/audio-analysis.md) (approved)
+- [Report guest presence from beams](stories/live-signals/beams.md) (approved)
+- [Report guest presence from depth sensors](stories/live-signals/depth-sensors.md) (approved)
+- [Drive a channel from DMX](stories/live-signals/dmx.md) (approved)
 - [Report guest presence from floor pads](stories/live-signals/guest-presence.md) (approved)
 - [Map a signal onto a channel](stories/live-signals/map-a-signal.md) (approved)
 - [Drive a channel from MIDI](stories/live-signals/midi.md) (approved)
+- [Drive a channel from OSC](stories/live-signals/osc.md) (approved)
 - [Drive a channel from a performer's sensor](stories/live-signals/performer-sensor.md) (approved)
 - [Fall back when a signal drops](stories/live-signals/signal-fallback.md) (approved)
 
@@ -176,6 +180,12 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Retarget a performer to the nearest body plan</summary>
 
+- [Add a body plan to the known set](stories/nearest-body-retargeting/add-body-plan.md) (approved)
+- [Correct an automatic match and save it as a mapping](stories/nearest-body-retargeting/correct-and-save.md) (approved)
+- [Drive a retargeted character live](stories/nearest-body-retargeting/drive-live.md) (approved)
+- [Match a character to the nearest body plan](stories/nearest-body-retargeting/match-nearest-body-plan.md) (approved)
+- [Rehearse a retargeted mapping and send it for review](stories/nearest-body-retargeting/rehearse-and-review.md) (approved)
+
 - Match a character to the nearest known body plan (biped, quadruped or extra limbs) automatically, and see which parts were matched and which were not. This story tests whether IK Retargeter is enough.
 - Correct the automatic result by hand, without code, and save it as a mapping asset (story-shared-characters-map-a-different-body).
 - Drive a retargeted character live, within the show's delay target (story-live-puppet-measure-delay).
@@ -190,9 +200,11 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Sense the audience through physical signals](stories/performer-support/audience-summary-signals.md) (approved)
 - [Talk privately with the crew](stories/performer-support/crew-channel.md) (approved)
 - [Check live motion against the show's bar](stories/performer-support/motion-quality-check.md) (approved)
+- [Let a remote helper join the crew channel](stories/performer-support/remote-helper.md) (approved)
 - [See a live view of the room](stories/performer-support/room-view.md) (approved)
 - [See the virtual character from the stage](stories/performer-support/stage-view.md) (approved)
 - [Hear the venue while performing](stories/performer-support/venue-audio.md) (approved)
+- [Connect a venue intercom to the crew channel](stories/performer-support/venue-intercom.md) (approved)
 
 - Talk privately with crew by voice and text, with captions, from inside a headset or suit.
 - Let a remote helper join the crew channel over the internet.
@@ -215,6 +227,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Record a session and replay it](stories/session-recording/record-and-replay.md) (approved)
 - [Drive a character from another location](stories/session-recording/remote-performer.md) (approved)
 - [Stream performance data between machines](stories/session-recording/stream-between-machines.md) (approved)
+- [Test a remote performer between two real sites](stories/session-recording/two-site-test.md) (approved)
 
 - Record a performer's agreement for a project: what may be captured, how it may be used, and their acknowledgement of any character brief.
 - Check that agreement before recording, and before a generative tool uses the data.
@@ -233,6 +246,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Drive a character by position and intent](stories/shared-characters/intent-and-procedural-motion.md) (approved)
 - [Map a performer's body parts onto a different body](stories/shared-characters/map-a-different-body.md) (approved)
 - [Drive several characters from one performer](stories/shared-characters/one-performer-several-characters.md) (approved)
+- [Map motion onto character values](stories/shared-characters/parameter-mapping.md) (approved)
 - [Run several performers on their own characters](stories/shared-characters/several-performers.md) (approved)
 - [Share one character between several performers](stories/shared-characters/split-a-character.md) (approved)
 - [Swap the performer in a role between sessions](stories/shared-characters/swap-performer.md) (approved)
