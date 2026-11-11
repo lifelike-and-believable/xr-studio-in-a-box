@@ -83,7 +83,7 @@ A small production can composite virtual content onto tracked real cameras witho
 
 ## REQ-delivery-19: Headset list
 
-In a show that uses headsets, attendants see a plain list of them, with each one's charge, assigned guest, cleaned or not, and connection. An attendant can open a live view of any one guest's headset. This is far smaller than REQ-delivery-10, and is built with the hardware chosen for UC-1.
+In a show that uses headsets, attendants see a plain list of them, with each one's charge, assigned guest, cleaned or not, and connection. An attendant can open a live view of any one guest's headset. This is far smaller than REQ-delivery-10. It is built first for the first release's PC VR kit. Standalone headsets and UC-1's touring kit follow once that hardware is chosen.
 
 ## REQ-delivery-20 (later): Rendered export
 

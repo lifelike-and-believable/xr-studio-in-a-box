@@ -32,9 +32,11 @@ A show can lead or follow external cue, lighting and audio systems through open 
 - Exchange video through NDI, and LTC timecode.
 - Run a show from a touchscreen, a control surface or a keyboard and mouse, or with no external systems.
 - Test the lighting-desk path against simulators or recorded sessions.
-- Exchange video through Spout, SRT and SDI.
+- Exchange video through Spout.
+- Exchange video through SRT and SDI.
 - Send and receive MIDI timecode.
-- Test the other protocols (MIDI notes and controllers, PosiStageNet, video streams, MIDI timecode) against simulators.
+- Test the other protocols (MIDI notes and controllers, PosiStageNet, MIDI timecode) against simulators.
+- Test video streams (NDI, Spout, SRT and SDI) against simulators.
 
 ## Stories
 
@@ -44,7 +46,7 @@ A show can lead or follow external cue, lighting and audio systems through open 
 - story-external-systems-video-and-timecode
 - story-external-systems-surfaces-and-standalone
 - story-external-systems-simulators
-- story-external-systems-spout-srt-sdi
+- story-external-systems-spout
 - story-external-systems-midi-timecode
 - story-external-systems-other-simulators
 
@@ -60,7 +62,7 @@ A show can lead or follow external cue, lighting and audio systems through open 
 
 ## Open questions
 
-- Answered: a lighting desk first (approver's answer). The rest is settled in story-external-systems-lead-or-follow: before the first show's venue is chosen, the director or their delegate records the external systems each candidate venue has, each venue profile (epic-venue-setup) is checked against that list, and further protocols are built and tested in the order it needs.
+- Answered: a lighting desk first (approver's answer). The rest is settled in story-external-systems-lead-or-follow: before the first show's venue is chosen, the director or their delegate records the external systems each candidate venue has, each venue profile (story-venue-setup-venue-profile) is checked against that list, and further protocols are built and tested in the order it needs.
 - Answered: yes. A lighting desk leading Unreal, as on RSC Dream, is tested first: the desk fires cues in Unreal over OSC or MIDI show control, and timecode follows (approver's answer). See story-external-systems-lead-or-follow and story-external-systems-osc-midi-msc.
 
 ## Out of scope
