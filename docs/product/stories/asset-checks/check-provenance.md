@@ -12,7 +12,7 @@ As Riley, the artist, I want every asset's provenance record checked before revi
 
 ## Acceptance criteria
 
-- Before an asset goes to review, its provenance record (story-provenance-and-policy-provenance-record) is checked for every item that story lists. A missing item fails the check, and the result names it.
+- Before an asset goes to review, its provenance record (story-provenance-and-policy-provenance-record) is checked for every item that story lists except who approved it, because no one has approved the asset yet. Who approved it is checked when the asset leaves its gate. A missing item fails the check, and the result names it.
 - For a generated asset, the check also needs the tool's licence terms on the date of use and the reference inputs with their owners and terms. This is the provenance and licence check that story-provenance-and-policy-quality-and-licence-gate runs before the asset enters the project.
 - Hand-made work, and a person's changes after generation, must name the person who did the work. Riley is named in the record of each asset Riley made or changed.
 - An asset derived from a performer's data must name the performer (REQ-governance-9).

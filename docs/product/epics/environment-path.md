@@ -59,7 +59,7 @@ An environment, with its interactive features, can go from a brief and reference
 ## Open questions
 
 - Answered: World Labs Marble comes first, generating whole worlds, with a kit of approved assets, generated or hand-made, as the fallback (approver's answer). RealityScan photogrammetry and Gaussian splats come later. The proposed stories assumed one unnamed route that blocked out a layout first and added the look after. Marble generates layout and look together, so the first story now generates a world with Marble, and a story for the kit fallback is added. See story-environment-path-generate-a-world and story-environment-path-build-from-kit.
-- Answered: a level is engine-ready when it passes the asset checks of epic-asset-checks against the budget file of each target the project uses, checked in the editor or on a test device the project names. A story is added for this check. See story-environment-path-engine-ready-level.
+- Answered: a level is engine-ready when it passes the asset checks (story-asset-checks-check-against-budget) against the budget file of each target the project uses, checked in the editor or on the test device that budget file names. A story is added for this check. See story-environment-path-engine-ready-level.
 
 ## Out of scope
 

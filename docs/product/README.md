@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 233 proposed stories, 122 written, 39 open questions.
+39 epics, 233 proposed stories, 122 written, 38 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -505,7 +505,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [From approved work to a tested build on a venue machine](epics/build-and-install.md) | 0 of 5 | 2 |
+| [From approved work to a tested build on a venue machine](epics/build-and-install.md) | 0 of 5 | 1 |
 | [One live performance, many outputs](epics/outputs-and-streaming.md) | 0 of 6 | 2 |
 | [Set up in a venue, and keep running there](epics/venue-setup.md) | 0 of 6 | 3 |
 

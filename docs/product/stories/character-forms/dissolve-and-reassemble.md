@@ -18,3 +18,4 @@ As Riley, the artist, I want to make a dissolve and reassembly from a character'
 - It is a transition and follows the rules for setting up, rehearsing and triggering one (story-character-forms-morph).
 - While dissolved, the character's channels keep their sources. When it reassembles, it follows the performer with no recalibration, within the show's delay target (story-live-puppet-measure-delay).
 - Riley sees its frame cost against the budget file of each target the project names (story-asset-checks-check-against-budget), in the editor or on the test device that the budget file names.
+- The dissolve and reassembly runs with every agent and the internet disconnected.

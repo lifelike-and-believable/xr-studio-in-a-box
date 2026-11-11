@@ -12,7 +12,7 @@ As Robin, a collaborator, I want the terms I agreed for my work shown and checke
 
 ## Acceptance criteria
 
-- Before a library item comes into a project (story-shared-library-bring-into-project), its original terms are shown beside the new project's policy record (story-provenance-and-policy-record-terms), to the person bringing it in and to the new project's holder of the contracts and licence terms approval.
+- Before a library item comes into a project (story-shared-library-bring-into-project), its original terms are shown beside the new project's policy record (story-provenance-and-policy-record-terms), to the person bringing it in, as far as their role allows, and in full to the new project's holder of the contracts and licence terms approval.
 - Each original term, including limits on AI use, cultural protocols, rights and end dates, is checked against the new project's policy record and planned use. Each term shows a result: allowed, waiting for sign-off, or blocked. Blocked reuse is handled as in story-shared-library-block-reuse.
 - Where an original term calls for Robin's sign-off, the reuse waits for Robin's decision on the limited page (story-provenance-and-policy-collaborator-sign-off).
 - Parts derived from a performer's data come in only if that performer's confirmed agreement in the new project (story-session-recording-record-agreement) allows the use. Otherwise they are blocked.

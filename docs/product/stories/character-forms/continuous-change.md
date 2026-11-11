@@ -16,5 +16,5 @@ As Kai, the performer, I want to drive a continuous change in my character, such
 - Sam sets the limits of the change, such as the smallest and largest size, and Kai's movement cannot take it past them. In show mode only an approved version of the mapping runs.
 - Driven by the live portable inertial suit, the change follows Kai within the show's delay target (story-live-puppet-measure-delay). A live performer drives it only once their agreement is confirmed (story-session-recording-record-agreement).
 - When the character grows or shrinks, its feet stay on the floor, checked in a recorded test (story-session-recording-record-and-replay).
-- If Kai's capture drops, the value uses the safe hold for a form and transformation value (story-shared-characters-parameter-mapping).
+- If Kai's capture drops, the value uses its fallback (story-handover-and-fallback-define-fallback), as in story-shared-characters-parameter-mapping.
 - The change keeps following Kai with every agent and the internet disconnected.

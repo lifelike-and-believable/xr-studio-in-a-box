@@ -66,3 +66,4 @@ A character can go from a brief and references to a rigged, engine-ready asset, 
 
 - Transformation and hair, cloth and costume, which belong to epic-character-forms.
 - Automatic asset checks, which belong to epic-asset-checks.
+- The realistic human style, including a performer's likeness, which comes after the first show's stylised characters (approver's decision), under a confirmed agreement.

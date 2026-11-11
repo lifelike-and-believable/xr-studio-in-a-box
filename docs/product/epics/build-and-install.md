@@ -39,17 +39,18 @@ Approved work becomes a running, tested build, measured against each target's bu
 ## Release groups
 
 - Building and automatic tests ship first.
-- Budgets ship once the approver sets them.
+- Checks on builds against the budget file (story-asset-checks-check-against-budget) ship with building.
 - Install and roll back ship before the first venue show.
 
 ## Dependencies
 
 - epic-project-record.
 - epic-agent-work.
+- epic-asset-checks, for the budget file.
 
 ## Open questions
 
-- What are the budgets per target? REQ-delivery-8 leaves them TBD.
+- Answered: the budget file for each target, and who sets it, are defined in story-asset-checks-check-against-budget. Its first numbers are set from measurements on proxy assets. This epic measures frame rate, memory and load time again on delivered builds against the same budget file.
 - Does Unreal 5.8 and its plugins cover every first-release target? Plugin support is unconfirmed in the research notes.
 
 ## Out of scope

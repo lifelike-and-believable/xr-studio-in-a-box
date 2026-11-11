@@ -12,8 +12,8 @@ As Drew, the sound designer, I want to turn a brief into drafts of music, effect
 
 ## Acceptance criteria
 
-- Drew can write a brief with references, and direct an agent to draft music, effects or ambience from it.
-- Each generation goes through the policy gate (story-provenance-and-policy-block-generation), the spend limit (story-agent-work-spend-limit), a tool adapter (story-agent-work-tool-adapter), the provenance record (story-provenance-and-policy-provenance-record) and the quality and licence gate (story-provenance-and-policy-quality-and-licence-gate). Each audio tool's output licence is checked and recorded before its first real use.
+- Drew can write a brief with references, and direct an agent to draft music, effects or ambience from it. Generated voices come later (REQ-content-13): the first show uses the performer's live voice (approver's decision).
+- Each generation goes through the policy gate (story-provenance-and-policy-block-generation), the spend limit (story-agent-work-spend-limit), a tool adapter (story-agent-work-tool-adapter), the provenance record (story-provenance-and-policy-provenance-record) and the quality and licence gate (story-provenance-and-policy-quality-and-licence-gate). Each audio tool follows the licence rule for a tool's first real use (story-character-path-design-drafts).
 - Drew can listen to each draft, compare versions, write feedback and have a draft regenerated (story-review-and-status-feedback-and-versions).
 - Drew can replace a draft with work from an audio workstation, and the provenance record shows the change.
 - Drew chooses which drafts go to the sound and music gate, where the person named for that area accepts or rejects them (story-review-and-status-decide-on-items). An agent cannot accept them.

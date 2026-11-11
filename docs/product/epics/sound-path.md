@@ -68,3 +68,4 @@ Voices, music, effects and ambience go from a brief to sound placed in a show, u
 ## Out of scope
 
 - Generated voices of real people without consent, which the policy gate blocks.
+- Generated voices, which come later. The first show uses the performer's live voice (approver's decision).

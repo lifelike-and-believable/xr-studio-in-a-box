@@ -14,6 +14,6 @@ As Quinn, the interaction designer, I want to save an interaction as a pattern a
 
 - Quinn can save an interaction accepted at the interaction design gate as a pattern, with its design, input mappings (story-interaction-design-input-per-target) and settings, to the organisation's shared library (story-shared-library-save-to-library), which keeps its provenance and terms.
 - Quinn can bring a pattern into another project and change its settings in the Unreal Editor, such as which objects or cameras it uses and its timing, without code. The configured pattern is part of that project's interaction design and goes through its gate (story-interaction-design-record-design).
-- The first pattern is the one the first show (UC-2) needs: a viewer chooses a camera or viewpoint from those the show offers, viewer input stage 2. It is tested in the Unreal Editor with simulated browser and headset viewers, because guest delivery arrives in later layers (Layer 5 and Layer 6).
+- The first pattern is one the first show (UC-2) needs: a guest's presence or a performer's action triggers a response in the world. It is tested in the Unreal Editor with a simulated guest (story-live-signals-guest-presence) and a recorded performer take (story-session-recording-record-and-replay). Viewpoint choice comes later (REQ-audience-7).
 - An agent can draft a pattern's settings, but only a person who holds the interaction designer's role can save a pattern to the library.
-- Further patterns, such as grabbing, using, triggering and following a guide, are saved once two shows need the same interaction.
+- Further patterns, such as grabbing, using and following a guide, are saved once two shows need the same interaction.

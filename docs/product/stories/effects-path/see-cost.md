@@ -16,4 +16,4 @@ As Riley, the artist, I want to see what an effect costs on each target while I 
 - The cost is measured in the same way as the effect cost check (story-asset-checks-check-effects-and-audio), so Riley sees the same result the reviewer will see.
 - After Riley saves a change, the cost shown is updated without a build.
 - For each target, Riley sees within or over budget in text, not by colour alone, with the measured value. When an effect is over budget, the costliest part is named in plain terms.
-- The cost is measured in the editor or on a test device the project names for each target, not in a delivered build. Lower-detail versions belong to story-asset-checks-lower-detail-versions.
+- The cost is measured in the editor or on each target's test device named in its budget file (story-asset-checks-check-against-budget), not in a delivered build. Lower-detail versions belong to story-asset-checks-lower-detail-versions.
