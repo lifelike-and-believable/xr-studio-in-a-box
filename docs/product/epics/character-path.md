@@ -37,7 +37,12 @@ A character can go from a brief and references to a rigged, engine-ready asset, 
 
 ## Stories
 
-- None yet.
+- story-character-path-design-drafts
+- story-character-path-mesh-and-rig
+- story-character-path-hand-made-work
+- story-character-path-other-styles
+- story-character-path-common-skeleton
+- story-character-path-lock-character
 
 ## Release groups
 
@@ -54,8 +59,8 @@ A character can go from a brief and references to a rigged, engine-ready asset, 
 
 ## Open questions
 
-- Which generation tools come first? The research notes treat several as trials, and output licences are not all checked.
-- Which character style does the first show need?
+- Answered: Tripo makes meshes and rigs, and Higgsfield makes concept images. Each tool's output licence is checked and recorded before its first real use (story-character-path-design-drafts). Meshy and Rodin stay trials behind the same adapter (story-character-path-mesh-and-rig).
+- Answered: the first show (UC-2, livestreamed improvised puppetry) needs stylised characters, not photoreal humans. The design and mesh and rig stories are tested first on a stylised character, and story-character-path-other-styles covers the other styles.
 
 ## Out of scope
 

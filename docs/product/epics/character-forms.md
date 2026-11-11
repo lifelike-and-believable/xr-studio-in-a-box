@@ -33,7 +33,11 @@ A character can change form during a show through a rehearsable cue, and its hai
 
 ## Stories
 
-- None yet.
+- story-character-forms-morph
+- story-character-forms-swap-behind-effect
+- story-character-forms-dissolve-and-reassemble
+- story-character-forms-continuous-change
+- story-character-forms-hair-cloth-costume
 
 ## Release groups
 
@@ -49,8 +53,8 @@ A character can change form during a show through a rehearsable cue, and its hai
 
 ## Open questions
 
-- Which kind of transformation does the first show need?
-- How much live cloth simulation fits inside the performer delay target?
+- Answered: the first show (UC-2) needs a transformation by blending between forms (morph), such as a creature growing or changing shape. It is tested first in story-character-forms-morph.
+- Answered: settled in story-character-forms-hair-cloth-costume by a measurement on the first show's characters on the show's hardware against the show's delay target (story-live-puppet-measure-delay), with Sam setting what is simulated live.
 
 ## Out of scope
 
