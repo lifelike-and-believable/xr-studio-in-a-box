@@ -49,6 +49,8 @@ A show can lead or follow external cue, lighting and audio systems through open 
 - story-external-systems-spout
 - story-external-systems-midi-timecode
 - story-external-systems-other-simulators
+- story-external-systems-srt-and-sdi
+- story-external-systems-video-simulators
 
 ## Release groups
 
