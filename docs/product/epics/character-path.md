@@ -50,7 +50,7 @@ A character can go from a brief and references to a rigged, engine-ready asset, 
 - epic-review-and-status, for gates.
 - epic-provenance-and-policy, for the policy gate and provenance record.
 - epic-agent-work, for tool adapters.
-- The common skeleton convention, which is decided in epic-live-puppet.
+- The common skeleton decided in epic-live-puppet: the UE5 mannequin skeleton (Manny). MetaHuman bodies already share it, and characters from other sources are retargeted to it with IK Retargeter.
 
 ## Open questions
 

@@ -27,10 +27,10 @@ Several performers can share one character, one performer can drive several, pro
 ## Proposed stories
 
 - Run several performers, each driving their own character.
-- Split one character's channels between several performers.
+- Split one character's channels between several performers, with each performer shown what they need to see of the others. What that is gets settled by testing with real performers.
 - Drive several characters from one performer.
 - Drive a character or effect from a tracked prop.
-- Map chosen body parts or motion values onto a character with a different body, and save the mapping as a reviewable asset.
+- Map chosen body parts or motion values onto a character with a different body (mapped puppeteering), and save the mapping as a reviewable asset.
 - Drive a character by position and intent, with procedural motion filling in the rest.
 - Swap the performer in a role between sessions, using that performer's saved calibration and mappings, with no rebuild.
 
@@ -51,11 +51,12 @@ Several performers can share one character, one performer can drive several, pro
 
 ## Open questions
 
-- Which mapping method is proved first? The proposal is mapped puppeteering, as the simplest of the four.
-- This epic now has seven stories. Does automatic retargeting to the nearest body plan need an eighth, or should that be its own epic? The proposal is its own epic.
-- What does a performer need to see of the others who share a character?
+- Answered: mapped puppeteering is proved first, as the simplest of the four mapping methods.
+- Answered: automatic retargeting to the nearest body plan is its own epic, not an eighth story here. See Out of scope.
+- Answered: what a performer needs to see of the others who share a character is not decided ahead of time. It is an acceptance criterion of the story that splits one character between several performers, tested with real performers.
 
 ## Out of scope
 
 - Characters on the common skeleton, which are covered by epic-live-puppet.
 - Performers in different venues (REQ-delivery-4), which is later.
+- Automatic retargeting to the nearest body plan, which is a separate epic, to be written.
