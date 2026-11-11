@@ -8,7 +8,7 @@ derived-from:
 
 # Hand a channel to another driver
 
-As Casey, from the capture and technical crew, I want to hand a channel to another driver without a visible jump so that I can swap a failed device without stopping the session.
+As Casey, the capture crew, I want to hand a channel to another driver without a visible jump so that I can swap a failed device without stopping the session.
 
 ## Acceptance criteria
 

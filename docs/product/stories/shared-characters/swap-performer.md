@@ -8,7 +8,7 @@ derived-from:
 
 # Swap the performer in a role between sessions
 
-As Casey, from the capture and technical crew, I want to put a different performer in a role between sessions using their saved calibration and mappings so that each performer's guided setup and calibration is done once and reused.
+As Casey, the capture crew, I want to put a different performer in a role between sessions using their saved calibration and mappings so that each performer's guided setup and calibration is done once and reused.
 
 ## Acceptance criteria
 

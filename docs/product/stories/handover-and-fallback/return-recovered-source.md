@@ -8,7 +8,7 @@ derived-from:
 
 # Return a recovered source to its channel
 
-As Casey, from the capture and technical crew, I want a recovered or replaced source to take its channel back without a visible jump so that I can swap a failed device without stopping the session.
+As Casey, the capture crew, I want a recovered or replaced source to take its channel back without a visible jump so that I can swap a failed device without stopping the session.
 
 ## Acceptance criteria
 

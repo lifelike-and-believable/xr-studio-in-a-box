@@ -8,7 +8,7 @@ derived-from:
 
 # Connect an optical studio's live stream
 
-As Casey, from the capture and technical crew, I want a guided setup that connects an optical studio's live capture stream and maps its performers to characters so that studio capture reaches the right characters without a pipeline engineer.
+As Casey, the capture crew, I want a guided setup that connects an optical studio's live capture stream and maps its performers to characters so that studio capture reaches the right characters without a pipeline engineer.
 
 ## Acceptance criteria
 

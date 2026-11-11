@@ -8,7 +8,7 @@ derived-from:
 
 # Set up and calibrate webcam or phone capture
 
-As Casey, from the capture and technical crew, I want a guided setup and calibration for webcam or phone capture so that a performer with no capture hardware can drive a character.
+As Casey, the capture crew, I want a guided setup and calibration for webcam or phone capture so that a performer with no capture hardware can drive a character.
 
 ## Acceptance criteria
 

@@ -8,7 +8,7 @@ derived-from:
 
 # Measure the delay from performer to puppet
 
-As Casey, from the capture and technical crew, I want to measure the delay from a performer's movement to the rendered puppet on the show's hardware so that I can prove the performer's latency is within budget.
+As Casey, the capture crew, I want to measure the delay from a performer's movement to the rendered puppet on the show's hardware so that I can prove the performer's latency is within budget.
 
 ## Acceptance criteria
 

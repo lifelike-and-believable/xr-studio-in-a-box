@@ -8,7 +8,7 @@ derived-from:
 
 # Set up and calibrate a portable inertial suit
 
-As Casey, from the capture and technical crew, I want a guided setup and calibration for a portable inertial suit so that I can get the first capture source working without a pipeline engineer.
+As Casey, the capture crew, I want a guided setup and calibration for a portable inertial suit so that I can get the first capture source working without a pipeline engineer.
 
 ## Acceptance criteria
 

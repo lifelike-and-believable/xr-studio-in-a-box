@@ -8,7 +8,7 @@ derived-from:
 
 # Connect a capture source and drive a character
 
-As Casey, from the capture and technical crew, I want to connect a capture source through one common interface and see a character move so that I can confirm a performer's data is reaching the right character.
+As Casey, the capture crew, I want to connect a capture source through one common interface and see a character move so that I can confirm a performer's data is reaching the right character.
 
 ## Acceptance criteria
 

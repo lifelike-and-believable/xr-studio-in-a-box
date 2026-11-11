@@ -8,7 +8,7 @@ derived-from:
 
 # Assign sources to a character's channels
 
-As Casey, from the capture and technical crew, I want to assign a source to each of a character's channels so that I can confirm each performer's data is reaching the right character and channel.
+As Casey, the capture crew, I want to assign a source to each of a character's channels so that I can confirm each performer's data is reaching the right character and channel.
 
 ## Acceptance criteria
 
