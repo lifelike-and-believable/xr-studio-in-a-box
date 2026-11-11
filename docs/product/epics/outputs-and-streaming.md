@@ -9,6 +9,7 @@ derived-from:
   - persona-show-operator#goals: 408315e4f8f6
   - persona-technical-artist#goals: 1fb2055dfdf2
   - persona-producer#goals: d1cc47b03be9
+  - persona-director#goals: a92ca172be83
 ---
 
 # One live performance, many outputs
@@ -24,6 +25,7 @@ A single live performance feeds projection, headsets, a flat livestream and brow
 - persona-show-operator: runs all outputs from one show.
 - persona-technical-artist: connects Unreal's display tools or a venue's media server.
 - persona-producer: gets a person's approval before going live.
+- persona-director: keeps the publishing and marketing approval with a person.
 
 ## Proposed stories
 

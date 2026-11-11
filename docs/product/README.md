@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 240 proposed stories, 159 written, 26 open questions.
+39 epics, 240 proposed stories, 180 written, 20 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -426,8 +426,8 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 |---|---|---|
 | [Shows that take different paths, with or without a performer](epics/branching-shows.md) | 6 of 6 | 0 |
 | [Build, rehearse and fire the cues of a show](epics/cue-list.md) | 6 of 6 | 0 |
-| [Work with the show systems a venue already has](epics/external-systems.md) | 6 of 9 | 0 |
-| [Run a session, and the next one](epics/session-operations.md) | 7 of 8 | 0 |
+| [Work with the show systems a venue already has](epics/external-systems.md) | 9 of 9 | 0 |
+| [Run a session, and the next one](epics/session-operations.md) | 8 of 8 | 0 |
 | [A show stays safe, even with no agents and no crew](epics/show-safety.md) | 6 of 6 | 0 |
 | [A show that looks after itself](epics/unattended-running.md) | 6 of 6 | 0 |
 
@@ -474,8 +474,11 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 - [Choose whether a show leads or follows](stories/external-systems/lead-or-follow.md) (approved)
 - [Connect lighting through DMX and PosiStageNet](stories/external-systems/lighting.md) (approved)
+- [Send and receive MIDI timecode](stories/external-systems/midi-timecode.md) (approved)
 - [Fire and send cues through OSC, MIDI and MIDI show control](stories/external-systems/osc-midi-msc.md) (approved)
+- [Test the other protocols against simulators](stories/external-systems/other-simulators.md) (approved)
 - [Test the lighting-desk path against simulators and recorded sessions](stories/external-systems/simulators.md) (approved)
+- [Exchange video through Spout, SRT and SDI](stories/external-systems/spout-srt-sdi.md) (approved)
 - [Run a show from any surface, or with no external systems](stories/external-systems/surfaces-and-standalone.md) (approved)
 - [Exchange video through NDI, and LTC timecode](stories/external-systems/video-and-timecode.md) (approved)
 
@@ -501,6 +504,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Run one pre-show check, and a shorter one between sessions](stories/session-operations/pre-show-check.md) (approved)
 - [Reset for the next session, and signal that the show is ready](stories/session-operations/reset-for-next-session.md) (approved)
 - [See and change who drives each channel](stories/session-operations/routing-control.md) (approved)
+- [Run several sessions at once as separate copies](stories/session-operations/several-sessions.md) (approved)
 
 - Run one pre-show check, and a shorter one between sessions.
 - Pause and resume, and jump to any cue on any path.
@@ -555,12 +559,18 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [From approved work to a tested build on a venue machine](epics/build-and-install.md) | 0 of 5 | 1 |
-| [One live performance, many outputs](epics/outputs-and-streaming.md) | 0 of 6 | 2 |
-| [Set up in a venue, and keep running there](epics/venue-setup.md) | 0 of 6 | 3 |
+| [From approved work to a tested build on a venue machine](epics/build-and-install.md) | 5 of 5 | 0 |
+| [One live performance, many outputs](epics/outputs-and-streaming.md) | 6 of 6 | 0 |
+| [Set up in a venue, and keep running there](epics/venue-setup.md) | 6 of 6 | 0 |
 
 <details>
 <summary>From approved work to a tested build on a venue machine</summary>
+
+- [Test each build automatically, and hold it at the public show gate](stories/build-and-install/automatic-checks.md) (approved)
+- [Build a show from its approved stages](stories/build-and-install/build-from-stages.md) (approved)
+- [Record engine and plugin versions, and show differences between targets](stories/build-and-install/engine-and-plugin-versions.md) (approved)
+- [Install a build on a venue machine, check it and roll it back](stories/build-and-install/install-and-roll-back.md) (approved)
+- [Measure each delivered build against each target's budget](stories/build-and-install/measure-against-budget.md) (approved)
 
 - Build a show from its approved stages, with each output stored and reviewable.
 - Run asset checks, scripted scenarios and performance measurements as part of a build.
@@ -573,6 +583,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>One live performance, many outputs</summary>
 
+- [Approve going live on a public platform](stories/outputs-and-streaming/approve-going-live.md) (approved)
+- [Output to PC VR, including wireless PC VR](stories/outputs-and-streaming/pc-vr.md) (approved)
+- [Output to a projector or screen](stories/outputs-and-streaming/projector-or-screen.md) (approved)
+- [Read chat and reactions from whichever destination the show uses](stories/outputs-and-streaming/read-chat.md) (approved)
+- [Output to several surfaces through Unreal's display tools or a media server](stories/outputs-and-streaming/several-surfaces.md) (approved)
+- [Send a flat livestream to a public platform, the show's player page, or both](stories/outputs-and-streaming/stream-to-platforms.md) (approved)
+
 - Send a flat livestream to a public platform, the show's own player page, or both.
 - Read chat and reactions from whichever the show uses.
 - Output to PC VR, including wireless PC VR.
@@ -584,6 +601,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 <details>
 <summary>Set up in a venue, and keep running there</summary>
+
+- [Align the virtual world with a room or stage, and save it for that venue](stories/venue-setup/align-to-room.md) (approved)
+- [Choose and test a plan for a failed show machine](stories/venue-setup/failed-machine-plan.md) (approved)
+- [Declare the space and staffing a show needs, and check whether a venue fits](stories/venue-setup/fit-check.md) (approved)
+- [See a plain headset list, and open a live view of one guest's headset](stories/venue-setup/headset-list.md) (approved)
+- [Run a full show on the venue network with the internet disconnected](stories/venue-setup/offline-show.md) (approved)
+- [Save a venue profile, and connect the venue's fire alarm](stories/venue-setup/venue-profile.md) (approved)
 
 - Save a venue profile of its space, boundaries, obstacles, outputs and network.
 - Declare the space a show needs, and check whether a venue fits.

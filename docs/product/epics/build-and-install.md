@@ -9,6 +9,7 @@ derived-from:
   - requirements-delivery#REQ-delivery-8: 0ebd1c5f63f6
   - persona-technical-artist#goals: 1fb2055dfdf2
   - persona-producer#goals: d1cc47b03be9
+  - persona-capture-crew#goals: a63bac7ade3c
 ---
 
 # From approved work to a tested build on a venue machine
@@ -23,6 +24,7 @@ Approved work becomes a running, tested build, measured against each target's bu
 
 - persona-technical-artist: sees why a build failed, and keeps versions under control.
 - persona-producer: knows what is in a build and whether it is ready.
+- persona-capture-crew: installs a build on a venue machine and rolls it back.
 
 ## Proposed stories
 

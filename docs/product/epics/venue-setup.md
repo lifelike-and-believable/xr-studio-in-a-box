@@ -9,6 +9,7 @@ derived-from:
   - persona-capture-crew#goals: a63bac7ade3c
   - persona-venue-attendant#goals: ee33f70fd41e
   - persona-show-operator#goals: 408315e4f8f6
+  - persona-technical-artist#goals: 1fb2055dfdf2
 ---
 
 # Set up in a venue, and keep running there
@@ -24,6 +25,7 @@ A venue has a saved profile, a show knows whether it fits, the virtual world lin
 - persona-capture-crew: aligns the world with the room.
 - persona-venue-attendant: manages headsets from a plain list.
 - persona-show-operator: trusts the show with no internet.
+- persona-technical-artist: proves the show runs at the venue with no agents and no internet.
 
 ## Proposed stories
 
@@ -47,7 +49,7 @@ A venue has a saved profile, a show knows whether it fits, the virtual world lin
 
 - Offline running ships first: it is a design rule for all shows.
 - The profile, fit check and alignment ship together.
-- The headset list ships with the hardware chosen for UC-1.
+- The headset list ships with the first release's PC VR kit. Standalone headsets and UC-1's touring kit follow in their own epic once the hardware is chosen.
 
 ## Dependencies
 

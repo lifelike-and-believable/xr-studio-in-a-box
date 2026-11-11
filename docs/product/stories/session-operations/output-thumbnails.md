@@ -17,4 +17,4 @@ As Taylor, the venue attendant, I want a wall of small thumbnails, one for each 
 - The delay from an output to its thumbnail is measured and shown.
 - Only people whose role needs the wall, such as Taylor, Alex and the crew, can open it. It is never recorded and reaches no audience output.
 - The wall works with every agent and the internet disconnected.
-- Until outputs arrive in Layer 5 (epic-outputs-and-streaming), the story is tested in the Unreal Editor, with the show run as a standalone game on the budget file's test device (story-asset-checks-check-against-budget), with its window and simulated outputs, each made dark in turn. The full output monitor (REQ-showcontrol-17) is later.
+- Until the output stories (story-outputs-and-streaming-pc-vr, story-outputs-and-streaming-projector-or-screen, story-outputs-and-streaming-stream-to-platforms) are built, the story is tested in the Unreal Editor, with the show run as a standalone game on the budget file's test device (story-asset-checks-check-against-budget), with its window and simulated outputs, each made dark in turn. The full output monitor (REQ-showcontrol-17) is later.
