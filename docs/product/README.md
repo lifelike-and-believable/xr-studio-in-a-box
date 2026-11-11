@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 242 proposed stories, 180 written, 20 open questions.
+39 epics, 243 proposed stories, 204 written, 11 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -624,13 +624,20 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [Guests in the world, as whoever the show lets them be](epics/audience-avatars.md) | 0 of 6 | 2 |
-| [Hear from the audience, safely](epics/audience-voice.md) | 0 of 6 | 2 |
-| [Welcome every guest, and look after them](epics/guest-care.md) | 0 of 6 | 3 |
-| [Join from anywhere, in the tier that suits you](epics/remote-guests.md) | 0 of 6 | 2 |
+| [Guests in the world, as whoever the show lets them be](epics/audience-avatars.md) | 6 of 7 | 0 |
+| [Hear from the audience, safely](epics/audience-voice.md) | 6 of 6 | 0 |
+| [Welcome every guest, and look after them](epics/guest-care.md) | 6 of 6 | 0 |
+| [Join from anywhere, in the tier that suits you](epics/remote-guests.md) | 6 of 6 | 0 |
 
 <details>
 <summary>Guests in the world, as whoever the show lets them be</summary>
+
+- [Appear in the world as an avatar chosen from the show's set](stories/audience-avatars/choose-an-avatar.md) (approved)
+- [Follow a guest with the best input their device has](stories/audience-avatars/follow-best-input.md) (approved)
+- [Declare guest roles, with guests muted by default](stories/audience-avatars/guest-roles.md) (approved)
+- [Design a playable character for guests](stories/audience-avatars/playable-character.md) (approved)
+- [React with cheers, gestures, light or sound](stories/audience-avatars/react.md) (approved)
+- [Show stream viewers in the world as a simulated crowd](stories/audience-avatars/stream-viewer-crowd.md) (approved)
 
 - Give a guest an avatar in one of the show's appearance tiers.
 - Play a character designed for the show, with its own form, movement and abilities.
@@ -638,11 +645,19 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - React with cheers, gestures, light or sound.
 - Declare guest roles, with guests muted by default.
 - Show stream viewers in the world as a simulated crowd.
+- Later, not written: appear as a likeness of oneself, from a camera or scan. It waits for each guest's consent and the legal review (REQ-governance-7). The first release uses chosen avatars only (approver's answer).
 
 </details>
 
 <details>
 <summary>Hear from the audience, safely</summary>
+
+- [Read a summary of audience presence and reaction at a glance](stories/audience-voice/audience-summary.md) (approved)
+- [Set moderation rules for a show, approved by a person](stories/audience-voice/moderation-rules.md) (approved)
+- [Mute and block other guests](stories/audience-voice/mute-and-block.md) (approved)
+- [Keep a personal space around each guest](stories/audience-voice/personal-space.md) (approved)
+- [Mute, hide or remove a guest during a show](stories/audience-voice/remove-a-guest.md) (approved)
+- [Send text and reactions to the performer, the scene or both](stories/audience-voice/send-chat-and-reactions.md) (approved)
 
 - Read a summary of audience presence and reaction at a glance.
 - Send text and reactions that reach the performer, the scene or both.
@@ -656,6 +671,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Welcome every guest, and look after them</summary>
 
+- [Choose captions, audio description, a sign-interpreted view, seating or low motion](stories/guest-care/access-options.md) (approved)
+- [Declare what guest data is kept, delete it, and record guardian consent](stories/guest-care/guest-data.md) (approved)
+- [Offer several languages without rework](stories/guest-care/languages.md) (approved)
+- [See notices, give consent and read warnings before entering](stories/guest-care/notices-and-warnings.md) (approved)
+- [Keep guests clear of hazards and each other, and name an aftercare step](stories/guest-care/room-safety.md) (approved)
+- [Enter through a standard pre-show that a show can restyle](stories/guest-care/standard-pre-show.md) (approved)
+
 - Enter through a standard pre-show that a show can restyle.
 - See notices, give consent and read warnings before entering.
 - Choose captions, audio description, a sign-interpreted view, seating or low motion, where the show offers them.
@@ -667,6 +689,13 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 <details>
 <summary>Join from anywhere, in the tier that suits you</summary>
+
+- [Keep an audience failure from reaching the performer loop or other audiences](stories/remote-guests/contain-failures.md) (approved)
+- [Join as an interactive guest through an installed app or a cloud session](stories/remote-guests/interactive-guest.md) (approved)
+- [Join through a link or code, which can carry a tier](stories/remote-guests/join-by-link-or-code.md) (approved)
+- [Move guests past the limit to a lower tier](stories/remote-guests/move-past-the-limit.md) (approved)
+- [Join as a player guest, with a light input layer over the stream](stories/remote-guests/player-guest.md) (approved)
+- [Arrive late, and rejoin the same session with the same avatar](stories/remote-guests/rejoin.md) (approved)
 
 - Join through a link or code, which can carry a tier.
 - Arrive late, and rejoin the same session with the same avatar.
