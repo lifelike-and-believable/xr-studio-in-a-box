@@ -12,7 +12,7 @@ As Riley, the artist, I want to see what an effect costs on each target while I 
 
 ## Acceptance criteria
 
-- While working on an effect in the Unreal Editor, Riley sees its cost on each target the project uses, such as the mobile stream, PC VR and projection, against that target's budget file (epic-asset-checks).
+- While working on an effect in the Unreal Editor, Riley sees its cost on each target the project uses, such as the mobile stream, PC VR and projection, against that target's budget file (story-asset-checks-check-against-budget).
 - The cost is measured in the same way as the effect cost check (story-asset-checks-check-effects-and-audio), so Riley sees the same result the reviewer will see.
 - After Riley saves a change, the cost shown is updated without a build.
 - For each target, Riley sees within or over budget in text, not by colour alone, with the measured value. When an effect is over budget, the costliest part is named in plain terms.
