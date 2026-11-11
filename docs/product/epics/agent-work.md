@@ -31,13 +31,18 @@ A person can direct agents in conversation and trust the limits: each agent reac
 - Direct an agent in conversation on a project task.
 - Read an activity log that names the project, stage, tool and the person who requested or approved each action.
 - Grant an agent access to chosen projects, tools and folders, and see that it cannot delete approved work, change roles or limits, or send anything outside the project.
-- Set a spend limit, and have an agent stop and ask when a request would pass it.
+- Set a spend limit, with metered work blocked until one is set, and have an agent stop and ask when a request would pass it.
 - Add a workflow step, integration or check without modifying the core, versioned and reviewed like other work.
 - Reach an external tool through an adapter, and replace it without rewriting the workflow.
 
 ## Stories
 
-- None yet.
+- story-agent-work-direct-an-agent
+- story-agent-work-read-activity-log
+- story-agent-work-agent-permissions
+- story-agent-work-spend-limit
+- story-agent-work-extend-the-workflow
+- story-agent-work-tool-adapter
 
 ## Release groups
 
@@ -53,8 +58,8 @@ A person can direct agents in conversation and trust the limits: each agent reac
 
 ## Open questions
 
-- What is the default spend limit for a new project?
-- Which external tool is the first adapter, as the test of the pattern?
+- Answered: a new project has no default spend limit. Metered work stays blocked until a person sets one.
+- Answered: Tripo is the first adapter. Replacing it with another generator tests the pattern.
 
 ## Out of scope
 
