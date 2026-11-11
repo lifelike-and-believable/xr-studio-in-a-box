@@ -7,6 +7,7 @@ derived-from:
   - persona-performer#goals: 9de25c7bbe59
   - persona-technical-artist#goals: 1fb2055dfdf2
   - persona-sound-designer#goals: 70f155e30dc6
+  - persona-capture-crew#goals: a63bac7ade3c
 ---
 
 # Music, sensors and the crowd drive the show
@@ -22,20 +23,31 @@ A live signal that is not capture, such as music, a controller, the audience's c
 - persona-performer: can play with music, a sensor or the crowd as part of a character.
 - persona-technical-artist: connects signals and builds mappings, without code.
 - persona-sound-designer: lets sound shape what the audience sees.
+- persona-capture-crew: sets up and calibrates presence sensors.
 
 ## Proposed stories
 
 - Drive a channel from live audio analysis, such as level or beat.
-- Drive a channel from MIDI, OSC or DMX.
+- Drive a channel from MIDI.
+- Drive a channel from OSC.
+- Drive a channel from DMX (Art-Net or sACN).
 - Map a signal onto a channel, and save the mapping as a reviewable asset.
 - Drive a channel from a performer's sensor, within their agreement.
 - Drive effects, materials and scene values from the audience's combined reaction.
-- Report guest presence from floor pads, beams or depth sensors, with a simulated crowd for testing and rehearsal.
+- Report guest presence from floor pads, with a simulated crowd for testing and rehearsal.
+- Report guest presence from beams.
+- Report guest presence from depth sensors, as momentary points or skeletons that cannot identify anyone, with a clear notice to guests (REQ-governance-7).
 - Use a channel's fallback when a signal drops.
 
 ## Stories
 
-- None yet.
+- story-live-signals-audio-analysis
+- story-live-signals-midi
+- story-live-signals-map-a-signal
+- story-live-signals-performer-sensor
+- story-live-signals-audience-reaction
+- story-live-signals-guest-presence
+- story-live-signals-signal-fallback
 
 ## Release groups
 
@@ -55,9 +67,9 @@ A live signal that is not capture, such as music, a controller, the audience's c
 
 ## Open questions
 
-- Which signal comes first? The proposal is audio analysis, because the concert case needs it and it needs no extra hardware.
-- What delay from sound to picture is acceptable, and how is it measured? The requirement sets it per show.
-- Is a signal's mapping the same kind of asset as a body mapping in epic-shared-characters?
+- Answered: audio analysis comes first (approver's answer), because the concert case needs it and it needs no extra hardware.
+- Answered: each show sets its own target for the delay from signal to picture, and the delay is measured and shown against it. Settled in story-live-signals-audio-analysis, which defines the signal delay.
+- Answered: a signal mapping is the same kind of asset as a body mapping (story-shared-characters-map-a-different-body), so the same review and versioning apply. See story-live-signals-map-a-signal.
 
 ## Out of scope
 

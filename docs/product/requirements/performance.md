@@ -73,7 +73,7 @@ A different performer can take over a role between sessions. Each performer's ca
 
 ## REQ-performance-16: Performer return feeds
 
-A performer can sense the audience while performing, through any mix of a live room view, venue audio and the audience summary (REQ-audience-6). The summary can also reach them through physical signals such as lights, so a performer does not need to look at a screen. Each show declares which it uses. A live room view follows REQ-governance-7, and can use a silhouette or depth view where a show wants to reveal less.
+A performer can sense the audience while performing, through any mix of a live room view, venue audio and the audience summary (REQ-audience-6). The summary can also reach them through physical signals such as lights, so a performer does not need to look at a screen. Each show declares which it uses. A live room view and venue audio follow REQ-governance-7, and a live room view and can use a silhouette or depth view where a show wants to reveal less.
 
 ## REQ-performance-17: Live motion quality
 

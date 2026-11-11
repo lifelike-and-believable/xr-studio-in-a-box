@@ -7,7 +7,7 @@ derived-from:
   - requirements-audience#REQ-audience-16: f56a930f3220
   - requirements-audience#REQ-audience-17: b56663eb17d8
   - requirements-audience#REQ-audience-20: 8698259cef4f
-  - requirements-governance#REQ-governance-7: 1c4ca4fdf4c8
+  - requirements-governance#REQ-governance-7: 13cae58be342
   - persona-audience-member#goals: e1b5f3ebc15b
   - persona-venue-attendant#goals: ee33f70fd41e
   - persona-director#goals: a92ca172be83

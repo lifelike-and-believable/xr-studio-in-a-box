@@ -35,7 +35,13 @@ Control of a channel can move between sources with no visible jump, and if a sou
 
 ## Stories
 
-- None yet.
+- story-handover-and-fallback-define-fallback
+- story-handover-and-fallback-automatic-switch
+- story-handover-and-fallback-performer-signal
+- story-handover-and-fallback-hand-over-a-channel
+- story-handover-and-fallback-trigger-handover
+- story-handover-and-fallback-return-recovered-source
+- story-handover-and-fallback-legibility-bar
 
 ## Release groups
 
@@ -49,9 +55,9 @@ Control of a channel can move between sources with no visible jump, and if a sou
 
 ## Open questions
 
-- What signal works for a performer in a headset, and for one in a suit with no headset? It cannot rely on sound or sight alone (REQ-workflow-18), and this needs trying with a real performer.
-- How is legibility measured? This needs Deaf performers and viewers to set the bar.
-- What is the target time to switch? The requirement sets it from rehearsal results, so the first device-failure tests must happen in this epic.
+- Answered: settled in story-handover-and-fallback-performer-signal by a test with a real performer in a headset and one in a suit with no headset. Each performer sets the bar for noticing the signal while performing, and the signal must still work with its sound part or its sight part removed (REQ-workflow-18).
+- Answered: settled in story-handover-and-fallback-legibility-bar by a test with Deaf performers and viewers, who set how the bar is measured and its value before the story is accepted.
+- Answered: settled in story-handover-and-fallback-automatic-switch by the first device-failure tests, run in this epic with a real performer and each capture source, the portable inertial suit first. The capture crew and the performer set the target from those results.
 
 ## Out of scope
 

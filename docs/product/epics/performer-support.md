@@ -2,7 +2,7 @@
 id: epic-performer-support
 status: approved
 derived-from:
-  - requirements-performance#REQ-performance-16: e28d35995e1a
+  - requirements-performance#REQ-performance-16: 2cbd2b46542c
   - requirements-performance#REQ-performance-17: 09aefb18a357
   - requirements-showcontrol#REQ-showcontrol-22: f3a6ea55bd46
   - requirements-delivery#REQ-delivery-15: 0fed22397198
@@ -27,7 +27,9 @@ While performing, a performer can sense the audience, see what they are playing 
 
 ## Proposed stories
 
-- Talk privately with crew by voice and text from inside a headset or suit, with a remote helper able to join and a venue intercom able to connect.
+- Talk privately with crew by voice and text, with captions, from inside a headset or suit.
+- Let a remote helper join the crew channel over the internet.
+- Connect a venue intercom to the crew channel.
 - See a live view of the room, or a silhouette or depth view, with a clear notice to guests.
 - Hear venue audio while performing.
 - Sense the audience summary through physical signals such as lights.
@@ -36,11 +38,16 @@ While performing, a performer can sense the audience, see what they are playing 
 
 ## Stories
 
-- None yet.
+- story-performer-support-crew-channel
+- story-performer-support-room-view
+- story-performer-support-venue-audio
+- story-performer-support-audience-summary-signals
+- story-performer-support-stage-view
+- story-performer-support-motion-quality-check
 
 ## Release groups
 
-- The crew channel ships first: UC-2 is to be tested with a remote helper from the start.
+- The crew channel ships first, with the remote helper story straight after it: UC-2 is to be tested with a remote helper from the start.
 - The room view, venue audio and stage view can each ship on their own.
 - The summary through physical signals ships after the audience summary exists, and is tested against a simulated audience until then.
 - The motion quality check can ship on its own, after epic-live-puppet.
@@ -53,9 +60,9 @@ While performing, a performer can sense the audience, see what they are playing 
 
 ## Open questions
 
-- What can a performer in a suit with no headset see and hear? This needs trying with a real performer.
-- Is motion correction built with Unreal's own tools, or bought from a vendor? It must stay within the show's delay target.
-- What should the notice to guests about a live room view say?
+- Answered: settled in story-performer-support-crew-channel by a test with a real performer in a suit with no headset, who sets the bar. The other stories in this epic use what that test finds.
+- Answered: settled in story-performer-support-motion-quality-check. Correction starts with Unreal's own tools, and buying from a vendor is considered only if they cannot meet the show's delay target, which any correction must stay within.
+- Answered: settled in story-performer-support-room-view. The notice's content is defined by REQ-governance-7 and REQ-performance-16: the view is live only, never recorded, and seen only by named cast and crew. A person who holds the audience-facing safety and consent approval approves it.
 
 ## Out of scope
 
