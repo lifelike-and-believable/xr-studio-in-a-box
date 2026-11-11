@@ -49,6 +49,7 @@ An operator can check a show is ready, run a session, recover from problems, and
 - story-session-operations-live-trim
 - story-session-operations-reset-for-next-session
 - story-session-operations-output-thumbnails
+- story-session-operations-several-sessions
 
 ## Release groups
 

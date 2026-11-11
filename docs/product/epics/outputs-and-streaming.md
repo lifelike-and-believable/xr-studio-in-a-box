@@ -9,6 +9,7 @@ derived-from:
   - persona-show-operator#goals: 408315e4f8f6
   - persona-technical-artist#goals: 1fb2055dfdf2
   - persona-producer#goals: d1cc47b03be9
+  - persona-director#goals: a92ca172be83
 ---
 
 # One live performance, many outputs
@@ -24,6 +25,7 @@ A single live performance feeds projection, headsets, a flat livestream and brow
 - persona-show-operator: runs all outputs from one show.
 - persona-technical-artist: connects Unreal's display tools or a venue's media server.
 - persona-producer: gets a person's approval before going live.
+- persona-director: keeps the publishing and marketing approval with a person.
 
 ## Proposed stories
 
@@ -36,7 +38,12 @@ A single live performance feeds projection, headsets, a flat livestream and brow
 
 ## Stories
 
-- None yet.
+- story-outputs-and-streaming-stream-to-platforms
+- story-outputs-and-streaming-read-chat
+- story-outputs-and-streaming-pc-vr
+- story-outputs-and-streaming-projector-or-screen
+- story-outputs-and-streaming-several-surfaces
+- story-outputs-and-streaming-approve-going-live
 
 ## Release groups
 
@@ -48,11 +55,13 @@ A single live performance feeds projection, headsets, a flat livestream and brow
 
 - epic-build-and-install.
 - epic-live-puppet.
+- epic-provenance-and-policy, for the policy record that a platform's terms are checked against.
+- epic-external-systems, for sending video to a venue's media server.
 
 ## Open questions
 
-- How well do Unreal's display tools cover domes and blended projection? This is unchecked.
-- Which public platform comes first, and what do its terms allow?
+- Answered: settled in story-outputs-and-streaming-several-surfaces by a trial on a blended projection setup, recorded by Sam with the engine version, whose picture the director or their delegate accepts or rejects. Where Unreal's display tools do not cover a dome or blended projection, the show sends video to the venue's media server. The trial is run again when the engine version changes.
+- Answered: YouTube Live comes first, alongside the show's own player page (story-outputs-and-streaming-stream-to-platforms). Its terms on music and chat data are checked against the policy record before the first public stream (story-outputs-and-streaming-approve-going-live).
 
 ## Out of scope
 

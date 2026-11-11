@@ -9,6 +9,7 @@ derived-from:
   - requirements-delivery#REQ-delivery-8: 0ebd1c5f63f6
   - persona-technical-artist#goals: 1fb2055dfdf2
   - persona-producer#goals: d1cc47b03be9
+  - persona-capture-crew#goals: a63bac7ade3c
 ---
 
 # From approved work to a tested build on a venue machine
@@ -23,6 +24,7 @@ Approved work becomes a running, tested build, measured against each target's bu
 
 - persona-technical-artist: sees why a build failed, and keeps versions under control.
 - persona-producer: knows what is in a build and whether it is ready.
+- persona-capture-crew: installs a build on a venue machine and rolls it back.
 
 ## Proposed stories
 
@@ -34,7 +36,11 @@ Approved work becomes a running, tested build, measured against each target's bu
 
 ## Stories
 
-- None yet.
+- story-build-and-install-build-from-stages
+- story-build-and-install-automatic-checks
+- story-build-and-install-measure-against-budget
+- story-build-and-install-engine-and-plugin-versions
+- story-build-and-install-install-and-roll-back
 
 ## Release groups
 
@@ -50,8 +56,8 @@ Approved work becomes a running, tested build, measured against each target's bu
 
 ## Open questions
 
-- Answered: the budget file for each target, and who sets it, are defined in story-asset-checks-check-against-budget. Its first numbers are set from measurements on proxy assets. This epic measures frame rate, memory and load time again on delivered builds against the same budget file.
-- Does Unreal 5.8 and its plugins cover every first-release target? Plugin support is unconfirmed in the research notes.
+- Answered: the budget file for each target, and who sets it, are defined in story-asset-checks-check-against-budget. Its first numbers are set from measurements on proxy assets. This epic measures frame rate, memory and load time again on delivered builds against the same budget file, in story-build-and-install-measure-against-budget.
+- Answered: every first-release target builds on Unreal 5.8 or newer, and the project moves to 5.9 once it is stable. Plugin versions are pinned per target and recorded. Whether 5.8 and its plugins cover every first-release target is settled in story-build-and-install-engine-and-plugin-versions: each target's build is checked on its test device with the engine and plugin versions recorded, and a move to a new engine version rebuilds and checks every target again before a public show. Meta's XR plugin labelled for 5.8 was built for 5.7, but standalone Quest headsets are later (REQ-delivery-9), so it does not block the first release.
 
 ## Out of scope
 

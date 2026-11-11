@@ -5,10 +5,11 @@ derived-from:
   - requirements-delivery#REQ-delivery-5: 05539771ad75
   - requirements-delivery#REQ-delivery-13: abc6240f8e34
   - requirements-delivery#REQ-delivery-14: 776ff9b1f77e
-  - requirements-delivery#REQ-delivery-19: 60de990aaaed
+  - requirements-delivery#REQ-delivery-19: 64386ecf8928
   - persona-capture-crew#goals: a63bac7ade3c
   - persona-venue-attendant#goals: ee33f70fd41e
   - persona-show-operator#goals: 408315e4f8f6
+  - persona-technical-artist#goals: 1fb2055dfdf2
 ---
 
 # Set up in a venue, and keep running there
@@ -24,6 +25,7 @@ A venue has a saved profile, a show knows whether it fits, the virtual world lin
 - persona-capture-crew: aligns the world with the room.
 - persona-venue-attendant: manages headsets from a plain list.
 - persona-show-operator: trusts the show with no internet.
+- persona-technical-artist: proves the show runs at the venue with no agents and no internet.
 
 ## Proposed stories
 
@@ -36,13 +38,18 @@ A venue has a saved profile, a show knows whether it fits, the virtual world lin
 
 ## Stories
 
-- None yet.
+- story-venue-setup-venue-profile
+- story-venue-setup-fit-check
+- story-venue-setup-align-to-room
+- story-venue-setup-offline-show
+- story-venue-setup-failed-machine-plan
+- story-venue-setup-headset-list
 
 ## Release groups
 
 - Offline running ships first: it is a design rule for all shows.
 - The profile, fit check and alignment ship together.
-- The headset list ships with the hardware chosen for UC-1.
+- The headset list ships with the first release's PC VR kit. Standalone headsets and UC-1's touring kit follow in their own epic once the hardware is chosen.
 
 ## Dependencies
 
@@ -51,11 +58,11 @@ A venue has a saved profile, a show knows whether it fits, the virtual world lin
 
 ## Open questions
 
-- What hardware does UC-1 use? This also decides the headset list.
-- How does a show model its staffing before that decision?
-- What are the restart and takeover time targets? They are TBD.
+- Answered: venue stories are written and tested against the first release's PC VR and projection kit. Standalone headsets and UC-1's touring kit get a separate epic once the hardware is chosen. The headset list is written for PC VR headsets, including wireless PC VR, in story-venue-setup-headset-list.
+- Answered: staffing is modelled per show from roles and counts the director or their delegate sets, in story-venue-setup-fit-check.
+- Answered: restart and takeover time targets are measured in rehearsal and set by the director or their delegate, in story-venue-setup-failed-machine-plan.
 
 ## Out of scope
 
-- Standalone headsets (REQ-delivery-9), which are later.
+- Standalone headsets (REQ-delivery-9) and UC-1's touring kit, which get a separate epic once the hardware is chosen.
 - Third-party LBVR platforms (REQ-delivery-22), which are later.

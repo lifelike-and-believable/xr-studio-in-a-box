@@ -17,4 +17,4 @@ As Sam, the technical artist, I want cues to send and receive DMX over Art-Net o
 - The show can send the positions of characters, cameras and tracked objects over PosiStageNet, so lights can follow them, and can receive positions over PosiStageNet from a tracking system.
 - DMX the show sends goes to the values the show's safe state sets when the safe state is reached (story-show-safety-declare-safe-state).
 - The delay for DMX and PosiStageNet, each way, is measured and shown against the show's cue timing (story-cue-list-step-and-palette).
-- The story is tested against simulated Art-Net, sACN and PosiStageNet (story-external-systems-simulators), and in rehearsal with a real fixture or desk. It works with every agent and the internet disconnected. In show mode an agent cannot change the patch.
+- The story is tested against simulated Art-Net and sACN (story-external-systems-simulators) and simulated PosiStageNet (story-external-systems-other-simulators), and in rehearsal with a real fixture or desk. It works with every agent and the internet disconnected. In show mode an agent cannot change the patch.
