@@ -12,8 +12,8 @@ As Kai, the performer, I want the audience's combined reaction to drive effects,
 
 ## Acceptance criteria
 
-- The audience's combined reaction from the audience summary (REQ-audience-6) can drive effects, materials and scene values through a signal mapping (story-live-signals-map-a-signal).
-- Until the audience summary exists, the story is tested against a simulated audience whose size and reaction a person sets.
+- The audience's combined reaction from the audience summary (REQ-audience-6; story-audience-voice-audience-summary) can drive effects, materials and scene values through a signal mapping (story-live-signals-map-a-signal).
+- Until story-audience-voice-audience-summary is built, the story is tested against a simulated audience whose size and reaction a person sets.
 - Only combined values reach the mapping. No value identifies or follows a single guest, and no reaction value is stored or recorded (story-session-recording-record-and-replay).
 - Kai can sense the result by more than sight alone: the same reaction can drive a sound value as well as a visual one.
 - If the reaction signal drops (story-handover-and-fallback-automatic-switch), the channels and scene values it drives use their fallback (story-handover-and-fallback-define-fallback).
