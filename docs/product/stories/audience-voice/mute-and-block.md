@@ -16,4 +16,5 @@ As Jamie, the audience member, I want to mute or block another guest so that I f
 - The other guest is not told. Each control is labelled in text, and Jamie sees and hears that it has acted.
 - A mute or block lasts for the session, and holds if either guest rejoins it (story-remote-guests-rejoin). It is deleted with the session's other guest data (story-session-operations-reset-for-next-session) and is never stored after it.
 - Guests are muted by default where the show's guest roles say so (story-audience-avatars-guest-roles). Jamie's mute works in addition, and nothing Jamie mutes can be unmuted by the other guest.
+- For guests in the venue, mute and block work with every agent and the internet disconnected.
 - The story is tested with simulated guests, in the world and on the player page, and once in a rehearsal with real guests.

@@ -17,4 +17,4 @@ As Jamie, the audience member, I want to watch the show on its player page and a
 - The time from a player's action to its effect, on the stream as they receive it, is measured and shown, with the stream's own delay shown separately.
 - The player page plays the stream's mix (story-sound-path-mix-per-output). Text sent from the player page goes through the chat feed and the moderation rules (story-outputs-and-streaming-read-chat, story-audience-voice-moderation-rules).
 - UC-2, the livestreamed improvised puppetry show, is the first show with player guests. The tier is designed in the first release and built for UC-2.
-- The story is tested with simulated player guests at the show's player guest count (story-audience-avatars-choose-an-avatar) on a private stream only the crew can see, and in one rehearsal with real guests on their own phones and browsers.
+- The story is tested with simulated player guests in a load test, from which the director or their delegate sets the show's player guest count (story-audience-avatars-choose-an-avatar), on a private stream only the crew can see, and in one rehearsal with real guests on their own phones and browsers.

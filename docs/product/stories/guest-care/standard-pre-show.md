@@ -17,4 +17,5 @@ As Jamie, the audience member, I want to arrive, have my device checked and lear
 - The required steps, notices, consent and warnings (story-guest-care-notices-and-warnings), always happen before a guest enters, in the standard pre-show and in any restyled or custom one. A session with guests cannot start in show mode while the show's pre-show leaves one out, and the check lists each missing step in plain words.
 - If Jamie's device check fails, Jamie is told in plain words what to do next. In the venue, Taylor sees in text which guests are not yet ready.
 - The director or their delegate sets a time budget for the pre-show, which counts towards the show's comfort limits (story-guest-care-access-options). The time is measured in rehearsal and shown against the budget in text.
+- For guests in the venue, the pre-show works with every agent and the internet disconnected.
 - The story is tested with simulated guests arriving in a number and pattern a person sets, in headsets and on the player page, and once in a rehearsal with real guests.

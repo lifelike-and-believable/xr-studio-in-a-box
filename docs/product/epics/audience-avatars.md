@@ -35,6 +35,7 @@ Guests can appear in the world as avatars or playable characters, follow the bes
 - React with cheers, gestures, light or sound.
 - Declare guest roles, with guests muted by default.
 - Show stream viewers in the world as a simulated crowd.
+- Later, not written: customise one's own avatar (REQ-audience-2).
 - Later, not written: appear as a likeness of oneself, from a camera or scan. It waits for each guest's consent and the legal review (REQ-governance-7). The first release uses chosen avatars only (approver's answer).
 
 ## Stories

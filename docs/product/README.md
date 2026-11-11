@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 243 proposed stories, 204 written, 11 open questions.
+39 epics, 244 proposed stories, 204 written, 11 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -624,7 +624,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [Guests in the world, as whoever the show lets them be](epics/audience-avatars.md) | 6 of 7 | 0 |
+| [Guests in the world, as whoever the show lets them be](epics/audience-avatars.md) | 6 of 8 | 0 |
 | [Hear from the audience, safely](epics/audience-voice.md) | 6 of 6 | 0 |
 | [Welcome every guest, and look after them](epics/guest-care.md) | 6 of 6 | 0 |
 | [Join from anywhere, in the tier that suits you](epics/remote-guests.md) | 6 of 6 | 0 |
@@ -645,6 +645,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - React with cheers, gestures, light or sound.
 - Declare guest roles, with guests muted by default.
 - Show stream viewers in the world as a simulated crowd.
+- Later, not written: customise one's own avatar (REQ-audience-2).
 - Later, not written: appear as a likeness of oneself, from a camera or scan. It waits for each guest's consent and the legal review (REQ-governance-7). The first release uses chosen avatars only (approver's answer).
 
 </details>
