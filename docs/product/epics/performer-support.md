@@ -44,6 +44,8 @@ While performing, a performer can sense the audience, see what they are playing 
 - story-performer-support-audience-summary-signals
 - story-performer-support-stage-view
 - story-performer-support-motion-quality-check
+- story-performer-support-remote-helper
+- story-performer-support-venue-intercom
 
 ## Release groups
 

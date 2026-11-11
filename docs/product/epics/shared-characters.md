@@ -44,6 +44,7 @@ Several performers can share one character, one performer can drive several, pro
 - story-shared-characters-map-a-different-body
 - story-shared-characters-intent-and-procedural-motion
 - story-shared-characters-swap-performer
+- story-shared-characters-parameter-mapping
 
 ## Release groups
 

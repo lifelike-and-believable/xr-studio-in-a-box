@@ -48,6 +48,10 @@ A live signal that is not capture, such as music, a controller, the audience's c
 - story-live-signals-audience-reaction
 - story-live-signals-guest-presence
 - story-live-signals-signal-fallback
+- story-live-signals-osc
+- story-live-signals-dmx
+- story-live-signals-beams
+- story-live-signals-depth-sensors
 
 ## Release groups
 
