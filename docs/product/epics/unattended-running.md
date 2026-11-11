@@ -32,7 +32,12 @@ A self-guided show can run with no staff present, recover from crashes and power
 
 ## Stories
 
-- None yet.
+- story-unattended-running-schedule-and-check
+- story-unattended-running-idle-state
+- story-unattended-running-restart-and-recover
+- story-unattended-running-holding-state-and-alert
+- story-unattended-running-maintenance-and-log
+- story-unattended-running-soak-test
 
 ## Release groups
 
@@ -46,8 +51,8 @@ A self-guided show can run with no staff present, recover from crashes and power
 
 ## Open questions
 
-- How long does a soak test need to run to mean anything?
-- What is the alert route when a venue has no internet?
+- Answered: a soak test runs for at least the show's longest day of scheduled opening times multiplied by a factor the producer sets, starting at two, so at least two show days. See story-unattended-running-soak-test.
+- Answered: with no internet, the alert goes over the venue network to the operator console and a local device the project names, in text and sound, and is queued and sent to the named person when the internet returns. See story-unattended-running-holding-state-and-alert.
 
 ## Out of scope
 

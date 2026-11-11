@@ -30,10 +30,16 @@ A show can split into paths and endings on simple conditions, and a self-guided 
 - Show a condition built in Unreal as one item in the cue list.
 - Review every path at the gate, and test each with a script.
 - Run a show as a self-guided experience, with cues fired by guests or timecode.
+- Keep a self-guided show safe with no attendant.
 
 ## Stories
 
-- None yet.
+- story-branching-shows-conditional-cue
+- story-branching-shows-paths-and-endings
+- story-branching-shows-unreal-condition
+- story-branching-shows-review-and-test-paths
+- story-branching-shows-self-guided-run
+- story-branching-shows-self-guided-safety
 
 ## Release groups
 
@@ -46,11 +52,12 @@ A show can split into paths and endings on simple conditions, and a self-guided 
 - epic-cue-list.
 - epic-interaction-design.
 - epic-session-operations, for jumping to a cue on any path.
+- epic-show-safety, for the safe state a self-guided show's stop reaches.
 
 ## Open questions
 
-- How is a branching list drawn so a stage manager can read it?
-- Which safety controls does a self-guided show at home need, with no attendant?
+- Answered: the branching list is one flat list in show order, with each branch point, rejoin and ending as a row and each path's conditions shown in text. Whether a stage manager can read it is settled by a test in rehearsal, in which a stage manager or show operator reads a list the size of the first show's and answers set questions, and sets the pass bar. See story-branching-shows-paths-and-endings.
+- Answered: a self-guided show needs at least a stop the guest can always reach, which reaches the show's safe state and cannot be disarmed, a pause, the safe state reached by itself on a crash, lost input or a guest leaving the play area, the show's warnings before it starts, and moderation rules set beforehand. The holder of the audience-facing safety and consent approval approves them. This needed its own story, so one was added to the proposed stories. See story-branching-shows-self-guided-safety.
 
 ## Out of scope
 
