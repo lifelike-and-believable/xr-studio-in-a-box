@@ -35,7 +35,12 @@ Performers and operators can read the audience at a glance, viewers can send cha
 
 ## Stories
 
-- None yet.
+- story-audience-voice-audience-summary
+- story-audience-voice-send-chat-and-reactions
+- story-audience-voice-moderation-rules
+- story-audience-voice-personal-space
+- story-audience-voice-mute-and-block
+- story-audience-voice-remove-a-guest
 
 ## Release groups
 
@@ -49,8 +54,8 @@ Performers and operators can read the audience at a glance, viewers can send cha
 
 ## Open questions
 
-- What makes a summary readable while performing? This needs testing with a real performer.
-- How does moderation work on a solo show with nobody watching?
+- Answered: what makes the summary readable while performing is settled in story-audience-voice-audience-summary by a test with a real performer during a full rehearsal run. The performer sets the bar, and the director or their delegate records it before the story is accepted.
+- Answered: on a solo show with nobody watching, moderation runs on rules set beforehand, approved by the holder of the audience-facing safety and consent approval, and applied by automatic filters, so nothing waits for a person. The performer has their own mute as well as the emergency stop (story-show-safety-solo-show). Settled in story-audience-voice-moderation-rules.
 
 ## Out of scope
 

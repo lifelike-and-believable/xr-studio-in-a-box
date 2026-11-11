@@ -38,7 +38,12 @@ Guests enter through a pre-show with the notices, consent and warnings they need
 
 ## Stories
 
-- None yet.
+- story-guest-care-standard-pre-show
+- story-guest-care-notices-and-warnings
+- story-guest-care-access-options
+- story-guest-care-languages
+- story-guest-care-room-safety
+- story-guest-care-guest-data
 
 ## Release groups
 
@@ -54,9 +59,9 @@ Guests enter through a pre-show with the notices, consent and warnings they need
 
 ## Open questions
 
-- What does the legal review say about each jurisdiction, and about sensing and room views?
-- Who reviews the access work? It was written without Deaf or disabled artists.
-- How do venue insurance and local rules affect walking guests?
+- Answered: the legal review for each jurisdiction is a gate. Until the holder of the audience-facing safety and consent approval records that it is done for the show's region, capturing guest likeness, voice or body data, and admitting minors, run only in tests with crew who know about it (story-guest-care-guest-data). Sensing and room views follow the same rule in story-live-signals-guest-presence and story-performer-support-room-view. What the review says stays outside input.
+- Answered: before the first public show, Deaf and disabled artists, recruited and paid by the producer, review the access work and set the bar. Their findings are recorded in the project, and the first public show cannot be accepted at the build for a public show gate until the review is recorded (story-build-and-install-automatic-checks). Stories can be accepted before it. Settled in story-guest-care-access-options.
+- Answered: venue insurance and local rules for walking guests are a gate for each venue. Until the holder of the audience-facing safety and consent approval records that the review is done for the venue, a show with walking guests runs there only in tests and rehearsals with crew who know about it. Settled in story-guest-care-room-safety.
 
 ## Out of scope
 
