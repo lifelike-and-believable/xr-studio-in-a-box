@@ -8,6 +8,7 @@ derived-from:
   - persona-sound-designer#goals: 70f155e30dc6
   - persona-director#goals: a92ca172be83
   - persona-show-operator#goals: 408315e4f8f6
+  - persona-performer#goals: 9de25c7bbe59
 ---
 
 # Sound that fits the show on every output
@@ -23,6 +24,7 @@ Voices, music, effects and ambience go from a brief to sound placed in a show, u
 - persona-sound-designer: drafts, places and mixes sound, and tunes it in rehearsal.
 - persona-director: approves sound and music at their gate.
 - persona-show-operator: runs the mixes during a show.
+- persona-performer: decides how their live voice may be processed.
 
 ## Proposed stories
 
@@ -55,6 +57,7 @@ Voices, music, effects and ambience go from a brief to sound placed in a show, u
 - epic-outputs-and-streaming, for outputs.
 - epic-cue-list and epic-live-signals, for mixes that follow cues and signals.
 - epic-venue-setup, for venue speaker layouts.
+- epic-session-recording, for the performer's agreement on their voice.
 
 ## Open questions
 
