@@ -34,13 +34,20 @@ An operator can check a show is ready, run a session, recover from problems, and
 - Run one pre-show check, and a shorter one between sessions.
 - Pause and resume, and jump to any cue on any path.
 - See and change who drives each channel.
+- Make and approve a change during a live run, and tell the people it affects.
 - Trim alignment or calibration during a session, with each change logged.
 - Reset for the next session, and signal that the show is ready.
 - See a thumbnail of every output.
 
 ## Stories
 
-- None yet.
+- story-session-operations-pre-show-check
+- story-session-operations-pause-and-jump
+- story-session-operations-routing-control
+- story-session-operations-live-changes
+- story-session-operations-live-trim
+- story-session-operations-reset-for-next-session
+- story-session-operations-output-thumbnails
 
 ## Release groups
 
@@ -55,8 +62,8 @@ An operator can check a show is ready, run a session, recover from problems, and
 
 ## Open questions
 
-- What is the target time between sessions? It is set from rehearsal.
-- What does a guest see when a session resets around them?
+- Answered: the target time between sessions is settled in story-session-operations-reset-for-next-session: the time from the end of a session to the ready signal is measured in rehearsal, and the director or their delegate sets the target from the results before the story is accepted.
+- Answered: a guest sees a held view or a holding scene that the show declares, approved with the show's safety rules by the holder of the audience-facing safety and consent approval (story-session-operations-reset-for-next-session).
 
 ## Out of scope
 
