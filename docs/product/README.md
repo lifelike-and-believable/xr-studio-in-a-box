@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 244 proposed stories, 204 written, 11 open questions.
+39 epics, 244 proposed stories, 206 written, 11 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -426,7 +426,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 |---|---|---|
 | [Shows that take different paths, with or without a performer](epics/branching-shows.md) | 6 of 6 | 0 |
 | [Build, rehearse and fire the cues of a show](epics/cue-list.md) | 6 of 6 | 0 |
-| [Work with the show systems a venue already has](epics/external-systems.md) | 9 of 11 | 0 |
+| [Work with the show systems a venue already has](epics/external-systems.md) | 11 of 11 | 0 |
 | [Run a session, and the next one](epics/session-operations.md) | 8 of 8 | 0 |
 | [A show stays safe, even with no agents and no crew](epics/show-safety.md) | 6 of 6 | 0 |
 | [A show that looks after itself](epics/unattended-running.md) | 6 of 6 | 0 |
@@ -479,8 +479,10 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Test the other protocols against simulators](stories/external-systems/other-simulators.md) (approved)
 - [Test the lighting-desk path against simulators and recorded sessions](stories/external-systems/simulators.md) (approved)
 - [Exchange video through Spout](stories/external-systems/spout.md) (approved)
+- [Exchange video through SRT and SDI](stories/external-systems/srt-and-sdi.md) (approved)
 - [Run a show from any surface, or with no external systems](stories/external-systems/surfaces-and-standalone.md) (approved)
 - [Exchange video through NDI, and LTC timecode](stories/external-systems/video-and-timecode.md) (approved)
+- [Test video streams against simulators](stories/external-systems/video-simulators.md) (approved)
 
 - Choose whether a show leads or follows, without a rebuild.
 - Connect through OSC, MIDI and MIDI show control.
