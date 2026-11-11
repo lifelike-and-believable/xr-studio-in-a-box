@@ -35,7 +35,13 @@ A performer can step into a capture source, complete a guided setup and drive a 
 
 ## Stories
 
-- None yet.
+- story-live-puppet-connect-a-source
+- story-live-puppet-inertial-suit-setup
+- story-live-puppet-headset-setup
+- story-live-puppet-webcam-or-phone-setup
+- story-live-puppet-optical-studio-stream
+- story-live-puppet-assign-channels
+- story-live-puppet-measure-delay
 
 ## Release groups
 
@@ -53,8 +59,8 @@ A performer can step into a capture source, complete a guided setup and drive a 
 
 - Answered: the common skeleton is the UE5 mannequin skeleton (Manny). MetaHuman bodies already share it, and Character Creator, Tripo and other characters are retargeted to it with IK Retargeter.
 - Answered: the portable inertial suit comes first, because it served past shows and is what a solo performer is likely to use.
-- Answered: the 100 ms is measured end to end, from performer to rendered puppet and to each output, on the show's hardware. The first test puts a performer beside their character, to see what people notice.
-- Answered: the optical story does not wait for a studio. It is written and tested against a recorded or simulated stream, and the real test waits for studio access, as listed under Dependencies.
+- Answered: the 100 ms is measured end to end, from performer to rendered puppet and to each output, on the show's hardware. The first test puts a performer beside their character, to see what people notice (the epic's proposal). Settled in story-live-puppet-measure-delay.
+- Answered: the optical story does not wait for a studio. story-live-puppet-optical-studio-stream is tested against a recorded or simulated stream, and the real test waits for studio access, as listed under Dependencies. Which optical system and studio come first is decided when a studio is booked.
 
 ## Out of scope
 

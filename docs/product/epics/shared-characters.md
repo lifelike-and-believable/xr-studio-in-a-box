@@ -27,16 +27,22 @@ Several performers can share one character, one performer can drive several, pro
 ## Proposed stories
 
 - Run several performers, each driving their own character.
-- Split one character's channels between several performers, with each performer shown what they need to see of the others. What that is gets settled by testing with real performers.
+- Split one character's channels between several performers, with each performer shown what they need to perceive of the others, settled by testing with real performers.
 - Drive several characters from one performer.
 - Drive a character or effect from a tracked prop.
-- Map chosen body parts or motion values onto a character with a different body (mapped puppeteering), and save the mapping as a reviewable asset.
+- Map chosen body parts or motion values onto a character with a different body, and save the mapping as a reviewable asset.
 - Drive a character by position and intent, with procedural motion filling in the rest.
 - Swap the performer in a role between sessions, using that performer's saved calibration and mappings, with no rebuild.
 
 ## Stories
 
-- None yet.
+- story-shared-characters-several-performers
+- story-shared-characters-split-a-character
+- story-shared-characters-one-performer-several-characters
+- story-shared-characters-tracked-prop
+- story-shared-characters-map-a-different-body
+- story-shared-characters-intent-and-procedural-motion
+- story-shared-characters-swap-performer
 
 ## Release groups
 
@@ -51,9 +57,9 @@ Several performers can share one character, one performer can drive several, pro
 
 ## Open questions
 
-- Answered: mapped puppeteering is proved first, as the simplest of the four mapping methods.
+- Answered: mapped puppeteering is proved first, as the simplest of the four mapping methods, in story-shared-characters-map-a-different-body.
 - Answered: automatic retargeting to the nearest body plan is its own epic, not an eighth story here. See Out of scope.
-- Answered: what a performer needs to see of the others who share a character is not decided ahead of time. It is an acceptance criterion of the story that splits one character between several performers, tested with real performers.
+- Answered: settled in story-shared-characters-split-a-character by a rehearsal test with at least two real performers sharing a proxy character, who set the bar before the story is accepted.
 
 ## Out of scope
 
