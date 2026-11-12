@@ -32,7 +32,7 @@ Credits and AI-use statements are built from the record, promotion is drafted, a
 - Draft promotional material, press kits and posts.
 - Collect attendance and feedback by session, where consent allows.
 - Use audience data in funder and partner reports.
-- Not written yet: collect analytics on the player page beyond counts, and any tracking, only for a guest who consents in the pre-show, off by default. They hold no name, contact or device identifier, are deleted on the guest's request with the deletion logged without the data, and need a guardian's consent for a guest under the age of consent (REQ-business-11, REQ-governance-7).
+- Collect analytics on the player page beyond counts, and any tracking, only for a guest who consents in the pre-show, off by default. They hold no name, contact or device identifier, are deleted on the guest's request with the deletion logged without the data, and need a guardian's consent for a guest under the age of consent (REQ-business-11, REQ-governance-7).
 
 ## Stories
 
@@ -41,6 +41,7 @@ Credits and AI-use statements are built from the record, promotion is drafted, a
 - story-credits-and-outreach-draft-promotion
 - story-credits-and-outreach-collect-audience-data
 - story-credits-and-outreach-audience-data-in-reports
+- story-credits-and-outreach-player-page-analytics
 
 ## Release groups
 
