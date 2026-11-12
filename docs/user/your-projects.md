@@ -17,7 +17,7 @@ On **Projects**, each project shows its name, its organisation, **Your roles** o
 
 ![Projects](../design/dashboard-shell/home-projects.png)
 
-If you are not on any projects yet, you see "You are not on any projects." If you expect to be on one, ask its producer or director to add you. You can also select **Start a project** or **Create an organisation** (see [Organisations and projects](organisations-and-projects.md)).
+If you are not on any projects yet, you see "You are not on any projects." If you were invited to a project, open the link in your invitation email instead, or ask its producer or director to add you. If you are setting up your own production, select **Start a project** (you do not need to create an organisation first) or **Create an organisation** (see [Organisations and projects](organisations-and-projects.md)).
 
 ## Move between projects
 
@@ -34,7 +34,7 @@ Select your name at the top of any page. The menu has **Your account**, where yo
 
 ## What you see depends on your roles
 
-You see only the projects you are on, and inside each project only what your roles there allow. If someone changes your roles, the change shows the next time you do anything; you do not need to sign out.
+You see only the projects you are on, and inside each project only what your roles there allow. If someone changes your roles, the change shows the next time you do anything; you do not need to sign out. Show machines get role changes at their next show-package refresh, in a later release.
 
 ## If something goes wrong
 

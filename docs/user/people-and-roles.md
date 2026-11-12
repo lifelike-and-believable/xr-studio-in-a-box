@@ -2,7 +2,7 @@
 id: docs-people-and-roles
 status: approved
 derived-from:
-  - design-people-and-roles: f202364fac80
+  - design-people-and-roles: a2487b05978f
   - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
 ---
 
@@ -14,7 +14,7 @@ Everyone on a project has one or more roles. A role decides what the person can 
 
 Open the project and select **People**. Each person is listed with their roles, an **Owner** tag beside the owner, and a status:
 
-- **Signed in**: they have used XR Studio.
+- **Signed in**: they have signed in at least once.
 - **Invited, not signed in yet**: they have an invitation but have not used it.
 - **No dashboard access**: none of their roles on this project uses the dashboard.
 
@@ -37,12 +37,12 @@ The **People** list opens with a notice, for example "Riley Chen added as Artist
 What the new person gets depends on their roles:
 
 - At least one role that uses the dashboard: an invitation email with a link that works once, for 7 days.
-- Only Performer, Collaborator or Venue attendant: no email and no dashboard account. They get links to their own pages later, when there is something for them.
-- Already uses XR Studio on another project: an email saying you added them, with a link to the project.
+- Only Performer, Collaborator or Venue attendant: no email and no dashboard account. You see, for example, "Kai Morin added as Performer. XR Studio has not emailed Kai Morin: Performer does not use the dashboard. They will get a link to their own page when there is something for them, so let them know." Tell them yourself that XR Studio sends them nothing yet.
+- Already uses XR Studio on another project: an email saying you added them, with a link to the project. You see, for example, "Sam Okafor added as Technical artist. We have emailed sam@example.com a link to the project."
 
 ## Send an invitation again
 
-If someone has not signed in yet, select **Send the sign-in link again** beside them. They get a new invitation link that lasts 7 days, and you see "We have sent Riley Chen a new invitation link to riley@example.com. It lasts 7 days. You can send another in a minute."
+If someone has not signed in yet, select **Send the sign-in link again** beside them. Despite its name, the button sends an invitation link that lasts 7 days, not a 15-minute sign-in link. They get a new invitation link that lasts 7 days, and you see "We have sent Riley Chen a new invitation link to riley@example.com. It lasts 7 days. You can send another in a minute."
 
 ## Change someone's roles
 
@@ -50,7 +50,7 @@ If someone has not signed in yet, select **Send the sign-in link again** beside 
 2. Tick or untick **Roles**.
 3. Select **Save roles**.
 
-The change applies the next time that person does anything in XR Studio. They do not need to sign out.
+You see, for example, "Riley Chen's roles saved: Artist." The change applies the next time that person does anything in XR Studio. They do not need to sign out. Show machines get role changes at their next show-package refresh, in a later release.
 
 ### Changing your own roles
 
@@ -62,11 +62,11 @@ The change applies the next time that person does anything in XR Studio. They do
 2. Select **Remove <name> from the project**.
 3. Confirm with **Remove <name>**, or select **Keep <name>** to go back.
 
-They lose access the next time they do anything in XR Studio. Their past work and its history stay on the project. Unticking every role and saving does the same, with the same confirmation.
+You see, for example, "Sam Okafor removed from The Lantern Keeper. Their past work stays on the project." They lose access the next time they do anything in XR Studio. Their past work and its history stay on the project. Unticking every role and saving does the same, with the same confirmation.
 
 ## What each role can do
 
-Choose one or more. A person can see and do what any of their roles allows.
+Choose one or more. A person can see and do what any of their roles allows. Director and Producer give the same dashboard access today: both exist because they are different jobs, and later releases give each its own tools and approvals. "Sees the whole project" means everything the dashboard shows about it; in this release that is the same as "sees the project and who is on it", plus the edit and people actions.
 
 | Role | What it is for | In the dashboard today |
 |---|---|---|
@@ -97,6 +97,6 @@ Choose one or more. A person can see and do what any of their roles allows.
 | "Riley Chen is already on this project. Use Change roles or remove for Riley Chen to change what they can do." | That address is already on the project. | Follow the link to change their roles instead. |
 | A notice that the email could not be sent | The person was added, but the invitation did not go out. | Check the address with them, then select **Send the sign-in link again**. To fix a wrong address, remove them and add them again. |
 | "You can send another in a minute" | You sent an invitation to this person less than a minute ago. | Wait a minute, then try again. |
-| "You are the only person on this project who can add people and change roles, so this role stays until you give someone else the Director or Producer role." | Removing your role would leave nobody able to manage people. | Give someone else Director or Producer first. |
+| "You are the only person on this project who can add people and change roles, so this role stays until you give someone else the Director or Producer role." | Removing your role would leave nobody able to manage people. | Give someone else Director or Producer first: select **Change roles or remove** beside them, tick **Director** or **Producer** and select **Save roles**. Then change your own roles. |
 </content>
 </invoke>

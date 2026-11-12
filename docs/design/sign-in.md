@@ -20,7 +20,7 @@ derived-from:
 ## Flow
 
 1. The person opens XR Studio and sees **Sign in**. They type their **Email address** and choose **Email me a sign-in link**.
-2. They see **Check your email**. The same page appears whether or not the address may sign in, so the page never reveals who is on a project. An address may sign in if a project has added it with a role that opens the dashboard, or if it is on the deployment's list of first addresses.
+2. They see **Check your email**. The same page appears whether or not the address may sign in, so the page never reveals who is on a project. An address may sign in if a project has added it with a role that opens the dashboard, or if it is listed in the deployment setting `SIGN_IN_FIRST_ADDRESSES`, which the person who installs XR Studio sets (added with the user documentation, 2026-11-12).
 3. They open the link in the email on the device where they want to use XR Studio. A sign-in link works once, for 15 minutes; an invitation link (the first email after someone adds them) works once, for 7 days (approver's decision, 2026-11-12). They are signed in on the device that opens the link.
 4. They land on the page they asked for, if they followed a link to a page in XR Studio while signed out; otherwise on **Projects**. Only addresses inside XR Studio are followed; any other return address is ignored.
 5. If they choose **Send another link** on **Check your email**, a notice says "If this address can sign in, we have sent another link." The notice is the same whether or not a new email was sent.
@@ -65,10 +65,14 @@ The passkey prompt itself is drawn by the browser or the password manager, not b
 - **Opened on another device:** the link signs in whichever device opens it. The page tells people to open it on the device they want to use.
 - **Passkey cancelled or not found:** a notice above the form, announced as an alert, with both ways forward.
 - **Signed in already:** opening **Sign in** goes to **Projects**.
+- **First person on a new installation:** nobody has added them, so they can sign in only if the person who installs XR Studio has put their address in the deployment setting `SIGN_IN_FIRST_ADDRESSES` (a comma-separated list of addresses). If it is missing, **Check your email** looks the same as for any address that cannot sign in; they ask whoever installed XR Studio to add it (added with the user documentation, 2026-11-12).
+- **Link used up by an email security scanner:** some mail systems open links to check them, which uses up a single-use link. The person sees **This sign-in link no longer works** and chooses **Send another link** (added with the user documentation, 2026-11-12).
+- **Roles without dashboard access:** a performer, collaborator or venue attendant has no account, so **Check your email** looks the same and no email comes. There is nothing for them to sign in to yet; they get links to their own pages when there is something for them (added with the user documentation, 2026-11-12).
+- **Passkey removed:** a notice says "Passkey removed. You can no longer use it to sign in." (added with the user documentation, 2026-11-12).
 
 ## How it works
 
-- **How does the system know?** Whether an address may sign in comes from the record: people added to a project with a role that opens the dashboard (design-people-and-roles), and the list of first addresses in the deployment's settings. People added only with roles that do not open the dashboard get no account (approver's decision, 2026-11-12). Sessions hold who the person is, not their roles; roles are read on every request (decision-identity-and-roles), so a role change applies at the next request.
+- **How does the system know?** Whether an address may sign in comes from the record: people added to a project with a role that opens the dashboard (design-people-and-roles), and the deployment setting `SIGN_IN_FIRST_ADDRESSES`. People added only with roles that do not open the dashboard get no account (approver's decision, 2026-11-12). Sessions hold who the person is, not their roles; roles are read on every request (decision-identity-and-roles), so a role change applies at the next request.
 - **What enforces each promise?**
   - "Works once, for 15 minutes" and "an invitation works once, for 7 days": the auth library stores each link token with its expiry and deletes it on use; tests open each kind twice and after its expiry.
   - "The page never reveals who can sign in": the same response, notice and timing for both cases; a test compares the two responses.
