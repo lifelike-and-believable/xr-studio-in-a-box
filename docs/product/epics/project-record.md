@@ -53,7 +53,7 @@ A person can start a project, record its facts once, give people roles, and see 
 
 ## Dependencies
 
-- None for the first six stories. Setting up an organisation uses the organisation defined in epic-shared-library (story-shared-library-save-to-library), and closing a project uses retention from epic-contracts-and-payment.
+- Starting a project places it in an organisation (story-project-record-set-up-organisation). That story takes only the definition of an organisation from epic-shared-library (story-shared-library-save-to-library); it does not need the shared library itself, which comes in Layer 3, so a Layer 1 build makes the organisation alone. Closing a project uses retention from epic-contracts-and-payment.
 
 ## Open questions
 

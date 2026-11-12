@@ -35,6 +35,7 @@ A single live performance feeds projection, headsets, a flat livestream and brow
 - Output to a projector or screen.
 - Output to several surfaces through Unreal's display tools or a media server.
 - Approve going live on a public platform.
+- Set up virtual cameras and cut between them live, with a preview of the next shot.
 
 ## Stories
 
@@ -44,6 +45,7 @@ A single live performance feeds projection, headsets, a flat livestream and brow
 - story-outputs-and-streaming-projector-or-screen
 - story-outputs-and-streaming-several-surfaces
 - story-outputs-and-streaming-approve-going-live
+- story-outputs-and-streaming-virtual-cameras
 
 ## Release groups
 

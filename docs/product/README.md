@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 259 proposed stories, 257 written, 0 open questions.
+39 epics, 260 proposed stories, 257 written, 0 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -578,7 +578,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | Epic | Stories written | Open questions |
 |---|---|---|
 | [From approved work to a tested build on a venue machine](epics/build-and-install.md) | 6 of 6 | 0 |
-| [One live performance, many outputs](epics/outputs-and-streaming.md) | 7 of 6 | 0 |
+| [One live performance, many outputs](epics/outputs-and-streaming.md) | 7 of 7 | 0 |
 | [Set up in a venue, and keep running there](epics/venue-setup.md) | 6 of 6 | 0 |
 
 <details>
@@ -617,6 +617,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Output to a projector or screen.
 - Output to several surfaces through Unreal's display tools or a media server.
 - Approve going live on a public platform.
+- Set up virtual cameras and cut between them live, with a preview of the next shot.
 
 </details>
 
