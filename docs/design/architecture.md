@@ -122,7 +122,7 @@ Solid lines are built in Layer 1. Dotted lines are boundaries that Layer 1 keeps
 ## Approver's decisions (2026-11-12)
 
 - The project record runs in the cloud: Next.js on Vercel, managed Postgres and object storage (decision-system-shape).
-- The protected store is hosted in a Canadian region if the provider offers one; the record in the nearest region. Provider regions are checked before slice 0 (decision-protected-store, decision-project-record-model).
+- The protected store is hosted in a Canadian region if the provider offers one; the record in the region nearest the studio. Provider regions are checked before slice 0 (decision-protected-store, decision-project-record-model).
 - Chat with agents is in the dashboard. Technical roles whose roles cannot see protected-store data may also use their own Claude Code over the record's MCP endpoint. It is the person's own tool, not a project agent: it acts as the person, is logged as such, and the agent rules and spend limit do not apply to it (decision-agent-runtime).
 - The architect's recommendations were accepted for the rest: the agents' model use counts under the spend limit; the first runner is an always-on cloud worker; granting a tool approves sending its inputs to that vendor; generation outside the pipeline is caught at the adapter and by an import check; offline role changes take effect at the next show package refresh; backups at a second provider are kept 90 days with quarterly restore drills; staff sign in with email links and passkeys; extensions are reviewed by pull request and a review item; the spend limit is in CAD; closing a project is built with or after keep-records; show content uses Git LFS with locking.
 

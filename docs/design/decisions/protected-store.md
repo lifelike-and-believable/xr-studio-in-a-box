@@ -34,7 +34,7 @@ The business layer builds this story. The Layer 1 record has to leave room for i
 
 Option A.
 
-- **Access:** the module checks for a person principal with a role mapped to the protected data class (decision-identity-and-roles). Agent tokens and show machines are refused, and the refusal is logged.
+- **Access:** the module checks for a person principal with a role mapped to the protected data class (decision-identity-and-roles). Agent tokens, the "via Claude Code" channel and show machines are refused, and the refusal is logged.
 - **Filter:** the record's command layer checks every write to an agent-readable class against the formats on Jordan's list, including chat messages before the runner sees them and the text of agent-readable documents when their upload is registered. A person can confirm a false match, and the confirmation is logged. Layer 1 builds the filter with a starter list of common formats (bank account, transit and institution numbers, SIN, business and GST/HST numbers, payment card numbers) that Jordan can edit, so it works before the business layer's list exists.
 - **Fill on export:** the copy is produced in the person's session and handed to them. The record keeps the placeholder version only. Where a sent copy must itself be kept as a business record, that copy is stored in the protected store `[assumed]`.
 - **Region:** a Canadian region if the provider offers one (approver's decision, 2026-11-12). Availability is checked before slice 0 `[assumed]`; if no Canadian region is offered, the approver is asked again before the store holds real data.
