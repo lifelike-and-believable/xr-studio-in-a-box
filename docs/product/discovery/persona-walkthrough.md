@@ -5,7 +5,7 @@ status: draft
 
 # Persona walkthrough of the approved stories
 
-A walkthrough of the 257 approved stories once for each persona, in the order each would meet them on a first project, asking where the persona would fail and why. It was run after PR #318, by the rfr-process persona-walkthrough agent, and complements the coverage check in [concept-to-completion.md](concept-to-completion.md), which it does not repeat. "Observed" means the story text shows it; "inferred" means it is predicted from the persona file. Nothing here changes a story yet; each fix waits for the approver.
+A walkthrough of the 257 approved stories once for each persona, in the order each would meet them on a first project, asking where the persona would fail and why. It was run after PR #318, by the rfr-process persona-walkthrough agent, and complements the coverage check in [concept-to-completion.md](concept-to-completion.md), which it does not repeat. "Observed" means the story text shows it; "inferred" means it is predicted from the persona file. The fixes were applied in the same pull request that records this walkthrough; the table at the end lists the stories that close each finding.
 
 ## Summary
 
@@ -112,3 +112,42 @@ A walkthrough of the 257 approved stories once for each persona, in the order ea
 7. Drew: a right-sounding mix for venue speakers (D2).
 8. Kai: a stop control on shows that are not solo (K1).
 9. Jordan: commission legal reviews (X2).
+
+## Fixed by
+
+| Id | Stories that close it |
+|---|---|
+| X1 | story-review-and-status-starter-targets (new) |
+| X2 | story-contracts-and-payment-legal-reviews (new) |
+| X3 | story-performer-support-crew-channel |
+| X4 | story-handover-and-fallback-performer-signal |
+| K1 | story-schedule-and-touring-time-in-kit |
+| K2 | story-show-safety-solo-show, story-handover-and-fallback-return-recovered-source |
+| K3 | story-session-recording-record-agreement |
+| K4 | story-session-recording-record-agreement, story-session-recording-change-agreement |
+| T1 | story-session-operations-pause-one-guest (new) |
+| T2 | story-venue-setup-headset-list |
+| T3 | story-guest-care-record-an-incident |
+| T4 | story-unattended-running-schedule-and-check and story-unattended-running-idle-state, re-told as Sam. story-unattended-running-holding-state-and-alert stays as Taylor, because Taylor is the person called when the show needs someone. |
+| T5 | story-guest-care-guest-data, story-venue-setup-headset-list |
+| J1 | story-audience-voice-ask-for-help (new) |
+| J2 | story-guest-care-standard-pre-show |
+| J3 | story-remote-guests-rejoin |
+| R1 | story-provenance-and-policy-record-terms |
+| R2 | story-provenance-and-policy-record-terms |
+| R3 | story-provenance-and-policy-collaborator-sign-off |
+| R4 | story-provenance-and-policy-collaborator-sign-off |
+| C1 | story-handover-and-fallback-automatic-switch, story-handover-and-fallback-define-fallback |
+| C2 | story-review-and-status-starter-targets |
+| A1 | story-cue-list-build-a-cue-list |
+| A2 | story-session-operations-pre-show-check |
+| Ri1 | story-character-path-own-tool-generated-work (new), story-character-path-hand-made-work, story-environment-path-bring-hand-made-work |
+| Ri2 | story-effects-path-see-cost |
+| Ri3 | story-review-and-status-what-needs-me (new) |
+| D1 | story-sound-path-rehearsal-mix-changes |
+| D2 | story-sound-path-place-sound, story-sound-path-mix-per-output (venue speakers added, a proposal pending approval) |
+| Q1 | story-interaction-design-test-with-real-guests (new) |
+| M1 | story-review-and-status-see-review-queue |
+| J-1 | story-agent-work-spend-limit |
+| S1 | story-project-record-see-how-it-was-set-up (new) |
+| Casey's radio goal | story-live-puppet-radio-and-drift-check (new) |
