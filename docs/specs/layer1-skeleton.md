@@ -1,6 +1,9 @@
 ---
 status: draft
 tests-commit: 86f8cd0
+unlocks:
+  - web/playwright.config.ts: review of PR #344. An empty DATABASE_URL was passed to the app server when none was exported, which hid `web/.env` (Next.js never overrides a defined variable); the variable is now passed only when set. Also adds `forbidOnly` in CI, so a committed `test.only` cannot silently drop AC-4 and AC-5, and runs one worker, because the new hung-database test locks `app_meta` and must not run beside AC-4. No assertion changes.
+  - web/e2e/health-hung-database.spec.ts (new): AC-5, a database that accepts the connection but stalls still gets 503 within a bounded time.
 ---
 
 # Layer 1, slice 0: repository skeleton
@@ -55,6 +58,7 @@ A test cites a criterion as `layer1-skeleton#AC-3` in its title or a comment. On
   - [assumed] Vercel's Node.js runtime supports Node 26. Settle by reading Vercel's supported Node versions before the first deployment; if it does not, pin the newest LTS it supports and amend AC-1.
   - Settled on 2026-11-12: TypeScript 7.0.2 cannot be used. Its npm package no longer exports the classic compiler API (`exports["."]` is `lib/version.cjs`), and typescript-eslint 8.72.2, which eslint-config-next 16.4.6 depends on, declares `typescript >=4.8.4 <6.1.0`. TypeScript is pinned to 6.0.3, the newest version in that range. With it, `next build`, `tsc` and ESLint 10.14.0 with eslint-config-next 16.4.6 all pass. Revisit when typescript-eslint supports TypeScript 7.
   - Settled on 2026-11-12: pnpm 12 does not read `engine-strict` from `.npmrc`, so `engineStrict: true` is set in `pnpm-workspace.yaml`. Installing on Node 22 then fails with "Unsupported engine ... wanted: node >=26.13.1 <27" (AC-1).
+  - Settled on 2026-11-12: pnpm is pinned in `engines.pnpm`, not `packageManager`. actions/setup-node@v5 (used by the rfr-process workflow) turns on its pnpm cache when `packageManager` names pnpm, and fails because that workflow does not install pnpm (checked in setup-node v5 `src/main.ts`, `getNameFromPackageManagerField`). With `engines.pnpm`, pnpm 10.28.0 stops before reading the lockfile with "ERR_PNPM_UNSUPPORTED_ENGINE ... Expected version: 12.18.0". `devEngines.packageManager` was tried first; pnpm 10.28.0 ignored it and failed on the lockfile instead.
   - Settled on 2026-11-12: Turbopack does not map `.js` import suffixes to `.ts` inside a transpiled workspace package, so `contracts/` imports without a suffix.
   - Settled on 2026-11-12: this cloud environment has an older Chromium build than @playwright/test 1.65.0 expects, so local runs set `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium`, which the Playwright config passes as `executablePath`. CI installs the matching browser with `playwright install --with-deps chromium` and needs no override.
 
