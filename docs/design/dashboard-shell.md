@@ -1,6 +1,6 @@
 ---
 id: design-dashboard-shell
-status: draft
+status: approved
 derived-from:
   - story-project-record-same-project-state#acceptance-criteria: 66eece7e589c
   - story-review-and-status-what-needs-me#acceptance-criteria: 69b7764b8c65

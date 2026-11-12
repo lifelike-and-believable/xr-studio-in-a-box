@@ -2,6 +2,8 @@
 id: decision-extensions-and-adapters
 status: approved
 derived-from:
+  - story-agent-work-extend-the-workflow#acceptance-criteria: 18de5a2740fe
+  - story-agent-work-tool-adapter#acceptance-criteria: 4f71896c024e
   - epic-agent-work#outcome: f707c8c84ba0
   - persona-technical-artist#goals: 1fb2055dfdf2
 ---

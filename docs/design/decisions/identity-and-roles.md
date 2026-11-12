@@ -2,6 +2,10 @@
 id: decision-identity-and-roles
 status: approved
 derived-from:
+  - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
+  - story-project-record-name-approvers#acceptance-criteria: 8a28482ee96c
+  - story-project-record-same-project-state#acceptance-criteria: 66eece7e589c
+  - story-provenance-and-policy-collaborator-sign-off#acceptance-criteria: 7670ff7c0bc8
   - epic-project-record#outcome: c7917e3ef44b
   - epic-provenance-and-policy#outcome: c0bb4a44b0d6
   - persona-producer#goals: d1cc47b03be9

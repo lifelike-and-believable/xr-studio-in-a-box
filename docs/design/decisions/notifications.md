@@ -2,6 +2,8 @@
 id: decision-notifications
 status: approved
 derived-from:
+  - story-review-and-status-notifications#acceptance-criteria: c661cf768ba2
+  - story-provenance-and-policy-collaborator-sign-off#acceptance-criteria: 7670ff7c0bc8
   - epic-review-and-status#outcome: adfddef70e61
   - persona-artist#goals: 0767918db571
   - persona-director#goals: a92ca172be83

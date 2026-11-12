@@ -19,6 +19,7 @@ One line each: the preference, the date, and where it came from (an issue, a pul
 ## Process
 
 - Follow the rfr-process stages in order for every slice: stories, then design and UX with mock-ups for every screen and state, then user documentation, each approved by the lead, before any technical spec, test or code for a feature that has screens. Infrastructure with no screens may go straight to a spec. 2026-11-12, the lead in session after slice 1 was specified and started without designs or user documentation.
+- A pull request that asks the lead to approve an artifact sets its `status: approved` (with current hashes) before asking for the merge, so one merge is the approval. 2026-11-12, after two design merges left files marked draft.
 
 ## Tooling
 

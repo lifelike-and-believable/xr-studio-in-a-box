@@ -1,7 +1,11 @@
 ---
 id: decision-navigation-and-urls
-status: draft
+status: approved
 derived-from:
+  - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
+  - story-project-record-start-project#acceptance-criteria: 83fa11a80149
+  - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
+  - story-review-and-status-what-needs-me#acceptance-criteria: 69b7764b8c65
   - epic-project-record#outcome: c7917e3ef44b
   - persona-producer#goals: d1cc47b03be9
   - persona-director#frustrations: 3721421a3614

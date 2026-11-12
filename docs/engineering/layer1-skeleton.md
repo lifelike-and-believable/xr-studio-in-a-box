@@ -8,7 +8,7 @@ unlocks:
 
 # Layer 1, slice 0: repository skeleton
 
-This spec has no `id`, so it is not an rfr-process artifact. Slice 0 delivers no story or user documentation, and process-trace requires each `test:` criterion in a process spec to cite one. It follows the approved design: [design-architecture](../design/architecture.md#build-order), slice 0, and [decision-system-shape](../design/decisions/system-shape.md#decision). Specs for slices that deliver stories carry an `id` and cite them.
+This is an engineering note, not an rfr-process artifact, so it lives in `docs/engineering/` rather than `docs/specs/`. Slice 0 delivers no story, design or user documentation; it is infrastructure (workspace, health check, CI). It follows the approved design: [design-architecture](../design/architecture.md#build-order), slice 0, and [decision-system-shape](../design/decisions/system-shape.md#decision). Specs for slices that deliver stories live in `docs/specs/`, carry an `id`, and derive from approved user documentation.
 
 ## Problem
 

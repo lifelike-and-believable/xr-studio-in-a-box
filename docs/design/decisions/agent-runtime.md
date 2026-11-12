@@ -2,6 +2,12 @@
 id: decision-agent-runtime
 status: approved
 derived-from:
+  - story-agent-work-agent-permissions#acceptance-criteria: 87d406e5fd7c
+  - story-agent-work-direct-an-agent#acceptance-criteria: d3a11777747f
+  - story-agent-work-read-activity-log#acceptance-criteria: 1649ac451653
+  - story-agent-work-spend-limit#acceptance-criteria: d11a993a2ad7
+  - story-provenance-and-policy-provenance-record#acceptance-criteria: 7a97218a0c55
+  - story-contracts-and-payment-protect-sensitive-data#acceptance-criteria: 2b9128383b81
   - epic-agent-work#outcome: f707c8c84ba0
   - persona-director#goals: a92ca172be83
   - persona-technical-artist#goals: 1fb2055dfdf2

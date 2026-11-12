@@ -1,6 +1,6 @@
 ---
 id: design-people-and-roles
-status: draft
+status: approved
 derived-from:
   - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
   - story-project-record-same-project-state#acceptance-criteria: 66eece7e589c
@@ -27,10 +27,10 @@ Adding people to a project, giving them one or more roles, changing and removing
 4. As roles are ticked, **Before you add <name>** sums up what the person will and will not be able to do, and whether they get an invitation email.
 5. They choose **Add person** (disabled while the request is in progress). The **People** list opens with a notice; focus moves to it.
    - With at least one role that opens the dashboard: "Riley Chen added as Artist and Sound designer. We have emailed riley@example.com an invitation link that lasts 7 days." (approver's decision, 2026-11-12).
-   - With only roles that do not open the dashboard (venue attendant, performer, collaborator): no email and no dashboard account; the notice says they will get links to their own pages later (approver's decision, 2026-11-12).
-   - If the address already has an XR Studio account from another project: no invitation link; they get an email saying they were added, with a link to the project, and their status is **Signed in**.
+   - With only roles that do not open the dashboard (venue attendant, performer, collaborator): no email and no dashboard account; the notice says they will get links to their own pages later (approver's decision, 2026-11-12). The notice is "Kai Morin added as Performer. XR Studio has not emailed Kai Morin: Performer does not use the dashboard. They will get a link to their own page when there is something for them, so let them know." (added with the user documentation, 2026-11-12).
+   - If the address already has an XR Studio account from another project: no invitation link; they get an email saying they were added, with a link to the project, and their status is **Signed in**. The notice is "Sam Okafor added as Technical artist. We have emailed sam@example.com a link to the project." (added with the user documentation, 2026-11-12).
 6. Beside someone who has not signed in yet, **Send the sign-in link again** sends a new invitation link that lasts 7 days and shows a notice to the person who sent it (approver's decision, 2026-11-12).
-7. **Change roles or remove** beside a person opens their roles, with **Save roles**. A change applies the next time that person does anything, with no sign-out needed. A notice confirms the change.
+7. **Change roles or remove** beside a person opens their roles, with **Save roles**. A change applies the next time that person does anything, with no sign-out needed. A notice confirms the change: "Riley Chen's roles saved: Artist." (added with the user documentation, 2026-11-12). Show machines get role changes at their next show-package refresh, in a later release (added with the user documentation, 2026-11-12).
 8. When a person changes their own roles, **Before you save** says what they will lose before they save.
 9. **Remove <name> from the project** opens a confirmation. The person loses access at their next action; their past work stays on the project. A notice confirms the removal.
 10. Someone without the Director or Producer role sees the list without **Add a person** or the actions, and a line naming who can make changes.

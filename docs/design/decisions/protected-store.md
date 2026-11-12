@@ -2,6 +2,7 @@
 id: decision-protected-store
 status: approved
 derived-from:
+  - story-contracts-and-payment-protect-sensitive-data#acceptance-criteria: 2b9128383b81
   - epic-contracts-and-payment#outcome: 98a1377bb7cd
   - persona-producer#goals: d1cc47b03be9
 ---
@@ -37,7 +38,7 @@ Option A.
 - **Access:** the module checks for a person principal with a role mapped to the protected data class (decision-identity-and-roles). Agent tokens, the "via Claude Code" channel and show machines are refused, and the refusal is logged.
 - **Filter:** the record's command layer checks every write to an agent-readable class against the formats on Jordan's list, including chat messages before the runner sees them and the text of agent-readable documents when their upload is registered. A person can confirm a false match, and the confirmation is logged. Layer 1 builds the filter with a starter list of common formats (bank account, transit and institution numbers, SIN, business and GST/HST numbers, payment card numbers) that Jordan can edit, so it works before the business layer's list exists.
 - **Fill on export:** the copy is produced in the person's session and handed to them. The record keeps the placeholder version only. Where a sent copy must itself be kept as a business record, that copy is stored in the protected store `[assumed]`.
-- **Region:** AWS Aurora PostgreSQL in ca-central-1 (Montréal), separate from the record's database (approver's decision, 2026-11-12, after the region check recorded in docs/specs/layer1-skeleton.md).
+- **Region:** AWS Aurora PostgreSQL in ca-central-1 (Montréal), separate from the record's database (approver's decision, 2026-11-12, after the region check recorded in docs/engineering/layer1-skeleton.md).
 - **Where values are decrypted:** the protected module runs as a server function of the web app, and the key service holds the encryption key. Values are decrypted in the function's region, not only where the database sits. So the module's functions are pinned to Vercel's `yul1` (Montréal) region, and the key service is AWS KMS in ca-central-1 (approver's decision, 2026-11-12). Functions reach AWS with Vercel's OIDC tokens, not stored long-lived keys. Still to check before real data: where Vercel keeps logs and build data for these functions `[open]`.
 
 ## Consequences
