@@ -18,5 +18,7 @@ One line each: the preference, the date, and where it came from (an issue, a pul
 
 ## Tooling
 
+- Never force-push (including `--force-with-lease`) or take any other action that raises a permission prompt when a prompt-free route exists. To bring a work branch up to date, merge `main` into it; do not reset it onto `main`. 2026-11-12, the lead in session after a force push prompted.
+
 - Use the latest version of every tool, plugin and reusable workflow everywhere; the rfr-process workflow follows rules-for-robots `@main`. 2026-11-12, the lead in session (PR #312).
 - Merge a pull request touching gated product docs only when the lead says so ("merge", "merge N", "merge when green"), then comment on it quoting the instruction. 2026-11-12, AGENTS.md and the lead in session.
