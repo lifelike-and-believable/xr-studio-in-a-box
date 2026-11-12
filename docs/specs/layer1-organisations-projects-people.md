@@ -1,6 +1,6 @@
 ---
 id: spec-layer1-organisations-projects-people
-status: draft
+status: approved
 derived-from:
   - docs-sign-in#accept-an-invitation: ea81ef051e97
   - docs-sign-in#what-you-see-the-first-time: 55017c219fb8
@@ -214,6 +214,8 @@ Approver's decisions (2026-11-12):
 5. Sign-in links last 15 minutes and are single use; invitation links last 7 days and are single use; at most one email a minute per address.
 6. Removing the last Director or Producer is refused.
 7. Production email: Amazon SES in ca-central-1, in the same AWS account and region as the record. Slice 9 (notifications) uses it too. Until slice 1 deploys, nothing is sent outside the test capture.
+8. Sending an invitation again replaces the earlier invitation link: only the newest works (AC-31) (approver's decision, 2026-11-12).
+9. Accessibility (AC-38) stays an automated check sourced from the designs' Accessibility sections, run in CI (approver's decision, 2026-11-12).
 
 Before slice 1 deploys: check which Postgres major versions Aurora PostgreSQL offers in ca-central-1, and that Vercel's AWS Marketplace region picker offers Canada (Central) (decision-project-record-model).
 
