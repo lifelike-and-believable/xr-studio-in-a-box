@@ -33,7 +33,11 @@ jobs:
       DATABASE_URL_UNPOOLED: postgres://ci:ci@localhost:5432/xr_ci
     steps:
       - uses: actions/checkout@v7
+      # pnpm is pinned here, not in package.json's packageManager field: the rfr-process
+      # workflow's setup-node step tries to cache pnpm when that field is set, and fails.
       - uses: pnpm/action-setup@v6
+        with:
+          version: 12.18.0
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
