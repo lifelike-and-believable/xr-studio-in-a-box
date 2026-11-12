@@ -1,8 +1,9 @@
 import 'server-only';
-import { eq, isNull, and } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { auth } from '../auth/auth';
 import { db } from '../db/client';
 import { person } from '../db/schema';
+import { recordFirstSignIn } from './commands';
 
 // Who is acting. Sessions hold identity only; roles are read from the record on each request
 // (decision-identity-and-roles), so a role change applies at the person's next request.
@@ -25,12 +26,7 @@ export async function signedIn(headers: Headers, channel: Principal['channel'] =
   const rows = await db().select().from(person).where(eq(person.authUserId, session.user.id)).limit(1);
   const me = rows[0];
   if (!me) return null;
-  if (!me.firstSignedInAt) {
-    await db()
-      .update(person)
-      .set({ firstSignedInAt: new Date() })
-      .where(and(eq(person.id, me.id), isNull(person.firstSignedInAt)));
-  }
+  if (!me.firstSignedInAt) await recordFirstSignIn(me.id);
   return {
     principal: { type: 'person', personId: me.id, channel },
     person: { id: me.id, email: me.email, name: me.name, display: displayName(me) },

@@ -4,10 +4,9 @@ import { RoleIdSchema } from '@xr/contracts';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { addPerson, reissueInvitation, removePerson, setRoles } from '@/record/commands';
-import { sentWithinAMinute } from '@/record/mail';
+import { LAST_MANAGER, addPerson, removePerson, setRoles } from '@/record/commands';
 import { signedIn } from '@/record/principal';
-import { sendAddedMail, sendInvitation } from '@/record/sign-in';
+import { deliverInvitation, resendInvitation, sendAddedMail } from '@/record/sign-in';
 import { originOf } from '@/record/settings';
 
 export type PeopleState = { errors: Record<string, string>; values: { email: string; name: string; roles: RoleId[] }; existing?: string };
@@ -32,7 +31,7 @@ export async function addPersonAction(_prev: PeopleState, form: FormData): Promi
   const result = await addPerson(actor.principal, projectId, values);
   if (!result.ok) return { errors: result.fields ?? { email: result.message ?? 'Not allowed.' }, values, existing: result.personId };
   const mail = await sendAddedMail(result.value, { projectId, adder: actor.person.display, origin: actor.origin });
-  const kind = mail === 'none' ? 'none' : mail === 'sent' ? result.value.outcome : 'failed';
+  const kind = mail === 'none' ? 'none' : mail === 'sent' ? result.value.outcome : mail;
   const q = new URLSearchParams({ notice: 'added', person: result.value.personId, mail: kind });
   revalidatePath('/', 'layout');
   redirect(`/projects/${projectId}/people?${q}`);
@@ -43,21 +42,12 @@ export async function resendAction(form: FormData): Promise<void> {
   const personId = String(form.get('personId') ?? '');
   const actor = await me();
   const q = new URLSearchParams({ person: personId });
-  const email = String(form.get('email') ?? '');
-  // Checked first, so a refused resend leaves the earlier link working (AC-31).
-  if (email && (await sentWithinAMinute(email))) {
-    q.set('notice', 'wait');
-    revalidatePath('/', 'layout');
-    redirect(`/projects/${projectId}/people?${q}`);
-  }
-  const result = await reissueInvitation(actor.principal, projectId, personId);
-  if (!result.ok) redirect(`/projects/${projectId}/people`);
-  const outcome = await sendInvitation(result.value.email, result.value.token, {
-    projectName: String(form.get('projectName') ?? ''),
+  // The address and project name are read from the record, not the form (AC-31).
+  const outcome = await resendInvitation(actor.principal, projectId, personId, {
     adder: actor.person.display,
     origin: actor.origin,
-    roles: result.value.roles,
   });
+  if (outcome === 'not-found') redirect(`/projects/${projectId}/people`);
   q.set('notice', outcome === 'sent' ? 'resent' : outcome === 'limited' ? 'wait' : 'resend-failed');
   revalidatePath('/', 'layout');
   redirect(`/projects/${projectId}/people?${q}`);
@@ -71,16 +61,25 @@ export async function setRolesAction(_prev: RolesState, form: FormData): Promise
   const roles = rolesFrom(form);
   // Unticking every role is a removal, with the same confirmation (AC-32).
   if (roles.length === 0) redirect(`/projects/${projectId}/people/${personId}/remove`);
-  const result = await setRoles((await me()).principal, projectId, personId, { roles });
+  const actor = await me();
+  const result = await setRoles(actor.principal, projectId, personId, { roles });
   if (!result.ok) return { errors: result.fields ?? {}, message: result.message };
+  const q = new URLSearchParams({ notice: 'roles', person: personId });
+  // Their first dashboard role: an account and an invitation, as when adding them (AC-30).
+  if (result.value.invitation) {
+    const mail = await deliverInvitation(result.value.invitation, { projectId, adder: actor.person.display, origin: actor.origin });
+    q.set('mail', mail === 'sent' ? 'invitation' : mail);
+  }
   revalidatePath('/', 'layout');
-  redirect(`/projects/${projectId}/people?notice=roles&person=${personId}`);
+  redirect(`/projects/${projectId}/people?${q}`);
 }
 
 export async function removeAction(form: FormData): Promise<void> {
   const projectId = String(form.get('projectId') ?? '');
   const personId = String(form.get('personId') ?? '');
   const result = await removePerson((await me()).principal, projectId, personId);
+  // The last person who can manage people stays, with the reason shown (AC-33).
+  if (!result.ok && result.message === LAST_MANAGER) redirect(`/projects/${projectId}/people/${personId}/remove?error=last-manager`);
   if (!result.ok) redirect(`/projects/${projectId}/people/${personId}`);
   const q = new URLSearchParams({ notice: 'removed', who: result.value.display });
   revalidatePath('/', 'layout');

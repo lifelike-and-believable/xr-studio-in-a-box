@@ -1,22 +1,35 @@
 import 'server-only';
 import { EmailSchema } from '@xr/contracts';
-import { and, eq, gt, isNull, sql } from 'drizzle-orm';
+import { and, eq, gt, isNull, lt, sql } from 'drizzle-orm';
 import { auth, linkCapture } from '../auth/auth';
 import { db } from '../db/client';
 import { invitation, person, project, signInRequest, verification } from '../db/schema';
 import { addedEmail, invitationEmail } from '../mail/templates';
-import { hashToken, type AddedPerson } from './commands';
+import { hashToken, reissueInvitation, type AddedPerson, type PendingInvitation, type Principal } from './commands';
 import { canSignIn, personByEmail } from './eligibility';
-import { newId } from './ids';
-import { sendLimited, sentWithinAMinute, type SendOutcome } from './mail';
+import { isId, newId } from './ids';
+import { sendLimited, sentWithinAMinute, withAddressLock, type SendOutcome } from './mail';
 import { firstAddresses } from './settings';
 
 export const EMAIL_ERROR = 'Enter an email address, like name@example.com.';
 
 // A return address is used only if it is a path on this site (layer1-organisations-projects-people#AC-4).
+// The address is resolved against a placeholder origin; it is kept only if it stays on that
+// origin, and only its path, query and fragment are returned. Control characters and backslashes
+// are refused outright, because browsers drop or rewrite them (`/\t/evil.example` becomes
+// `//evil.example`).
 export function safeReturn(next: string | null | undefined): string {
-  if (!next || !next.startsWith('/') || next.startsWith('//') || next.startsWith('/\\')) return '/';
-  return next;
+  if (!next || !next.startsWith('/')) return '/';
+  if (/[\u0000-\u001f\u007f\\]/.test(next)) return '/';
+  const base = 'http://return.invalid';
+  let url: URL;
+  try {
+    url = new URL(next, base);
+  } catch {
+    return '/';
+  }
+  if (url.origin !== base) return '/';
+  return `${url.pathname}${url.search}${url.hash}`;
 }
 
 // Makes sure a person who may use the dashboard has an auth account, so their links can sign
@@ -35,21 +48,36 @@ export async function ensureAccount(email: string, name: string | null): Promise
 
 async function sendSignInLink(email: string, requestId: string, next: string, headers: Headers): Promise<void> {
   if (!(await canSignIn(email))) return;
-  if (await sentWithinAMinute(email)) return;
-  // A first address signs in before anyone has added it, so its account is made now.
-  if (firstAddresses().has(email)) await ensureAccount(email, null);
-  // Asking for a new link stops every older sign-in link for the address (AC-2).
-  await db()
-    .delete(verification)
-    .where(and(sql`${verification.identifier} like 'magic-link:%'`, sql`${verification.value}::jsonb->>'email' = ${email}`));
-  await auth().api.signInMagicLink({
-    body: {
-      email,
-      callbackURL: next,
-      errorCallbackURL: `/sign-in/no-longer-works?request=${requestId}`,
-    },
-    headers,
+  // The check, the replacement of older links and the send happen under the address's lock, so
+  // two requests at once give one email and the emailed link is the one that works (AC-2, AC-3).
+  await withAddressLock(email, async (tx) => {
+    if (await sentWithinAMinute(email, tx)) return;
+    // A first address signs in before anyone has added it, so its account is made now.
+    if (firstAddresses().has(email)) await ensureAccount(email, null);
+    // Asking for a new link stops every older sign-in link for the address (AC-2).
+    await db()
+      .delete(verification)
+      .where(and(sql`${verification.identifier} like 'magic-link:%'`, sql`${verification.value}::jsonb->>'email' = ${email}`));
+    await auth().api.signInMagicLink({
+      body: {
+        email,
+        callbackURL: next,
+        errorCallbackURL: `/sign-in/no-longer-works?request=${requestId}`,
+      },
+      headers,
+    });
   });
+}
+
+// A sign-in request is kept only for the "no longer works" page, which offers another link for a
+// day at most; older ones are removed whenever a new one is written.
+const SIGN_IN_REQUEST_DAYS = 1;
+
+async function recordSignInRequest(values: { id: string; email: string; returnTo: string | null }) {
+  await db()
+    .delete(signInRequest)
+    .where(lt(signInRequest.createdAt, sql`now() - make_interval(days => ${SIGN_IN_REQUEST_DAYS})`));
+  await db().insert(signInRequest).values(values);
 }
 
 // The neutral request behind **Email me a sign-in link** (AC-1): the same answer whether or not
@@ -64,13 +92,13 @@ export async function requestSignInLink(
   const email = parsed.data;
   const requestId = newId();
   const returnTo = safeReturn(next);
-  await db().insert(signInRequest).values({ id: requestId, email, returnTo });
+  await recordSignInRequest({ id: requestId, email, returnTo });
   await sendSignInLink(email, requestId, returnTo, headers);
   return { ok: true, requestId };
 }
 
 export async function signInRequestById(id: string) {
-  if (!/^[0-9a-f-]{36}$/.test(id)) return undefined;
+  if (!isId(id)) return undefined;
   const rows = await db().select().from(signInRequest).where(eq(signInRequest.id, id)).limit(1);
   return rows[0];
 }
@@ -96,7 +124,7 @@ export async function openInvitation(token: string, headers: Headers): Promise<s
   const noLongerWorks = async () => {
     if (!found) return '/sign-in/no-longer-works';
     const requestId = newId();
-    await db().insert(signInRequest).values({ id: requestId, email: found.email, returnTo: `/projects/${found.invitation.projectId}` });
+    await recordSignInRequest({ id: requestId, email: found.email, returnTo: `/projects/${found.invitation.projectId}` });
     return `/sign-in/no-longer-works?request=${requestId}`;
   };
   if (!found) return noLongerWorks();
@@ -144,6 +172,48 @@ export async function sendAddedMail(
   }
   if (added.needsAccount) await ensureAccount(added.email, added.display === added.email ? null : added.display);
   return sendInvitation(added.email, added.invitationToken ?? '', { ...context, projectName, roles: added.roles });
+}
+
+// After a command that gave someone their first dashboard role (Change roles, or chosen as owner):
+// make their account, then email the invitation (AC-30).
+export async function deliverInvitation(
+  pending: PendingInvitation,
+  context: { projectId: string; adder: string; origin: string },
+): Promise<SendOutcome> {
+  const projectRow = (await db().select({ name: project.name }).from(project).where(eq(project.id, context.projectId)).limit(1))[0];
+  if (pending.needsAccount) await ensureAccount(pending.email, pending.display === pending.email ? null : pending.display);
+  return sendInvitation(pending.email, pending.token, {
+    projectName: projectRow?.name ?? '',
+    adder: context.adder,
+    origin: context.origin,
+    roles: pending.roles,
+  });
+}
+
+// **Send the sign-in link again** (AC-31). The address and project name come from the record,
+// never from the form. Under the address's lock, a refused resend replaces nothing, so the earlier
+// link keeps working.
+export async function resendInvitation(
+  principal: Principal,
+  projectId: string,
+  personId: string,
+  context: { adder: string; origin: string },
+): Promise<SendOutcome | 'not-found'> {
+  if (!isId(projectId) || !isId(personId)) return 'not-found';
+  const target = (await db().select({ email: person.email }).from(person).where(eq(person.id, personId)).limit(1))[0];
+  if (!target) return 'not-found';
+  return withAddressLock(target.email, async (tx) => {
+    if (await sentWithinAMinute(target.email, tx)) return 'limited';
+    const result = await reissueInvitation(principal, projectId, personId);
+    if (!result.ok) return 'not-found';
+    const projectRow = (await db().select({ name: project.name }).from(project).where(eq(project.id, projectId)).limit(1))[0];
+    return sendInvitation(result.value.email, result.value.token, {
+      projectName: projectRow?.name ?? '',
+      adder: context.adder,
+      origin: context.origin,
+      roles: result.value.roles,
+    });
+  });
 }
 
 export async function sendInvitation(

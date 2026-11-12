@@ -4,6 +4,7 @@ import {
   EmailSchema,
   joinLabels,
   permissionsFor,
+  ROLE_IDS,
   RoleIdSchema,
   usesDashboard,
   type Permission,
@@ -20,7 +21,7 @@ import {
   projectRole,
   projectRoleRemoved,
 } from '../db/schema';
-import { newId } from './ids';
+import { isId, newId } from './ids';
 import { displayName, type Principal } from './principal';
 
 export type { Principal } from './principal';
@@ -49,6 +50,11 @@ const forbidden = () => refuse(403, { message: 'Not allowed.' });
 // Agents only draft in later slices; in slice 1 every command refuses an agent session, whatever
 // roles the person it acts for holds (layer1-organisations-projects-people#AC-27).
 const isAgent = (p: Principal) => p.type !== 'person';
+const notFound = () => refuse(404);
+
+// Roles that open the dashboard. Colleagues, organisations to start in and steward choices count
+// only these, as the project list does.
+export const DASHBOARD_ROLES: RoleId[] = ROLE_IDS.filter((role) => usesDashboard([role]));
 
 type Tx = Parameters<Parameters<ReturnType<typeof db>['transaction']>[0]>[0];
 type Reader = ReturnType<typeof db> | Tx;
@@ -62,6 +68,20 @@ export async function rolesOf(reader: Reader, projectId: string, personId: strin
     .from(projectRole)
     .where(and(eq(projectRole.projectId, projectId), eq(projectRole.personId, personId)));
   return rows.map((r) => RoleIdSchema.parse(r.role));
+}
+
+// Serialises every change to a project's people (layer1-organisations-projects-people#AC-33):
+// two removals or role changes that would each leave one manager cannot both pass the
+// last-manager check under READ COMMITTED.
+async function lockProject(tx: Tx, projectId: string): Promise<boolean> {
+  const rows = await tx.execute<{ id: string }>(sql`select id from project where id = ${projectId} for update`);
+  return rows.rows.length > 0;
+}
+
+// Serialises one person's creates, so a double submit cannot make two organisations of the same
+// name or two default organisations (AC-26).
+async function lockPerson(tx: Tx, personId: string): Promise<void> {
+  await tx.execute(sql`select pg_advisory_xact_lock(hashtext(${`person:${personId}`}))`);
 }
 
 async function can(reader: Reader, projectId: string, personId: string, permission: Permission) {
@@ -81,7 +101,8 @@ async function colleaguesOf(reader: Reader, personId: string): Promise<Set<strin
   const rows = await reader.execute<{ person_id: string }>(sql`
     select distinct other.person_id from project_role mine
     join project_role other on other.project_id = mine.project_id
-    where mine.person_id = ${personId}`);
+    where mine.person_id = ${personId}
+      and mine.role in ${DASHBOARD_ROLES} and other.role in ${DASHBOARD_ROLES}`);
   return new Set(rows.rows.map((r) => r.person_id));
 }
 
@@ -90,7 +111,8 @@ export async function organisationsToStartIn(reader: Reader, personId: string): 
   const rows = await reader.execute<{ id: string }>(sql`
     select organisation_id as id from organisation_steward where person_id = ${personId}
     union
-    select p.organisation_id from project p join project_role r on r.project_id = p.id where r.person_id = ${personId}`);
+    select p.organisation_id from project p join project_role r on r.project_id = p.id
+    where r.person_id = ${personId} and r.role in ${DASHBOARD_ROLES}`);
   return new Set(rows.rows.map((r) => r.id));
 }
 
@@ -156,7 +178,9 @@ export async function createOrganisation(
   if (isAgent(principal)) return forbidden();
   const name = input.name.trim();
   if (!name) return refuse(400, { fields: { name: ORG_NAME } });
+  if (!input.stewardIds.every(isId)) return refuse(400, { fields: { stewardIds: 'Choose people from your projects.' } });
   return db().transaction(async (tx) => {
+    await lockPerson(tx, principal.personId);
     if (await stewardNameTaken(tx, principal.personId, name)) return refuse(409, { fields: { name: orgTaken(name) } });
     const allowed = await colleaguesOf(tx, principal.personId);
     allowed.add(principal.personId);
@@ -176,6 +200,7 @@ export async function editOrganisation(
   input: { name: string; stewardIds: string[] },
 ): Promise<Result<{ id: string }>> {
   if (isAgent(principal)) return forbidden();
+  if (!isId(organisationId) || !input.stewardIds.every(isId)) return notFound();
   return db().transaction(async (tx) => {
     const current = await stewardsOf(tx, organisationId);
     if (!current.includes(principal.personId)) return forbidden();
@@ -195,16 +220,42 @@ export async function editOrganisation(
   });
 }
 
+// An invitation the caller sends once the command has committed: the person gets an account if
+// they have none (ensureAccount), then the invitation email (layer1-organisations-projects-people#AC-30).
+export type PendingInvitation = {
+  personId: string;
+  email: string;
+  display: string;
+  token: string;
+  needsAccount: boolean;
+  roles: RoleId[];
+};
+
+async function invitationFor(
+  tx: Tx,
+  projectId: string,
+  who: typeof person.$inferSelect,
+  roles: RoleId[],
+): Promise<PendingInvitation | undefined> {
+  if (!usesDashboard(roles) || who.firstSignedInAt) return undefined;
+  const token = await issueInvitation(tx, who.id, projectId);
+  return { personId: who.id, email: who.email, display: displayName(who), token, needsAccount: !who.authUserId, roles };
+}
+
 export async function startProject(
   principal: Principal,
   input: { name: string; brief: string; organisationId: string | null; ownerId: string },
-): Promise<Result<{ id: string; organisationId: string; ownerId: string }>> {
+): Promise<Result<{ id: string; organisationId: string; ownerId: string; ownerInvitation?: PendingInvitation }>> {
   if (isAgent(principal)) return forbidden();
   const name = input.name.trim();
   if (!name) return refuse(400, { fields: { name: PROJECT_NAME } });
+  if (input.organisationId !== null && !isId(input.organisationId)) return forbidden();
+  if (!isId(input.ownerId)) return refuse(409, { fields: { ownerId: OWNER_GONE } });
   try {
     return await db().transaction(async (tx) => {
       const me = principal.personId;
+      // A double submit waits here, then finds the first submit's project (AC-26).
+      await lockPerson(tx, me);
       const startable = await organisationsToStartIn(tx, me);
       let organisationId = input.organisationId;
       let orgName: string;
@@ -221,9 +272,20 @@ export async function startProject(
           .limit(1);
         if (taken.length > 0) return refuse(409, { fields: { name: projectTaken(name, orgName) } });
       } else {
+        if (startable.size > 0) {
+          // The second of two submits from someone on no organisation: the first made the
+          // default organisation and its project, so this one is the duplicate it is.
+          const twin = await tx
+            .select({ orgName: organisation.name })
+            .from(project)
+            .innerJoin(organisation, eq(organisation.id, project.organisationId))
+            .where(and(sql`${project.organisationId} in ${[...startable]}`, sql`lower(${project.name}) = lower(${name})`))
+            .limit(1);
+          if (twin[0]) return refuse(409, { fields: { name: projectTaken(name, twin[0].orgName) } });
+          return refuse(400, { fields: { organisationId: 'Choose an organisation.' } });
+        }
         // On no organisation yet: one with the project's name is made, and the person looks after
         // it (layer1-organisations-projects-people#AC-21).
-        if (startable.size > 0) return refuse(400, { fields: { organisationId: 'Choose an organisation.' } });
         if (input.ownerId !== me) return refuse(409, { fields: { ownerId: OWNER_GONE } });
         organisationId = newId();
         orgName = name;
@@ -239,11 +301,23 @@ export async function startProject(
       // Someone else as owner: the starter keeps Producer (layer1-organisations-projects-people#AC-20).
       if (input.ownerId !== me) roles.push({ projectId: id, personId: me, role: 'producer' });
       await tx.insert(projectRole).values(roles);
-      return { ok: true as const, value: { id, organisationId, ownerId: input.ownerId } };
+      // An owner who has never signed in (for example someone added only as a performer) gets an
+      // account and an invitation, so the owner can open the project (AC-30).
+      let ownerInvitation: PendingInvitation | undefined;
+      if (input.ownerId !== me) {
+        const owner = (await tx.select().from(person).where(eq(person.id, input.ownerId)).limit(1))[0];
+        if (owner) ownerInvitation = await invitationFor(tx, id, owner, ['director', 'producer']);
+      }
+      return { ok: true as const, value: { id, organisationId, ownerId: input.ownerId, ownerInvitation } };
     });
   } catch (error) {
     // Two submits at once: the unique index lets only one project of that name in.
-    if (uniqueViolation(error)) return refuse(409, { fields: { name: projectTaken(name, '') } });
+    if (uniqueViolation(error)) {
+      const org = input.organisationId
+        ? (await db().select({ name: organisation.name }).from(organisation).where(eq(organisation.id, input.organisationId)).limit(1))[0]
+        : undefined;
+      return refuse(409, { fields: { name: projectTaken(name, org?.name ?? name) } });
+    }
     throw error;
   }
 }
@@ -254,6 +328,7 @@ export async function editProject(
   input: { name: string; brief: string },
 ): Promise<Result<{ id: string }>> {
   if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
   return db().transaction(async (tx) => {
     if (!(await can(tx, projectId, principal.personId, 'edit-project'))) return forbidden();
     const name = input.name.trim();
@@ -329,7 +404,9 @@ export async function addPerson(
   if (!email.success) fields.email = 'Enter an email address, like name@example.com.';
   const roles = [...new Set(input.roles)];
   if (roles.length === 0) fields.roles = 'Choose at least one role.';
+  if (!isId(projectId)) return notFound();
   return db().transaction(async (tx) => {
+    if (!(await lockProject(tx, projectId))) return notFound();
     if (!(await can(tx, projectId, principal.personId, 'manage-people'))) return forbidden();
     if (!email.success || roles.length === 0) return refuse(400, { fields });
     const address = email.data;
@@ -376,19 +453,34 @@ export async function setRoles(
   projectId: string,
   personId: string,
   input: { roles: RoleId[] },
-): Promise<Result<{ display: string; roles: RoleId[] }>> {
+): Promise<Result<{ display: string; roles: RoleId[]; invitation?: PendingInvitation }>> {
   if (isAgent(principal)) return forbidden();
+  if (!isId(projectId) || !isId(personId)) return notFound();
   const roles = [...new Set(input.roles)];
   return db().transaction(async (tx) => {
+    if (!(await lockProject(tx, projectId))) return notFound();
     if (!(await can(tx, projectId, principal.personId, 'manage-people'))) return forbidden();
     const current = await rolesOf(tx, projectId, personId);
-    if (current.length === 0) return refuse(404);
+    if (current.length === 0) return notFound();
     if (roles.length === 0) return refuse(400, { fields: { roles: 'Choose at least one role.' } });
     if ((await managersLeft(tx, projectId, personId, roles)) === 0) return refuse(409, { message: LAST_MANAGER });
     await tx.delete(projectRole).where(and(eq(projectRole.projectId, projectId), eq(projectRole.personId, personId)));
     await tx.insert(projectRole).values(roles.map((role) => ({ projectId, personId, role })));
-    const who = await tx.select().from(person).where(eq(person.id, personId)).limit(1);
-    return { ok: true as const, value: { display: who[0] ? displayName(who[0]) : '', roles } };
+    // Losing every dashboard role is told as "access removed"; regaining one clears it (AC-16).
+    const removedKey = and(eq(projectRoleRemoved.projectId, projectId), eq(projectRoleRemoved.personId, personId));
+    if (usesDashboard(roles)) {
+      await tx.delete(projectRoleRemoved).where(removedKey);
+    } else if (usesDashboard(current)) {
+      await tx
+        .insert(projectRoleRemoved)
+        .values({ projectId, personId })
+        .onConflictDoUpdate({ target: [projectRoleRemoved.projectId, projectRoleRemoved.personId], set: { removedAt: new Date() } });
+    }
+    const who = (await tx.select().from(person).where(eq(person.id, personId)).limit(1))[0];
+    // Gaining a dashboard role (for example a performer made an artist) brings an account and an
+    // invitation, as adding them with that role would have (AC-30).
+    const invitation = who && !usesDashboard(current) ? await invitationFor(tx, projectId, who, roles) : undefined;
+    return { ok: true as const, value: { display: who ? displayName(who) : '', roles, invitation } };
   });
 }
 
@@ -398,10 +490,12 @@ export async function removePerson(
   personId: string,
 ): Promise<Result<{ display: string; project: string }>> {
   if (isAgent(principal)) return forbidden();
+  if (!isId(projectId) || !isId(personId)) return notFound();
   return db().transaction(async (tx) => {
+    if (!(await lockProject(tx, projectId))) return notFound();
     if (!(await can(tx, projectId, principal.personId, 'manage-people'))) return forbidden();
     const current = await rolesOf(tx, projectId, personId);
-    if (current.length === 0) return refuse(404);
+    if (current.length === 0) return notFound();
     if ((await managersLeft(tx, projectId, personId, [])) === 0) return refuse(409, { message: LAST_MANAGER });
     await tx.delete(projectRole).where(and(eq(projectRole.projectId, projectId), eq(projectRole.personId, personId)));
     await tx
@@ -426,7 +520,9 @@ export async function reissueInvitation(
   personId: string,
 ): Promise<Result<{ display: string; email: string; token: string; roles: RoleId[] }>> {
   if (isAgent(principal)) return forbidden();
+  if (!isId(projectId) || !isId(personId)) return notFound();
   return db().transaction(async (tx) => {
+    if (!(await lockProject(tx, projectId))) return notFound();
     if (!(await can(tx, projectId, principal.personId, 'manage-people'))) return forbidden();
     const roles = await rolesOf(tx, projectId, personId);
     const who = (await tx.select().from(person).where(eq(person.id, personId)).limit(1))[0];
@@ -434,6 +530,16 @@ export async function reissueInvitation(
     const token = await issueInvitation(tx, personId, projectId);
     return { ok: true as const, value: { display: displayName(who), email: who.email, token, roles } };
   });
+}
+
+// The first time a person signs in is recorded once, for the People list's status (AC-28). It
+// is a system write made on the person's own request, not an action on anyone's behalf.
+export async function recordFirstSignIn(personId: string): Promise<void> {
+  if (!isId(personId)) return;
+  await db()
+    .update(person)
+    .set({ firstSignedInAt: new Date() })
+    .where(and(eq(person.id, personId), isNull(person.firstSignedInAt)));
 }
 
 export function rolesText(roles: RoleId[]): string {

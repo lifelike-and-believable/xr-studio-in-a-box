@@ -3,7 +3,8 @@ import { RoleIdSchema, permissionsFor, sortRoles, usesDashboard, type Permission
 import { and, eq, sql } from 'drizzle-orm';
 import { db } from '../db/client';
 import { organisation, organisationSteward, person, project, projectRole, projectRoleRemoved } from '../db/schema';
-import { organisationsToStartIn, ownersIn, rolesOf } from './commands';
+import { DASHBOARD_ROLES, organisationsToStartIn, ownersIn, rolesOf } from './commands';
+import { isId } from './ids';
 import { displayName } from './principal';
 
 // Reads for the dashboard. Every list is built from the person's own assignments on the server,
@@ -66,7 +67,7 @@ export type ProjectView =
 // The same answer for a page that does not exist and one the person may not see; only someone
 // who had a role there and lost it is told so (AC-16).
 export async function projectFor(personId: string, projectId: string): Promise<ProjectView> {
-  if (!/^[0-9a-f-]{36}$/.test(projectId)) return { state: 'not-available' };
+  if (!isId(projectId)) return { state: 'not-available' };
   const rows = await db()
     .select({ project, organisation: organisation.name })
     .from(project)
@@ -158,7 +159,7 @@ export type OrganisationView = {
 };
 
 export async function organisationFor(personId: string, organisationId: string): Promise<OrganisationView | null> {
-  if (!/^[0-9a-f-]{36}$/.test(organisationId)) return null;
+  if (!isId(organisationId)) return null;
   const visible = await organisationsFor(personId);
   const mine = visible.find((o) => o.id === organisationId);
   if (!mine) return null;
@@ -214,11 +215,14 @@ export async function startChoices(me: { id: string; display: string }) {
 }
 
 // People who may be ticked under **Looked after by**: the person and people on their projects.
+// Only dashboard roles count on both sides, so a performer or collaborator is never offered and
+// never makes someone a colleague (as in projectsFor).
 export async function stewardChoices(me: { id: string; display: string }, extra: string[] = []): Promise<Choice[]> {
   const rows = await db().execute<{ person_id: string }>(sql`
     select distinct other.person_id from project_role mine
     join project_role other on other.project_id = mine.project_id
-    where mine.person_id = ${me.id} and other.person_id <> ${me.id}`);
+    where mine.person_id = ${me.id} and other.person_id <> ${me.id}
+      and mine.role in ${DASHBOARD_ROLES} and other.role in ${DASHBOARD_ROLES}`);
   const ids = [...new Set([...rows.rows.map((r) => r.person_id), ...extra.filter((id) => id !== me.id)])];
   const others = ids.length ? await db().select().from(person).where(sql`${person.id} in ${ids}`) : [];
   return [
@@ -228,6 +232,7 @@ export async function stewardChoices(me: { id: string; display: string }, extra:
 }
 
 export async function personOn(projectId: string, personId: string) {
+  if (!isId(projectId)) return { people: [], target: undefined };
   const people = await peopleOn(projectId);
   return { people, target: people.find((p) => p.id === personId) };
 }
