@@ -25,7 +25,7 @@ Open the project and select **Activity**, the last tab. Entries are listed newes
 - **What**: what was done, in words, for example "Saved the description (version 4)" or "Changed Riley Chen's roles to Artist and Sound designer".
 - **Area**: Project, Facts or People.
 
-Select **Older entries** to see the next fifty.
+A line above the list says how many there are, for example "Showing the newest 50 of 128 entries." Select **Older entries** to see the next fifty.
 
 ![Activity](../design/activity-log/activity.png)
 
@@ -34,7 +34,7 @@ An entry says what was saved, never the text or figures of a fact, so an entry a
 ## Filter the activity
 
 1. Above the list, choose any of:
-   - **Who**: anyone with an entry on the project, including people since removed, shown as "<name> (removed)". **Agents** is also listed, for agent entries in a later release.
+   - **Who**: anyone with an entry on the project, including people since removed, shown as "<name> (removed)". **Agents** is also listed, but there are no agent entries until agents arrive in a later release. Filtering by agent and by **Stage** comes then too.
    - **Area**: Project, Facts or People.
    - **From** and **To**: a range of dates.
 2. Select **Apply filters**.
@@ -47,7 +47,7 @@ The page shows how many entries match and which filters you used, for example "3
 
 You need to look after the organisation.
 
-On the organisation's page, select **Activity**. It lists changes to the organisation itself, its facts and its identifier formats, with the same columns and filters. Its areas are Organisation, Organisation facts and Identifier formats.
+On the organisation's page, select **Activity**. It lists changes to the organisation itself, its facts and its identifier formats, with the same columns and filters, except that **Who** lists only people. Its areas are Organisation, Organisation facts and Identifier formats.
 
 ![Organisation activity](../design/activity-log/org-activity.png)
 

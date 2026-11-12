@@ -54,7 +54,7 @@ The organisation's page opens with a notice, for example "Bio saved. Every proje
 
 Standard work samples are the company's showreel, press pack and other samples that every project can use.
 
-1. On the organisation's page, select **Open standard work samples**.
+1. On the organisation's page, select **Open standard work samples** (or **Add** beside **Standard work samples**, if there are none yet).
 2. Under **Add a work sample**, type a **Title** and choose a **File**: video, images, audio or a PDF, up to 2 GB.
 3. Select **Add work sample** and keep the page open while it uploads.
 
@@ -70,6 +70,7 @@ Removing a sample, the upload progress and held files work as on a project's wor
 | Funder applicant profiles | People who look after the organisation, and the Director and Producer on its projects | People who look after the organisation |
 
 - Someone on one of the organisation's projects with another role, such as an artist, sees the general facts without **Edit**, and a line under **Funder applicant profiles** says who can see them.
+- A Director or Producer on a project who does not look after the organisation cannot edit its facts either. To be able to, ask a person who looks after it to add you under **Looked after by**, using **Edit organisation**. See [Change an organisation](organisations-and-projects.md#change-an-organisation).
 - Only people who look after the organisation see **Identifier formats** and **Activity** on its page. A Director who does not look after it sees the project's activity, not the organisation's.
 - Agents cannot change organisation facts yet. In a later release, an agent will be able to draft them from a document you point it at, marked as drafts until a person who looks after the organisation accepts them.
 

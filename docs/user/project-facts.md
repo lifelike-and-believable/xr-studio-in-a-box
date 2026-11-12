@@ -11,7 +11,7 @@ derived-from:
 
 A project's facts are recorded once, on its **Facts** tab: the description, plan, budget, credits, collaborators, schedule, work samples and capacity. Later releases draft funding applications, contracts and call sheets from this one record, so a figure changed here is the figure every draft uses.
 
-Every save is kept as a version. You can see who last changed each fact, read its earlier versions, compare one with the current text and restore it without losing anything.
+Every save is kept as a version. You can see who last changed each fact, read its earlier versions and compare one with the current text. The director and producer can also restore an earlier version without losing anything.
 
 ## See a project's facts
 
@@ -51,8 +51,8 @@ Do not put bank details or tax numbers in a fact. Facts can be read by agents, s
 ## Earlier versions of a fact
 
 1. On the **Facts** tab, select **Earlier versions** beside the fact.
-2. The list shows every saved version, newest first, with who saved it and when.
-3. Select **Compare with current** beside a version. The page marks what changed and writes out both versions in full.
+2. The list shows every saved version, newest first, with who saved it and when. The current version is marked "(current)". A version made by restoring says so, for example "2, restored from version 1".
+3. Select **Compare with current** beside a version. The page marks what changed and writes out both versions in full. **Back to earlier versions** returns to the list.
 
 ![Earlier versions](../design/project-facts/history.png)
 
@@ -64,7 +64,7 @@ Anyone who can see the fact can read and compare its earlier versions.
 
 You need the Director or Producer role on the project.
 
-1. On the fact's **Earlier versions** page, select **Restore** beside the version you want.
+1. On the fact's **Earlier versions** page, select **Restore** beside the version you want. You can also select **Restore version <n>** on the page that compares it with the current one.
 2. A dialog asks, for example, "Restore version 3 of description?". Select **Restore version 3**, or **Keep the current description** to leave it as it is.
 
 The **Facts** tab opens with a notice such as "Description restored to version 3, saved as version 7. Earlier versions are kept." Restoring saves the earlier text as a new version; no version is removed or changed, so you can restore the one you replaced later.
@@ -75,15 +75,15 @@ Restored text is checked for bank details and tax numbers like any save. If an i
 
 ## Add and remove work samples
 
-You need the Director or Producer role on the project to add or remove samples. Anyone who can see the facts can open the page.
+You need the Director or Producer role on the project. Everyone else who can see the facts sees the list of samples on the **Facts** tab.
 
-1. On the **Facts** tab, select **Work samples**.
+1. On the **Facts** tab, select **Edit** beside **Work samples** (or **Add**, if there are none yet). The work samples page opens.
 2. Under **Add a work sample**, type a **Title** and choose a **File**: video, images, audio or a PDF, up to 2 GB.
 3. Select **Add work sample**. While the file uploads, a progress bar shows how far it has gone and about how long is left, and the button reads **Uploading**. Keep the page open. **Stop uploading** cancels it.
 
 The sample appears in the list with its title, file, who added it and when.
 
-To remove a sample, select **Remove** beside it, then **Remove <title>** in the dialog, or **Keep <title>** to leave it. You see, for example, "Lantern test removed from the work samples. It stays in the earlier versions of Work samples." Restoring that earlier version of **Work samples** brings the file back.
+To remove a sample, select **Remove** beside it, then **Remove <title>** in the dialog, or **Keep <title>** to leave it. You see, for example, "Lantern test removed from the work samples. It stays in the earlier versions of Work samples." Restoring that earlier version of **Work samples** brings the file back. Restoring brings back the whole list as it was in that version, so samples added since then leave the current list (they stay in the later versions).
 
 ![Work samples](../design/project-facts/work-samples.png)
 
@@ -96,7 +96,7 @@ The organisation's standard work samples have their own page; the line at the to
 If another person saves the same fact after you opened it, your text is not saved and nothing is overwritten. The page says, for example, "Check before saving: Morgan Ray saved a new description at 14:20", shows their version above the form, and keeps your text in the box.
 
 - Select **Save my <fact>**, for example **Save my description**, to make your text the newest version. Theirs stays in the earlier versions.
-- Or change your text first, then save it.
+- Or change your text first, for example to combine both, then select **Save my <fact>**.
 - **Cancel** leaves without saving your text.
 
 ![Someone else saved while you were editing](../design/project-facts/edit-conflict.png)
@@ -121,8 +121,8 @@ Every change to a fact is recorded in the project's **Activity**. See [Activity]
 
 | You see | What it means | What to do |
 |---|---|---|
-| "Enter the number of guests in the room as a whole number, like 40." | **Guests in the room per show** is empty or not a whole number. | Type a whole number. 0 is allowed. Your other values are kept. |
-| "Enter the number of viewers online as a whole number, like 200." | **Viewers online per show** is empty or not a whole number. | Type a whole number. 0 is allowed. |
+| "Enter the number of guests in the room as a whole number, like 40." | **Guests in the room per show** is not a whole number. | Type a whole number. 0 is allowed. Your other values are kept. |
+| "Enter the number of viewers online as a whole number, like 200." | **Viewers online per show** is not a whole number. | Type a whole number. 0 is allowed. |
 | "Enter the total in whole Canadian dollars, like 148000." | **Total in Canadian dollars** is not a whole number of dollars. | Type the total without cents. |
 | "Check before saving: <name> saved a new <fact> at <time>" | Someone saved the fact after you opened the page. | See [If someone else saved while you were editing](#if-someone-else-saved-while-you-were-editing). |
 | "Not saved: this looks like a <format>" | The text matches an identifier format, such as a bank account number. | See [Bank details, tax numbers and identifier formats](identifier-formats.md). |
