@@ -26,7 +26,7 @@ export function OrganisationForm(props: {
   return (
     <>
       <ErrorSummary errors={e} ids={{ name: 'name', stewardIds: 'stewards' }} />
-      <form onSubmit={submit} noValidate>
+      <form method="post" onSubmit={submit} noValidate>
         {props.organisationId ? <input type="hidden" name="organisationId" value={props.organisationId} /> : null}
         <label htmlFor="name">Organisation name</label>
         <FieldError id="name-error" message={e.name} />

@@ -29,7 +29,7 @@ export function RolesForm(props: {
   return (
     <>
       <ErrorSummary errors={errors} ids={{ roles: 'roles' }} />
-      <form onSubmit={submit} noValidate>
+      <form method="post" onSubmit={submit} noValidate>
         <input type="hidden" name="projectId" value={props.projectId} />
         <input type="hidden" name="personId" value={props.personId} />
         <RoleCheckboxes value={roles} onChange={setRoles} error={errors.roles} locked={locked} lockedNote={LAST_MANAGER} />

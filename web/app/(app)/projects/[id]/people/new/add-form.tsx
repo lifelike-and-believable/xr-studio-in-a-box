@@ -23,7 +23,7 @@ export function AddForm({ projectId }: { projectId: string }) {
   return (
     <>
       <ErrorSummary errors={e} ids={{ email: 'email', roles: 'roles' }} />
-      <form onSubmit={submit} noValidate>
+      <form method="post" onSubmit={submit} noValidate>
         <input type="hidden" name="projectId" value={projectId} />
         <label htmlFor="email">Email address</label>
         <FieldError id="email-error" message={e.email} />

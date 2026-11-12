@@ -42,6 +42,8 @@ export default async function People({ params, searchParams }: Props) {
       added: `${added} We have emailed ${subject.email} a link to the project.`,
       none: `${added} XR Studio has not emailed ${subject.display}: ${joinLabels(nonDashboard)} ${nonDashboard.length > 1 ? 'do' : 'does'} not use the dashboard. They will get a link to their own page when there is something for them, so let them know.`,
       failed: `${added} The email to ${subject.email} could not be sent. Check the address with them, then select Send the sign-in link again.`,
+      // An email went to that address less than a minute ago, so none was sent now (AC-3).
+      limited: `${added} We have not emailed ${subject.email} yet, because an email went to that address less than a minute ago. You can send another in a minute.`,
     }[search.mail ?? ''];
   }
   if (subject && search.notice === 'resent') {
@@ -49,7 +51,15 @@ export default async function People({ params, searchParams }: Props) {
   }
   if (search.notice === 'wait') message = 'You can send another in a minute';
   if (subject && search.notice === 'resend-failed') message = `The email to ${subject.email} could not be sent.`;
-  if (subject && search.notice === 'roles') message = `${subject.display}'s roles saved: ${joinLabels(subject.roles)}.`;
+  if (subject && search.notice === 'roles') {
+    const saved = `${subject.display}'s roles saved: ${joinLabels(subject.roles)}.`;
+    // Their first dashboard role brings an invitation (AC-30).
+    message = {
+      invitation: `${saved} We have emailed ${subject.email} an invitation link that lasts 7 days.`,
+      failed: `${saved} The invitation email to ${subject.email} could not be sent. Select Send the sign-in link again.`,
+      limited: `${saved} We have not emailed ${subject.email} an invitation yet. You can send another in a minute.`,
+    }[search.mail ?? ''] ?? saved;
+  }
   if (search.notice === 'removed' && search.who) {
     message = `${search.who} removed from ${view.project.name}. Their past work stays on the project.`;
   }
@@ -95,8 +105,6 @@ export default async function People({ params, searchParams }: Props) {
                       <form action={resendAction}>
                         <input type="hidden" name="projectId" value={id} />
                         <input type="hidden" name="personId" value={p.id} />
-                        <input type="hidden" name="email" value={p.email} />
-                        <input type="hidden" name="projectName" value={view.project.name} />
                         <button type="submit" className="link">
                           Send the sign-in link again<span className="visually-hidden"> to {p.display}</span>
                         </button>

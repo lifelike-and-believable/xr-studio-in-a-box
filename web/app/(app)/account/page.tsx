@@ -22,7 +22,7 @@ export default async function Account({ searchParams }: Props) {
   const passkeys = await auth().api.listPasskeys({ headers: await headers() });
   return (
     <main id="main">
-      {notice === 'passkey-removed' ? <Notice>Passkey removed. You can no longer use it to sign in.</Notice> : null}
+      {notice === 'passkey-removed' ? <Notice title="Passkey removed">Passkey removed. You can no longer use it to sign in.</Notice> : null}
       <h1>Your account</h1>
       <p>Signed in as {me.person.email}.</p>
       <h2>Passkeys</h2>

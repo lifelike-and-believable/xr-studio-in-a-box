@@ -19,14 +19,19 @@ export default async function ProjectLayout({ children, params }: { children: Re
       </main>
     );
   }
-  const groups = new Map<string, { id: string; name: string }[]>();
-  for (const p of await projectsFor(me.person.id)) groups.set(p.organisation, [...(groups.get(p.organisation) ?? []), p]);
+  // Grouped by organisation id, so two organisations with the same name stay apart; labelled by name.
+  const groups = new Map<string, { organisation: string; projects: { id: string; name: string }[] }>();
+  for (const p of await projectsFor(me.person.id)) {
+    const group = groups.get(p.organisationId) ?? { organisation: p.organisation, projects: [] };
+    group.projects.push(p);
+    groups.set(p.organisationId, group);
+  }
   return (
     <main id="main">
       <div className="actions">
         <ProjectSwitcher
           current={view.project.name}
-          groups={[...groups].map(([organisation, projects]) => ({ organisation, projects }))}
+          groups={[...groups.values()]}
         />
       </div>
       <h1>{view.project.name}</h1>

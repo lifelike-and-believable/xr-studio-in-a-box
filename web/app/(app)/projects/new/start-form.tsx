@@ -20,7 +20,7 @@ export function StartForm({ me, organisations, preselect }: { me: { id: string; 
   return (
     <>
       <ErrorSummary errors={e} ids={IDS} />
-      <form onSubmit={submit} noValidate>
+      <form method="post" onSubmit={submit} noValidate>
         <label htmlFor="name">Project name</label>
         <FieldError id="name-error" message={e.name} />
         <input id="name" name="name" type="text" defaultValue={state.values.name} aria-invalid={e.name ? true : undefined} aria-describedby={describedBy(e.name && 'name-error')} />

@@ -25,7 +25,7 @@ export default async function OrganisationPage({ params, searchParams }: Props) 
   const message = notice ? NOTICES[notice] : undefined;
   return (
     <main id="main">
-      {message ? <Notice>{message}</Notice> : null}
+      {message ? <Notice title={message.replace(/\.$/, '')}>{message}</Notice> : null}
       <h1>{org.name}</h1>
       <div className="actions">
         <Link href={`/projects/new?organisation=${org.id}`} className="button">

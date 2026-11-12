@@ -11,7 +11,7 @@ export function EditForm({ id, name, brief }: { id: string; name: string; brief:
   return (
     <>
       <ErrorSummary errors={e} ids={{ name: 'name' }} />
-      <form onSubmit={submit} noValidate>
+      <form method="post" onSubmit={submit} noValidate>
         <input type="hidden" name="projectId" value={id} />
         <label htmlFor="name">Project name</label>
         <FieldError id="name-error" message={e.name} />
