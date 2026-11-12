@@ -110,13 +110,15 @@ Creating an organisation and creating a project are open to any signed-in person
 
 ## Risks and decisions
 
-Open questions for the approver, each with a recommendation:
+Approver's decisions (2026-11-12) on the questions this spec raised:
 
-1. **Who may sign up?** Recommended: no open sign-up. An account is made when someone is added to a project by email, or when a person on a short list of addresses kept in the deployment's settings signs in, so the first person can create the first organisation. Alternative: anyone with an email can sign up and create an organisation.
-2. **Who may create organisations and projects?** Recommended: any signed-in person may create an organisation, and anyone who looks after an organisation may start projects in it. The stories name Jordan, or the director on a solo production, but roles are per project and do not exist yet when the first organisation is made. Alternative: only addresses on the settings list may create organisations.
-3. **The owner's roles.** Recommended: the owner gets director and producer at creation (AC-8), and can hand either over later. Alternative: the owner gets director only, and someone must add a producer before people can be added.
-4. **Which roles open the dashboard and manage people** (the table above). Recommended as shown: director and producer manage people; venue attendants, performers and collaborators use their own tools and pages, not the dashboard.
-5. **Production email provider for sign-in links.** Not chosen here. It must send from Canada or accept the residency trade-off, and slice 9 (notifications) uses the same provider. Recommended: decide before slice 1 is deployed; until then nothing is sent outside test capture.
+1. **Who may sign up?** No open sign-up. An account is made when someone is added to a project by email, or when a person on a short list of addresses kept in the deployment's settings signs in, so the first person can create the first organisation.
+2. **Who may create organisations and projects?** Any signed-in person may create an organisation, and anyone who looks after an organisation may start projects in it.
+3. **The owner's roles.** The owner gets director and producer at creation (AC-8), and can hand either over later.
+4. **Which roles open the dashboard and manage people.** As in the table above: director and producer manage people; venue attendants, performers and collaborators use their own tools and pages, not the dashboard.
+5. **Production email provider for sign-in links.** Amazon SES in ca-central-1, in the same AWS account and region as the record, so addresses and messages stay in Canada. Slice 9 (notifications) uses it too. Until slice 1 deploys, nothing is sent outside test capture.
+
+Still to check before slice 1 deploys: which Postgres major versions Aurora PostgreSQL offers in ca-central-1. CI runs Postgres 18; if Aurora's newest is older, CI is pinned to that version and UUIDv7 comes from the `uuidv7` package rather than Postgres 18's built-in function `[assumed]`.
 
 Other risks:
 
