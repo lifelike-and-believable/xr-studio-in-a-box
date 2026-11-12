@@ -41,14 +41,15 @@ Authentication:
 
 ## Decision
 
-Authorisation A, and authentication A `[open]`: the approver may prefer a hosted provider.
+Authorisation A, and authentication A: an auth library inside the app, with email sign-in links and passkeys (approver's decision, 2026-11-12).
 
 - **Principals:** a person, an agent session, a collaborator contact (no account) and a show machine. An agent session always acts for one requesting person. Its permissions are the overlap of that person's permissions, its grant (decision-agent-runtime) and a fixed list of actions agents can never take. It can never have more than the person.
 - **Checks on every request:** permissions are read from the record each time, not stored in long-lived tokens, so a role change applies at the person's next action.
 - **Data classes:** each field or record has a class (for example general, budget, prompts and references, protected-store reference, incident). Each role is mapped to the classes it can read and write. Chat answers are built from the same API calls with the person's permissions, so chat cannot show more than the dashboard.
 - **Protected approvals and area approvers** are assignments that only person principals can hold. A database constraint rejects an agent.
 - **Limited pages:** the email link carries a signed token scoped to one collaborator and their own items. Before a decision is recorded, a six-digit code is sent to the contact recorded with the terms, and the code expires after a short time `[assumed]`. A link alone can read the page but cannot decide.
-- **Staff at a venue** sign in offline with the credential in the show package (decision-offline-show-package).
+- **Staff at a venue** sign in offline with the credential in the show package (decision-offline-show-package). A role change reaches a show machine at its next show package refresh, and the pre-show check shows the package's age (approver's decision, 2026-11-12).
+- **Claude Code tokens** (decision-agent-runtime) are issued only to people whose roles cannot read the protected-store data class. The token is an agent-session principal acting for that person (approver's decision, 2026-11-12).
 
 ## Consequences
 

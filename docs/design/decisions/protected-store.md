@@ -37,7 +37,7 @@ Option A.
 - **Access:** the module checks for a person principal with a role mapped to the protected data class (decision-identity-and-roles). Agent tokens and show machines are refused, and the refusal is logged.
 - **Filter:** the record's command layer checks every write to an agent-readable class against the formats on Jordan's list, including chat messages before the runner sees them. A person can confirm a false match, and the confirmation is logged.
 - **Fill on export:** the copy is produced in the person's session and handed to them. The record keeps the placeholder version only. Where a sent copy must itself be kept as a business record, that copy is stored in the protected store `[assumed]`.
-- **Region:** where this database is hosted is for the approver `[open]`, as for the main record.
+- **Region:** a Canadian region if the provider offers one (approver's decision, 2026-11-12). Availability is checked before slice 0 `[assumed]`; if no Canadian region is offered, the approver is asked again before the store holds real data.
 
 ## Consequences
 

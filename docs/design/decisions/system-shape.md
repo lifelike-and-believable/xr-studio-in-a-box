@@ -33,18 +33,18 @@ Morgan may run a production alone, so whatever runs must not need a pipeline eng
 
 ## Decision
 
-Option A. It meets the stories with the least to run. The parts that need offline running (show machines) or a local editor (the runner in Layer 3) are kept at the edges, so they do not shape the record.
+Option A, the cloud (approver's decision, 2026-11-12). It meets the stories with the least to run. The parts that need offline running (show machines) or a local editor (the runner in Layer 3) are kept at the edges, so they do not shape the record.
 
 | Part | Sub-project (profile) | Runs on | Talks to |
 |---|---|---|---|
-| Project record, API, dashboard, limited pages | `web/` (web-app: Next.js on Vercel, Postgres) | Cloud | Everyone, over HTTPS `/api/v1` |
+| Project record, API, dashboard, limited pages | `web/` (web-app: Next.js on Vercel, Postgres) | Cloud | Everyone, over HTTPS `/api/v1`, and technical roles' Claude Code through an MCP endpoint over the same command layer (decision-agent-runtime) |
 | Object storage for asset versions and backups | Managed storage | Cloud | Uploads go direct, from a URL signed by the record (NODE-001's 4.5 MB body limit) |
 | Agent runner | `runner/` (Node service, web-app rules for code; not deployed to Vercel) | An always-on cloud worker first, and a studio workstation from Layer 3 | Connects out to the record and pulls tasks. It opens no inbound ports |
 | Extensions: adapters, steps, checks | `extensions/` | Loaded by the runner | Through the runner only (decision-extensions-and-adapters) |
 | Shared schemas: API, events, show package, extension messages | `contracts/` | Build time | Read by every sub-project |
 | Editor plugin and show runtime plugin | `unreal/` (unreal-plugin), from Layer 2 | Workstations and show machines | The editor plugin uses the record API. The runtime plugin reads only the show package |
 
-Pipeline code lives in one repository, as rfr-process expects for mixed sub-projects. Each production's Unreal content lives in its own repository with Git LFS and file locking, as the research note recommends for a small team. That content is not stored in this repository `[assumed]`.
+Pipeline code lives in one repository, as rfr-process expects for mixed sub-projects. Each production's Unreal content lives in its own repository with Git LFS and file locking, as the research note recommends for a small team. That content is not stored in this repository. Git LFS with file locking is the approver's decision for show content (2026-11-12).
 
 ## Consequences
 

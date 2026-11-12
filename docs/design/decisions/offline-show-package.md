@@ -43,6 +43,6 @@ The package and log schemas live in `contracts/` and are versioned.
 ## Consequences
 
 - Hard to reverse: the package and venue log formats, and the rule that show machines never write to the record directly.
-- A role removed in the dashboard reaches an offline show machine only at its next refresh. This conflicts with story-project-record-add-person ("takes effect the next time that person acts"). The approver needs to decide how to resolve it.
+- A role removed in the dashboard reaches an offline show machine only at its next refresh, and the pre-show check shows the package's age (approver's decision, 2026-11-12). story-project-record-add-person is amended to say so.
 - Layer 1 must keep every record a package needs exportable: accepted values, approved versions and roles. Nothing more is built for show machines now.
 - Revisit for multi-location shows (REQ-delivery-4, later), which may need live shared state between venues.

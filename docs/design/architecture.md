@@ -112,6 +112,13 @@ Solid lines are built in Layer 1. Dotted lines are boundaries that Layer 1 keeps
 - **No identifiers outside the protected store.** Agent-readable fields are filtered on write.
 - **Contracts are versioned.** The API, the extension messages, the term vocabulary, the provenance fields, and the show package and venue log formats live in `contracts/` with versions.
 
+## Approver's decisions (2026-11-12)
+
+- The project record runs in the cloud: Next.js on Vercel, managed Postgres and object storage (decision-system-shape).
+- The protected store is hosted in a Canadian region if the provider offers one; the record in the nearest region. Provider regions are checked before slice 0 (decision-protected-store, decision-project-record-model).
+- Chat with agents is in the dashboard, and technical roles may also use Claude Code over the record's MCP endpoint, limited as decision-agent-runtime describes.
+- The architect's recommendations were accepted for the rest: the agents' model use counts under the spend limit; the first runner is an always-on cloud worker; granting a tool approves sending its inputs to that vendor; generation outside the pipeline is caught at the adapter and by an import check; offline role changes take effect at the next show package refresh; backups at a second provider are kept 90 days with quarterly restore drills; staff sign in with email links and passkeys; extensions are reviewed by pull request and a review item; the spend limit is in CAD; closing a project is built with or after keep-records; show content uses Git LFS with locking.
+
 ## Build order
 
 Each slice is small enough to review on its own, and ends with something a person can use or a test can prove. Slices follow the epics' release groups.
@@ -124,7 +131,7 @@ Each slice is small enough to review on its own, and ends with something a perso
 | 3. Gates and the queue | name-approvers, hold-gated-hand-off, see-review-queue, decide-on-items | `web/` | End-to-end tests with seeded items. A test that an agent principal cannot hold a protected approval. Batch accept, and a revision request that needs feedback. |
 | 4. Versions, board and first view | feedback-and-versions, status-board, what-needs-me | `web/` | End-to-end tests of comparing and restoring with later versions kept, and the board changing with no reload. A manual WCAG 2.2 AA check (WEB-002). The first-task test with a person new to the pipeline. |
 | 5. Backup and restore | back-up-and-restore | `web/`, scheduled jobs | A scripted restore drill on a seeded project: working state returns, ledgers are untouched, the restore is logged, and a record in the deletion register stays gone. One drill on a real project before real work relies on it. |
-| 6. Chat and agent grants | direct-an-agent, agent-permissions, same-project-state, read-activity-log (agent entries), agent drafts in record-facts and set-up-organisation | `runner/`, `web/` | Integration tests with a scripted model that try each forbidden action and check the refusal and its log entry. A dashboard change checked in a chat answer, and the reverse. A short live-model smoke test. |
+| 6. Chat and agent grants | direct-an-agent, agent-permissions, same-project-state, read-activity-log (agent entries), agent drafts in record-facts and set-up-organisation | `runner/`, `web/` | Integration tests with a scripted model that try each forbidden action and check the refusal and its log entry. A dashboard change checked in a chat answer, and the reverse. A short live-model smoke test. The Claude Code MCP endpoint refuses a token for a role that can see protected-store data. |
 | 7. Spend limit | spend-limit | `web/`, `runner/` | Tests of a new project blocked with the plain-words message, a reservation at the limit refused, and the actual cost settled. Built before any metered tool is connected. |
 | 8. Terms and the gate | record-terms (without Robin's page), no-term-choice, block-generation (block only) | `web/` | Table tests of the gate covering each use, destination, end date, unconfirmed loosening and the no-term choice. A test that an agent cannot record a term. |
 | 9. Notifications | notifications | `web/` | Tests of the digest, one email per item and an immediate blocking alert against a test mailbox. A badge count test. A search of sent mail for test identifiers. |
@@ -132,7 +139,7 @@ Each slice is small enough to review on its own, and ends with something a perso
 | 11. Provenance and the first adapter | provenance-record, quality-and-licence-gate, tool-adapter | `runner/`, `extensions/`, `web/` | Tests with recorded Tripo responses. A fake generator replaces Tripo by a pin change, with no other change. Failed checks show what failed. One live Tripo run under a small limit. |
 | 12. Extensions | extend-the-workflow | `extensions/`, `runner/` | A sample check is added as a package, pinned by one project, and its version is shown. A failing version reports its reason. |
 | 13. Starter values and the motion gate | starter-targets, motion-quality-gate (gate and item types) | `web/` | A test set of values is drafted, accepted in one step, changed with a reason, and one is left unset and listed. The motion gate's full test needs Layer 2 inputs, so it waits for that layer. |
-| 14. Setup summary and closing | see-how-it-was-set-up (sections that exist in Layer 1), close-project | `web/` | The story's tests with simulated projects. Close needs retention fields from story-contracts-and-payment-keep-records, so either a minimal retention field is built here or this slice waits for that story `[open]`. |
+| 14. Setup summary and closing | see-how-it-was-set-up (sections that exist in Layer 1), close-project | `web/` | The story's tests with simulated projects. Close needs retention fields from story-contracts-and-payment-keep-records, so the closing half of this slice is built with or after that story (approver's decision, 2026-11-12). |
 
 ## What Layer 1 does not fully meet
 

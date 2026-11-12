@@ -54,5 +54,5 @@ Terms A, provenance A.
 ## Consequences
 
 - Hard to reverse: the term vocabulary and the provenance entry fields. Both are versioned in `contracts/`. Adding a use category later is cheap.
-- The gate can only stop runs that pass through an adapter. A tool an artist uses directly cannot be stopped before it runs. Its output is checked against the terms when it is brought in, and an asset with no record is listed. The approver needs to accept this gap or choose another way.
+- The gate can only stop runs that pass through an adapter. A tool an artist uses directly cannot be stopped before it runs. The approver accepted this (approver's decision, 2026-11-12): the gate runs at every adapter, work generated in a tool outside the pipeline is declared when it is brought in (story-character-path-own-tool-generated-work) and checked against the terms then, and an import check lists assets with no provenance record for the gate holder.
 - Revisit when shared-library reuse (Layer 3) checks terms across organisations, which may need terms to be exportable.
