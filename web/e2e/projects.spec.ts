@@ -63,6 +63,24 @@ test('account menu (layer1-organisations-projects-people#AC-15)', async ({ page 
   await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible();
 });
 
+// The menu sits in the frame every signed-in page shares, so it outlives a page change; it must
+// close when the page changes (finding in docs/decisions/layer1-organisations-projects-people.md).
+test('account menu closes when the page changes (layer1-organisations-projects-people#AC-15)', async ({ page }) => {
+  await signIn(page, FIRST.jordan);
+  const menu = page.getByRole('button', { name: FIRST.jordan });
+  await menu.click();
+  await expect(menu).toHaveAttribute('aria-expanded', 'true');
+  await page.getByRole('link', { name: 'Your account' }).click();
+  await expect(page).toHaveURL(/\/account$/);
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('button', { name: 'Sign out' })).toBeHidden();
+
+  await menu.click();
+  await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Organisations' }).click();
+  await expect(page).toHaveURL(/\/organisations$/);
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+});
+
 test('not available, access removed and nothing for you (layer1-organisations-projects-people#AC-16)', async ({ page, browser }) => {
   await signIn(page, FIRST.access);
   const missing = await page.goto(`/projects/${randomUUID()}`);
