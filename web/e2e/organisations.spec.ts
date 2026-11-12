@@ -101,6 +101,7 @@ test('start a project with a default organisation (layer1-organisations-projects
   await jordan.getByRole('link', { name: 'Change roles or remove Sol Solo' }).click();
   await jordan.getByRole('button', { name: 'Remove Sol Solo from the project' }).click();
   await jordan.getByRole('button', { name: 'Remove Sol Solo' }).click();
+  await expect(jordan.getByRole('status')).toContainText('Sol Solo removed from');
   await jordan.context().close();
 
   await page.goto('/projects/new');

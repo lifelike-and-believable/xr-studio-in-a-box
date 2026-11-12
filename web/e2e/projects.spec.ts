@@ -86,6 +86,7 @@ test('not available, access removed and nothing for you (layer1-organisations-pr
   await jordan.getByRole('link', { name: 'Change roles or remove Riley Chen' }).click();
   await jordan.getByRole('button', { name: 'Remove Riley Chen from the project' }).click();
   await jordan.getByRole('button', { name: 'Remove Riley Chen' }).click();
+  await expect(jordan.getByRole('status')).toContainText('Riley Chen removed from');
   await rileyPage.reload();
   await expect(rileyPage.getByText('You no longer have access to this project')).toBeVisible();
 
@@ -100,6 +101,7 @@ test('not available, access removed and nothing for you (layer1-organisations-pr
   await jordan.getByRole('checkbox', { name: 'Artist', exact: true }).uncheck();
   await jordan.getByRole('checkbox', { name: 'Performer', exact: true }).check();
   await jordan.getByRole('button', { name: 'Save roles' }).click();
+  await expect(jordan.getByRole('status')).toContainText("Sam Okafor's roles saved");
   await samPage.goto('/');
   await expect(samPage.getByText('Nothing in the dashboard for you yet')).toBeVisible();
   await rileyContext.close();
@@ -121,6 +123,7 @@ test('role change applies at the next request (layer1-organisations-projects-peo
   await page.getByRole('link', { name: 'Change roles or remove Riley Chen' }).click();
   await page.getByRole('checkbox', { name: 'Director', exact: true }).check();
   await page.getByRole('button', { name: 'Save roles' }).click();
+  await expect(page.getByRole('status')).toContainText("Riley Chen's roles saved");
 
   await rileyPage.reload();
   await expect(rileyPage.getByRole('link', { name: 'Edit name and brief' })).toBeVisible();
