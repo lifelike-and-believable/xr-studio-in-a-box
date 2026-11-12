@@ -35,6 +35,7 @@ A project can record what guests can do, try it in a playable prototype before a
 - Map one interaction to each target's input, and say what replaces it where a target cannot support it.
 - Save and configure a reusable interaction pattern without code.
 - Run a scripted test of each interaction on each target.
+- Check comfort and clarity with real guests, and see the changes that result.
 
 ## Stories
 
@@ -44,6 +45,7 @@ A project can record what guests can do, try it in a playable prototype before a
 - story-interaction-design-input-per-target
 - story-interaction-design-reusable-pattern
 - story-interaction-design-scripted-tests
+- story-interaction-design-test-with-real-guests
 
 ## Release groups
 

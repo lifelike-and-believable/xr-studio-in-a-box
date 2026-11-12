@@ -16,3 +16,4 @@ As Morgan, the director, I want to see everything waiting for me in one queue so
 - Each item shows a preview, the stage, who requested it and what changed.
 - An item is blocking when another stage or item is waiting on its decision. Blocking items are marked as blocking.
 - The queue shows only items Morgan can approve.
+- Items are grouped by gate, with the oldest blocking item first. Morgan can filter by area and by the delegate it was handed to, and accept a group in one step (story-review-and-status-decide-on-items).

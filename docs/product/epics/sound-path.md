@@ -62,7 +62,7 @@ Voices, music, effects and ambience go from a brief to sound placed in a show, u
 ## Open questions
 
 - Answered: both. Sound designers prepare stems in their audio workstation, and the live show mixes in Unreal with MetaSounds and submixes, so it runs with no extra machine and follows cues and signals (approver's answer). See story-sound-path-sound-assets and story-sound-path-mix-per-output.
-- Answered: binaural for headsets and stereo for the stream and the browser come first. Speaker layouts for venues are added per venue later. See story-sound-path-place-sound.
+- Answered: binaural for headsets and stereo for the stream and the browser come first, with the room's sound system, stereo first, for the first show's hybrid room (UC-2). Other speaker layouts for venues are added per venue (proposal, PR pending approval). See story-sound-path-place-sound and story-sound-path-mix-per-output.
 - Answered: settled in story-sound-path-mix-per-output by measuring the sound-to-picture offset at each output with a test signal, a flash and a click, against a target that a person with the director's role, or their delegate, sets for the show.
 
 ## Out of scope

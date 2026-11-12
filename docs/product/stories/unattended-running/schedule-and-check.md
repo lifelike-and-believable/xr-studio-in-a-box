@@ -3,12 +3,12 @@ id: story-unattended-running-schedule-and-check
 status: approved
 derived-from:
   - epic-unattended-running#outcome: d435481b65a1
-  - persona-venue-attendant#goals: ee33f70fd41e
+  - persona-technical-artist#goals: 1fb2055dfdf2
 ---
 
 # Start and stop on a schedule, with an automatic pre-show check
 
-As Taylor, the venue attendant, I want an unattended show to start, check itself and stop on a schedule so that each group of guests can start the experience on time, even when I am not there.
+As Sam, the technical artist, I want an unattended show to start, check itself and stop on a schedule so that the show keeps running when agents, the internet and staff are gone.
 
 ## Acceptance criteria
 

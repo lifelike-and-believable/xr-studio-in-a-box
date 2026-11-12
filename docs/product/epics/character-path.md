@@ -34,6 +34,7 @@ A character can go from a brief and references to a rigged, engine-ready asset, 
 - Make a stylised, creature or abstract character through the same path as a human one.
 - Put a character on the common skeleton, or retarget it automatically.
 - Lock a character before rehearsal, with later changes needing a named person.
+- Bring in work generated directly in an artist's own tool, with the tool and licence declared and checked against the policy record.
 
 ## Stories
 
@@ -43,6 +44,7 @@ A character can go from a brief and references to a rigged, engine-ready asset, 
 - story-character-path-other-styles
 - story-character-path-common-skeleton
 - story-character-path-lock-character
+- story-character-path-own-tool-generated-work
 
 ## Release groups
 

@@ -32,6 +32,7 @@ Performers and operators can read the audience at a glance, viewers can send cha
 - Keep a personal space around each guest.
 - Mute and block other guests.
 - Mute, hide or remove a guest during a show.
+- Ask for help, or report a guest, in two steps.
 
 ## Stories
 
@@ -41,6 +42,7 @@ Performers and operators can read the audience at a glance, viewers can send cha
 - story-audience-voice-personal-space
 - story-audience-voice-mute-and-block
 - story-audience-voice-remove-a-guest
+- story-audience-voice-ask-for-help
 
 ## Release groups
 
