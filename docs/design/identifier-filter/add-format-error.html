@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Add a format - Harbourfront Puppet Co. - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: pattern too short to be safe; values kept</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#" aria-current="page">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<div class="error-summary" role="alert" tabindex="-1">
+<h2>There is a problem</h2>
+<ul><li><a href="#format-pattern">Use at least 6 # or A in the pattern. A shorter pattern would match ordinary numbers like dates and prices.</a></li></ul>
+</div>
+<p class="hint"><a href="#">Harbourfront Puppet Co.</a> &gt; Identifier formats</p>
+<h1>Add a format</h1>
+<form method="post">
+<div class="field"><label for="format-name">Name</label><p class="hint" id="format-name-hint">What people will see when text matches, for example "Funder account number".</p><input type="text" id="format-name" name="format-name" value="Locker code" aria-describedby="format-name-hint"></div>
+<div class="field"><label for="format-pattern">Pattern</label><p class="hint" id="format-pattern-hint">Write # for any digit and A for any letter. Spaces and other characters must match as typed. At least 6 # or A.</p><p class="error-message" id="format-pattern-error">Use at least 6 # or A in the pattern. A shorter pattern would match ordinary numbers like dates and prices.</p><input type="text" id="format-pattern" name="format-pattern" value="####" aria-describedby="format-pattern-hint format-pattern-error" aria-invalid="true"></div>
+<div class="actions"><button type="submit">Add format</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

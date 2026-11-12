@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit description - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: edit a text fact</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<p class="hint"><a href="#">The Lantern Keeper</a> &gt; Facts</p>
+<h1>Edit description</h1>
+<form method="post">
+<div class="field"><label for="fact">Description</label><p class="hint" id="fact-hint">What the project is, in a few sentences. Do not put bank details or tax numbers here.</p><textarea id="fact" name="fact" aria-describedby="fact-hint">A lantern keeper on a drowned coast talks with the guests who row out to her light. Live puppetry, streamed and in a hybrid room.</textarea></div>
+<div class="actions"><button type="submit">Save description</button><a href="#">Cancel</a></div>
+</form>
+
+</main>
+</body>
+</html>

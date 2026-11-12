@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standard work samples - Harbourfront Puppet Co. - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: standard work samples, with Add a work sample</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#" aria-current="page">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<p class="hint"><a href="#">Harbourfront Puppet Co.</a> &gt; Organisation facts</p>
+<h1>Standard work samples</h1>
+<p class="lead">Samples every application can use. Each project can add its own samples on its Facts tab.</p>
+<table><thead><tr><th scope="col">Title</th><th scope="col">File</th><th scope="col">Added</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+<tbody>
+<tr><td>Company showreel 2025</td><td>showreel-2025.mp4, 3 minutes</td><td>Jordan Lee, 5 November</td><td><a href="#">Remove<span class="visually-hidden"> Company showreel 2025</span></a></td></tr>
+<tr><td>Press pack</td><td>press-pack.pdf, 4 pages</td><td>Jordan Lee, 5 November</td><td><a href="#">Remove<span class="visually-hidden"> Press pack</span></a></td></tr>
+</tbody></table>
+<h2>Add a work sample</h2>
+<form method="post">
+<div class="field"><label for="sample-title">Title</label><input type="text" id="sample-title" name="sample-title"></div>
+<div class="field"><label for="sample-file">File</label><p class="hint" id="sample-file-hint">Video, images, audio or a PDF, up to 2 GB. Text in documents is checked for bank details and tax numbers.</p><input type="file" id="sample-file" name="sample-file" aria-describedby="sample-file-hint"></div>
+<div class="actions"><button type="submit">Add work sample</button></div>
+</form>
+</main>
+</body>
+</html>
