@@ -10,17 +10,20 @@
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "e2e": "playwright test",
+    "e2e": "node scripts/run-e2e.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
+    "@better-auth/passkey": "1.7.22",
     "@xr/contracts": "workspace:*",
+    "better-auth": "1.7.22",
     "drizzle-orm": "0.45.4",
     "next": "16.4.6",
     "pg": "8.23.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "uuidv7": "1.2.1",
     "zod": "4.6.7"
   },
   "devDependencies": {
