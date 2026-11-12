@@ -5,7 +5,7 @@ status: draft
 
 # Concept to completion: a test of the approved stories
 
-This is a desk check made on 2026-11-12. It follows one invented production, step by step, from the first idea to the last record kept, and asks at each step which approved story makes that step possible. It tests the approved stories in `docs/product/stories/` and the epics they belong to, not built software. A step is rated covered only where a story's acceptance criteria provide it. A title that sounds right is not enough.
+This is a desk check made on 2026-11-12 and updated after PR #318. It follows one invented production, step by step, from the first idea to the last record kept, and asks at each step which approved story makes that step possible. It tests the approved stories in `docs/product/stories/` and the epics they belong to, not built software. A step is rated covered only where a story's acceptance criteria provide it. A title that sounds right is not enough.
 
 The production is UC-2's first show, extended: a livestreamed, improvised virtual puppetry show with stylised characters and a morphing creature, made by a small company. It plays to guests in headsets and seated guests at a hybrid venue, to interactive and player guests online, and to stream viewers on YouTube Live, then tours to two more venues. One performer is remote.
 
@@ -25,22 +25,26 @@ People: Morgan (director and approver), Jordan (producer), Sam (technical artist
 
 ## Summary
 
-| Phase | Steps | Covered | Partly | Gap | Conflict | Deferred |
-|---|---|---|---|---|---|---|
-| 1. Concept and project setup | 1 to 15a (16) | 13 | 1 | 1 | 0 | 1 |
-| 2. Funding | 16 to 27 (12) | 6 | 3 | 3 | 0 | 0 |
-| 3. Design | 28 to 62 (35) | 28 | 4 | 1 | 1 | 1 |
-| 4. Live puppetry | 63 to 81 (19) | 16 | 3 | 0 | 0 | 0 |
-| 5. Show control | 82 to 98 (17) | 15 | 1 | 1 | 0 | 0 |
-| 6. Delivery | 99 to 117a (20) | 17 | 0 | 1 | 1 | 1 |
-| 7. Audience | 118 to 138 (21) | 16 | 2 | 1 | 1 | 1 |
-| 8. AI assists | 139 to 150 (12) | 10 | 0 | 0 | 0 | 2 |
-| 9. Running sessions | 151 to 165 (15) | 11 | 2 | 1 | 1 | 0 |
-| 10. Business and wrap-up | 166 to 184 (19) | 16 | 1 | 1 | 0 | 1 |
-| 11. Short tour | 185 to 196 (12) | 9 | 2 | 0 | 0 | 1 |
-| **Total** | **198** | **157** | **19** | **10** | **4** | **8** |
+| Phase | Steps | Covered | Deferred |
+|---|---|---|---|
+| 1. Concept and project setup | 1 to 15a (16) | 15 | 1 |
+| 2. Funding | 16 to 27 (12) | 12 | 0 |
+| 3. Design | 28 to 62 (35) | 34 | 1 |
+| 4. Live puppetry | 63 to 81 (19) | 19 | 0 |
+| 5. Show control | 82 to 98 (17) | 17 | 0 |
+| 6. Delivery | 99 to 117a (20) | 19 | 1 |
+| 7. Audience | 118 to 138 (21) | 20 | 1 |
+| 8. AI assists | 139 to 150 (12) | 10 | 2 |
+| 9. Running sessions | 151 to 165 (15) | 15 | 0 |
+| 10. Business and wrap-up | 166 to 184 (19) | 18 | 1 |
+| 11. Short tour | 185 to 196 (12) | 11 | 1 |
+| **Total** | **198** | **190** | **8** |
 
-The counts are of steps, not of distinct problems. Several steps share one cause, and the fixes below are grouped by cause. Most covered steps are covered well: the stories are dense where the approver spent time (gates, consent, fallbacks, show safety, performer welfare). The holes cluster at the edges of the pipeline: the company as a whole, money coming in, the online audience's hosting and platforms, the remote performer's own side, and a few gates and terms that the requirements name but no story carries.
+The first check rated 157 steps covered, 19 partly, 10 gap and 4 conflict. PR #318 closed all 33 of the partly, gap and conflict steps with new stories and new criteria, listed in "How the gaps were closed" below. Each of those steps keeps its original description, which records what was missing, and its rating line now names the stories that cover it and says what it was first rated. The 8 deferred steps are deferred on purpose by approved lines.
+
+## Using this as an acceptance walkthrough
+
+This document now serves as the acceptance walkthrough for the first show (UC-2). Each step names the stories whose acceptance shows that the step works. When those stories are built and accepted, a person can walk the production step by step against the built software and confirm each one.
 
 ## Walk-through
 
@@ -50,10 +54,10 @@ The counts are of steps, not of distinct problems. Several steps share one cause
 Covered by: story-project-record-start-project. Rating: **covered**.
 
 **2. The company itself is set up.** Before any project, the company needs an organisation: its legal name, its applicant profile with the Canada Council for the Arts, its history of past shows and funding, its bio and its standard work samples. Every application, budget and credit draws on these. story-shared-library-save-to-library says each project belongs to one organisation and shows which, but no story creates an organisation, says how a project is placed in one, or keeps company-level facts. story-project-record-start-project says a new project starts with no facts carried over, so Jordan would type the company bio again on every project.
-Covered by: story-shared-library-save-to-library (organisation named only), story-project-record-start-project, story-project-record-record-facts. Rating: **gap**.
+Covered by: story-project-record-set-up-organisation, story-project-record-start-project, story-shared-library-save-to-library. Rating: **covered** (first rated gap, closed in #318).
 
 **3. Jordan adds the team.** Jordan adds Sam, Riley, Drew, Quinn, Casey, Alex and Kai from the dashboard and picks a role for each. Each sees only what the role needs, and Jordan can change or remove a role later. Many stories rely on "a person whose role allows it", "the technical artist's role" or "the capture crew's role", but no story says which roles exist, what each one allows, or whether Jordan can adjust a role for this project (Casey also operates sound on two nights, for example).
-Covered by: story-project-record-add-person. Rating: **partly**.
+Covered by: story-project-record-add-person. Rating: **covered** (first rated partly, closed in #318).
 
 **4. Morgan names approvers and delegates.** Morgan keeps the creative gates with Riley as delegate for look and mesh and rig, Alex as delegate at the show for changes during a live run, and Drew for sound and music. The four protected approvals are shown: Jordan holds contracts and licence terms, Morgan holds funding, publishing and marketing, and audience-facing safety and consent. An AI cannot be picked for any of them.
 Covered by: story-project-record-name-approvers, story-review-and-status-hold-gated-hand-off. Rating: **covered**.
@@ -100,7 +104,7 @@ Covered by: REQ-delivery-10 (later), epic-build-and-install (out of scope line).
 Covered by: story-funding-program-list. Rating: **covered**.
 
 **17. Morgan asks which programs fit.** The agent matches the project against the program list. Most rules are met or not met with the fact used. Three are unknown because they are about the company, not the project (years of activity, past Council funding, applicant category), and those facts are not in the project facts (see step 2).
-Covered by: story-funding-match-programs. Rating: **partly**.
+Covered by: story-project-record-set-up-organisation, story-funding-match-programs. Rating: **covered** (first rated partly, closed in #318).
 
 **18. Morgan chooses the programs to pursue.** Morgan chooses the Council program and Creative BC. The choice is recorded with who and when. An agent cannot choose.
 Covered by: story-funding-match-programs. Rating: **covered**.
@@ -109,28 +113,28 @@ Covered by: story-funding-match-programs. Rating: **covered**.
 Covered by: story-budgets-and-cost-build-a-budget. Rating: **covered**.
 
 **20. The budget in the Council's format, including revenue.** Morgan views the budget in the Council's format. Expense lines map to the funder's categories with nothing retyped. The Council form also asks for revenue: other grants applied for (Creative BC), earned revenue from tickets, the company's own contribution and in-kind support from the venue. A budget line has a category, an amount and a note, and nothing marks a line as income, confirmed or pending, or in kind.
-Covered by: story-budgets-and-cost-build-a-budget. Rating: **partly**.
+Covered by: story-budgets-and-cost-build-a-budget. Rating: **covered** (first rated partly, closed in #318).
 
 **21. A statement of intended AI use for the application.** The Council asks how AI will be used in the project. story-credits-and-outreach-ai-use-statement drafts only from the provenance records of existing assets. At application time no assets exist, so the statement cannot describe planned use (Higgsfield drafts, Tripo meshes, Marble worlds, rule-based crowds, no generative model at show time). No story drafts a statement of intended AI use from the plan and the policy record.
-Covered by: story-credits-and-outreach-ai-use-statement (past use only). Rating: **gap**.
+Covered by: story-credits-and-outreach-ai-use-statement. Rating: **covered** (first rated gap, closed in #318).
 
 **22. The agent drafts the application.** The agent drafts the application in the Council's format from the facts and the budget, with each figure linked to its fact, a fact changed later flagged, missing facts named and left empty, and word counts shown against limits.
 Covered by: story-funding-draft-application. Rating: **covered**.
 
 **23. Support material: work samples and letters.** The work samples come from the facts. The Council also asks for letters of support or confirmation from the venue and from Robin. No story asks a partner for a letter, tracks whether it has arrived or attaches it. Robin's limited page shows only items for sign-off and Robin's own records.
-Covered by: story-project-record-record-facts (work samples only). Rating: **partly**.
+Covered by: story-funding-draft-application, story-project-record-record-facts. Rating: **covered** (first rated partly, closed in #318).
 
 **24. Rule check, funding gate and submission.** Six days before the deadline Jordan rechecks the program's rules and confirms the check. The draft waits at the funding applications and reports gate. Morgan approves, submits through the Council's portal in person, and records the submitted version, which is kept unchanged. The company's bank details for the Council's payment form come from the protected store.
 Covered by: story-funding-program-list, story-funding-draft-application, story-review-and-status-hold-gated-hand-off, story-contracts-and-payment-protect-sensitive-data. Rating: **covered**.
 
 **25. Recording the result.** Ten weeks later the Council awards CAD 45,000, paid in two instalments, with an interim report due at the midpoint and a set acknowledgement wording. Creative BC declines. Nothing records the outcome of a submitted application: the amount awarded against the amount asked, the award's conditions, its payment schedule, the acknowledgement it requires, or a decline. story-funding-reports-and-claims assumes "a funded program" but has no hand-off from a result.
-Covered by: none. Rating: **gap**.
+Covered by: story-funding-record-decision, story-funding-reports-and-claims, story-credits-and-outreach-build-credits. Rating: **covered** (first rated gap, closed in #318).
 
 **26. Deadlines in one view.** Jordan sees the interim and final report deadlines beside the production schedule, in date order, with a lead-time alert. The award's own deadlines would need to be entered as program deadlines by hand, since step 25 has no home for them.
 Covered by: story-budgets-and-cost-cost-and-schedule-view, story-funding-program-list. Rating: **covered**.
 
 **27. Expected income against spend.** Jordan wants to see when the two instalments arrive against the planned spend, to know whether the company can pay Kai in month two. The cost view shows budget, actual and remaining per line, and no income or cash timing.
-Covered by: story-budgets-and-cost-cost-and-schedule-view (costs only). Rating: **gap**.
+Covered by: story-budgets-and-cost-build-a-budget, story-budgets-and-cost-cost-and-schedule-view. Rating: **covered** (first rated gap, closed in #318).
 
 ### Phase 3. Design
 
@@ -144,7 +148,7 @@ Covered by: story-character-path-design-drafts. Rating: **covered**.
 Covered by: story-character-path-design-drafts, story-provenance-and-policy-block-generation, story-provenance-and-policy-quality-and-licence-gate, story-provenance-and-policy-provenance-record. Rating: **covered**.
 
 **31. Drafts of Pell from Robin's sketches.** Robin's term needs sign-off before the sketches are used as references. story-provenance-and-policy-block-generation only runs or blocks a request. story-provenance-and-policy-collaborator-sign-off says "the named stage waits", and story-behaviour-and-limits-check-ai-use routes specifications to Robin, but no story routes a generation request whose reference is under a sign-off term to Robin and holds it until Robin decides. Jordan would have to override by recording a changed term.
-Covered by: story-provenance-and-policy-block-generation, story-provenance-and-policy-collaborator-sign-off. Rating: **partly**.
+Covered by: story-provenance-and-policy-block-generation, story-provenance-and-policy-collaborator-sign-off. Rating: **covered** (first rated partly, closed in #318).
 
 **32. Feedback and the character design gate.** Riley writes feedback, gets revisions and compares versions side by side. Riley sends one Mae draft and one Pell draft to the character design gate. Morgan approves Mae and asks for a revision of Pell's beak with written feedback.
 Covered by: story-review-and-status-feedback-and-versions, story-review-and-status-see-review-queue, story-review-and-status-decide-on-items, story-character-path-design-drafts. Rating: **covered**.
@@ -162,7 +166,7 @@ Covered by: story-character-path-hand-made-work. Rating: **covered**.
 Covered by: story-character-path-mesh-and-rig, story-asset-checks-show-failures. Rating: **covered**.
 
 **37. What the Tide is called.** In the character path the Tide is "a creature, animal or spirit", a style driven by a performer. In story-crowds-and-creatures-add-creatures "a creature is an autonomous character" with a behaviour specification, scripted fallback, content limits and override. Kai's Tide is a creature in the first sense and must not be pulled into the second, but a tool or a reviewer reading "creature" cannot tell which applies, and the creature count limit and spec gate of add-creatures would wrongly apply to it.
-Covered by: story-character-path-other-styles, story-crowds-and-creatures-add-creatures. Rating: **conflict**.
+Covered by: story-character-path-other-styles, story-crowds-and-creatures-add-creatures. Rating: **covered** (first rated conflict, closed in #318).
 
 **38. The Tide's first form, the puddle sprite.** The sprite is an abstract form with no mesh. Its mesh and rig stage makes the form and the values that drive it, and the same gate reviews it.
 Covered by: story-character-path-other-styles. Rating: **covered**.
@@ -177,7 +181,7 @@ Covered by: story-nearest-body-retargeting-match-nearest-body-plan, story-neares
 Covered by: story-character-forms-continuous-change, story-shared-characters-parameter-mapping. Rating: **covered**.
 
 **42. The morph from sprite to serpent.** Sam sets up a morph between the sprite and the serpent with a 4-second curve and rehearses it forwards and back. The two forms use different mappings: the sprite is driven by parameter values and the serpent by a hand-made body mapping. story-character-forms-morph says Kai keeps driving during the morph, but only story-character-forms-swap-behind-effect says how the new form's own mapping takes over. For a continuous morph between forms whose bodies differ, no criterion says which mapping drives which part during the blend.
-Covered by: story-character-forms-morph, story-character-forms-swap-behind-effect. Rating: **partly**.
+Covered by: story-character-forms-morph, story-character-forms-swap-behind-effect. Rating: **covered** (first rated partly, closed in #318).
 
 **43. Dissolve into foam, reassemble as the giant.** Riley makes a dissolve of the serpent and a reassembly into the giant from their own meshes. It goes to the visual effects gate. While dissolved, Kai's channels keep their sources, and the giant follows Kai at once.
 Covered by: story-character-forms-dissolve-and-reassemble, story-character-forms-swap-behind-effect. Rating: **covered**.
@@ -192,7 +196,7 @@ Covered by: story-character-path-lock-character. Rating: **covered**.
 Covered by: story-environment-path-generate-a-world. Rating: **covered**.
 
 **47. The kit fallback on a first project.** The pier generates badly, so Riley builds that part from the kit. The kit holds only environment assets "accepted at their gate", and on the company's first project it is empty. Riley can bring in hand-made pieces, but no story generates a single prop or kit piece (a crate, a lamp post) or names the gate a single environment asset passes on its own. The environments gate reviews a whole level.
-Covered by: story-environment-path-build-from-kit, story-environment-path-bring-hand-made-work. Rating: **partly**.
+Covered by: story-environment-path-make-a-kit-piece, story-environment-path-build-from-kit. Rating: **covered** (first rated partly, closed in #318).
 
 **48. The look and the engine-ready check.** An agent brings materials, lighting and sky towards the key art, keeping Riley's hand changes. Sam runs the checks for PC VR, projection and the cloud session on the whole level.
 Covered by: story-environment-path-develop-the-look, story-environment-path-engine-ready-level. Rating: **covered**.
@@ -219,7 +223,7 @@ Covered by: story-sound-path-place-sound, story-sound-path-mix-per-output. Ratin
 Covered by: story-sound-path-live-voice-processing. Rating: **covered**.
 
 **56. The Tide's jaw follows Kai's voice.** Sam drives the serpent's jaw from the level of Kai's microphone through audio analysis and a signal mapping. A performer's voice is performer data, but story-live-signals-audio-analysis treats any microphone as a signal and does not check the performer's agreement, unlike story-shared-characters-parameter-mapping and story-live-signals-performer-sensor.
-Covered by: story-live-signals-audio-analysis, story-live-signals-map-a-signal. Rating: **partly**.
+Covered by: story-live-signals-audio-analysis, story-live-signals-map-a-signal. Rating: **covered** (first rated partly, closed in #318).
 
 **57. Interaction design.** Quinn records three interactions: a venue guest raising a hand-held lantern draws the Tide closer; player guests tap "throw bread" to bring gulls; anyone can send a cheer. Quinn maps each to hand tracking, controllers, mouse and touch, chooses seated movement for headsets, and checks the seated and low-motion options are supported on every target.
 Covered by: story-interaction-design-record-design, story-interaction-design-input-per-target, story-interaction-design-guest-movement. Rating: **covered**.
@@ -237,7 +241,7 @@ Covered by: story-asset-checks-check-against-budget, story-asset-checks-check-pr
 Covered by: story-guest-care-standard-pre-show, story-interaction-design-reusable-pattern. Rating: **covered**.
 
 **62. Motion and performance quality gate.** REQ-workflow-2 gates "motion and performance quality". Morgan wants to approve how Kai's motion reads on the giant before the cue list is built round it. story-performer-support-motion-quality-check lets Sam set a numeric bar, and nothing makes any work wait at a motion and performance quality gate, says what goes to it (a mapping, a cleaned recording, a rehearsal take) or who approves it.
-Covered by: none. Rating: **gap**.
+Covered by: story-review-and-status-motion-quality-gate, story-performer-support-motion-quality-check. Rating: **covered** (first rated gap, closed in #318).
 
 ### Phase 4. Live puppetry
 
@@ -248,7 +252,7 @@ Covered by: story-live-puppet-inertial-suit-setup, story-live-puppet-connect-a-s
 Covered by: story-live-puppet-webcam-or-phone-setup, story-live-puppet-assign-channels. Rating: **covered**.
 
 **65. Kai's microphone as a source.** The voice channel needs a source, but every guided setup is for a body-tracking device. No story sets up a performer's microphone (radio pack, gain, a dropped radio link as a drop) as a capture source through the common interface.
-Covered by: story-live-puppet-assign-channels (voice channel named only), story-sound-path-mix-per-output. Rating: **partly**.
+Covered by: story-live-puppet-microphone-setup, story-live-puppet-assign-channels, story-sound-path-mix-per-output. Rating: **covered** (first rated partly, closed in #318).
 
 **66. Kai drives the giant live.** Kai drives the four-armed giant through the approved mapping. The delay is measured per body plan and saved with the mapping version.
 Covered by: story-nearest-body-retargeting-drive-live. Rating: **covered**.
@@ -284,7 +288,7 @@ Covered by: story-session-recording-record-and-replay, story-session-recording-c
 Covered by: story-session-recording-remote-performer, story-session-recording-stream-between-machines, story-session-recording-two-site-test, story-live-puppet-headset-setup. Rating: **covered**.
 
 **77. Lee's side of the show.** Lee is alone in a rented room. Lee needs the crew channel, a stage view of Kai's characters, the audience summary, time-in-kit counting and a way to stop. story-performer-support-crew-channel works on the venue network and names only the remote helper and intercom as separate stories. story-session-recording-remote-performer measures delay and the fallback, and nothing gives the remote performer the crew channel, return feeds, an emergency stop or who is responsible for their safety at the remote site.
-Covered by: story-session-recording-remote-performer, story-performer-support-remote-helper (helper only). Rating: **partly**.
+Covered by: story-performer-support-remote-performer-side, story-session-recording-remote-performer. Rating: **covered** (first rated partly, closed in #318).
 
 **78. Lee's link in the show-level fallback.** The plan declares Lee's link as a layer: if it is lost, Pell flies to a perch and the flock covers. A recording of Lee cannot stand in, because Lee's agreement refuses it, and the plan shows why.
 Covered by: story-show-safety-show-level-fallback, story-session-recording-remote-performer. Rating: **covered**.
@@ -296,7 +300,7 @@ Covered by: story-shared-characters-swap-performer. Rating: **covered**.
 Covered by: story-schedule-and-touring-time-in-kit, story-schedule-and-touring-own-time-in-kit. Rating: **covered**.
 
 **81. A capture test before any guest sees it.** Morgan wants Robin to see Pell moving before it goes public, as a courtesy and not a term. Robin's limited page shows only items waiting for sign-off. With no term needing sign-off, there is no way to share a preview with Robin.
-Covered by: story-provenance-and-policy-collaborator-sign-off. Rating: **partly**.
+Covered by: story-provenance-and-policy-collaborator-sign-off. Rating: **covered** (first rated partly, closed in #318).
 
 ### Phase 5. Show control
 
@@ -307,7 +311,7 @@ Covered by: story-cue-list-agent-drafts. Rating: **covered**.
 Covered by: story-cue-list-build-a-cue-list. Rating: **covered**.
 
 **84. Virtual cameras for the stream.** The stream needs three virtual cameras (wide, Kai close, Pell follow) and live cuts that follow an improvisation. A camera is a cue target and cuts can fire from the palette, but no story sets up a virtual camera (placement, lens, following a character, a camera driven by a camera channel), lets Alex switch cameras outside the cue list, or covers a preview of the next shot.
-Covered by: story-cue-list-build-a-cue-list, story-cue-list-step-and-palette, story-outputs-and-streaming-stream-to-platforms. Rating: **partly**.
+Covered by: story-outputs-and-streaming-virtual-cameras, story-cue-list-step-and-palette. Rating: **covered** (first rated partly, closed in #318).
 
 **85. Kai fires cues.** Kai's foot pedal fires "lightning", armed only in the Storm section. Kai feels it fire.
 Covered by: story-cue-list-performer-fired. Rating: **covered**.
@@ -349,7 +353,7 @@ Covered by: story-session-operations-live-changes, story-sound-path-rehearsal-mi
 Covered by: story-session-operations-live-trim. Rating: **covered**.
 
 **98. Soak test of the attended show.** Before the first public night Morgan wants the show run for six hours straight, three sessions with resets plus the stream, to find leaks. story-unattended-running-soak-test is defined only for unattended shows, around opening hours and the idle state. story-build-and-install-automatic-checks shows "any soak test result" at the public-show gate, but nothing defines a soak test for an attended live show, its length or its pass bar.
-Covered by: story-unattended-running-soak-test (unattended only). Rating: **gap**.
+Covered by: story-build-and-install-soak-test-attended-show, story-build-and-install-automatic-checks. Rating: **covered** (first rated gap, closed in #318).
 
 ### Phase 6. Delivery
 
@@ -402,13 +406,13 @@ Covered by: story-outputs-and-streaming-projector-or-screen. Rating: **covered**
 Covered by: story-outputs-and-streaming-stream-to-platforms, story-remote-guests-player-guest. Rating: **covered**.
 
 **115. Where the player page, the cloud sessions and the installed app live.** The player page is a public web page, cloud sessions run on a rented cloud provider, and remote PC guests download an installed app. No story chooses or sets up the hosting, the domain, the cloud provider and its data region, the provider's terms on guest data, or how the app is downloaded. The YouTube stream key is a credential, and no story says where it is kept or that agents cannot read it.
-Covered by: story-remote-guests-interactive-guest, story-remote-guests-player-guest (behaviour only). Rating: **gap**.
+Covered by: story-remote-guests-host-online-audience. Rating: **covered** (first rated gap, closed in #318).
 
 **116. Going-live approval.** Jordan checks the music licences in the stream mix and YouTube's terms on music and chat data, and closes each item. Morgan then approves both destinations for the opening week's sessions.
 Covered by: story-outputs-and-streaming-approve-going-live. Rating: **covered**.
 
 **117. The stream's archive.** YouTube keeps a recording of a live stream by default. That recording is an audience replay of the performance, which REQ-delivery-21 defers and ties to each performer's agreement. Kai's agreement does not list replay to audiences, and approve-going-live does not ask whether archiving is on. The default platform behaviour does what an approved requirement defers.
-Covered by: story-outputs-and-streaming-approve-going-live; REQ-delivery-21 (later). Rating: **conflict**.
+Covered by: story-outputs-and-streaming-approve-going-live, story-session-recording-record-agreement. Rating: **covered** (first rated conflict, closed in #318).
 
 **117a. Viewpoint choice.** Morgan would like player guests to pick between the three stream cameras. Viewpoint choice is later.
 Covered by: REQ-audience-7 (later), epic-remote-guests (out of scope line). Rating: **deferred**.
@@ -428,10 +432,10 @@ Covered by: story-guest-care-guest-data, story-credits-and-outreach-collect-audi
 Covered by: story-guest-care-notices-and-warnings, story-guest-care-languages. Rating: **covered**.
 
 **122. Minors.** The show admits guests aged 10 and over. The pre-show asks each guest's age group first and routes a younger guest to guardian consent. At the venue the guardian is standing beside the child. For a 12-year-old joining the player page from home, no criterion says how a guardian's consent is given or told apart from the child's own tap.
-Covered by: story-guest-care-guest-data, story-guest-care-notices-and-warnings. Rating: **partly**.
+Covered by: story-guest-care-notices-and-warnings, story-guest-care-guest-data. Rating: **covered** (first rated partly, closed in #318).
 
 **123. Stream viewers on YouTube.** story-remote-guests-join-by-link-or-code says stream viewers reach the pre-show from the link. Most stream viewers watch on YouTube itself and never open the show's link, so they see no warning about flashing light and give no age group, yet their chat feeds the show through story-outputs-and-streaming-read-chat and drives the stream-viewer crowd.
-Covered by: story-remote-guests-join-by-link-or-code, story-outputs-and-streaming-read-chat, story-audience-avatars-stream-viewer-crowd. Rating: **conflict**.
+Covered by: story-remote-guests-join-by-link-or-code, story-outputs-and-streaming-approve-going-live. Rating: **covered** (first rated conflict, closed in #318).
 
 **124. Venue guests arrive.** Twelve guests enter in two stages, have their headsets checked and learn the lantern in a short tutorial. Taylor sees two not yet ready. The pre-show time is measured against its budget.
 Covered by: story-guest-care-standard-pre-show. Rating: **covered**.
@@ -455,7 +459,7 @@ Covered by: story-remote-guests-rejoin. Rating: **covered**.
 Covered by: story-audience-voice-moderation-rules, story-audience-voice-send-chat-and-reactions, story-outputs-and-streaming-read-chat, story-audience-avatars-react. Rating: **covered**.
 
 **131. Chat on YouTube's own page.** A YouTube viewer posts abuse. The pipeline's filters stop it reaching Kai and the scene, but it still shows to every viewer in YouTube's own chat panel, which the pipeline does not moderate. No story covers the platform's own moderation settings, blocked words or the platform moderators who act there.
-Covered by: none. Rating: **gap**.
+Covered by: story-audience-voice-moderation-rules, story-outputs-and-streaming-approve-going-live. Rating: **covered** (first rated gap, closed in #318).
 
 **132. The audience summary reaches Kai.** Kai feels the cheer level on the haptic belt and sees counts per audience type on the cast monitor. When the player feed overloads, that type shows as missing.
 Covered by: story-audience-voice-audience-summary, story-performer-support-audience-summary-signals. Rating: **covered**.
@@ -470,7 +474,7 @@ Covered by: story-guest-care-room-safety. Rating: **covered**.
 Covered by: story-audience-voice-mute-and-block, story-audience-voice-remove-a-guest. Rating: **covered**.
 
 **136. Applause measured by a room microphone.** Morgan wants the seated venue audience's applause to count, so Sam points audio analysis at a room microphone. Unlike floor pads, beams and depth sensors, story-live-signals-audio-analysis has no notice and no legal review before a microphone that hears guests is used.
-Covered by: story-live-signals-audio-analysis. Rating: **partly**.
+Covered by: story-live-signals-audio-analysis. Rating: **covered** (first rated partly, closed in #318).
 
 **137. Feedback and analytics.** After the session Jamie leaves feedback, allows quoting, and gets a deletion code. Analytics stay off for guests who do not opt in.
 Covered by: story-credits-and-outreach-collect-audience-data, story-credits-and-outreach-player-page-analytics. Rating: **covered**.
@@ -525,7 +529,7 @@ Covered by: story-schedule-and-touring-call-sheets. Rating: **covered**.
 Covered by: story-session-operations-pre-show-check. Rating: **covered**.
 
 **153. Starting a session and going live.** At 19:30 Alex opens the pre-show to guests, starts the session and starts the YouTube and player page destinations. story-session-operations-several-sessions says a person "starts a session in a copy that is ready", and story-guest-care-standard-pre-show defines the pre-show as the state before the start. For a single-copy show, no story defines the start control, what ends a session in a live show (an ending, Alex, a time), or how starting and ending a session relate to starting and stopping the stream.
-Covered by: story-session-operations-several-sessions, story-guest-care-standard-pre-show, story-outputs-and-streaming-stream-to-platforms. Rating: **partly**.
+Covered by: story-session-operations-start-and-end-session. Rating: **covered** (first rated partly, closed in #318).
 
 **154. The suit's battery dies.** Twelve minutes in, Kai's suit stops. Body channels fall to the AI-held pose, face continues from the phone, Kai feels the fallback pattern, and Casey swaps the battery. The channels return after the settling time.
 Covered by: story-handover-and-fallback-automatic-switch, story-handover-and-fallback-return-recovered-source, story-crowds-and-creatures-ai-assists, story-session-operations-routing-control. Rating: **covered**.
@@ -540,13 +544,13 @@ Covered by: story-session-recording-remote-performer, story-show-safety-show-lev
 Covered by: story-remote-guests-contain-failures. Rating: **covered**.
 
 **158. The main machine fails.** In the second session the main show PC crashes. Alex switches to the warm spare at the last cue. Headsets show their runtime's boundary view while down. The stream was encoded on the failed machine, so YouTube shows nothing at all rather than the holding screen: the holding screen is drawn by the show, and the plan has no stand-in for a remote output the failed machine drove.
-Covered by: story-venue-setup-failed-machine-plan, story-outputs-and-streaming-stream-to-platforms. Rating: **partly**.
+Covered by: story-venue-setup-failed-machine-plan. Rating: **covered** (first rated partly, closed in #318).
 
 **159. The fire alarm.** In the third session the alarm sounds. The relay fires the emergency stop: house lights up, headsets show the room, the stream shows its holding screen, the crew hear it on the crew channel and Kai feels the stop pattern. Taylor helps guests out. After the all-clear Alex clears the stop with confirmation, and the session resumes from the start of the Storm.
 Covered by: story-show-safety-emergency-stop, story-venue-setup-venue-profile, story-show-safety-declare-safe-state, story-performer-support-crew-channel, story-session-operations-pause-and-jump. Rating: **covered**.
 
 **160. An incident report.** During the evacuation a guest trips on a headset cable. The venue and the insurer ask for an incident report. The stop log records what fired and who cleared it, and nothing records an incident: what happened to whom, first aid given, and the follow-up, with the privacy rules that data needs.
-Covered by: none. Rating: **gap**.
+Covered by: story-guest-care-record-an-incident, story-contracts-and-payment-keep-records. Rating: **covered** (first rated gap, closed in #318).
 
 **161. Reset between sessions.** After each session the world, characters and cue position reset with one control, session data is deleted, the shorter check runs, and Taylor gets the ready signal. Guests still in headsets see the held harbour view.
 Covered by: story-session-operations-reset-for-next-session. Rating: **covered**.
@@ -558,7 +562,7 @@ Covered by: story-session-operations-several-sessions. Rating: **covered**.
 Covered by: story-session-operations-reset-for-next-session. Rating: **covered**.
 
 **164. A self-guided foyer version.** Between evenings the festival wants a 10-minute self-guided version in its foyer, on a screen with a start button. Recordings of Kai stand in, which Kai's agreement allows. Cues fire from the start button and timecode. Morgan approves the guest stop and pause. The self-guided story uses recordings to drive characters, and REQ-delivery-21 defers replaying a recorded live show to audiences. Where one ends and the other begins is not stated.
-Covered by: story-branching-shows-self-guided-run, story-branching-shows-self-guided-safety, REQ-delivery-21 (later). Rating: **conflict**.
+Covered by: story-branching-shows-self-guided-run. Rating: **covered** (first rated conflict, closed in #318).
 
 **165. Running the foyer version unattended.** The foyer version is declared unattended: screens only, no guest data. It opens at 10:00 on the machine's clock, idles between guests, recovers from a forced crash and a power cut, and alerts Taylor's tablet when recovery fails. A 24-hour soak test passes and is accepted at the public-show gate.
 Covered by: story-unattended-running-schedule-and-check, story-unattended-running-idle-state, story-unattended-running-restart-and-recover, story-unattended-running-holding-state-and-alert, story-unattended-running-maintenance-and-log, story-unattended-running-soak-test. Rating: **covered**.
@@ -584,7 +588,7 @@ Covered by: story-budgets-and-cost-connect-a-tool. Rating: **covered**.
 Covered by: story-contracts-and-payment-quotes-and-invoices. Rating: **covered**.
 
 **172. Ticket income from the venue.** The venue settles the box office split. The company receives money it did not invoice, and nothing records income against a budget line (see step 20).
-Covered by: none. Rating: **gap**.
+Covered by: story-budgets-and-cost-track-actual-cost, story-budgets-and-cost-cost-and-schedule-view. Rating: **covered** (first rated gap, closed in #318).
 
 **173. Payroll.** Kai, Casey and Alex confirm their time records. An agent prepares hours, rates and gross amounts from the signed contracts. Jordan exports the figures for the accountant, and the bank details are added from the protected store at export.
 Covered by: story-contracts-and-payment-prepare-payroll. Rating: **covered**.
@@ -620,7 +624,7 @@ Covered by: story-shared-library-save-to-library, story-interaction-design-reusa
 Covered by: story-budgets-and-cost-work-alone. Rating: **covered**.
 
 **184. Closing the project.** When the tour ends, Jordan wants to end the access of the freelancers, revoke agent grants, take a final backup and mark the project closed and read-only while its records stay under retention. Roles can be removed one by one, and no story closes or archives a project.
-Covered by: story-project-record-add-person, story-agent-work-agent-permissions, story-contracts-and-payment-keep-records. Rating: **partly**.
+Covered by: story-project-record-close-project. Rating: **covered** (first rated partly, closed in #318).
 
 ### Phase 11. Short tour
 
@@ -652,56 +656,57 @@ Covered by: REQ-delivery-10 (later). Rating: **deferred**.
 Covered by: story-outputs-and-streaming-approve-going-live. Rating: **covered**.
 
 **194. On-site hours.** The workflow requirements make on-site and rehearsal hours a success measure for the first project. Calls record planned hours and confirmed time records hold hours worked, but no story reports on-site hours per venue against planned hours for the measure.
-Covered by: story-schedule-and-touring-schedule, story-contracts-and-payment-prepare-payroll. Rating: **partly**.
+Covered by: story-budgets-and-cost-cost-and-schedule-view. Rating: **covered** (first rated partly, closed in #318).
 
 **195. Touring with an understudy.** In Toronto the understudy plays two nights. Casey swaps the performer, and the understudy's limits and agreement apply.
 Covered by: story-shared-characters-swap-performer, story-schedule-and-touring-time-in-kit. Rating: **covered**.
 
 **196. Crossing a border.** A late offer comes from Seattle. Kit would cross the border and Lee would need a work permit. The travel checklist tracks bookings and protects passport numbers, and nothing covers customs documents for kit or work permits for people.
-Covered by: story-schedule-and-touring-travel-checklist. Rating: **partly**.
+Covered by: story-schedule-and-touring-travel-checklist. Rating: **covered** (first rated partly, closed in #318).
 
-## Gaps and proposed fixes
+## How the gaps were closed
 
-Each entry gives the step, what is missing and a proposed fix. Entries marked **approver** need a decision from the approver before a story can be written.
+PR #318 closed every step first rated partly, gap or conflict.
 
-### Gaps (no story)
+The approver decided three questions:
 
-- **Steps 2, 17. Organisation and company facts.** No story creates an organisation or keeps company-level facts shared by its projects, and start-project forbids carrying facts over. Fix: a new story in epic-project-record, "Set up an organisation and its facts", that creates the organisation, places each project in it, and keeps company facts (legal name, funder applicant profiles, history, bio, standard work samples) that every project reads and never retypes. Amend story-project-record-start-project to say the project's own facts start empty while organisation facts are read in. **Approver**: confirm that company facts are organisation-level.
-- **Step 21. Intended AI use at application time.** Fix: add a criterion to story-credits-and-outreach-ai-use-statement for a statement of planned use, drafted from the plan, the policy record and the tools granted, marked as planned and replaced by a statement from records once assets exist.
-- **Step 25. Funding result.** Fix: a new story in epic-funding, "Record a funding decision", holding the amount awarded or the decline, the conditions, the payment schedule, the acknowledgement wording and the report dates, which feed the deadlines view, the reports and claims, and credits. Recording is by a person with the funding approval.
-- **Steps 20, 27, 172. Income.** The budget has no revenue side and nothing tracks income or cash timing. Fix: add income lines (confirmed, pending, in kind) to story-budgets-and-cost-build-a-budget and income received to story-budgets-and-cost-track-actual-cost, and show expected against received in story-budgets-and-cost-cost-and-schedule-view. **Approver**: whether cash-flow timing is in the first release.
-- **Step 62. Motion and performance quality gate.** REQ-workflow-2 lists the gate and no story implements it. Fix: a new story in epic-performer-support or epic-review-and-status that says what goes to the gate (approved mappings, cleaned recordings, a rehearsal take against the motion quality bar), who holds it and when it blocks. **Approver**: what the gate covers for improvised work, since live improvisation cannot be approved in advance.
-- **Step 98. Soak test for an attended show.** Fix: widen story-unattended-running-soak-test, or add a story in epic-build-and-install, to define a soak run for any show: its length from the longest show day, sessions with resets, simulated guests in every tier and the stream, and the pass bar on frame rate and memory over time.
-- **Step 115. Hosting the online audience.** Fix: a new story in epic-remote-guests or epic-outputs-and-streaming that chooses and sets up hosting for the player page, the cloud session provider and its data region, and the installed app's download, with the provider's terms on guest data recorded by the contracts holder before first use. Add a criterion that stream keys and provider credentials are kept outside agents' reach, as story-budgets-and-cost-connect-a-tool does for business tools. **Approver**: which cloud provider and whether the pipeline hosts the player page itself.
-- **Step 131. Moderation on the platform's own chat.** Fix: a criterion in story-audience-voice-moderation-rules that the show's moderation rules also say how each platform's own chat is moderated (platform settings, blocked words, named platform moderators), checked before going live in story-outputs-and-streaming-approve-going-live. **Approver**: whether the company is responsible for chat the pipeline does not carry.
-- **Step 160. Incident records.** Fix: a new story in epic-guest-care, "Record an incident", for injuries, near misses and guest complaints, with who may see it, its retention as a business record and how it relates to guest data deletion. **Approver**: and legal review.
+1. Incidents: a new guest-care story records injuries, near misses and complaints. Only the holder of the audience-facing safety and consent approval and the staff they name can see a record. It is kept as a business record, pending legal review.
+2. Guardian consent at home: a guardian attests in the pre-show, and only for regions whose legal review is recorded. The review is recorded per region.
+3. Touring abroad is in scope. Customs documents (for example an ATA carnet) and work permits are travel-checklist items, and their numbers are kept in the protected store.
 
-### Partly covered (a real hole)
+PR #318 also records 17 proposals the approver has not yet decided, such as organisation-level company facts and cash-flow timing in the first release. They are written into the stories and can be changed later.
 
-- **Step 3. Role contents.** Fix: a criterion in story-project-record-add-person that lists the roles and what each may see and do, shows them to Jordan, and lets a person with the right role give one person two roles on a project.
-- **Step 23. Letters of support.** Fix: a criterion in story-funding-draft-application to request, track and attach letters named in the program's documents, with Robin able to provide one on the limited page.
-- **Step 31. Sign-off before generation.** Fix: a criterion in story-provenance-and-policy-block-generation: a request whose inputs are under a term that needs sign-off waits for the collaborator's decision (story-provenance-and-policy-collaborator-sign-off) before it runs.
-- **Step 42. Morph between different bodies.** Fix: a criterion in story-character-forms-morph saying which mapping drives each part during the blend when the two forms use different mappings, or that such a change must use a swap behind an effect.
-- **Step 47. Kit pieces on a first project.** Fix: a story in epic-environment-path to generate or bring in a single environment asset and pass it at the environments gate on its own, so the kit can be filled before Marble fails.
-- **Step 56. Voice analysis bypasses the agreement.** Fix: a criterion in story-live-signals-audio-analysis that an input carrying a performer's voice counts as performer capture and needs that performer's confirmed agreement, as in story-shared-characters-parameter-mapping.
-- **Step 65. Microphone as a source.** Fix: a story in epic-live-puppet for a performer's microphone through the common interface, with a guided level check, the agreement check and drop detection for a radio link.
-- **Step 77. The remote performer's own side.** Fix: criteria in story-session-recording-remote-performer, or a new story, giving the remote performer the crew channel, a stage view, the audience summary signals, time-in-kit counting and a local stop control, and naming who is responsible for safety at the remote site. **Approver**: whether a crew member must be present with a remote performer.
-- **Step 81. Previews for a collaborator.** Fix: a criterion in story-provenance-and-policy-collaborator-sign-off allowing a person to share a preview for comment with no decision needed.
-- **Step 84. Virtual cameras.** Fix: a story in epic-cue-list or epic-outputs-and-streaming for setting up virtual cameras (placement, lens, follow a character, a camera channel) and switching between them live from the operator console as an operation, with a preview of the next camera.
-- **Step 122. Guardian consent at home.** Fix: a criterion in story-guest-care-notices-and-warnings for how a guardian's consent is given on a remote device. **Approver**: and legal review, since the right method depends on the jurisdiction.
-- **Step 136. A microphone that hears guests.** Fix: a criterion in story-live-signals-audio-analysis that a microphone in a guest area needs a notice and the legal review of sensing, like floor pads and beams, and that its audio is never recorded.
-- **Step 153. Starting and ending a session.** Fix: criteria in story-session-operations-reset-for-next-session or a new story that define the start control for any show, what ends a session (an ending, a person, a time limit), and which stream destinations start and stop with it.
-- **Step 158. The stream when its machine fails.** Fix: a criterion in story-venue-setup-failed-machine-plan that a remote output driven by the failed machine has a declared stand-in (the spare takes over the stream, or a separate encoder holds a slate).
-- **Step 184. Closing a project.** Fix: a story in epic-project-record that closes a project: ends people's access and agent grants in one step, takes a final backup and leaves the project read-only with its records under retention.
-- **Step 194. On-site hours.** Fix: a criterion in story-schedule-and-touring-schedule or story-budgets-and-cost-cost-and-schedule-view that reports planned against worked hours at each venue.
-- **Step 196. Customs and work permits.** Fix: items on story-schedule-and-touring-travel-checklist for customs documents for kit and work permits for people. **Approver**: whether touring abroad is in scope for the first release.
-
-### Conflicts
-
-- **Step 37. Two meanings of "creature".** The character path uses "creature" for a style a performer drives, while story-crowds-and-creatures-add-creatures defines a creature as an autonomous character. Fix: rename the autonomous one ("autonomous creature") in epic-crowds-and-creatures and its stories, and say in story-character-path-other-styles that a creature style is performer-driven unless it has a behaviour specification.
-- **Step 117. The platform's archive is an audience replay.** YouTube keeps a recording by default, and REQ-delivery-21 defers audience replay and ties it to each performer's agreement. Fix: a criterion in story-outputs-and-streaming-approve-going-live that the approval records whether the platform keeps a recording, and that keeping one needs every performer's agreement to allow replay to audiences, which story-session-recording-record-agreement should list as a use. **Approver**: whether a platform archive counts as replay.
-- **Step 123. Stream viewers and the pre-show.** story-remote-guests-join-by-link-or-code says stream viewers pass the pre-show, but YouTube viewers never do, and their chat still reaches the show. Fix: say in story-remote-guests-join-by-link-or-code that viewers on a public platform see the platform's own page, and add a criterion to story-outputs-and-streaming-approve-going-live that the stream listing carries the warnings, the audience age setting and the notice that chat may reach the show. **Approver**.
-- **Step 164. Self-guided shows and audience replay.** Recordings drive self-guided shows in the first release, while replaying a recorded live show to audiences is later. Fix: a sentence in story-branching-shows-self-guided-run or REQ-delivery-21 that draws the line, for example that a self-guided show is authored from recordings as material and is not a replay of a recorded session. **Approver**.
+| Steps | What was missing | Closed by |
+|---|---|---|
+| 2, 17 | Organisation and company facts | story-project-record-set-up-organisation, story-project-record-start-project |
+| 3 | What each role may see and do | story-project-record-add-person |
+| 20, 27, 172 | Income and cash timing | story-budgets-and-cost-build-a-budget, story-budgets-and-cost-track-actual-cost, story-budgets-and-cost-cost-and-schedule-view |
+| 21 | Planned AI use at application time | story-credits-and-outreach-ai-use-statement |
+| 23 | Letters of support | story-funding-draft-application |
+| 25 | Funding result | story-funding-record-decision, story-funding-reports-and-claims, story-credits-and-outreach-build-credits |
+| 31 | Sign-off before generation | story-provenance-and-policy-block-generation |
+| 37 | Two meanings of "creature" | story-crowds-and-creatures-add-creatures, story-character-path-other-styles |
+| 42 | Morph between different bodies | story-character-forms-morph |
+| 47 | Kit pieces on a first project | story-environment-path-make-a-kit-piece |
+| 56, 136 | Voice and guest microphones | story-live-signals-audio-analysis |
+| 62 | Motion and performance quality gate | story-review-and-status-motion-quality-gate, story-performer-support-motion-quality-check |
+| 65 | Microphone as a source | story-live-puppet-microphone-setup |
+| 77 | The remote performer's own side | story-performer-support-remote-performer-side |
+| 81 | Previews for a collaborator | story-provenance-and-policy-collaborator-sign-off |
+| 84 | Virtual cameras | story-outputs-and-streaming-virtual-cameras |
+| 98 | Soak test for an attended show | story-build-and-install-soak-test-attended-show |
+| 115 | Hosting the online audience | story-remote-guests-host-online-audience |
+| 117 | The platform's archive | story-outputs-and-streaming-approve-going-live, story-session-recording-record-agreement |
+| 122 | Guardian consent at home | story-guest-care-notices-and-warnings, story-guest-care-guest-data |
+| 123 | Stream viewers and the pre-show | story-remote-guests-join-by-link-or-code, story-outputs-and-streaming-approve-going-live |
+| 131 | Moderation on the platform's own chat | story-audience-voice-moderation-rules |
+| 153 | Starting and ending a session | story-session-operations-start-and-end-session |
+| 158 | The stream when its machine fails | story-venue-setup-failed-machine-plan |
+| 160 | Incident records | story-guest-care-record-an-incident, story-contracts-and-payment-keep-records |
+| 164 | Self-guided shows and audience replay | story-branching-shows-self-guided-run |
+| 184 | Closing a project | story-project-record-close-project |
+| 194 | On-site hours | story-budgets-and-cost-cost-and-schedule-view |
+| 196 | Customs and work permits | story-schedule-and-touring-travel-checklist |
 
 ### Deferred, for the record
 
@@ -711,7 +716,7 @@ Steps 15a (update to a remote venue gate), 39 (legless body plan), 117a (viewpoi
 
 - Built software, and whether the stories' criteria can be met as written. A covered step can still be hard to build.
 - The quality of the creative work, or whether improvisation reads well on a stylised character.
-- Requirements that have no story yet beyond those named above, and stories of epics outside the first release.
+- Stories of epics outside the first release.
 - Legal correctness. Funder rules, tax credits, guardian consent, sensing, insurance and retention periods are stated as the stories state them, pending the legal reviews the stories already require.
 - Performance figures. Delay targets, guest counts and budget numbers here are invented for the walk-through.
 - Other use cases. UC-1 touring LBVR with standalone headsets, the museum piece with conversation and the other shows in the earlier desk check are not walked again.
