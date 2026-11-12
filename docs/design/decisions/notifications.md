@@ -1,6 +1,6 @@
 ---
 id: decision-notifications
-status: draft
+status: approved
 derived-from:
   - epic-review-and-status#outcome: adfddef70e61
   - persona-artist#goals: 0767918db571

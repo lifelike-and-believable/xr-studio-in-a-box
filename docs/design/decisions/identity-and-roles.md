@@ -1,6 +1,6 @@
 ---
 id: decision-identity-and-roles
-status: draft
+status: approved
 derived-from:
   - epic-project-record#outcome: c7917e3ef44b
   - epic-provenance-and-policy#outcome: c0bb4a44b0d6

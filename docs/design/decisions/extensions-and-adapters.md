@@ -1,6 +1,6 @@
 ---
 id: decision-extensions-and-adapters
-status: draft
+status: approved
 derived-from:
   - epic-agent-work#outcome: f707c8c84ba0
   - persona-technical-artist#goals: 1fb2055dfdf2

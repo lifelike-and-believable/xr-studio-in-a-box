@@ -1,6 +1,6 @@
 ---
 id: decision-protected-store
-status: draft
+status: approved
 derived-from:
   - epic-contracts-and-payment#outcome: 98a1377bb7cd
   - persona-producer#goals: d1cc47b03be9
