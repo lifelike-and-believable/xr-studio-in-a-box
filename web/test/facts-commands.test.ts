@@ -395,7 +395,7 @@ describe('test identifiers reach nothing an agent can read (layer1-facts-identif
     const ids = ['00123-004-9876543', '046 454 286', '987654321', '123456789 RT0001', '4012 8888 8888 1881'];
     const compact = ids.map((i) => i.replace(/[\s.-]/g, ''));
     for (const [n, id] of ids.entries()) {
-      const fact = ['plan', 'schedule', 'collaborators', 'credits', 'description'][n];
+      const fact = ['plan', 'schedule', 'collaborators', 'credits', 'description'][n] ?? 'plan';
       await saveFact(jordanP, project, fact, { values: { text: `Value ${id}` }, baseVersion: await version(project, fact) });
       await saveFact(jordanP, org, 'funder-profile-epic-megagrants', { values: { applicantName: id, category: id, profileNumber: id, mandate: id }, baseVersion: await version(org, 'funder-profile-epic-megagrants') });
       await confirmFact(jordanP, project, 'plan', { values: { text: 'Ref 046 454 286' }, baseVersion: await version(project, 'plan'), answer: `number ${id}` });

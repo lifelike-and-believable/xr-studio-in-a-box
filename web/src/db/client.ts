@@ -20,6 +20,15 @@ function createPool(): Pool {
   created.on('error', () => {
     console.error('database: an idle connection was closed');
   });
+  // The app works as xr_app, which may not update or delete the ledgers
+  // (layer1-facts-identifiers-activity#AC-38). pg runs this before any query given to the client.
+  // A database not yet migrated has no such role; the health check reports that, so the error is
+  // logged here rather than thrown from an event handler.
+  created.on('connect', (client) => {
+    client.query('set role xr_app').catch(() => {
+      console.error('database: could not set role xr_app; run the migrations');
+    });
+  });
   return created;
 }
 

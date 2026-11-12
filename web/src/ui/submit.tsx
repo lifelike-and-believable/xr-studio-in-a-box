@@ -22,7 +22,10 @@ export function useSubmit(dispatch: (form: FormData) => void, pending: boolean) 
     event.preventDefault();
     if (sending.current) return;
     sending.current = true;
-    const form = new FormData(event.currentTarget);
+    // The submitter is included, so a form with two submit buttons (Save, or "It is not a <format>")
+    // sends which was pressed.
+    const submitter = (event.nativeEvent as SubmitEvent).submitter;
+    const form = new FormData(event.currentTarget, submitter instanceof HTMLButtonElement ? submitter : null);
     startTransition(() => dispatch(form));
   };
 }

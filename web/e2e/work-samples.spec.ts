@@ -49,7 +49,7 @@ test('add a work sample with progress (layer1-facts-identifiers-activity#AC-10)'
     await route.continue();
   });
   await addSample(page, 'Rehearsal photo', png('rehearsal.png'));
-  await expect(page.getByRole('button', { name: 'Uploading' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Uploading', exact: true })).toBeDisabled();
   await expect(page.locator('progress')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Stop uploading' })).toBeVisible();
   release();

@@ -48,6 +48,11 @@ tests-commit: 19dcf69
 unlocks:
   - web/e2e/organisations.spec.ts: AC-13. Slice 1's organisation page test expected the placeholder "No organisation facts yet.", which AC-13 replaces with the facts themselves; it now expects **Add legal name** in that place. The other assertions are unchanged.
   - web/test/repo-hygiene.test.ts: Scope (new environment variables). The list of names in `.env.example` gains `CRON_SECRET`, `STORAGE_DIR` and `STORAGE_SIGNING_SECRET`, as the Scope requires; every value is still checked to be a placeholder.
+  - contracts/test/roles.test.ts: AC-4 and AC-34 (Roles and permissions). Slice 1's test compares each role's permissions with an exact list; the spec adds `see-facts`, `see-budget`, `edit-facts` and `read-activity` beside slice 1's, so the lists gain them as the spec's table gives them, and the Technical artist, who now also reads the activity, is checked on its own line. Every slice 1 permission is still checked.
+  - web/e2e/facts.spec.ts: AC-1. The test looked for the **Facts** tab with `getByRole('link', { name: 'Facts' })`, which also matches **Open <organisation>'s facts** and another link containing "facts", so the strict locator failed; it now looks inside the Project navigation. No assertion changes.
+  - web/e2e/activity.spec.ts: AC-35. `getByLabel('To')` also matched the project switcher, whose label holds the made-up project name, when that name happened to contain "to"; it now matches the label exactly. No assertion changes.
+  - web/e2e/work-samples.spec.ts: AC-10. `getByRole('button', { name: 'Uploading' })` also matched **Stop uploading**; it now matches the name exactly. No assertion changes.
+  - web/e2e/identifiers.spec.ts: AC-23. The test typed new text straight after the first **Save description**, before the page answered; the answer redrew the form with the first text, so the later steps ran on the first text. It now waits for the "Not saved" summary before typing, as a person would. No assertion changes.
   - web/test/write-path.test.ts: AC-40. Extended with a test that the system writers gain no file, that every slice 2 command is in the command layer, and that the route receiving bytes uses only object storage. No existing assertion changes.
 ---
 

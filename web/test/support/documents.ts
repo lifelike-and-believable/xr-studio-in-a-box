@@ -11,11 +11,12 @@ export function pdfWithPages(pages: string[]): Uint8Array {
   objects[2] = `<< /Type /Pages /Kids [${pageIds.map((id) => `${id} 0 R`).join(' ')}] /Count ${pages.length} >>`;
   objects[3] = '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>';
   pages.forEach((text, i) => {
+    const id = 4 + i * 2;
     const content = `BT /F1 12 Tf 72 720 Td (${escape(text)}) Tj ET`;
-    objects[pageIds[i]] =
+    objects[id] =
       '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> ' +
-      `/Contents ${pageIds[i] + 1} 0 R >>`;
-    objects[pageIds[i] + 1] = `<< /Length ${content.length} >>\nstream\n${content}\nendstream`;
+      `/Contents ${id + 1} 0 R >>`;
+    objects[id + 1] = `<< /Length ${content.length} >>\nstream\n${content}\nendstream`;
   });
   let out = '%PDF-1.4\n';
   const offsets: number[] = [];

@@ -25,6 +25,10 @@ const env = {
   APP_ORIGINS: process.env.APP_ORIGINS || 'http://127.0.0.1:3100,http://localhost:3100,http://127.0.0.1:3101',
   PASSKEY_RP_ID: process.env.PASSKEY_RP_ID || 'localhost',
   PASSKEY_ORIGINS: process.env.PASSKEY_ORIGINS || 'http://localhost:3100',
+  // Slice 2: uploaded files go to a fresh folder; the signing and job secrets are made per run.
+  STORAGE_DIR: process.env.STORAGE_DIR || mkdtempSync(path.join(tmpdir(), 'xr-storage-')),
+  STORAGE_SIGNING_SECRET: process.env.STORAGE_SIGNING_SECRET || randomBytes(32).toString('hex'),
+  CRON_SECRET: process.env.CRON_SECRET || randomBytes(32).toString('hex'),
 };
 
 // `pnpm run e2e -- <args>` passes a leading '--' through; Playwright does not want it.

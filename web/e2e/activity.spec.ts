@@ -80,7 +80,7 @@ test('filter the activity (layer1-facts-identifiers-activity#AC-35)', async ({ p
   await page.getByRole('link', { name: 'Clear filters' }).first().click();
   await expect(page).toHaveURL(new RegExp(`/projects/${t.project}/activity$`));
   await page.getByLabel('From').fill('2030-01-02');
-  await page.getByLabel('To').fill('2030-01-01');
+  await page.getByLabel('To', { exact: true }).fill('2030-01-01');
   await page.getByRole('button', { name: 'Apply filters' }).click();
   await expect(errorSummary(page)).toContainText('Choose a From date before the To date.');
   await expect(errorSummary(page)).toBeFocused();

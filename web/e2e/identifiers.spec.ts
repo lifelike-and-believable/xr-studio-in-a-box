@@ -48,6 +48,7 @@ test('confirm a false match and save (layer1-facts-identifiers-activity#AC-23)',
   const box = page.getByRole('textbox', { name: 'Description' });
   await box.fill('Prop catalogue 00123-004-1234567.');
   await page.getByRole('button', { name: 'Save description' }).click();
+  await expect(errorSummary(page)).toBeFocused();
   await box.fill('Prop catalogue 00123-004-1234567. A lantern keeper.');
   await page.getByRole('button', { name: 'It is not a bank account number' }).click();
   await expect(page).toHaveURL(new RegExp(`/projects/${project}/facts/description/confirm$`));

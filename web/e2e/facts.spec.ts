@@ -17,7 +17,7 @@ test('facts tab lists the facts in order with who last changed each (layer1-fact
   await expect(tabs).toHaveText(['Overview', 'Facts', 'People', 'Activity']);
   await tabs.filter({ hasText: 'Facts' }).click();
   await expect(page).toHaveURL(new RegExp(`/projects/${project}/facts$`));
-  await expect(page.getByRole('link', { name: 'Facts' })).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('navigation', { name: 'Project' }).getByRole('link', { name: 'Facts' })).toHaveAttribute('aria-current', 'page');
 
   const facts = page.getByRole('heading', { level: 3 });
   await expect(facts).toHaveText(FACTS);
