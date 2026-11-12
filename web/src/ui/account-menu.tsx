@@ -1,15 +1,21 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { signOut } from './sign-out';
 
 // The person's name opens Your account and Sign out (layer1-organisations-projects-people#AC-15).
 export function AccountMenu({ name }: { name: string }) {
-  const [open, setOpen] = useState(false);
+  // The menu sits in the frame every page shares, so it is open only on the page it was opened
+  // on: a page change closes it.
+  const path = usePathname();
+  const [openOn, setOpenOn] = useState<string | null>(null);
+  const open = openOn === path;
+  const setOpen = (value: boolean) => setOpenOn(value ? path : null);
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
-    const close = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    const close = (e: KeyboardEvent) => e.key === 'Escape' && setOpenOn(null);
     document.addEventListener('keydown', close);
     return () => document.removeEventListener('keydown', close);
   }, [open]);
