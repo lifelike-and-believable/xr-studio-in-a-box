@@ -8,7 +8,7 @@ derived-from:
   - persona-sound-designer#goals: 70f155e30dc6
   - persona-director#goals: a92ca172be83
   - persona-show-operator#goals: 408315e4f8f6
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Sound that fits the show on every output

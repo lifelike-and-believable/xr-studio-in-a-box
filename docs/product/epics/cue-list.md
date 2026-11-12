@@ -9,7 +9,7 @@ derived-from:
   - requirements-showcontrol#REQ-showcontrol-11: f023e5198460
   - persona-show-operator#goals: 408315e4f8f6
   - persona-director#goals: a92ca172be83
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Build, rehearse and fire the cues of a show

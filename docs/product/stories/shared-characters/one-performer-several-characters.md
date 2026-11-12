@@ -3,7 +3,7 @@ id: story-shared-characters-one-performer-several-characters
 status: approved
 derived-from:
   - epic-shared-characters#outcome: 78501c6baddc
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Drive several characters from one performer

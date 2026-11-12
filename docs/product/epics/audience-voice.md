@@ -5,7 +5,7 @@ derived-from:
   - requirements-audience#REQ-audience-6: b9ff91aa7865
   - requirements-audience#REQ-audience-8: dead142baede
   - requirements-audience#REQ-audience-11: 8aeedda1a3e2
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
   - persona-show-operator#goals: 408315e4f8f6
   - persona-audience-member#goals: e1b5f3ebc15b
 ---

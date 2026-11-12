@@ -12,7 +12,7 @@ As Morgan, the director, I want the business tools to work with no other softwar
 
 ## Acceptance criteria
 
-- The program list, matching, applications, reports and claims, tax-credit tracking, budgets, cost tracking and the cost and schedule view (stories in epic-funding and epic-budgets-and-cost) work from the web dashboard and chat with no third-party account or other software.
+- The program list (story-funding-program-list), matching (story-funding-match-programs), applications (story-funding-draft-application), reports and claims (story-funding-reports-and-claims), tax-credit tracking (story-funding-tax-credits), budgets (story-budgets-and-cost-build-a-budget), cost tracking (story-budgets-and-cost-track-actual-cost) and the cost and schedule view (story-budgets-and-cost-cost-and-schedule-view) work from the web dashboard and chat with no third-party account or other software.
 - Morgan can export the budget, the cost lines, the program list and an incentive's gathered spend as a spreadsheet file (CSV and .xlsx). An export holds only what the exporter's role can see, and never bank details or tax numbers unless the exporter's role allows it and they choose to include them. An agent can prepare an export, but only a person takes it out of the project.
 - Morgan can import budget lines or cost lines from a spreadsheet file. Imported rows come in as drafts, with problems such as a missing amount or an unknown budget line listed in plain words, until Morgan accepts them. An import never overwrites an accepted line without Morgan confirming it, and each import is recorded with who made it and when.
 - One person holding every role (story-project-record-name-approvers) can run the whole cycle, from program list to submitted claim, alone.

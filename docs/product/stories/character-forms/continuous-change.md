@@ -3,7 +3,7 @@ id: story-character-forms-continuous-change
 status: approved
 derived-from:
   - epic-character-forms#outcome: a7670ee45062
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Change a character continuously while driving it

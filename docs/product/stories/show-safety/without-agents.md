@@ -3,7 +3,7 @@ id: story-show-safety-without-agents
 status: approved
 derived-from:
   - epic-show-safety#outcome: f4a6fa9d5258
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Keep every live function working when all agents are gone

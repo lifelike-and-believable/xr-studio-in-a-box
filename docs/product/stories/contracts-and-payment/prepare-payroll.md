@@ -12,7 +12,7 @@ As Jordan, the producer, I want payroll and payment figures prepared from confir
 
 ## Acceptance criteria
 
-- Hours come from time records that a person confirms: the person who worked them, or Jordan. An agent can draft time records from the schedule and call sheets (epic-schedule-and-touring) but cannot confirm them. Rates and fees come from each person's signed contract (story-contracts-and-payment-draft-and-track-contracts).
+- Hours come from time records that a person confirms: the person who worked them, or Jordan. An agent can draft time records from the schedule (story-schedule-and-touring-schedule) and call sheets (story-schedule-and-touring-call-sheets) but cannot confirm them. Rates and fees come from each person's signed contract (story-contracts-and-payment-draft-and-track-contracts).
 - An agent prepares, for each person and pay period, the hours, rate, fees and gross amount. Deductions and withholdings are rules a person records with their source and the date they were checked. The figures are marked as a draft for a person to check, not professional or tax advice.
 - Bank details and tax numbers are added only by a person, from the protected store (story-contracts-and-payment-protect-sensitive-data), when they export the figures. An agent works with hours and amounts only.
 - A person exports the checked figures as a spreadsheet for whoever runs payroll, such as an accountant or payroll provider. An agent cannot submit a payment, a payroll run or a tax filing. A person records each payment made and its date.

@@ -14,6 +14,6 @@ As Robin, a collaborator, I want to have my terms recorded, with their history a
 
 - A person with the right role can record Robin's terms, including limits on AI use, cultural protocols and rights.
 - Robin can see the terms recorded for them, with a dated history of changes, on the same limited page used for sign-off, and nothing else in the project.
-- A term can have an end date. The assets it covers are flagged a lead time before that date, which the project sets.
+- A term can have an end date, including one set by a contract (story-contracts-and-payment-draft-and-track-contracts). The assets it covers are flagged a lead time before that date, which the project sets.
 - After the end date, those assets cannot be used in new work or new shows. Past shows and work already delivered stand as they are.
 - A show still running at the end date alerts a person, who decides.

@@ -3,7 +3,7 @@ id: story-session-recording-check-agreement
 status: approved
 derived-from:
   - epic-session-recording#outcome: 196669ad74cf
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Check the agreement before recording and generation

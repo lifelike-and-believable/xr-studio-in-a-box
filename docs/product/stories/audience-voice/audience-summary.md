@@ -3,7 +3,7 @@ id: story-audience-voice-audience-summary
 status: approved
 derived-from:
   - epic-audience-voice#outcome: f83d52994def
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Read a summary of audience presence and reaction at a glance

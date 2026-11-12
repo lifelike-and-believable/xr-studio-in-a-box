@@ -6,7 +6,7 @@ derived-from:
   - requirements-business#REQ-business-10: 9b89d3a183b2
   - persona-producer#goals: d1cc47b03be9
   - persona-capture-crew#goals: a63bac7ade3c
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Get the right people and kit to the right place
@@ -46,6 +46,9 @@ Crew, performers, rehearsals and shoots are scheduled with call sheets, time in 
 
 - epic-project-record.
 - epic-venue-setup, for venue profiles.
+- epic-build-and-install, for the build carried on manifests and installed on set-up checklists.
+- epic-performer-support, for the crew channel that tells performers about time in kit.
+- epic-handover-and-fallback, for the fallback when a performer stops.
 
 ## Open questions
 

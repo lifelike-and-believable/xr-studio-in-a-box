@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 245 proposed stories, 218 written, 7 open questions.
+39 epics, 245 proposed stories, 242 written, 0 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -759,14 +759,20 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 | Epic | Stories written | Open questions |
 |---|---|---|
-| [Know what a production costs while it happens](epics/budgets-and-cost.md) | 0 of 5 | 1 |
-| [Agreements and payments, with a person in charge](epics/contracts-and-payment.md) | 0 of 5 | 1 |
-| [Tell people about the work, and credit it properly](epics/credits-and-outreach.md) | 0 of 5 | 1 |
-| [Find funding, apply and report, from one set of facts](epics/funding.md) | 0 of 5 | 3 |
-| [Get the right people and kit to the right place](epics/schedule-and-touring.md) | 0 of 4 | 1 |
+| [Know what a production costs while it happens](epics/budgets-and-cost.md) | 5 of 5 | 0 |
+| [Agreements and payments, with a person in charge](epics/contracts-and-payment.md) | 5 of 5 | 0 |
+| [Tell people about the work, and credit it properly](epics/credits-and-outreach.md) | 5 of 5 | 0 |
+| [Find funding, apply and report, from one set of facts](epics/funding.md) | 5 of 5 | 0 |
+| [Get the right people and kit to the right place](epics/schedule-and-touring.md) | 4 of 4 | 0 |
 
 <details>
 <summary>Know what a production costs while it happens</summary>
+
+- [Build a budget per project and funder format](stories/budgets-and-cost/build-a-budget.md) (approved)
+- [Connect a business tool through an adapter](stories/budgets-and-cost/connect-a-tool.md) (approved)
+- [See budget against actual cost and the schedule](stories/budgets-and-cost/cost-and-schedule-view.md) (approved)
+- [Track actual cost, including generation, cloud and per-show costs](stories/budgets-and-cost/track-actual-cost.md) (approved)
+- [Use the business tools alone, with no other software](stories/budgets-and-cost/work-alone.md) (approved)
 
 - Build a budget per project and funder format.
 - Track actual cost, including generation, cloud and per-show costs.
@@ -779,6 +785,12 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Agreements and payments, with a person in charge</summary>
 
+- [Draft and track contracts, licences and AI-use terms](stories/contracts-and-payment/draft-and-track-contracts.md) (approved)
+- [Keep records for as long as each rule requires](stories/contracts-and-payment/keep-records.md) (approved)
+- [Prepare payroll and payment information from hours and amounts](stories/contracts-and-payment/prepare-payroll.md) (approved)
+- [Keep bank details and tax numbers away from agents](stories/contracts-and-payment/protect-sensitive-data.md) (approved)
+- [Draft quotes and invoices](stories/contracts-and-payment/quotes-and-invoices.md) (approved)
+
 - Draft and track contracts, licences and AI-use terms, with a person accepting them.
 - Draft quotes and invoices.
 - Prepare payroll and payment information from hours and amounts.
@@ -789,6 +801,12 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 <details>
 <summary>Tell people about the work, and credit it properly</summary>
+
+- [Draft an AI-use statement from provenance records](stories/credits-and-outreach/ai-use-statement.md) (approved)
+- [Use audience data in funder and partner reports](stories/credits-and-outreach/audience-data-in-reports.md) (approved)
+- [Build credits from the project facts and provenance records](stories/credits-and-outreach/build-credits.md) (approved)
+- [Collect attendance, feedback and analytics by session, where consent allows](stories/credits-and-outreach/collect-audience-data.md) (approved)
+- [Draft promotional material, press kits and posts](stories/credits-and-outreach/draft-promotion.md) (approved)
 
 - Build credits from project facts and provenance records.
 - Draft an AI-use statement from provenance records.
@@ -801,6 +819,12 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Find funding, apply and report, from one set of facts</summary>
 
+- [Draft an application in a funder's format](stories/funding/draft-application.md) (approved)
+- [Match a project to programs it may qualify for](stories/funding/match-programs.md) (approved)
+- [Keep a list of funding programs and their deadlines](stories/funding/program-list.md) (approved)
+- [Draft reports and cost claims with proof of spend](stories/funding/reports-and-claims.md) (approved)
+- [Track spend and documents for tax credits and incentives](stories/funding/tax-credits.md) (approved)
+
 - Keep a list of funding programs, with requirements and deadlines.
 - Match a project to programs it may qualify for.
 - Draft an application in a funder's format, for a person to review and submit.
@@ -811,6 +835,11 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 <details>
 <summary>Get the right people and kit to the right place</summary>
+
+- [Draft call sheets for a person to approve and send](stories/schedule-and-touring/call-sheets.md) (approved)
+- [Draft equipment manifests and travel and set-up checklists for each venue](stories/schedule-and-touring/manifests-and-checklists.md) (approved)
+- [Schedule availability, rehearsals and shoots](stories/schedule-and-touring/schedule.md) (approved)
+- [Track each performer's time in a headset or suit against a set limit](stories/schedule-and-touring/time-in-kit.md) (approved)
 
 - Schedule crew and performer availability, rehearsals and shoots.
 - Draft call sheets for approval.

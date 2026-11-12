@@ -3,12 +3,12 @@ id: story-schedule-and-touring-time-in-kit
 status: approved
 derived-from:
   - epic-schedule-and-touring#outcome: 4e30b30b18d6
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Track each performer's time in a headset or suit against a set limit
 
-As Kai, the performer, I want my time in a headset or suit tracked against a limit I set with the director, and to be told when I near it, so that I hear about a problem without breaking the performance.
+As Kai, the performer, I want my time in a headset or suit tracked against a limit I set with the director, and to be told when I near it, so that I work within limits on my time in a headset or suit and can stop whenever I need to.
 
 ## Acceptance criteria
 

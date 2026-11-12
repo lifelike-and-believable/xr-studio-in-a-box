@@ -3,7 +3,7 @@ id: story-live-signals-audience-reaction
 status: approved
 derived-from:
   - epic-live-signals#outcome: e56c7244daf6
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Drive the scene from the audience's combined reaction

@@ -7,7 +7,7 @@ derived-from:
   - requirements-performance#REQ-performance-18: b0492d174192
   - requirements-governance#REQ-governance-9: bbefcd6d5183
   - requirements-governance#REQ-governance-10: b97ebeb15f50
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
   - persona-capture-crew#goals: a63bac7ade3c
   - persona-technical-artist#goals: 1fb2055dfdf2
 ---

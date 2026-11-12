@@ -4,7 +4,7 @@ status: approved
 derived-from:
   - requirements-performance#REQ-performance-13: 0b9a832893fa
   - requirements-performance#REQ-performance-19: a7c23a111e38
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
   - persona-technical-artist#goals: 1fb2055dfdf2
   - persona-sound-designer#goals: 70f155e30dc6
   - persona-capture-crew#goals: a63bac7ade3c

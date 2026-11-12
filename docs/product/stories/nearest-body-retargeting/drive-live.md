@@ -3,7 +3,7 @@ id: story-nearest-body-retargeting-drive-live
 status: approved
 derived-from:
   - epic-nearest-body-retargeting#outcome: 49852e3af6be
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Drive a retargeted character live
