@@ -8,7 +8,7 @@ derived-from:
 
 # Match a project to programs it may qualify for
 
-As Morgan, the director, I want an agent to match my project's facts against the program list so that I spend less personal time finding funding programs, which I do today by hand.
+As Morgan, the director, I want an agent to match my project's facts against the program list so that I spend less personal time on funding applications, which today are mostly written by hand, starting from the programs the project may qualify for.
 
 ## Acceptance criteria
 

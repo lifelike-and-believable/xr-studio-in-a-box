@@ -79,7 +79,7 @@ Confirmed: asset provenance with AI-use records, and cost tracking that includes
 - The approver writes most of it personally.
 - **First value:** one source of truth per project (descriptions, technical plan, budget, credits, samples), from which applications and reports are drafted. A person reviews and submits.
 - Confirmed: this "project facts" record is shared with production (brief, character and asset list, tech plan, costs).
-- Working funder list (confirmed by the approver): Canada Media Fund, Creative BC, Epic MegaGrants, and an arts council (which one is not yet named).
+- Working funder list (confirmed by the approver): Canada Media Fund, Creative BC, Epic MegaGrants, and an arts council. Answered by the approver: the Canada Council for the Arts.
 
 ## 10. Livestreamed virtual puppetry (UC-2)
 
@@ -207,7 +207,7 @@ Implications (item 1 confirmed; the rest are **[assumed]**):
 ## 16. Open questions
 
 1. **Project A (UC-1).** POC date and audience; whether the living performance has the guest artist in capture; the rights route. Deferred by the approver.
-2. **Funding.** Which arts council; applications per year; a past application to use as a worked example; who reviews drafts besides the approver.
+2. **Funding.** (Answered by the approver: the arts council is the Canada Council for the Arts, and the producer chooses a past application as the worked example and records it.) Which arts council; applications per year; a past application to use as a worked example; who reviews drafts besides the approver.
 3. **Business tools.** Where records live now; who uses them; which outputs are client-facing.
 4. **Review gates.** The spend limit, per project; what turnaround the approver expects from the queue.
 5. **Deployment targets.** The LBVR hardware decision and its date; which venues and networks the first shows run on.

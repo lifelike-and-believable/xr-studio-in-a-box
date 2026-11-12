@@ -28,7 +28,9 @@ Crew, performers, rehearsals and shoots are scheduled with call sheets, time in 
 - Schedule crew and performer availability, rehearsals and shoots.
 - Draft call sheets for approval.
 - Track each performer's time in a headset or suit against set limits.
-- Draft equipment manifests and travel and set-up checklists for each venue.
+- Draft equipment manifests and set-up checklists for each venue.
+- Not written yet: Kai sees their own time in kit, their limits and the dated history of both on a limited page (story-schedule-and-touring-time-in-kit).
+- Not written yet: draft a travel checklist for each trip in the schedule: the people called, their travel and load-in calls, how the kit travels and what must be booked. This story would define a travel checklist. A person makes every booking and payment. An agent never books, pays or sends anything outside the project (REQ-workflow-14, REQ-business-8), and never sees passport numbers or similar identifiers (story-contracts-and-payment-protect-sensitive-data).
 
 ## Stories
 
