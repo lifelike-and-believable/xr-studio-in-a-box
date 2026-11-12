@@ -1,13 +1,11 @@
 ---
-id: spec-layer1-skeleton
 status: draft
-derived-from:
-  - design-architecture#build-order: f852bcde272e
-  - decision-system-shape#decision: 03fde8b3fe2d
 tests-commit: 86f8cd0
 ---
 
 # Layer 1, slice 0: repository skeleton
+
+This spec has no `id`, so it is not an rfr-process artifact. Slice 0 delivers no story or user documentation, and process-trace requires each `test:` criterion in a process spec to cite one. It follows the approved design: [design-architecture](../design/architecture.md#build-order), slice 0, and [decision-system-shape](../design/decisions/system-shape.md#decision). Specs for slices that deliver stories carry an `id` and cite them.
 
 ## Problem
 
