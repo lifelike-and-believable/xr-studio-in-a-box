@@ -1,0 +1,11 @@
+# rfr-process:begin (generated from docs/product/process.yml; do not edit by hand)
+/docs/product/concept.md @atgoldberg
+/docs/product/discovery/ @atgoldberg
+/docs/product/requirements/ @atgoldberg
+/docs/product/personas/ @atgoldberg
+/docs/product/epics/ @atgoldberg
+/docs/product/stories/ @atgoldberg
+/docs/design/ @atgoldberg
+/docs/user/ @atgoldberg
+/docs/tutorials/ @atgoldberg
+# rfr-process:end
