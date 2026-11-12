@@ -1,6 +1,6 @@
 ---
 id: design-organisations-and-projects
-status: draft
+status: approved
 derived-from:
   - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
   - story-project-record-start-project#acceptance-criteria: 83fa11a80149

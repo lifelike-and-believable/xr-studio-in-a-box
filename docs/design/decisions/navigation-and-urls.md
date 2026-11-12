@@ -1,6 +1,6 @@
 ---
 id: decision-navigation-and-urls
-status: draft
+status: approved
 derived-from:
   - epic-project-record#outcome: c7917e3ef44b
   - persona-producer#goals: d1cc47b03be9

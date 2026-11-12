@@ -1,6 +1,6 @@
 ---
 id: design-people-and-roles
-status: draft
+status: approved
 derived-from:
   - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
   - story-project-record-same-project-state#acceptance-criteria: 66eece7e589c
