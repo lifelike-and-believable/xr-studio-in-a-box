@@ -30,6 +30,7 @@ Funding programs are matched to projects, applications and reports are drafted f
 - Draft an application in a funder's format, for a person to review and submit.
 - Draft interim and final reports and cost claims, with proof of spend.
 - Track spend and documents for tax credits and incentives.
+- Record a funding decision: the amount awarded or the decline, the conditions, the payment schedule, the acknowledgement wording and the report dates, which feed the deadlines, the reports and claims, the budget's income and the credits. A person with the funding approval records it.
 
 ## Stories
 
@@ -38,6 +39,7 @@ Funding programs are matched to projects, applications and reports are drafted f
 - story-funding-draft-application
 - story-funding-reports-and-claims
 - story-funding-tax-credits
+- story-funding-record-decision
 
 ## Release groups
 

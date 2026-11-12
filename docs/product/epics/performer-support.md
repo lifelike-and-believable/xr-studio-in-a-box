@@ -35,6 +35,7 @@ While performing, a performer can sense the audience, see what they are playing 
 - Sense the audience summary through physical signals such as lights.
 - See the virtual character from the stage, through a monitor, a headset or another view.
 - Check live motion against the show's quality bar for limbs, foot contact and held props.
+- Give a performer at a remote location the crew channel, a stage view, the audience summary, time in kit and a local stop control, with someone named for their safety there.
 
 ## Stories
 
@@ -46,6 +47,7 @@ While performing, a performer can sense the audience, see what they are playing 
 - story-performer-support-motion-quality-check
 - story-performer-support-remote-helper
 - story-performer-support-venue-intercom
+- story-performer-support-remote-performer-side
 
 ## Release groups
 

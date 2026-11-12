@@ -32,6 +32,8 @@ A person can start a project, record its facts once, give people roles, and see 
 - Name approvers and delegates per area, and record who holds each of the four kinds of approval that never go to an AI.
 - See the same project state in the web dashboard and in chat, with the dashboard meeting WCAG 2.2 AA.
 - Back up a project, including large binary assets, and restore an earlier version.
+- Set up an organisation and keep its company facts (legal name, funder applicant profiles, history, bio and standard work samples), which every project in it reads and never retypes.
+- Close a project in one step: end people's access and agent grants, take a final backup, and leave it read-only with its records under retention.
 
 ## Stories
 
@@ -41,6 +43,8 @@ A person can start a project, record its facts once, give people roles, and see 
 - story-project-record-name-approvers
 - story-project-record-same-project-state
 - story-project-record-back-up-and-restore
+- story-project-record-set-up-organisation
+- story-project-record-close-project
 
 ## Release groups
 
@@ -49,11 +53,11 @@ A person can start a project, record its facts once, give people roles, and see 
 
 ## Dependencies
 
-- None. This is the first epic.
+- None for the first six stories. Setting up an organisation uses the organisation defined in epic-shared-library (story-shared-library-save-to-library), and closing a project uses retention from epic-contracts-and-payment.
 
 ## Open questions
 
-- Answered: new projects start empty. An agent can draft facts from documents a person points it at, for that person to check. Layer 1 has no formal import.
+- Answered: new projects start empty of their own facts. An agent can draft facts from documents a person points it at, for that person to check. Layer 1 has no formal import. Company facts are organisation-level: they are kept once in the organisation and read by every project in it (story-project-record-set-up-organisation).
 - Answered: the web dashboard and chat come first. Editor panels and the operator console follow in later layers.
 
 ## Out of scope

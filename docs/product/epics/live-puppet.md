@@ -32,6 +32,7 @@ A performer can step into a capture source, complete a guided setup and drive a 
 - Connect an optical studio's live capture stream through a guided setup, and map its performers to characters. The studio's own system and staff do the calibration.
 - Assign a source to a character's body, hands, face, voice and effects channels.
 - See the measured delay from performer to rendered puppet, and to what the audience sees on each output, measured end to end on the show's hardware. The first test puts a performer beside their character.
+- Complete a guided setup for a performer's microphone, wired or on a radio pack, with a level check and drop detection.
 
 ## Stories
 
@@ -42,6 +43,7 @@ A performer can step into a capture source, complete a guided setup and drive a 
 - story-live-puppet-optical-studio-stream
 - story-live-puppet-assign-channels
 - story-live-puppet-measure-delay
+- story-live-puppet-microphone-setup
 
 ## Release groups
 
