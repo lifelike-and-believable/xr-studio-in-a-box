@@ -6,7 +6,7 @@ derived-from:
   - story-project-record-start-project#acceptance-criteria: 83fa11a80149
   - persona-director#goals: a92ca172be83
   - persona-producer#frustrations: a9b85718690b
-  - decision-navigation-and-urls#decision: 0b2405597595
+  - decision-navigation-and-urls#decision: f7c965cb194d
 ---
 
 # Organisations and projects design
@@ -71,14 +71,14 @@ The project list (home) is in design-dashboard-shell.
 - **Values on error:** every value typed and every choice made is shown again with the errors.
 - **Double submit:** the submit button is disabled while the request is in progress, and the command carries a request id so a repeated request creates nothing new.
 - **Not allowed:** organisations the person neither looks after nor has projects in are not listed and their address shows **This page is not available** (design-dashboard-shell). **Edit organisation** and **Edit name and brief** are not shown to people who cannot use them, and each page names who can.
-- **Empty facts:** "No project facts yet." and "No organisation facts yet." until slice 2.
+- **Empty facts:** "No project facts yet." and "No organisation facts yet." until slice 2, when the facts sections follow design-project-facts and design-organisation-facts.
 - **Merging organisations:** not in slice 1; the organisation page says "Merging two organisations comes in a later release."
 - **Success:** a notice on the page that opens; focus moves to it and the page title starts with the outcome.
 - **Someone else owns the new project:** the notice is "Project started. Morgan Ray owns it and has the Director and Producer roles. You have the Producer role." (added with the user documentation, 2026-11-12).
 - **Owner tag:** marks who owns the project. Today it carries no rights beyond the Director and Producer roles, and the owner cannot be changed after the project starts; handing on ownership comes in a later release (added with the user documentation, 2026-11-12).
 - **Editing a project's name or brief:** the same rules as starting one: "Enter the project name." for an empty name, and the same duplicate-name message within the organisation. On success the notice is "Name and brief saved." (added with the user documentation, 2026-11-12).
 - **Editing an organisation:** the same rules as creating one: "Enter the organisation name." and the same duplicate-name message; at least one person stays under **Looked after by**. On success the notice is "Organisation saved." (added with the user documentation, 2026-11-12).
-- **Organisation page contents:** the organisation's name; **Looked after by** with their names; **Start a project in this organisation**; **Edit organisation** for people who look after it; **Projects**, listing its projects that the viewer is on (or all of them for people who look after it); **Organisation facts**, empty until a later release; and the note on merging (added with the user documentation, 2026-11-12).
+- **Organisation page contents:** the organisation's name; **Looked after by** with their names; **Start a project in this organisation**; **Edit organisation** for people who look after it; **Projects**, listing its projects that the viewer is on (or all of them for people who look after it); **Organisation facts**, empty until a later release; and the note on merging (added with the user documentation, 2026-11-12). From slice 2 the facts section, and **Identifier formats** and **Activity** for people who look after the organisation, follow design-organisation-facts.
 
 ## How it works
 

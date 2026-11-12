@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applicant profile for Canada Council for the Arts - Harbourfront Puppet Co. - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: edit one funder applicant profile</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#" aria-current="page">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<p class="hint"><a href="#">Harbourfront Puppet Co.</a> &gt; Organisation facts</p>
+<h1>Applicant profile for Canada Council for the Arts</h1>
+<p class="lead">The details this funder asks about the applicant, recorded once for every application.</p>
+<form method="post">
+<div class="field"><label for="applicant-name">Applicant name as registered with the funder</label><input type="text" id="applicant-name" name="applicant-name" value="Harbourfront Puppet Company Inc."></div>
+<div class="field"><label for="applicant-category">Applicant category</label><p class="hint" id="applicant-category-hint">As the funder names it, for example "Arts organisation" or "Group".</p><input type="text" id="applicant-category" name="applicant-category" value="Arts organisation" aria-describedby="applicant-category-hint"></div>
+<div class="field"><label for="applicant-id">Funder's applicant profile number <span class="optional">(optional)</span></label><p class="hint" id="applicant-id-hint">The number the funder's portal gives your profile. Not a tax or business number.</p><input type="text" id="applicant-id" name="applicant-id" aria-describedby="applicant-id-hint"></div>
+<div class="field"><label for="mandate">Mandate</label><textarea id="mandate" name="mandate">To make live puppetry that brings audiences in rooms and online into the same story.</textarea></div>
+<div class="actions"><button type="submit">Save profile</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

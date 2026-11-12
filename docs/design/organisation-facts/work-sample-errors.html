@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Standard work samples - Harbourfront Puppet Co. - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: add a work sample with no title and a file over 2 GB; focus on the summary</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#" aria-current="page">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<div class="error-summary" role="alert" tabindex="-1">
+<h2>There is a problem</h2>
+<ul><li><a href="#sample-title">Enter a title for the work sample.</a></li><li><a href="#sample-file">The file is larger than 2 GB. Choose a smaller file.</a></li></ul>
+</div>
+<p class="hint"><a href="#">Harbourfront Puppet Co.</a> &gt; Organisation facts</p>
+<h1>Standard work samples</h1>
+<table class="people"><caption>Standard work samples for Harbourfront Puppet Co.</caption><thead><tr><th scope="col">Title</th><th scope="col">File</th><th scope="col">Added</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+<tbody><tr><td data-label="Title">Company showreel 2025</td><td data-label="File">showreel-2025.mp4, 3 minutes</td><td data-label="Added">Jordan Lee, 5 November</td><td><form class="inline" method="post"><button type="submit" class="link">Remove<span class="visually-hidden"> Company showreel 2025</span></button></form></td></tr><tr><td data-label="Title">Press pack</td><td data-label="File">press-pack.pdf, 4 pages</td><td data-label="Added">Jordan Lee, 5 November</td><td><form class="inline" method="post"><button type="submit" class="link">Remove<span class="visually-hidden"> Press pack</span></button></form></td></tr></tbody></table>
+<h2>Add a work sample</h2>
+<form method="post" enctype="multipart/form-data">
+<div class="field"><label for="sample-title">Title</label><p class="error-message" id="sample-title-error">Enter a title for the work sample.</p><input type="text" id="sample-title" name="sample-title" aria-describedby="sample-title-error" aria-invalid="true"></div>
+<div class="field"><label for="sample-file">File</label><p class="hint" id="sample-file-hint">Video, images, audio or a PDF, up to 2 GB. Text in PDFs and text files is checked for bank details and tax numbers; video, images and audio are not checked.</p><p class="error-message" id="sample-file-error">The file is larger than 2 GB. Choose a smaller file.</p><input type="file" id="sample-file" name="sample-file" aria-describedby="sample-file-hint sample-file-error" aria-invalid="true"></div>
+<div class="actions"><button type="submit">Add work sample</button></div>
+</form>
+</main>
+</body>
+</html>

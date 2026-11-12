@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Not added: Work samples - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: a document whose text matches a format is held, not added; focus on the summary</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<div class="error-summary" role="alert" tabindex="-1">
+<h2>Not added: grant-letter.pdf looks like it has a GST/HST number</h2>
+<ul><li><a href="#sample-file">Page 2 of grant-letter.pdf has text matching the format for a GST/HST number</a></li></ul>
+<p>Work samples can be read by agents, so the file was not added. It is held until 15:40 on 13 November, then deleted, unless you confirm it. Held files are listed on this page until then.</p>
+<p>Remove the number from the document and choose the file again, or, if it is not a GST/HST number, confirm and add it.</p>
+</div>
+<p class="hint"><a href="#">The Lantern Keeper</a> &gt; Facts</p>
+<h1>Work samples</h1>
+<form method="post" enctype="multipart/form-data">
+<div class="field"><label for="sample-title">Title</label><input type="text" id="sample-title" name="sample-title" value="Grant letter"></div>
+<div class="actions"><button type="submit" name="intent" value="confirm" class="secondary">It is not a GST/HST number, add grant-letter.pdf</button></div>
+<div class="field"><label for="sample-file">Or choose a different file</label><p class="hint" id="sample-file-hint">Video, images, audio or a PDF, up to 2 GB. Text in PDFs and text files is checked for bank details and tax numbers; video, images and audio are not checked.</p><input type="file" id="sample-file" name="sample-file" aria-describedby="sample-file-hint"></div>
+<div class="actions"><button type="submit" name="intent" value="upload">Upload a different file</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activity - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: an entry removed under a retention rule (later release), shown as such</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Sam Okafor</button></div>
+</header>
+<main id="main">
+<p>Organisation: <a href="#">Harbourfront Puppet Co.</a></p>
+<h1>The Lantern Keeper</h1>
+<nav aria-label="Project"><ul class="tabs"><li><a href="#">Overview</a></li><li><a href="#">Facts</a></li><li><a href="#">People</a></li><li><a href="#" aria-current="page">Activity</a></li></ul></nav>
+<p class="lead">Everything done on this project, newest first. Nobody can change or remove an entry. Entries name what changed, never the text or figures, and never bank details or tax numbers.</p>
+<form method="get" class="filters" aria-label="Filter activity">
+<div class="filter-row">
+<div class="field"><label for="f-who">Who</label><select id="f-who" name="f-who"><option selected>Anyone</option><option>Jordan Lee</option><option>Morgan Ray</option><option>Riley Chen</option><option>Sam Okafor</option><option>Alex Kim (removed)</option><option>Agents</option></select></div>
+<div class="field"><label for="f-area">Area</label><select id="f-area" name="f-area"><option selected>All areas</option><option>Project</option><option>Facts</option><option>People</option></select></div>
+<div class="field"><label for="f-from">From <span class="optional">(optional)</span></label><input type="date" id="f-from" name="f-from"></div>
+<div class="field"><label for="f-to">To <span class="optional">(optional)</span></label><input type="date" id="f-to" name="f-to"></div>
+</div>
+<div class="actions"><button type="submit">Apply filters</button><a href="#">Clear filters</a></div>
+</form>
+<table class="people"><caption class="visually-hidden">Activity, newest first</caption>
+<thead><tr><th scope="col">When</th><th scope="col">Who</th><th scope="col">What</th><th scope="col">Area</th></tr></thead>
+<tbody><tr><td data-label="When">2 March 2033, 03:00</td><td data-label="Who">Retention rule</td><td data-label="What">A record from 6 November 2026 was deleted at the end of its retention period (Funder record, 7 years). Its content is gone; this entry stays.</td><td data-label="Area">Records</td></tr><tr><td data-label="When">12 November, 14:20</td><td data-label="Who">Morgan Ray</td><td data-label="What">Saved the description (version 6)</td><td data-label="Area">Facts</td></tr><tr><td data-label="When">12 November, 11:02</td><td data-label="Who">Jordan Lee</td><td data-label="What">Saved the description (version 5) after confirming that text in it is not a bank account number ("Catalogue number for the lantern prop")</td><td data-label="Area">Facts</td></tr><tr><td data-label="When">11 November, 16:45</td><td data-label="Who">Jordan Lee</td><td data-label="What">Changed Riley Chen's roles to Artist and Sound designer</td><td data-label="Area">People</td></tr></tbody></table>
+</main>
+</body>
+</html>

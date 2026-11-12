@@ -76,3 +76,26 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); v
   table.people td { display: block; border: 0; padding: 2px 0; }
   table.people td[data-label]::before { content: attr(data-label) ": "; font-weight: 600; }
 }
+/* Slice 2: facts, history, identifier formats and activity. */
+input[type=date], input[type=file] { display: block; min-height: 44px; padding: 8px; border: 2px solid var(--line); font: inherit; }
+.fact { border-bottom: 1px solid var(--line); padding: 8px 0 12px; }
+.fact h3 { font-size: 1.0625rem; margin: 8px 0 4px; }
+.fact p, .fact ul { margin: 4px 0; }
+.fact-actions { display: flex; gap: 16px; }
+.fact-actions a { display: inline-block; padding: 10px 0; }
+.quote { border-left: 4px solid var(--line); padding: 4px 12px; margin: 8px 0; }
+mark { background: #fff2a8; color: var(--ink); outline: 2px dashed var(--ink); }
+del { text-decoration: line-through 2px; }
+ins { text-decoration: underline 3px; }
+.filters { border: 2px solid var(--line); padding: 8px 16px; margin: 16px 0; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 0 16px; }
+.filter-row .field { margin: 8px 0; }
+.filter-row select, .filter-row input { max-width: 220px; }
+/* Slice 2 revisions: buttons inside tables, upload progress, captions. */
+form.inline { display: inline; margin: 0; }
+td form.inline + form.inline, td a + form.inline { margin-left: 12px; }
+td button.link { padding: 10px 0; }
+progress { display: block; width: 100%; max-width: 480px; height: 24px; }
+caption { text-align: left; font-weight: 600; padding: 8px 0; }
+.held { border: 2px dashed var(--error); padding: 12px 16px; margin: 16px 0; }
+input[type=file] { max-width: 100%; width: 100%; }

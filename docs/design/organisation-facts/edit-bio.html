@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit bio - Harbourfront Puppet Co. - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: edit an organisation fact</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#" aria-current="page">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<p class="hint"><a href="#">Harbourfront Puppet Co.</a> &gt; Organisation facts</p>
+<h1>Edit bio</h1>
+<p class="lead">Every project in Harbourfront Puppet Co. reads this bio.</p>
+<form method="post">
+<div class="field"><label for="fact">Bio</label><p class="hint" id="fact-hint">A short paragraph about the company, as funders and press see it. Do not put bank details or tax numbers here.</p><textarea id="fact" name="fact" aria-describedby="fact-hint">A Toronto company making live puppetry for rooms and screens since 2014.</textarea></div>
+<div class="actions"><button type="submit">Save bio</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

@@ -45,6 +45,21 @@ Addresses (the user documentation names pages, not addresses, so these can chang
 | An organisation | `/organisations/<organisation id>` |
 | Edit an organisation | `/organisations/<organisation id>/edit` |
 | Your account (passkeys) | `/account` |
+| A project's facts (added with the slice 2 designs) | `/projects/<project id>/facts` |
+| Edit one project fact | `/projects/<project id>/facts/<fact>/edit` |
+| One project fact's earlier versions and compare | `/projects/<project id>/facts/<fact>/history` |
+| Confirm text in a project fact is not an identifier | `/projects/<project id>/facts/<fact>/confirm` |
+| A project's work samples | `/projects/<project id>/facts/work-samples` |
+| A project's activity | `/projects/<project id>/activity` |
+| Edit one organisation fact | `/organisations/<organisation id>/facts/<fact>/edit` |
+| One organisation fact's earlier versions and compare | `/organisations/<organisation id>/facts/<fact>/history` |
+| Confirm text in an organisation fact is not an identifier | `/organisations/<organisation id>/facts/<fact>/confirm` |
+| An organisation's standard work samples | `/organisations/<organisation id>/work-samples` |
+| Add a format | `/organisations/<organisation id>/identifier-formats/new` |
+| An organisation's identifier formats | `/organisations/<organisation id>/identifier-formats` |
+| An organisation's activity | `/organisations/<organisation id>/activity` |
+
+The `<fact>` part is a fixed slug, never an id: for projects `description`, `plan`, `budget`, `credits`, `collaborators`, `schedule`, `capacity`; for organisations `legal-name`, `bio`, `company-history`, and `funder-profile-<funder>` with the funder slugs `canada-council-for-the-arts`, `canada-media-fund`, `creative-bc` and `epic-megagrants` (added with the slice 2 designs). Work samples have their own page rather than an edit page.
 
 Ids are the record's UUIDv7 ids (decision-project-record-model), not names, so a rename never breaks a link. A page a person may not see answers the same "This page is not available" page, with the same status, whether it does not exist or their role does not allow it, so addresses do not reveal which projects exist (design-dashboard-shell). The one exception is a person who had a role on that project and lost it: they see "You no longer have access to this project" (design-people-and-roles).
 

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit budget - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: edit the budget: a total in CAD and a note</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<p class="hint"><a href="#">The Lantern Keeper</a> &gt; Facts</p>
+<h1>Edit budget</h1>
+<p class="lead">Visible to the director and producer only.</p>
+<form method="post">
+<div class="field"><label for="budget-total">Total in Canadian dollars</label><p class="hint" id="budget-total-hint">Whole dollars, with or without commas, like 148000 or 148,000. No dollar sign needed.</p><input type="text" id="budget-total" name="budget-total" value="148,000" aria-describedby="budget-total-hint" inputmode="numeric"></div>
+<div class="field"><label for="budget-note">Note <span class="optional">(optional)</span></label><p class="hint" id="budget-note-hint">What the total covers. Detailed budget lines come in a later release. Do not put bank details or tax numbers here.</p><textarea id="budget-note" name="budget-note" aria-describedby="budget-note-hint">Fees, build, venue and streaming.</textarea></div>
+<div class="actions"><button type="submit">Save budget</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>
