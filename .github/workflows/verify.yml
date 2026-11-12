@@ -33,8 +33,8 @@ jobs:
       DATABASE_URL_UNPOOLED: postgres://ci:ci@localhost:5432/xr_ci
     steps:
       - uses: actions/checkout@v7
-      # pnpm is pinned here, not in package.json's packageManager field: the rfr-process
-      # workflow's setup-node step tries to cache pnpm when that field is set, and fails.
+      # pnpm is pinned here and in package.json's engines, not in its packageManager field: the
+      # rfr-process workflow's setup-node step tries to cache pnpm when that field is set, and fails.
       - uses: pnpm/action-setup@v6
         with:
           version: 12.18.0
@@ -45,6 +45,14 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Install the Playwright browser
         run: pnpm --filter @xr/web exec playwright install --with-deps chromium
+      # The committed migrations must match the schema: a schema change with no generated
+      # migration fails here.
+      - name: Check migrations match the schema
+        run: |
+          pnpm --filter @xr/web exec drizzle-kit check
+          pnpm --filter @xr/web run db:generate
+          git diff --exit-code web/drizzle
+          test -z "$(git status --porcelain web/drizzle)"
       # Applied in its own step, never in the build (PG-003). The second run must change nothing.
       - name: Apply migrations
         run: pnpm --filter @xr/web run db:migrate
