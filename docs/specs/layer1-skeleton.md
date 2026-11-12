@@ -4,9 +4,7 @@ status: draft
 derived-from:
   - design-architecture#build-order: f852bcde272e
   - decision-system-shape#decision: 03fde8b3fe2d
-# tests-commit: <sha of the commit that holds the failing tests, once written>
-# unlocks:
-#   - <test path>: <why a locked test had to change>
+tests-commit: 86f8cd0
 ---
 
 # Layer 1, slice 0: repository skeleton
@@ -52,13 +50,15 @@ A test cites a criterion as `layer1-skeleton#AC-3` in its title or a comment. On
 
 ## APIs and assumptions
 
-- Versions, read from the npm registry on 2026-11-12, all pinned exactly in the lockfile: Next.js 16.4.6, React 19.3.1, TypeScript 7.0.2, drizzle-orm 0.45.4, drizzle-kit 0.31.11, pg 8.23.1, zod 4.6.7, Vitest 5.1.0, @playwright/test 1.65.0 with the pre-installed Chromium, @axe-core/playwright 4.14.0, ESLint 10.14.0, pnpm 12.18.0. Node 26.13.1, the current LTS release from nodejs.org.
+- Versions, read from the npm registry on 2026-11-12, all pinned exactly in the lockfile: Next.js 16.4.6, React 19.3.1, TypeScript 6.0.3 (not 7.0.2; see below), drizzle-orm 0.45.4, drizzle-kit 0.31.11, pg 8.23.1, zod 4.6.7, Vitest 5.1.0, @playwright/test 1.65.0, @axe-core/playwright 4.14.0, ESLint 10.14.0, pnpm 12.18.0. Node 26.13.1, the current LTS release from nodejs.org.
 - Each API the code uses is checked against the installed package's type definitions or bundled docs before use (WA-006, NEXT-001), and the spec records any that differ from expectation.
 - Drizzle is chosen over Prisma because Prisma 8 is still a release candidate (decision-system-shape notes; PG-005 pins the ORM major version).
 - Assumptions that could be wrong:
   - [assumed] Vercel's Node.js runtime supports Node 26. Settle by reading Vercel's supported Node versions before the first deployment; if it does not, pin the newest LTS it supports and amend AC-1.
-  - [assumed] Next.js 16.4.6 builds and type-checks with TypeScript 7.0.2, and its ESLint configuration works with ESLint 10. Settle on the first install; if not, pin the newest versions that work together and record why.
-  - [assumed] The pre-installed Chromium works with @playwright/test 1.65.0. If not, launch with the installed browser path as the environment notes describe.
+  - Settled on 2026-11-12: TypeScript 7.0.2 cannot be used. Its npm package no longer exports the classic compiler API (`exports["."]` is `lib/version.cjs`), and typescript-eslint 8.72.2, which eslint-config-next 16.4.6 depends on, declares `typescript >=4.8.4 <6.1.0`. TypeScript is pinned to 6.0.3, the newest version in that range. With it, `next build`, `tsc` and ESLint 10.14.0 with eslint-config-next 16.4.6 all pass. Revisit when typescript-eslint supports TypeScript 7.
+  - Settled on 2026-11-12: pnpm 12 does not read `engine-strict` from `.npmrc`, so `engineStrict: true` is set in `pnpm-workspace.yaml`. Installing on Node 22 then fails with "Unsupported engine ... wanted: node >=26.13.1 <27" (AC-1).
+  - Settled on 2026-11-12: Turbopack does not map `.js` import suffixes to `.ts` inside a transpiled workspace package, so `contracts/` imports without a suffix.
+  - Settled on 2026-11-12: this cloud environment has an older Chromium build than @playwright/test 1.65.0 expects, so local runs set `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium`, which the Playwright config passes as `executablePath`. CI installs the matching browser with `playwright install --with-deps chromium` and needs no override.
 
 ## Non-functional requirements
 
@@ -70,7 +70,7 @@ A test cites a criterion as `layer1-skeleton#AC-3` in its title or a comment. On
 ## Delivery
 
 - Plan item: design-architecture#build-order, slice 0.
-- Pull requests: added as each is opened. Planned as two: the failing tests with stubs (recorded in `tests-commit`), then the implementation that makes them pass.
+- Pull requests: one pull request holding the tests-first commit (86f8cd0, recorded in `tests-commit`) and the implementation commits after it.
 
 ## Risks and decisions
 
