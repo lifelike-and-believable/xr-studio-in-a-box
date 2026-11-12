@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layer Build Order</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one reading column; the two diagrams (stage chart, dependency grid) are the widest things and scroll inside their own frames. */
+:root {
+  --bg: #f5f6f9;
+  --surface: #ffffff;
+  --ink: #1a2130;
+  --muted: #5a6478;
+  --line: #d6dae3;
+  --crit: #a81f55;
+  --on-crit: #ffffff;
+  --par: #2c5a88;
+  --on-par: #ffffff;
+  --soft: #e6ebf3;
+  --fwd: #b26a00;
+  --display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11141a; --surface: #191e27; --ink: #e7eaf0; --muted: #9ba4b6; --line: #2d3442;
+    --crit: #f27aa4; --on-crit: #2a0a17; --par: #86b4e0; --on-par: #0c1d2e; --soft: #232a36; --fwd: #e9a94a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11141a; --surface: #191e27; --ink: #e7eaf0; --muted: #9ba4b6; --line: #2d3442;
+  --crit: #f27aa4; --on-crit: #2a0a17; --par: #86b4e0; --on-par: #0c1d2e; --soft: #232a36; --fwd: #e9a94a;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 23px; font-weight: 600; }
+h3 { font-size: 16px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.lede { font-size: 17px; color: var(--muted); }
+.eyebrow { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.9em; }
+
+.frame { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; }
+
+/* Stage chart */
+.chart { display: grid; grid-template-columns: 132px repeat(6, minmax(148px, 1fr)); min-width: 1040px; }
+.chart > div { padding: 10px; border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); min-width: 0; }
+.chart > .lab { border-left: 0; font-family: var(--display); font-weight: 600; font-size: 14px; display: flex; flex-direction: column; justify-content: center; }
+.chart > .lab small { font-family: var(--body); font-weight: 400; color: var(--muted); font-size: 12px; }
+.chart > .head { font-size: 12px; color: var(--muted); background: var(--soft); }
+.chart > .head b { display: block; font-family: var(--display); font-size: 14px; color: var(--ink); }
+.chart > .last { border-bottom: 0; }
+.bar { border-radius: 4px; padding: 7px 9px; font-size: 12.5px; line-height: 1.35; font-weight: 500; height: 100%; box-sizing: border-box; }
+.bar.crit { background: var(--crit); color: var(--on-crit); }
+.bar.par { background: var(--par); color: var(--on-par); }
+.bar.def { border: 1.5px dashed var(--fwd); color: var(--ink); background: transparent; }
+.chart > .span2 { grid-column: span 2; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 22px; height: 12px; border-radius: 3px; display: inline-block; box-sizing: border-box; }
+.sw.crit { background: var(--crit); } .sw.par { background: var(--par); }
+.sw.def { border: 1.5px dashed var(--fwd); } .sw.back { background: var(--par); } .sw.fw { border: 1.5px dashed var(--fwd); }
+
+/* Findings */
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px 32px; }
+.findings div { border-top: 2px solid var(--ink); padding-top: 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.findings p { color: var(--muted); font-size: 14px; }
+
+/* Matrix */
+table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.matrix { min-width: 620px; width: 100%; }
+.matrix th, .matrix td { border: 1px solid var(--line); text-align: center; padding: 0; height: 44px; font-size: 13px; }
+.matrix th { font-family: var(--display); font-weight: 600; background: var(--soft); padding: 0 8px; }
+.matrix th.row { text-align: left; white-space: nowrap; }
+.matrix td.self { background: var(--soft); }
+.matrix td.back { background: var(--par); color: var(--on-par); font-weight: 600; }
+.matrix td.fw { box-shadow: inset 0 0 0 2px var(--surface), inset 0 0 0 3.5px var(--fwd); color: var(--fwd); font-weight: 600; }
+.axis { font-size: 12px; color: var(--muted); }
+
+.list { width: 100%; font-size: 14px; min-width: 560px; }
+.list th, .list td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.list th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 600; }
+.list tr:last-child td { border-bottom: 0; }
+.list td:first-child { white-space: nowrap; font-family: var(--display); font-weight: 600; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+.two ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 14px; }
+.two > div { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+</style>
+
+</head>
+<body style="margin:0">
+<main>
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <div class="eyebrow">XR Studio in a Box · 39 epics · 7 layers and the business layer</div>
+    <h1>Layer build order</h1>
+    <p class="lede">Which layers depend on which, what can be built at the same time, and the order that follows. Taken from the Dependencies and Release groups sections of every epic, and the Layer 1 architecture.</p>
+  </header>
+
+  <section>
+    <h2>Six stages, up to three tracks at once</h2>
+    <p>Each column is a stage that can start when the one before it is proven. Bars in the same column can be built in parallel.</p>
+    <div class="frame">
+      <div class="chart">
+        <div class="lab head"></div>
+        <div class="head"><b>Stage 1</b>Backbone first</div>
+        <div class="head"><b>Stage 2</b>Once terms and the gate exist</div>
+        <div class="head"><b>Stage 3</b>L1 complete, L2 core proven</div>
+        <div class="head"><b>Stage 4</b>L3 and L4 join</div>
+        <div class="head"><b>Stage 5</b>Delivery</div>
+        <div class="head"><b>Stage 6</b>Audience</div>
+
+        <div class="lab">Layer 1<small>Project backbone</small></div>
+        <div><div class="bar crit">Slices 0 to 8, in order. Slice 2 is in delivery now.</div></div>
+        <div><div class="bar par">Slices 9 to 14</div></div>
+        <div></div><div></div><div></div><div></div>
+
+        <div class="lab">Layer 2<small>Live puppetry</small></div>
+        <div></div>
+        <div><div class="bar crit">Core: performer's agreement, live-puppet, handover-and-fallback</div></div>
+        <div><div class="bar par">Shared characters, retargeting, signals, performer support</div></div>
+        <div></div><div></div>
+        <div><div class="bar def">Audience reaction and summary signals</div></div>
+
+        <div class="lab">Layer 3<small>Asset paths</small></div>
+        <div></div><div></div>
+        <div><div class="bar par">character-path, asset-checks, shared-library, interaction design record</div></div>
+        <div><div class="bar def">Interactions that fire cues, form transitions as cues</div></div>
+        <div><div class="bar def">Sound mixes per output and venue</div></div>
+        <div></div>
+
+        <div class="lab">Layer 4<small>Show control</small></div>
+        <div></div><div></div>
+        <div><div class="bar crit">cue-list, then session-operations, show-safety, external-systems</div></div>
+        <div><div class="bar par">branching-shows, then unattended-running</div></div>
+        <div></div><div></div>
+
+        <div class="lab">Layer 5<small>Delivery</small></div>
+        <div></div><div></div><div></div>
+        <div><div class="bar crit">build-and-install, as soon as asset-checks exists</div></div>
+        <div><div class="bar crit">outputs-and-streaming, venue-setup</div></div>
+        <div></div>
+
+        <div class="lab">Layer 6<small>Audience</small></div>
+        <div></div><div></div><div></div><div></div><div></div>
+        <div><div class="bar crit">remote-guests, avatars, audience-voice, guest-care</div></div>
+
+        <div class="lab">Layer 7<small>AI, crowds, creatures</small></div>
+        <div></div><div></div><div></div><div></div>
+        <div class="span2"><div class="bar par">behaviour-and-limits, then crowds-and-creatures. Starts when Layer 4 is done; meets Layer 6 at the simulated crowd.</div></div>
+
+        <div class="lab last">Business<small>In parallel</small></div>
+        <div class="last"></div>
+        <div class="span2 last"><div class="bar par">budgets-and-cost, contracts-and-payment, funding</div></div>
+        <div class="last"></div>
+        <div class="last"><div class="bar par">credits-and-outreach</div></div>
+        <div class="last"><div class="bar par">schedule-and-touring</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="sw crit"></i>Critical path: L1, L2 core, L4, L5, L6</span>
+      <span><i class="sw par"></i>Can run beside the critical path</span>
+      <span><i class="sw def"></i>Release group held back for a later layer</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Three things the graph shows</h2>
+    <div class="findings">
+      <div><h3>Layer 2 does not wait for Layer 3</h3><p>Live puppetry is built and tested on proxy characters on the UE5 mannequin skeleton. Its only need from Layer 1 is the terms, policy gate and provenance behind the performer's agreement.</p></div>
+      <div><h3>Layer 7 does not wait for Layers 5 or 6</h3><p>Behaviour limits and crowds need the cue list, session operations, live signals and the character path. They can run beside delivery and the audience work.</p></div>
+      <div><h3>Layer 3 is mostly off the critical path</h3><p>Only three of its epics hold others up: asset-checks (builds), character-path (avatars, crowds) and interaction-design (branching shows).</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What each layer needs</h2>
+    <p>Read across a row. A filled cell means the layer depends on that column, with the number of epic-to-epic dependencies. An outlined cell points at a later layer, which the epics handle by holding back one release group or testing on a simulation.</p>
+    <div class="frame"><table class="matrix" id="matrix"></table></div>
+    <div class="legend">
+      <span><i class="sw back"></i>Needs an earlier layer</span>
+      <span><i class="sw fw"></i>Points at a later layer</span>
+      <span class="axis">Rows: the layer being built. Columns: what it needs.</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>The seven outlined cells, and how each is handled</h2>
+    <div class="frame">
+      <table class="list">
+        <thead><tr><th>From, to</th><th>What waits</th><th>Until then</th></tr></thead>
+        <tbody>
+          <tr><td>L1 to L3</td><td>Nothing. project-record takes only the definition of an organisation from shared-library.</td><td>Layer 1 builds the organisation alone.</td></tr>
+          <tr><td>L1 to Business</td><td>Closing a project (slice 14) needs retention fields from keep-records. The protected store is built with contracts-and-payment.</td><td>Layer 1 builds the identifier filter only.</td></tr>
+          <tr><td>L2 to L6</td><td>Audience reaction as a signal, and the performer's audience summary through physical signals.</td><td>Tested against a simulated audience.</td></tr>
+          <tr><td>L3 to L4</td><td>Interactions that fire cues, character form transitions as cues, sound mixes that follow cues.</td><td>The design record, gates, morph and swap, and sound assets ship first.</td></tr>
+          <tr><td>L3 to L5</td><td>Sound mixes per output and venue speaker layouts.</td><td>Sound assets and their gate ship first.</td></tr>
+          <tr><td>L6 to L7</td><td>Stream viewers shown as a simulated crowd.</td><td>Ships with crowds-and-creatures.</td></tr>
+          <tr><td>L6 to Business</td><td>Cost tracking for cloud guest sessions.</td><td>budgets-and-cost is built well before Layer 6 on this plan.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>One loop sits inside Layer 2: live-puppet needs the performer's agreement from session-recording, and session-recording needs live-puppet to have something to record. The agreement story comes first.</p>
+  </section>
+
+  <section>
+    <div class="two">
+      <div>
+        <h2>Blockers outside the build</h2>
+        <ul>
+          <li>The legal review of REQ-governance-7 is pending. It gates guest-care, guest presence sensing and the performer's live room view.</li>
+          <li>The real optical capture test needs studio access. Until then it runs on a recorded or simulated stream.</li>
+          <li>Layer 2 needs proxy characters: the mannequin, a quadruped, a creature with extra limbs, and one outside the known set.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Limits of this analysis</h2>
+        <ul>
+          <li>It works at epic level. The 266 stories were not traced one by one.</li>
+          <li>Layers 2 to 7 have no designs yet, so they have no slice order. Only Layer 1 has one.</li>
+          <li>Stage boundaries are my reading of the dependencies, not an approved plan.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var ids = ['L1','L2','L3','L4','L5','L6','L7','Biz'];
+  var names = ['Backbone','Live puppetry','Asset paths','Show control','Delivery','Audience','AI, crowds','Business'];
+  // [row, col, count, forward?]
+  var e = [
+    [0,2,1,1],[0,7,1,1],
+    [1,0,1,0],[1,5,2,1],
+    [2,0,12,0],[2,1,4,0],[2,3,3,1],[2,4,2,1],
+    [3,0,1,0],[3,1,3,0],[3,2,1,0],
+    [4,0,3,0],[4,1,1,0],[4,2,1,0],[4,3,2,0],
+    [5,2,1,0],[5,4,3,0],[5,6,1,1],[5,7,1,1],
+    [6,0,2,0],[6,1,1,0],[6,2,1,0],[6,3,2,0],
+    [7,0,7,0],[7,1,2,0],[7,3,1,0],[7,4,2,0]
+  ];
+  var m = {};
+  e.forEach(function (x) { m[x[0] + '-' + x[1]] = x; });
+  var h = '<thead><tr><th class="row">Builds \\ needs</th>' + ids.map(function (i) { return '<th scope="col">' + i + '</th>'; }).join('') + '</tr></thead><tbody>';
+  ids.forEach(function (id, r) {
+    h += '<tr><th class="row" scope="row">' + id + ' <span style="font-family:var(--body);font-weight:400;color:var(--muted)">' + names[r] + '</span></th>';
+    ids.forEach(function (_, c) {
+      var x = m[r + '-' + c];
+      if (r === c) h += '<td class="self"></td>';
+      else if (x) h += '<td class="' + (x[3] ? 'fw' : 'back') + '" title="' + id + ' ' + (x[3] ? 'points at ' : 'needs ') + ids[c] + ': ' + x[2] + ' epic dependenc' + (x[2] > 1 ? 'ies' : 'y') + '">' + x[2] + '</td>';
+      else h += '<td></td>';
+    });
+    h += '</tr>';
+  });
+  document.getElementById('matrix').innerHTML = h + '</tbody>';
+})();
+</script>
+</body>
+</html>
