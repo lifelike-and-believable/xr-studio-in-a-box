@@ -27,7 +27,7 @@ The company's own facts, recorded once in its organisation and read by every pro
 3. A line under the heading says that bank details and tax numbers are not organisation facts: they will be kept in the protected store, which comes in a later release; until then, keep them out of XR Studio (story-contracts-and-payment-protect-sensitive-data).
 4. **Edit** opens one fact on its own page, as for project facts (design-project-facts). On save the organisation page opens with a notice: "Bio saved. Every project in <organisation> now reads the new bio."
 5. **Funder applicant profiles** lists one profile per funder on the program list. Until the program list story arrives, the list is the four funders the business requirements name: Canada Council for the Arts, Canada Media Fund, Creative BC and Epic MegaGrants (approver's decision, 2026-11-12). Each line says whether the profile is recorded and has **Add** (not recorded yet) or **Edit** and **Earlier versions** (recorded), each naming the funder in visually hidden text. A profile is a short form: **Applicant name as registered with the funder**, **Applicant category**, **Funder's applicant profile number (optional)** and **Mandate**, with **Save profile**.
-6. **Open standard work samples** opens the same work samples page as a project's (design-project-facts), for the organisation: files with a title, who added each and when, **Remove**, any held uploads, and **Add a work sample**. Text in PDFs is checked against the identifier formats when the upload is registered; scanned PDFs, video, images and audio are not (design-identifier-filter).
+6. **Open standard work samples** opens the same work samples page as a project's (design-project-facts), for the organisation: files with a title, who added each and when, **Remove**, any held uploads, and **Add a work sample**. Text in PDFs and Word documents is checked against the identifier formats when the upload is registered; scanned PDFs, video, images and audio are not (design-identifier-filter).
 7. Every project in the organisation shows the legal name and bio under **From <organisation>** on its Facts tab (design-project-facts).
 8. **Earlier versions**, compare, restore and save conflicts work exactly as for project facts, with the same pages and wording (see design-project-facts' mock-ups); restoring an organisation fact also runs the identifier check.
 
@@ -60,7 +60,7 @@ The company's own facts, recorded once in its organisation and read by every pro
 
 - **Organisation facts** sits on the organisation page after the buttons and the **Identifier formats** and **Activity** navigation, and before **Projects**.
 - Control names: **Organisation facts**, **Identifier formats**, **Activity**, **Edit**, **Add**, **Earlier versions**, **Save <fact>**, **Save profile**, **Cancel**, **Open standard work samples**, **Add a work sample**, **Add work sample**, **Uploading**, **Stop uploading**, **Remove**.
-- Value types: Legal name is one line; Bio and Company history are text; a funder profile is the four fields above; a work sample is a title and one file (video, images, audio or PDF, up to 2 GB; approver's decision, 2026-11-12).
+- Value types: Legal name is one line; Bio and Company history are text; a funder profile is the four fields above; a work sample is a title and one file (video, images, audio, a PDF or a Word document (.docx), up to 2 GB; approver's decisions, 2026-11-12).
 
 ## States and errors
 

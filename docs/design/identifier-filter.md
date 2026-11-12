@@ -36,8 +36,8 @@ Some formats overlap: any 9 digits can be a Business Number, and 9 digits that p
 
 ### A document that matches
 
-1. A person adds a work sample. When the upload is registered, the text of PDFs is checked. Scanned PDFs with no text layer, video, images and audio are not checked in slice 2, and the field's hint says so (approver's decisions, 2026-11-12). Work samples accept no other file types, so there are no text files to check.
-2. If it matches, the file is not added. It is held until a stated clock time 24 hours later, then deleted, unless confirmed (approver's decision, 2026-11-12). The deletion is recorded in the activity of whatever holds the work samples page, by "XR Studio": "Deleted grant-letter.pdf, held because its text looked like it had a GST/HST number and not confirmed within 24 hours." (approver's decision, 2026-11-12). The error summary says which page of which file matched which format, and when it will be deleted.
+1. A person adds a work sample. When the upload is registered, the text of PDFs and Word documents (.docx) is checked. Scanned PDFs with no text layer, video, images and audio are not checked in slice 2, and the field's hint says so (approver's decisions, 2026-11-12). Work samples accept video, images, audio, PDFs and Word documents; a file of any other type is refused with "Choose a video, image, audio, PDF or Word file." More types may be added later, each checked if it holds text (approver's decision, 2026-11-12).
+2. If it matches, the file is not added. It is held until a stated clock time 24 hours later, then deleted, unless confirmed (approver's decision, 2026-11-12). The deletion is recorded in the activity of whatever holds the work samples page, by "XR Studio": "Deleted grant-letter.pdf, held because its text looked like it had a GST/HST number and not confirmed within 24 hours." (approver's decision, 2026-11-12). The error summary says which file matched which format (and, for a PDF, which page; a Word document has no fixed pages), and when it will be deleted.
 3. **It is not a <format>, add <file>** is a submit button that goes to the same **What is it?** confirmation, then adds the file. **Or choose a different file** is a file field with **Upload a different file** to start again.
 4. Until it is confirmed or deleted, a held file is listed at the top of the work samples page: "Held: <file>. Not added: its text looks like it has a <format>. It will be deleted at <time> on <date> unless you confirm it is not a <format>." with **Confirm <file> is not a <format>** and **Delete <file> now**. So a person who closes the page can come back to it.
 
@@ -83,7 +83,7 @@ Some formats overlap: any 9 digits can be a Business Number, and 9 digits that p
 - **Match in a fact:** summary heading "Not saved: this looks like a <format>"; field error "Take out "<text>", or confirm it is not a <format>."
 - **Several formats:** "Not saved: this looks like a <format> or a <format>"; field error "Take out "<text>", or confirm it is none of these."
 - **Answer empty:** "Say in a few words what the number is." **Answer too long:** "Keep your answer to 100 characters or fewer." (laid out as the answer-refused mock-up). **Answer matches a format:** "Your answer also looks like a <format>. Say what it is in words, without the number."
-- **Match in a document:** "Not added: <file> looks like it has a <format>", naming the page and the deletion time.
+- **Match in a document:** "Not added: <file> looks like it has a <format>", naming the page (for a PDF) and the deletion time.
 - **Pattern too short:** "Use at least 6 # or A in the pattern. A shorter pattern would match ordinary numbers like dates and prices."
 - **Name missing:** "Enter a name for the format." **Pattern missing:** "Enter a pattern, like ###-AA-#####."
 - **A new or turned-on format:** checks from then on; text already saved is not changed. The notice says so. A restore of older text is checked like any save.
@@ -92,7 +92,7 @@ Some formats overlap: any 9 digits can be a Business Number, and 9 digits that p
 
 ## How it works
 
-- **How does the system know?** The formats are stored on the organisation as versioned working state (decision-identifier-format-list). Each check reads the list for the organisation of the project being written to.
+- **How does the system know?** The current formats are stored on the organisation (decision-identifier-format-list), and their history is the organisation's activity entries, which record every add, turn off, turn on and removal; a version table is added only when a story needs to show or restore an earlier list (approver's decision, 2026-11-12). Each check reads the list for the organisation of the project being written to.
 - **What enforces each promise?**
   - "Identifiers never reach anything an agent can read": every write to an agent-readable field, including restores and the **What is it?** answer, passes through the command layer, which runs the check before writing (decision-project-record-model). There is no other write path. A test saves test identifiers in each field, as a restore and as a confirmation answer, and uploads them in a document, then searches the facts, documents and log for them and finds none.
   - "The confirmation is logged with who and when": confirm-and-save is one command; it writes the fact version and the log entry in one transaction. A test.

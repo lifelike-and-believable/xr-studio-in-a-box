@@ -78,7 +78,7 @@ Restored text is checked for bank details and tax numbers like any save. If an i
 You need the Director or Producer role on the project. Everyone else who can see the facts sees the list of samples on the **Facts** tab.
 
 1. On the **Facts** tab, select **Edit** beside **Work samples** (or **Add**, if there are none yet). The work samples page opens.
-2. Under **Add a work sample**, type a **Title** and choose a **File**: video, images, audio or a PDF, up to 2 GB.
+2. Under **Add a work sample**, type a **Title** and choose a **File**: video, images, audio, a PDF or a Word document (.docx), up to 2 GB.
 3. Select **Add work sample**. While the file uploads, a progress bar shows how far it has gone and about how long is left, and the button reads **Uploading**. Keep the page open. **Stop uploading** cancels it.
 
 The sample appears in the list with its title, file, who added it and when.
@@ -87,7 +87,7 @@ To remove a sample, select **Remove** beside it, then **Remove <title>** in the 
 
 ![Work samples](../design/project-facts/work-samples.png)
 
-Text in PDFs is checked for bank details and tax numbers when you add them. Scanned PDFs, video, images and audio are not checked, so do not add scans or photos of bank or tax documents. A file whose text matches is held, not added, and listed at the top of the page as **Held**; see [A document that is held](identifier-formats.md#a-document-that-is-held).
+Text in PDFs and Word documents is checked for bank details and tax numbers when you add them. Scanned PDFs, video, images and audio are not checked, so do not add scans or photos of bank or tax documents. A file whose text matches is held, not added, and listed at the top of the page as **Held**; see [A document that is held](identifier-formats.md#a-document-that-is-held).
 
 The organisation's standard work samples have their own page; the line at the top of this page links to it.
 
@@ -129,6 +129,7 @@ Every change to a fact is recorded in the project's **Activity**. See [Activity]
 | "Not saved: this looks like a <format>" | The text matches an identifier format, such as a bank account number. | See [Bank details, tax numbers and identifier formats](identifier-formats.md). |
 | "Enter a title for the work sample." | **Title** is empty. | Type a title. If the file is no longer chosen, choose it again. |
 | "Choose a file to add." | No file was chosen. | Choose a file. |
+| "Choose a video, image, audio, PDF or Word file." | The file is not one of the types work samples take. | Choose another file, or save it as a PDF first. |
 | "The file is larger than 2 GB. Choose a smaller file." | The file is over the limit. | Choose a smaller file, or a shorter cut of the video. |
 | "The upload of <file> stopped before it finished. Choose the file again to try again." | The connection dropped or the page was closed during the upload. | Choose the file again and select **Add work sample**. The title is kept. |
 | "This page is not available" | You opened the address of a fact or page your roles do not let you see. | Ask the project's director or producer. |
