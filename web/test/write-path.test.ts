@@ -48,6 +48,36 @@ describe('writes go through the command layer (layer1-organisations-projects-peo
     expect(importers).toEqual([]);
   });
 
+  // layer1-facts-identifiers-activity#AC-40: upload registration and the held-upload job are
+  // commands too, so the system writers above gain no file; the route that receives bytes writes
+  // only to object storage.
+  it('keeps the slice 2 writes in the command layer (layer1-facts-identifiers-activity#AC-40)', () => {
+    expect(Object.keys(SYSTEM_WRITERS).sort()).toEqual(['src/record/mail.ts', 'src/record/sign-in.ts']);
+    const commands = source.find((s) => s.file === 'src/record/commands.ts')?.text ?? '';
+    for (const name of [
+      'saveFact',
+      'restoreFact',
+      'confirmFact',
+      'requestUpload',
+      'registerUpload',
+      'confirmUpload',
+      'deleteUpload',
+      'removeWorkSample',
+      'addFormat',
+      'setFormat',
+      'removeFormat',
+      'deleteExpiredHeldUploads',
+    ]) {
+      expect(commands, name).toMatch(new RegExp(`export async function ${name}\\(`));
+    }
+    const receiver = source.filter((s) => s.file.startsWith('app/api/v1/storage/'));
+    expect(receiver.length).toBeGreaterThan(0);
+    for (const r of receiver) {
+      expect(r.text, r.file).not.toMatch(/@\/record\/commands|db\/client|drizzle-orm/);
+      expect(r.text, r.file).toMatch(/@\/storage\/storage/);
+    }
+  });
+
   it('reads roles from the database on each command, not from the session', () => {
     const commands = source.find((s) => s.file === 'src/record/commands.ts')?.text ?? '';
     expect(commands).toMatch(/rolesOf\(/);
