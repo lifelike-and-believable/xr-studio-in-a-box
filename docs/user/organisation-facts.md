@@ -2,7 +2,7 @@
 id: docs-organisation-facts
 status: approved
 derived-from:
-  - design-organisation-facts: fc82a302ac8a
+  - design-organisation-facts: 944f01c03608
   - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
 ---
 
@@ -55,7 +55,7 @@ The organisation's page opens with a notice, for example "Bio saved. Every proje
 Standard work samples are the company's showreel, press pack and other samples that every project can use.
 
 1. On the organisation's page, select **Open standard work samples** (or **Add** beside **Standard work samples**, if there are none yet).
-2. Under **Add a work sample**, type a **Title** and choose a **File**: video, images, audio or a PDF, up to 2 GB.
+2. Under **Add a work sample**, type a **Title** and choose a **File**: video, images, audio, a PDF or a Word document (.docx), up to 2 GB.
 3. Select **Add work sample** and keep the page open while it uploads.
 
 Removing a sample, the upload progress and held files work as on a project's work samples page. See [Add and remove work samples](project-facts.md#add-and-remove-work-samples).

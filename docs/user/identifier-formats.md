@@ -2,7 +2,7 @@
 id: docs-identifier-filter
 status: approved
 derived-from:
-  - design-identifier-filter: aa3e3eab9a69
+  - design-identifier-filter: 069c84a56674
   - story-contracts-and-payment-protect-sensitive-data#acceptance-criteria: 2b9128383b81
 ---
 
@@ -18,7 +18,7 @@ Sometimes ordinary text only looks like an identifier: a catalogue number, a tic
 
 - Every save of a project fact or organisation fact, including a funder applicant profile.
 - Every restore of an earlier version.
-- The text of PDFs added as work samples. Scanned PDFs, video, images and audio are not checked, so do not add scans or photos of bank or tax documents.
+- The text of PDFs and Word documents (.docx) added as work samples. Scanned PDFs, video, images and audio are not checked, so do not add scans or photos of bank or tax documents.
 
 Matching ignores spaces, hyphens and dots between characters, so "046 454 286", "046-454-286" and "046454286" all match the same format. The formats used are those turned on for the project's organisation; see [Keep the list of identifier formats](#keep-the-list-of-identifier-formats).
 
@@ -52,7 +52,7 @@ If different pieces of the text match, each is listed in the message with a link
 
 ## A document that is held
 
-When you add a PDF as a work sample and its text matches a format, the file is not added. You see, for example, "Not added: grant-letter.pdf looks like it has a GST/HST number". The message says which page matched and when the file will be deleted: it is held for 24 hours, then deleted unless you confirm it.
+When you add a PDF or Word document as a work sample and its text matches a format, the file is not added. You see, for example, "Not added: grant-letter.pdf looks like it has a GST/HST number". The message says when the file will be deleted and, for a PDF, which page matched: it is held for 24 hours, then deleted unless you confirm it.
 
 ![Document held](../design/identifier-filter/document-held.png)
 
