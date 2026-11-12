@@ -2,7 +2,7 @@
 id: docs-organisation-facts
 status: approved
 derived-from:
-  - design-organisation-facts: b5a099767a10
+  - design-organisation-facts: fc82a302ac8a
   - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
 ---
 

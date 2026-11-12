@@ -2,7 +2,7 @@
 id: docs-project-facts
 status: approved
 derived-from:
-  - design-project-facts: 833171fc6120
+  - design-project-facts: 1a327e4e7efd
   - story-project-record-record-facts#acceptance-criteria: 1b82a3da6d7d
   - story-review-and-status-feedback-and-versions#acceptance-criteria: 667f3e80aa75
 ---
@@ -17,7 +17,7 @@ Every save is kept as a version. You can see who last changed each fact, read it
 
 Open the project and select **Facts**. It sits between **Overview** and **People**. Above the project's name, **Organisation: <organisation>** links to the organisation's page.
 
-The facts are listed in this order: **Description**, **Plan**, **Budget**, **Credits**, **Collaborators**, **Schedule**, **Work samples** and **Capacity**. Under each one you see its value and "Last changed by <name>, <date and time>".
+The facts are listed in this order: **Description**, **Plan**, **Budget**, **Credits**, **Collaborators**, **Schedule**, **Work samples** and **Capacity**. Under each one you see its value and "Last changed by <name>, <date and time>". Times are shown in your own time zone.
 
 Below them, **From <organisation>** shows the organisation's legal name and bio, which every project in the organisation reads. You cannot edit them here; select **Open <organisation>'s facts** to go to them. See [Organisation facts](organisation-facts.md).
 
@@ -87,7 +87,7 @@ To remove a sample, select **Remove** beside it, then **Remove <title>** in the 
 
 ![Work samples](../design/project-facts/work-samples.png)
 
-Text in PDFs and text files is checked for bank details and tax numbers when you add them. Video, images and audio are not checked. A file whose text matches is held, not added, and listed at the top of the page as **Held**; see [A document that is held](identifier-formats.md#a-document-that-is-held).
+Text in PDFs is checked for bank details and tax numbers when you add them. Scanned PDFs, video, images and audio are not checked, so do not add scans or photos of bank or tax documents. A file whose text matches is held, not added, and listed at the top of the page as **Held**; see [A document that is held](identifier-formats.md#a-document-that-is-held).
 
 The organisation's standard work samples have their own page; the line at the top of this page links to it.
 
@@ -111,6 +111,7 @@ If another person saves the same fact after you opened it, your text is not save
 - If your roles do not let you edit, you see the facts without **Edit**, and a line names who edits them. On **Earlier versions** you can use **Compare with current** but not **Restore**.
 - A fact your roles do not let you see is listed by name with who can see it, for example "The budget is visible to the director and producer.", and no value. Its earlier versions are not available to you either.
 - Venue attendants, performers and collaborators do not use the dashboard and never see facts.
+- Written feedback on drafts, and restoring by roles other than the director and producer, come with drafts in a later release.
 - Agents and Claude Code sessions cannot read or change facts yet. In a later release, an agent will be able to suggest facts from a document you point it at, marked as drafts until you accept them.
 
 ![Facts, read only](../design/project-facts/facts-read-only.png)

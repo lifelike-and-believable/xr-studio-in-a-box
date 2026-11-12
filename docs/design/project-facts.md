@@ -110,3 +110,4 @@ Organisation facts read into a project follow design-organisation-facts. No fact
 - Agent drafts of facts from a document: slice 7.
 - Detailed budget lines and actual cost: the budgets stories.
 - Drafts that read facts and are flagged when a fact changes: the funding stories.
+- The rest of story-review-and-status-feedback-and-versions (written feedback, revise or regenerate, side-by-side compare, and restore by Riley): with drafts, in a later slice. Slice 2 gives every role that sees a fact its compare page, and restore of facts stays with the director and producer (approver's decision, 2026-11-12).
