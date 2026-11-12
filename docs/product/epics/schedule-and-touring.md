@@ -32,7 +32,10 @@ Crew, performers, rehearsals and shoots are scheduled with call sheets, time in 
 
 ## Stories
 
-- None yet.
+- story-schedule-and-touring-schedule
+- story-schedule-and-touring-call-sheets
+- story-schedule-and-touring-time-in-kit
+- story-schedule-and-touring-manifests-and-checklists
 
 ## Release groups
 
@@ -46,7 +49,7 @@ Crew, performers, rehearsals and shoots are scheduled with call sheets, time in 
 
 ## Open questions
 
-- What are sensible limits for time in kit?
+- Answered: limits for time in kit are set per performer by the director or their delegate with the performer, from rehearsal, and the performer can always stop, in story-schedule-and-touring-time-in-kit. The first real limits are set from a rehearsal with a real performer before that story is accepted.
 
 ## Out of scope
 

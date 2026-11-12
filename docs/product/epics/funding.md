@@ -33,7 +33,11 @@ Funding programs are matched to projects, applications and reports are drafted f
 
 ## Stories
 
-- None yet.
+- story-funding-program-list
+- story-funding-match-programs
+- story-funding-draft-application
+- story-funding-reports-and-claims
+- story-funding-tax-credits
 
 ## Release groups
 
@@ -48,9 +52,9 @@ Funding programs are matched to projects, applications and reports are drafted f
 
 ## Open questions
 
-- Which arts council is the fourth funder format?
-- Which past application is the worked example for the success measure?
-- How often must funder rules be rechecked?
+- Answered: the Canada Council for the Arts. The working funder list is Canada Media Fund, Creative BC, Epic MegaGrants and the Canada Council for the Arts (story-funding-program-list, story-funding-draft-application).
+- Answered: settled in story-funding-draft-application: Jordan chooses a past application as the worked example and records it, with the time it took, before the story is accepted.
+- Answered: funder rules are rechecked when each program opens a new intake, and again within a week of any submission. A person confirms each check and its date, and out-of-date rules block drafting until they are rechecked (story-funding-program-list).
 
 ## Out of scope
 

@@ -1,0 +1,20 @@
+---
+id: story-funding-reports-and-claims
+status: approved
+derived-from:
+  - epic-funding#outcome: 1d1f64414639
+  - persona-producer#goals: d1cc47b03be9
+---
+
+# Draft reports and cost claims with proof of spend
+
+As Jordan, the producer, I want interim and final reports and cost claims drafted from the project facts and tracked spend, with proof of spend attached, so that I can check them and send them without copying figures between documents.
+
+## Acceptance criteria
+
+- An agent drafts an interim or final report, or a cost claim, for a funded program in its format (story-funding-program-list), from the project facts (story-project-record-record-facts), the budget submitted with the application (story-funding-draft-application) and the tracked cost lines (story-budgets-and-cost-track-actual-cost). Where the funder asks for audience figures, they come only from data collected where consent allows (epic-credits-and-outreach). Drafting is blocked while the program's rules are out of date.
+- Each cost in a claim is attached to its proof of spend (story-budgets-and-cost-track-actual-cost). Costs with no proof, and lines that differ from the submitted budget by more than the funder's rule allows, are listed in plain words for Jordan to explain or fix. The agent never invents a figure or an explanation.
+- The draft waits at the funding applications and reports gate for the person the project records as holding that approval, or their delegate (story-project-record-name-approvers). It cannot pass the gate while the program's last rule check is older than 7 days. Only that person submits it and records when and which version. An agent cannot submit or send it.
+- The agent works with amounts only. Proof of spend shown to an agent has bank details and tax numbers hidden, and only a person with the right role sees them (REQ-business-16).
+- Each submitted report, claim and its proof is kept for as long as the rules that apply to it require (REQ-business-17, epic-contracts-and-payment).
+- Each report and claim deadline appears with the project's deadlines (story-funding-program-list).

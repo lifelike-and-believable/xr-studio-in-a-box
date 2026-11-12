@@ -34,7 +34,11 @@ Budgets are built per project and funder, actual cost is tracked including gener
 
 ## Stories
 
-- None yet.
+- story-budgets-and-cost-build-a-budget
+- story-budgets-and-cost-track-actual-cost
+- story-budgets-and-cost-cost-and-schedule-view
+- story-budgets-and-cost-work-alone
+- story-budgets-and-cost-connect-a-tool
 
 ## Release groups
 
@@ -49,7 +53,7 @@ Budgets are built per project and funder, actual cost is tracked including gener
 
 ## Open questions
 
-- Which third-party tool, if any, comes first?
+- Answered: none comes first. The business tools work alone with no other software, and spreadsheet export and import cover the gap (story-budgets-and-cost-work-alone). The adapter pattern is proven with one tool, chosen once a real project needs it (story-budgets-and-cost-connect-a-tool).
 
 ## Out of scope
 
