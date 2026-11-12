@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 248 proposed stories, 242 written, 0 open questions.
+39 epics, 248 proposed stories, 245 written, 0 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -761,9 +761,9 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 |---|---|---|
 | [Know what a production costs while it happens](epics/budgets-and-cost.md) | 5 of 5 | 0 |
 | [Agreements and payments, with a person in charge](epics/contracts-and-payment.md) | 5 of 5 | 0 |
-| [Tell people about the work, and credit it properly](epics/credits-and-outreach.md) | 5 of 6 | 0 |
+| [Tell people about the work, and credit it properly](epics/credits-and-outreach.md) | 6 of 6 | 0 |
 | [Find funding, apply and report, from one set of facts](epics/funding.md) | 5 of 5 | 0 |
-| [Get the right people and kit to the right place](epics/schedule-and-touring.md) | 4 of 6 | 0 |
+| [Get the right people and kit to the right place](epics/schedule-and-touring.md) | 6 of 6 | 0 |
 
 <details>
 <summary>Know what a production costs while it happens</summary>
@@ -807,13 +807,14 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Build credits from the project facts and provenance records](stories/credits-and-outreach/build-credits.md) (approved)
 - [Collect attendance and feedback by session, where consent allows](stories/credits-and-outreach/collect-audience-data.md) (approved)
 - [Draft promotional material, press kits and posts](stories/credits-and-outreach/draft-promotion.md) (approved)
+- [Collect analytics on the player page only with consent](stories/credits-and-outreach/player-page-analytics.md) (approved)
 
 - Build credits from project facts and provenance records.
 - Draft an AI-use statement from provenance records.
 - Draft promotional material, press kits and posts.
 - Collect attendance and feedback by session, where consent allows.
 - Use audience data in funder and partner reports.
-- Not written yet: collect analytics on the player page beyond counts, and any tracking, only for a guest who consents in the pre-show, off by default. They hold no name, contact or device identifier, are deleted on the guest's request with the deletion logged without the data, and need a guardian's consent for a guest under the age of consent (REQ-business-11, REQ-governance-7).
+- Collect analytics on the player page beyond counts, and any tracking, only for a guest who consents in the pre-show, off by default. They hold no name, contact or device identifier, are deleted on the guest's request with the deletion logged without the data, and need a guardian's consent for a guest under the age of consent (REQ-business-11, REQ-governance-7).
 
 </details>
 
@@ -839,14 +840,16 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 - [Draft call sheets for a person to approve and send](stories/schedule-and-touring/call-sheets.md) (approved)
 - [Draft equipment manifests and set-up checklists for each venue](stories/schedule-and-touring/manifests-and-checklists.md) (approved)
+- [See my own time in kit, limits and history](stories/schedule-and-touring/own-time-in-kit.md) (approved)
 - [Schedule availability, rehearsals and shoots](stories/schedule-and-touring/schedule.md) (approved)
 - [Track each performer's time in a headset or suit against a set limit](stories/schedule-and-touring/time-in-kit.md) (approved)
+- [Draft a travel checklist for each trip](stories/schedule-and-touring/travel-checklist.md) (approved)
 
 - Schedule crew and performer availability, rehearsals and shoots.
 - Draft call sheets for approval.
 - Track each performer's time in a headset or suit against set limits.
 - Draft equipment manifests and set-up checklists for each venue.
-- Not written yet: Kai sees their own time in kit, their limits and the dated history of both on a limited page (story-schedule-and-touring-time-in-kit).
-- Not written yet: draft a travel checklist for each trip in the schedule: the people called, their travel and load-in calls, how the kit travels and what must be booked. This story would define a travel checklist. A person makes every booking and payment. An agent never books, pays or sends anything outside the project (REQ-workflow-14, REQ-business-8), and never sees passport numbers or similar identifiers (story-contracts-and-payment-protect-sensitive-data).
+- Kai sees their own time in kit, their limits and the dated history of both on a limited page (story-schedule-and-touring-time-in-kit).
+- Draft a travel checklist for each trip in the schedule: the people called, their travel and load-in calls, how the kit travels and what must be booked. This story defines a travel checklist. A person makes every booking and payment. An agent never books, pays or sends anything outside the project (REQ-workflow-14, REQ-business-8), and never sees passport numbers or similar identifiers (story-contracts-and-payment-protect-sensitive-data).
 
 </details>
