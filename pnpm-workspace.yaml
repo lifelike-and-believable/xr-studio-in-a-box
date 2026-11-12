@@ -1,0 +1,6 @@
+packages:
+  - contracts
+  - web
+allowBuilds:
+  esbuild: true
+engineStrict: true
