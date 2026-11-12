@@ -4,6 +4,7 @@ tests-commit: 86f8cd0
 unlocks:
   - web/playwright.config.ts: review of PR #344. An empty DATABASE_URL was passed to the app server when none was exported, which hid `web/.env` (Next.js never overrides a defined variable); the variable is now passed only when set. Also adds `forbidOnly` in CI, so a committed `test.only` cannot silently drop AC-4 and AC-5, and runs one worker, because the new hung-database test locks `app_meta` and must not run beside AC-4. No assertion changes.
   - web/e2e/health-hung-database.spec.ts (new): AC-5, a database that accepts the connection but stalls still gets 503 within a bounded time.
+  - web/test/repo-hygiene.test.ts: slice 1 (layer1-organisations-projects-people) adds settings to `.env.example` (BETTER_AUTH_SECRET, APP_ORIGINS, SIGN_IN_FIRST_ADDRESSES, MAIL_CAPTURE_DIR, PASSKEY_RP_ID, PASSKEY_ORIGINS), so AC-9's expected list of names grows. The database URLs keep their exact placeholder, and every other value must still be a placeholder with no secret in it.
 ---
 
 # Layer 1, slice 0: repository skeleton

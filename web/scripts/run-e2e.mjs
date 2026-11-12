@@ -1,0 +1,36 @@
+// Runs the Playwright suite with the settings slice 1 needs. Playwright passes process.env to
+// the app servers it starts, so the app and the tests share one mail capture folder and one
+// list of first addresses. The auth secret is made fresh for each run and is never stored.
+import { spawnSync } from 'node:child_process';
+import { randomBytes } from 'node:crypto';
+import { mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+
+export const FIRST_ADDRESSES = [
+  'jordan@xr.test',
+  'morgan@xr.test',
+  'solo@xr.test',
+  'empty@xr.test',
+  'keys@xr.test',
+  'access@xr.test',
+];
+
+const env = {
+  ...process.env,
+  MAIL_CAPTURE_DIR: process.env.MAIL_CAPTURE_DIR || mkdtempSync(path.join(tmpdir(), 'xr-mail-')),
+  SIGN_IN_FIRST_ADDRESSES: process.env.SIGN_IN_FIRST_ADDRESSES || FIRST_ADDRESSES.join(', '),
+  BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET || randomBytes(32).toString('hex'),
+  // The suite reaches the app as 127.0.0.1, and as localhost for passkeys, which need a domain name.
+  APP_ORIGINS: process.env.APP_ORIGINS || 'http://127.0.0.1:3100,http://localhost:3100,http://127.0.0.1:3101',
+  PASSKEY_RP_ID: process.env.PASSKEY_RP_ID || 'localhost',
+  PASSKEY_ORIGINS: process.env.PASSKEY_ORIGINS || 'http://localhost:3100',
+};
+
+// `pnpm run e2e -- <args>` passes a leading '--' through; Playwright does not want it.
+const args = process.argv.slice(2).filter((arg, i) => !(i === 0 && arg === '--'));
+const result = spawnSync('pnpm', ['exec', 'playwright', 'test', ...args], {
+  stdio: 'inherit',
+  env,
+});
+process.exit(result.status ?? 1);
