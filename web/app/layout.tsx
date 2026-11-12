@@ -1,14 +1,20 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'XR Studio in a Box',
+  title: { default: 'XR Studio', template: '%s - XR Studio' },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en-GB">
-      <body>{children}</body>
+      <body>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
