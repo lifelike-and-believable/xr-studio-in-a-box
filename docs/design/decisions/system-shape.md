@@ -1,6 +1,6 @@
 ---
 id: decision-system-shape
-status: draft
+status: approved
 derived-from:
   - epic-project-record#outcome: c7917e3ef44b
   - epic-agent-work#outcome: f707c8c84ba0

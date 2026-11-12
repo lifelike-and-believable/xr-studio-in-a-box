@@ -1,6 +1,6 @@
 ---
 id: decision-agent-runtime
-status: draft
+status: approved
 derived-from:
   - epic-agent-work#outcome: f707c8c84ba0
   - persona-director#goals: a92ca172be83

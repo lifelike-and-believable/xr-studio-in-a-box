@@ -1,6 +1,6 @@
 ---
 id: decision-project-record-model
-status: draft
+status: approved
 derived-from:
   - epic-project-record#outcome: c7917e3ef44b
   - epic-review-and-status#outcome: adfddef70e61

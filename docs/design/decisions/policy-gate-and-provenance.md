@@ -1,6 +1,6 @@
 ---
 id: decision-policy-gate-and-provenance
-status: draft
+status: approved
 derived-from:
   - epic-provenance-and-policy#outcome: c0bb4a44b0d6
   - persona-collaborator#goals: 72c41c51284f
