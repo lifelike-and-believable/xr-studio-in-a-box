@@ -43,7 +43,7 @@ Option C. It is the smallest design in which "restore" and "never rolls back" ar
 - **Assets.** Each asset version is stored once in object storage under its SHA-256 hash. The record holds its metadata, owner, state and provenance.
 - **Identifiers** are UUIDv7, so records made offline at a venue merge without clashes.
 - **Out of this database:** guest data (its own store in Layer 6, outside project backups) and the protected store.
-- **Region.** The record and its storage are hosted in the provider region nearest the studio (approver's decision, 2026-11-12). Whether the chosen providers offer a Canadian region is checked before slice 0 `[assumed]`.
+- **Region and provider.** The studio is in Toronto. The record is AWS Aurora PostgreSQL in ca-central-1 (Montréal), reached through Vercel's AWS integration, with point-in-time recovery; object storage is S3 in ca-central-1, with Object Lock for the write-once ledger copy; the web app's functions run in Vercel's `yul1` (Montréal) region (approver's decision, 2026-11-12, after the region check recorded in docs/specs/layer1-skeleton.md). Neon and Prisma Postgres were ruled out because they have no Canadian region. To confirm before slice 1 deploys: that Vercel's AWS Marketplace region picker offers Canada (Central) for Aurora PostgreSQL (otherwise an AWS account is connected by hand) `[assumed]`.
 
 ## Consequences
 
