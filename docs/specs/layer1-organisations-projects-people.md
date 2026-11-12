@@ -1,6 +1,6 @@
 ---
 id: spec-layer1-organisations-projects-people
-status: approved
+status: implemented
 derived-from:
   - docs-sign-in#accept-an-invitation: ea81ef051e97
   - docs-sign-in#what-you-see-the-first-time: 55017c219fb8
