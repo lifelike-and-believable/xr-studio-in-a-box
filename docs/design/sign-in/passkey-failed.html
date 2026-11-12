@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: passkey sign-in cancelled or not recognised</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app"><span class="brand">XR Studio</span></header>
+<main id="main" class="narrow">
+<div class="notice" role="status"><p><strong>That passkey did not sign you in.</strong> It may have been cancelled, or it was not made for XR Studio on this device. You can try again or use an email link.</p></div>
+<h1>Sign in</h1>
+<form>
+<div class="field"><label for="email">Email address</label><input type="email" id="email" autocomplete="username webauthn"></div>
+<div class="actions"><button type="submit">Email me a sign-in link</button><button type="button" class="secondary">Try the passkey again</button></div>
+</form>
+</main>
+</body>
+</html>

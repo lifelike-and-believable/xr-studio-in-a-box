@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add a person - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: roles chosen, summary shown before adding</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="page">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+<h1>Add a person to The Lantern Keeper</h1>
+<form>
+<div class="field"><label for="person-name">Name</label><input type="text" id="person-name" autocomplete="off" value="Riley Chen"></div>
+<div class="field"><label for="person-email">Email address <span class="hint">We send a sign-in link here.</span></label><input type="email" id="person-email" autocomplete="off" value="riley@example.com"></div>
+<fieldset class="roles">
+<legend>Roles <span class="hint">Choose one or more. A person can see and do what any of their roles allows. No role gives an approval: approvers are named separately.</span></legend>
+
+<div class="role"><input type="checkbox" id="role-director" name="roles" value="director" aria-describedby="role-director-desc"><label for="role-director">Director</label><span class="hint" id="role-director-desc">Leads the creative work. Sees the whole project, adds and removes people, and changes the project name and brief.</span></div>
+<div class="role"><input type="checkbox" id="role-producer" name="roles" value="producer" aria-describedby="role-producer-desc"><label for="role-producer">Producer</label><span class="hint" id="role-producer-desc">Runs the production. Sees the whole project, adds and removes people, and changes the project name and brief.</span></div>
+<div class="role"><input type="checkbox" id="role-technical-artist" name="roles" value="technical-artist" aria-describedby="role-technical-artist-desc"><label for="role-technical-artist">Technical artist</label><span class="hint" id="role-technical-artist-desc">Builds and checks the pipeline. Sees the project and who is on it.</span></div>
+<div class="role"><input type="checkbox" id="role-artist" name="roles" value="artist" checked aria-describedby="role-artist-desc"><label for="role-artist">Artist</label><span class="hint" id="role-artist-desc">Makes characters, environments and effects. Sees the project and who is on it.</span></div>
+<div class="role"><input type="checkbox" id="role-sound-designer" name="roles" value="sound-designer" checked aria-describedby="role-sound-designer-desc"><label for="role-sound-designer">Sound designer</label><span class="hint" id="role-sound-designer-desc">Makes the sound and music. Sees the project and who is on it.</span></div>
+<div class="role"><input type="checkbox" id="role-interaction-designer" name="roles" value="interaction-designer" aria-describedby="role-interaction-designer-desc"><label for="role-interaction-designer">Interaction designer</label><span class="hint" id="role-interaction-designer-desc">Designs how guests take part. Sees the project and who is on it.</span></div>
+<div class="role"><input type="checkbox" id="role-capture-crew" name="roles" value="capture-crew" aria-describedby="role-capture-crew-desc"><label for="role-capture-crew">Capture crew</label><span class="hint" id="role-capture-crew-desc">Sets up and runs capture suits and sensors. Sees the project and who is on it.</span></div>
+<div class="role"><input type="checkbox" id="role-show-operator" name="roles" value="show-operator" aria-describedby="role-show-operator-desc"><label for="role-show-operator">Show operator</label><span class="hint" id="role-show-operator-desc">Runs the show. Sees the project and who is on it.</span></div>
+<div class="role"><input type="checkbox" id="role-venue-attendant" name="roles" value="venue-attendant" aria-describedby="role-venue-attendant-desc"><label for="role-venue-attendant">Venue attendant</label><span class="hint" id="role-venue-attendant-desc">Looks after guests at a venue. Uses the show-time tools only, not the dashboard.</span></div>
+<div class="role"><input type="checkbox" id="role-performer" name="roles" value="performer" aria-describedby="role-performer-desc"><label for="role-performer">Performer</label><span class="hint" id="role-performer-desc">Performs live. Uses their own agreement page only, not the dashboard.</span></div>
+<div class="role"><input type="checkbox" id="role-collaborator" name="roles" value="collaborator" aria-describedby="role-collaborator-desc"><label for="role-collaborator">Collaborator</label><span class="hint" id="role-collaborator-desc">Contributes work under agreed terms. Uses a limited page for their own items only, not the dashboard.</span></div>
+</fieldset>
+<div class="summary" aria-live="polite"><h2>Before you add Riley</h2>
+<p>Riley Chen will be able to see the project and who is on it (Artist, Sound designer). Riley will not be able to add people, change roles or change the project name and brief.</p>
+<p>We will email Riley a sign-in link.</p></div>
+<div class="actions"><button type="submit">Add person</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>
