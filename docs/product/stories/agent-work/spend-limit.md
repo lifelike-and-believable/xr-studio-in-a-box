@@ -15,4 +15,4 @@ As Jordan, the producer, I want to set a project's spend limit and have agents s
 - A new project has no limit, and metered work stays blocked until a person sets one.
 - Jordan can set and change the limit, if their role allows it.
 - When a request would pass the limit, the agent stops and asks a person with the right role.
-- Jordan can see spend so far against the limit.
+- Jordan can see spend so far against the limit (story-budgets-and-cost-cost-and-schedule-view).

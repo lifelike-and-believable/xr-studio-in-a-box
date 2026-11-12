@@ -30,12 +30,17 @@ Credits and AI-use statements are built from the record, promotion is drafted, a
 - Build credits from project facts and provenance records.
 - Draft an AI-use statement from provenance records.
 - Draft promotional material, press kits and posts.
-- Collect attendance, feedback and analytics by session, where consent allows.
+- Collect attendance and feedback by session, where consent allows.
 - Use audience data in funder and partner reports.
+- Not written yet: collect analytics on the player page beyond counts, and any tracking, only for a guest who consents in the pre-show, off by default. They hold no name, contact or device identifier, are deleted on the guest's request with the deletion logged without the data, and need a guardian's consent for a guest under the age of consent (REQ-business-11, REQ-governance-7).
 
 ## Stories
 
-- None yet.
+- story-credits-and-outreach-build-credits
+- story-credits-and-outreach-ai-use-statement
+- story-credits-and-outreach-draft-promotion
+- story-credits-and-outreach-collect-audience-data
+- story-credits-and-outreach-audience-data-in-reports
 
 ## Release groups
 
@@ -49,7 +54,7 @@ Credits and AI-use statements are built from the record, promotion is drafted, a
 
 ## Open questions
 
-- Which wording works for audiences? Trade evidence suggests "immersive" may do better than "VR", but this is one report.
+- Answered: the wording is settled by a test with real audiences that the producer runs and records in the project facts before the first public campaign. No wording is assumed: until the result is recorded, drafts mark the wording as a choice for a person. Settled in story-credits-and-outreach-draft-promotion.
 
 ## Out of scope
 

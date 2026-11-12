@@ -3,7 +3,7 @@ id: story-cue-list-performer-fired
 status: approved
 derived-from:
   - epic-cue-list#outcome: 26d12b7b12dc
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Fire cues while performing, armed by section

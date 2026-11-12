@@ -10,7 +10,7 @@ derived-from:
   - requirements-audience#REQ-audience-21: 6d703194d93a
   - persona-audience-member#goals: e1b5f3ebc15b
   - persona-interaction-designer#goals: 59b8371fa6c9
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Guests in the world, as whoever the show lets them be

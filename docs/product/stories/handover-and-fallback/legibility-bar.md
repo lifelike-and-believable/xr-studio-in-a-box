@@ -3,7 +3,7 @@ id: story-handover-and-fallback-legibility-bar
 status: approved
 derived-from:
   - epic-handover-and-fallback#outcome: 26b61211e6b4
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Keep a channel legible or say so

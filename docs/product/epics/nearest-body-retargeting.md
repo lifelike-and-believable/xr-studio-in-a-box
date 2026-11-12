@@ -4,7 +4,7 @@ status: approved
 derived-from:
   - requirements-performance#REQ-performance-12: 524eaef180f9
   - persona-technical-artist#goals: 1fb2055dfdf2
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Retarget a performer to the nearest body plan

@@ -29,18 +29,23 @@ Budgets are built per project and funder, actual cost is tracked including gener
 - Build a budget per project and funder format.
 - Track actual cost, including generation, cloud and per-show costs.
 - See budget against actual cost and the production schedule.
-- Use the business tools alone, with no other software.
 - Connect accounting, calendars or e-signature through an adapter.
+- Use the business tools alone, with no other software.
 
 ## Stories
 
-- None yet.
+- story-budgets-and-cost-build-a-budget
+- story-budgets-and-cost-track-actual-cost
+- story-budgets-and-cost-cost-and-schedule-view
+- story-budgets-and-cost-connect-a-tool
+- story-budgets-and-cost-work-alone
 
 ## Release groups
 
 - Budgets and cost tracking ship first, because funding reports depend on them.
 - The cost and schedule view follows.
 - Adapters ship when a production needs them.
+- Working alone ships last, and its test covers the business stories already built.
 
 ## Dependencies
 
@@ -49,7 +54,7 @@ Budgets are built per project and funder, actual cost is tracked including gener
 
 ## Open questions
 
-- Which third-party tool, if any, comes first?
+- Answered: none comes first. The business tools work alone with no other software, and spreadsheet export and import cover the gap (story-budgets-and-cost-work-alone). The adapter pattern is proven with one tool, chosen once a real project needs it (story-budgets-and-cost-connect-a-tool).
 
 ## Out of scope
 

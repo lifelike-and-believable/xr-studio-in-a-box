@@ -17,6 +17,7 @@ derived-from:
 - Fire cues, conduct a crowd or hand over a channel while performing.
 - Sense the audience without watching hundreds of avatars.
 - Decide what may be captured and how it may be used, including any AI use, and change that decision later.
+- Work within limits on time in a headset or suit, and stop whenever they need to.
 
 ## Skills and tools
 

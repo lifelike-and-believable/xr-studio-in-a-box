@@ -33,7 +33,11 @@ Contracts, licences, quotes and invoices are drafted and tracked, payroll inform
 
 ## Stories
 
-- None yet.
+- story-contracts-and-payment-draft-and-track-contracts
+- story-contracts-and-payment-quotes-and-invoices
+- story-contracts-and-payment-prepare-payroll
+- story-contracts-and-payment-protect-sensitive-data
+- story-contracts-and-payment-keep-records
 
 ## Release groups
 
@@ -48,7 +52,7 @@ Contracts, licences, quotes and invoices are drafted and tracked, payroll inform
 
 ## Open questions
 
-- What are the retention periods per funder and jurisdiction? This is pending.
+- Answered: each record carries every retention rule that applies to it (funder, tax rule, contract or jurisdiction) and is kept for the longest of them. Where a period is unknown, nothing is deleted until a person with the right role records the rule. Deletion always needs a person. Guest data stays under REQ-governance-7 (deleted when a session ends unless the guest opts in) and is not a business record. The periods themselves stay pending until each rule is recorded from its source. Settled in story-contracts-and-payment-keep-records.
 
 ## Out of scope
 

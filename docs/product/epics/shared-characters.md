@@ -7,7 +7,7 @@ derived-from:
   - requirements-performance#REQ-performance-8: bdb562dd2c81
   - requirements-performance#REQ-performance-12: 524eaef180f9
   - requirements-performance#REQ-performance-15: 7b441d01f9f3
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
   - persona-technical-artist#goals: 1fb2055dfdf2
 ---
 

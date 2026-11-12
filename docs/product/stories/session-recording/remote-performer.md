@@ -3,7 +3,7 @@ id: story-session-recording-remote-performer
 status: approved
 derived-from:
   - epic-session-recording#outcome: 196669ad74cf
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Drive a character from another location

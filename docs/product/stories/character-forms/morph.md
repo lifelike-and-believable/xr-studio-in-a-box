@@ -3,7 +3,7 @@ id: story-character-forms-morph
 status: approved
 derived-from:
   - epic-character-forms#outcome: a7670ee45062
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Morph a character between two forms

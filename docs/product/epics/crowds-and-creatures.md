@@ -8,7 +8,7 @@ derived-from:
   - requirements-characters#REQ-characters-10: 6c8cb3fe8ff4
   - requirements-characters#REQ-characters-12: 67af34ce966a
   - persona-director#goals: a92ca172be83
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
   - persona-technical-artist#goals: 1fb2055dfdf2
 ---
 

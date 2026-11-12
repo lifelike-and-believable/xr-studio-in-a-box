@@ -8,7 +8,7 @@ derived-from:
   - requirements-workflow#REQ-workflow-9: 47c300da3132
   - requirements-workflow#REQ-workflow-12: 79ce1380ed45
   - persona-show-operator#goals: 408315e4f8f6
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
   - persona-director#goals: a92ca172be83
 ---
 

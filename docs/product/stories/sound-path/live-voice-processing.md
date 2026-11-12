@@ -3,7 +3,7 @@ id: story-sound-path-live-voice-processing
 status: approved
 derived-from:
   - epic-sound-path#outcome: 3f3e81a83f45
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Process a live voice within the performer's agreement

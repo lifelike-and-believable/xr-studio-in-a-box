@@ -3,7 +3,7 @@ id: story-crowds-and-creatures-conduct
 status: approved
 derived-from:
   - epic-crowds-and-creatures#outcome: 07b3a730e1a2
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Conduct a crowd or creatures as one instrument

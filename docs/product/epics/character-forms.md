@@ -6,7 +6,7 @@ derived-from:
   - requirements-content#REQ-content-10: b6b1330a2285
   - persona-artist#goals: 0767918db571
   - persona-technical-artist#goals: 1fb2055dfdf2
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Characters that change form and move well on every device

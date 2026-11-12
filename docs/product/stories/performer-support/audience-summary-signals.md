@@ -3,7 +3,7 @@ id: story-performer-support-audience-summary-signals
 status: approved
 derived-from:
   - epic-performer-support#outcome: c9b11fc41292
-  - persona-performer#goals: 9de25c7bbe59
+  - persona-performer#goals: 72110c93fc2a
 ---
 
 # Sense the audience through physical signals

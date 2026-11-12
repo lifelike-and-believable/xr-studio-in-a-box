@@ -87,10 +87,10 @@ Source assets can be handed to a client at the end of a project, with their prov
 
 - External and financial actions need a person (REQ-workflow-2).
 - Funder formats and rules change and are checked against the funder's current documents.
-- The first funder formats are Canada Media Fund, Creative BC, Epic MegaGrants and an arts council (which one is pending).
+- The first funder formats are Canada Media Fund, Creative BC, Epic MegaGrants and the Canada Council for the Arts.
 - Payroll and tax filing carry legal rules. Prepared figures are a draft for a person to check, not professional advice.
 - Ticketing and capacity management are out of scope.
 
 ## Success measures
 
-- Time to prepare a funding application, report or budget, compared with a past application chosen by the approver as the worked example (pending).
+- Time to prepare a funding application, report or budget, compared with a past application that the producer chooses and records as the worked example.
