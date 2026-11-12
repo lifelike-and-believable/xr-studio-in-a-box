@@ -12,7 +12,7 @@ As Morgan, the director, I want to mark each scene or behaviour as locked or fre
 
 ## Acceptance criteria
 
-- Morgan, or their delegate, marks each section (story-cue-list-build-a-cue-list) and each behaviour of a crowd, creature or AI assist (story-crowds-and-creatures-ai-assists) as locked or free. A behaviour inside a locked section is locked. Anything not marked is locked. This story defines locked and free moments. Other stories refer to them by this story's id.
+- Morgan, or their delegate, marks each section (story-cue-list-build-a-cue-list) and each behaviour of a crowd, autonomous creature or AI assist (story-crowds-and-creatures-ai-assists) as locked or free. A behaviour inside a locked section is locked. Anything not marked is locked. This story defines locked and free moments. Other stories refer to them by this story's id.
 - A locked moment plays as rehearsed, the same way on every run: given the same cues and the same performer input, its autonomous behaviours give the same result. A free moment varies within its content limits (story-behaviour-and-limits-content-limits).
 - Morgan, or their delegate, can change the choice in rehearsal, in production mode (story-show-safety-switch-modes). In show mode a change is a change during a live run (story-session-operations-live-changes). An agent cannot mark or change a moment.
 - Morgan, Alex and Sam see in the show tools, in text and not by colour alone, which sections and behaviours are locked and which are free.

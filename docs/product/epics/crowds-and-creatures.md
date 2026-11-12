@@ -30,7 +30,7 @@ Autonomous crowds and creatures fill a scene, respond to cues, performers and ne
 
 - Place a crowd in a scene, and choose and tune its behaviours.
 - Add autonomous creatures that react to cues and performers.
-- Conduct a crowd or creature directly as one instrument.
+- Conduct a crowd or autonomous creature directly as one instrument.
 - Add secondary motion and fill undriven channels with AI, with a switch for the performer.
 - Mark a moment as locked or free.
 - React to a nearby presence with non-verbal, rule-based behaviour, with nothing kept.
@@ -48,7 +48,7 @@ Autonomous crowds and creatures fill a scene, respond to cues, performers and ne
 ## Release groups
 
 - Crowds and cue response ship first.
-- Creatures and conducting follow.
+- Autonomous creatures and conducting follow.
 - Locked and free moments ship with them.
 - Presence reaction follows epic-live-signals, and public use waits on legal review.
 
@@ -61,8 +61,8 @@ Autonomous crowds and creatures fill a scene, respond to cues, performers and ne
 
 ## Open questions
 
-- Answered: the maximum crowd and creature counts for each target are measured in a load test on the first release's test kit (story-build-and-install-measure-against-budget) and set by the director or their delegate before each story is accepted (approver's answer). See story-crowds-and-creatures-place-a-crowd and story-crowds-and-creatures-add-creatures.
-- Answered: yes for the first release. Crowds, creatures, secondary motion, AI-held poses and AI-filled channels use rule-based and procedural methods, with no generative model at show time, and every behaviour works offline (story-crowds-and-creatures-ai-assists). A local generative model on the show machine is a later trial behind the scripted fallback, listed in Proposed stories as later and not written (approver's answer).
+- Answered: the maximum crowd and autonomous creature counts for each target are measured in a load test on the first release's test kit (story-build-and-install-measure-against-budget) and set by the director or their delegate before each story is accepted (approver's answer). See story-crowds-and-creatures-place-a-crowd and story-crowds-and-creatures-add-creatures.
+- Answered: yes for the first release. Crowds, autonomous creatures, secondary motion, AI-held poses and AI-filled channels use rule-based and procedural methods, with no generative model at show time, and every behaviour works offline (story-crowds-and-creatures-ai-assists). A local generative model on the show machine is a later trial behind the scripted fallback, listed in Proposed stories as later and not written (approver's answer).
 
 ## Out of scope
 

@@ -19,3 +19,4 @@ As Robin, a collaborator, I want to review and sign off an item through a limite
 - If Robin declines, the item goes back to the person who asked, with Robin's comment, and does not move on.
 - The decision is recorded with who gave it and when.
 - Robin cannot reach anything else in the project.
+- The director or their delegate can share an item with Robin on the same page as a preview for comment only, for example a recorded take of a character Robin designed. The page says no decision is asked, nothing waits for Robin, and any comment goes to the person who shared it. An agent cannot share a preview.

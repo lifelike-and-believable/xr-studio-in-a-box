@@ -33,6 +33,7 @@ An environment, with its interactive features, can go from a brief and reference
 - Place designed interactions in a level.
 - Check that a level is engine-ready against each target's budget file.
 - Approve layout, look and interactive features at the gate.
+- Generate or bring in a single environment piece and pass it at the environments gate on its own, so the kit can be filled on a first project.
 
 ## Stories
 
@@ -43,6 +44,7 @@ An environment, with its interactive features, can go from a brief and reference
 - story-environment-path-place-interactions
 - story-environment-path-engine-ready-level
 - story-environment-path-approve-at-the-gate
+- story-environment-path-make-a-kit-piece
 
 ## Release groups
 
