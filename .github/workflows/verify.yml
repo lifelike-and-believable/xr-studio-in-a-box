@@ -1,0 +1,49 @@
+# Install, migrate and verify on every pull request and push to main (docs/specs/layer1-skeleton.md, AC-7 and AC-8).
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci
+          POSTGRES_DB: xr_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ci -d xr_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      # A throwaway CI database; these are not secrets.
+      DATABASE_URL: postgres://ci:ci@localhost:5432/xr_ci
+      DATABASE_URL_UNPOOLED: postgres://ci:ci@localhost:5432/xr_ci
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install the Playwright browser
+        run: pnpm --filter @xr/web exec playwright install --with-deps chromium
+      # Applied in its own step, never in the build (PG-003). The second run must change nothing.
+      - name: Apply migrations
+        run: pnpm --filter @xr/web run db:migrate
+      - name: Apply migrations again (no-op)
+        run: pnpm --filter @xr/web run db:migrate
+      - run: pnpm verify
