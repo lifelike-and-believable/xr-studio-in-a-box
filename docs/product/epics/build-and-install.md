@@ -33,6 +33,7 @@ Approved work becomes a running, tested build, measured against each target's bu
 - Measure a build against each target's budget.
 - Record the engine and plugin versions of each build, and show differences between targets.
 - Install a versioned build on a venue system, check it and roll it back.
+- Soak-test an attended show through its longest show day, with sessions, resets, simulated guests in every audience type and the stream, before its first public day.
 
 ## Stories
 
@@ -41,6 +42,7 @@ Approved work becomes a running, tested build, measured against each target's bu
 - story-build-and-install-measure-against-budget
 - story-build-and-install-engine-and-plugin-versions
 - story-build-and-install-install-and-roll-back
+- story-build-and-install-soak-test-attended-show
 
 ## Release groups
 

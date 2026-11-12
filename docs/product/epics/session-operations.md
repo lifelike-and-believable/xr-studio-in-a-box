@@ -39,6 +39,7 @@ An operator can check a show is ready, run a session, recover from problems, and
 - Reset for the next session, and signal that the show is ready.
 - See a thumbnail of every output.
 - Run several sessions at once as separate copies, each with its own guests, performers, cue position and reset, where resetting one does not change another.
+- Start a session with one control, end it by an ending, a person or a time limit, and start and stop its stream destinations with it as the show sets.
 
 ## Stories
 
@@ -50,6 +51,7 @@ An operator can check a show is ready, run a session, recover from problems, and
 - story-session-operations-reset-for-next-session
 - story-session-operations-output-thumbnails
 - story-session-operations-several-sessions
+- story-session-operations-start-and-end-session
 
 ## Release groups
 
