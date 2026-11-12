@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Change roles for Jordan Lee - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: your own roles, unticking Producer while Morgan can still manage people</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<h1>Change roles for Jordan Lee</h1>
+<form>
+<fieldset class="roles" aria-describedby="roles-hint">
+<legend>Roles</legend>
+<p class="hint" id="roles-hint">Choose one or more, listed in this order everywhere. A person can see and do what any of their roles allows. No role gives an approval: approvers are named separately.</p>
+
+<div class="role"><input type="checkbox" id="role-director" name="roles" value="director" checked aria-describedby="role-director-desc"><label for="role-director">Director</label><span class="hint" id="role-director-desc">Leads the creative work. <span class="today">In the dashboard today: sees the whole project, adds and removes people, and edits the project name and brief.</span></span></div>
+<div class="role"><input type="checkbox" id="role-producer" name="roles" value="producer" aria-describedby="role-producer-desc"><label for="role-producer">Producer</label><span class="hint" id="role-producer-desc">Runs the production. <span class="today">In the dashboard today: sees the whole project, adds and removes people, and edits the project name and brief.</span></span></div>
+<div class="role"><input type="checkbox" id="role-technical-artist" name="roles" value="technical-artist" aria-describedby="role-technical-artist-desc"><label for="role-technical-artist">Technical artist</label><span class="hint" id="role-technical-artist-desc">Builds and checks the pipeline. <span class="today">In the dashboard today: sees the project and who is on it. Pipeline tools come in later releases.</span></span></div>
+<div class="role"><input type="checkbox" id="role-artist" name="roles" value="artist" aria-describedby="role-artist-desc"><label for="role-artist">Artist</label><span class="hint" id="role-artist-desc">Makes characters, environments and effects. <span class="today">In the dashboard today: sees the project and who is on it. Tools for making work come in later releases.</span></span></div>
+<div class="role"><input type="checkbox" id="role-sound-designer" name="roles" value="sound-designer" aria-describedby="role-sound-designer-desc"><label for="role-sound-designer">Sound designer</label><span class="hint" id="role-sound-designer-desc">Makes the sound and music. <span class="today">In the dashboard today: sees the project and who is on it. Sound tools come in later releases.</span></span></div>
+<div class="role"><input type="checkbox" id="role-interaction-designer" name="roles" value="interaction-designer" aria-describedby="role-interaction-designer-desc"><label for="role-interaction-designer">Interaction designer</label><span class="hint" id="role-interaction-designer-desc">Designs how guests take part. <span class="today">In the dashboard today: sees the project and who is on it. Design tools come in later releases.</span></span></div>
+<div class="role"><input type="checkbox" id="role-capture-crew" name="roles" value="capture-crew" aria-describedby="role-capture-crew-desc"><label for="role-capture-crew">Capture crew</label><span class="hint" id="role-capture-crew-desc">Sets up and runs capture suits and sensors. <span class="today">In the dashboard today: sees the project and who is on it. Capture tools come in later releases.</span></span></div>
+<div class="role"><input type="checkbox" id="role-show-operator" name="roles" value="show-operator" aria-describedby="role-show-operator-desc"><label for="role-show-operator">Show operator</label><span class="hint" id="role-show-operator-desc">Runs the show. <span class="today">In the dashboard today: sees the project and who is on it. Show tools come in later releases.</span></span></div>
+<div class="role"><input type="checkbox" id="role-venue-attendant" name="roles" value="venue-attendant" aria-describedby="role-venue-attendant-desc"><label for="role-venue-attendant">Venue attendant</label><span class="hint" id="role-venue-attendant-desc">Looks after guests at a venue. <span class="today">In the dashboard today: nothing; no dashboard sign-in. They get show-time tools in a later release.</span></span></div>
+<div class="role"><input type="checkbox" id="role-performer" name="roles" value="performer" aria-describedby="role-performer-desc"><label for="role-performer">Performer</label><span class="hint" id="role-performer-desc">Performs live. <span class="today">In the dashboard today: nothing; no dashboard sign-in. They get a link to their own agreement page when there is something to confirm.</span></span></div>
+<div class="role"><input type="checkbox" id="role-collaborator" name="roles" value="collaborator" aria-describedby="role-collaborator-desc"><label for="role-collaborator">Collaborator</label><span class="hint" id="role-collaborator-desc">Contributes work under agreed terms. <span class="today">In the dashboard today: nothing; no dashboard sign-in. They get a link to a limited page for their own items when there is something to sign off.</span></span></div>
+</fieldset>
+<div class="summary" aria-live="polite" id="change-summary"><h2>Before you save</h2><p>You will keep the Director role, so you can still add people and change roles.</p></div>
+<div class="actions"><button type="submit">Save roles</button><a href="#">Cancel</a></div>
+</form>
+<h2>Remove from the project</h2>
+<div class="actions"><button type="button" class="secondary">Remove Jordan Lee from the project</button></div>
+</main>
+</body>
+</html>

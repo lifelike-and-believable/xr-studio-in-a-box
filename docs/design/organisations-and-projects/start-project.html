@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start a project - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: start a project (default; you are the owner)</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="page">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<h1>Start a project</h1>
+<p class="lead">A project is one place to take a brief towards a show.</p>
+<form>
+<div class="field"><label for="project-name">Project name</label><input type="text" id="project-name" name="project-name"></div>
+<div class="field"><label for="brief">Brief <span class="optional">(optional)</span></label><p class="hint" id="brief-hint">A few lines on what the show is. You can change it later.</p><textarea id="brief" name="brief" aria-describedby="brief-hint"></textarea></div>
+<div class="field"><label for="organisation">Organisation</label><p class="hint" id="organisation-hint">Organisations you look after or have projects in.</p><select id="organisation" name="organisation" aria-describedby="organisation-hint"><option selected>Harbourfront Puppet Co.</option><option>Workshop tests</option></select></div>
+<div class="field"><label for="owner">Owner</label><p class="hint" id="owner-hint">People already on this organisation's projects are listed. Add anyone else afterwards on the project's People page.</p><select id="owner" name="owner" aria-describedby="owner-hint"><option selected>Jordan Lee (you)</option><option>Morgan Ray</option><option>Sam Okafor</option></select></div>
+<div class="summary" aria-live="polite" id="start-summary"><h2>When you start it</h2><p>You will own it and have the Director and Producer roles.</p></div>
+<div class="actions"><button type="submit">Start project</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

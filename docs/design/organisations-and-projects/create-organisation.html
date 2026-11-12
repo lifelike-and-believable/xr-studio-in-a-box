@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create an organisation - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: create an organisation (default)</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#" aria-current="page">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+<h1>Create an organisation</h1>
+<p class="lead">An organisation holds the company facts its projects share, such as the legal name, so they are entered once.</p>
+<form>
+<div class="field"><label for="organisation-name">Organisation name</label><input type="text" id="organisation-name" name="organisation-name"></div>
+<fieldset class="roles" aria-describedby="stewards-hint">
+<legend>Looked after by</legend>
+<p class="hint" id="stewards-hint">People who look after an organisation can rename it, change who looks after it and, from slice 2, edit its facts. Choose one or more. People on your projects are listed.</p>
+
+<div class="role"><input type="checkbox" id="steward-0" name="stewards" checked><label for="steward-0">Jordan Lee (you)</label></div>
+<div class="role"><input type="checkbox" id="steward-1" name="stewards"><label for="steward-1">Morgan Ray</label></div>
+<div class="role"><input type="checkbox" id="steward-2" name="stewards"><label for="steward-2">Sam Okafor</label></div>
+</fieldset>
+<div class="actions"><button type="submit">Create organisation</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>
