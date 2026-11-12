@@ -1,6 +1,7 @@
 ---
 id: tutorial-layer1-facts-identifiers-activity
 status: draft
+runner: manual
 derived-from:
   - docs-project-facts#see-a-projects-facts: 220d72042aed
   - docs-project-facts#edit-a-fact: ca66d0f94049
@@ -76,4 +77,4 @@ The Lantern Keeper's facts are recorded once, with every version kept and who sa
 
 ## Run record
 
-Run on 2026-11-12 against a local production build (`next start`) and PostgreSQL 16, by the script `web/e2e/tutorial-facts.spec.ts`, which follows the steps above in order with the values given. Every step gave the result written in it; the run passed in 7.4 seconds. The same steps' screens are also covered, one criterion each, by the slice's end-to-end tests, which passed in the same session with `pnpm verify`.
+The tutorial's runner is manual: its steps follow a sign-in email and upload files, which the web runner's step grammar cannot express. Its author walked it with a script instead. Run on 2026-11-12 against a local production build (`next start`) and PostgreSQL 16, by the script `web/e2e/tutorial-facts.spec.ts`, which follows the steps above in order with the values given. Every step gave the result written in it; the run passed in 7.4 seconds. The same steps' screens are also covered, one criterion each, by the slice's end-to-end tests, which passed in the same session with `pnpm verify`.
