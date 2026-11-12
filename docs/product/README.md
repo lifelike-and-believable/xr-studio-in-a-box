@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 260 proposed stories, 257 written, 0 open questions.
+39 epics, 269 proposed stories, 266 written, 0 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -14,9 +14,9 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | Epic | Stories written | Open questions |
 |---|---|---|
 | [Direct agents safely](epics/agent-work.md) | 6 of 6 | 0 |
-| [One project, one set of facts](epics/project-record.md) | 8 of 8 | 0 |
+| [One project, one set of facts](epics/project-record.md) | 9 of 9 | 0 |
 | [Keep the terms, and know where every asset came from](epics/provenance-and-policy.md) | 6 of 6 | 0 |
-| [Review, approve and see where everything stands](epics/review-and-status.md) | 7 of 7 | 0 |
+| [Review, approve and see where everything stands](epics/review-and-status.md) | 9 of 9 | 0 |
 
 <details>
 <summary>Direct agents safely</summary>
@@ -46,6 +46,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Name approvers and delegates](stories/project-record/name-approvers.md) (approved)
 - [Record the project's facts](stories/project-record/record-facts.md) (approved)
 - [See the same project state everywhere](stories/project-record/same-project-state.md) (approved)
+- [Show a newcomer how the project was set up](stories/project-record/see-how-it-was-set-up.md) (approved)
 - [Set up an organisation and its facts](stories/project-record/set-up-organisation.md) (approved)
 - [Start a new project](stories/project-record/start-project.md) (approved)
 
@@ -57,6 +58,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Back up a project, including large binary assets, and restore an earlier version.
 - Set up an organisation and keep its company facts (legal name, funder applicant profiles, history, bio and standard work samples), which every project in it reads and never retypes.
 - Close a project in one step: end people's access and agent grants, take a final backup, and leave it read-only with its records under retention.
+- Show a person who joins part way through how the project was set up.
 
 </details>
 
@@ -88,7 +90,9 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Approve motion and performance quality at its gate](stories/review-and-status/motion-quality-gate.md) (approved)
 - [Be told when something is waiting](stories/review-and-status/notifications.md) (approved)
 - [See every pending approval in one queue](stories/review-and-status/see-review-queue.md) (approved)
+- [Accept a starter set of targets and limits](stories/review-and-status/starter-targets.md) (approved)
 - [See where everything stands](stories/review-and-status/status-board.md) (approved)
+- [See what needs me when I sign in](stories/review-and-status/what-needs-me.md) (approved)
 
 - See every pending approval in one queue, with a preview, the stage, the requester and what changed.
 - Accept, request revision or reject an item, singly or in a batch.
@@ -97,6 +101,8 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - See every stage and asset on a status board, with its owner and state.
 - Be told when something is waiting, by a chosen channel, with notifications grouped.
 - Approve motion and performance quality at its gate: mappings, cleaned recordings shown to guests and the show's motion bar, with a rehearsal take, never a live improvisation in advance.
+- Accept a starter set of every target and limit the show needs in one step, and see every value still unset.
+- See what needs me when I sign in, with the next step for each item.
 
 </details>
 
@@ -105,7 +111,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | Epic | Stories written | Open questions |
 |---|---|---|
 | [Nothing breaks when a source changes or fails](epics/handover-and-fallback.md) | 7 of 7 | 0 |
-| [A performer drives a character live](epics/live-puppet.md) | 8 of 8 | 0 |
+| [A performer drives a character live](epics/live-puppet.md) | 9 of 9 | 0 |
 | [Music, sensors and the crowd drive the show](epics/live-signals.md) | 11 of 11 | 0 |
 | [Retarget a performer to the nearest body plan](epics/nearest-body-retargeting.md) | 5 of 5 | 0 |
 | [The performer can sense the room and trust the motion](epics/performer-support.md) | 9 of 9 | 0 |
@@ -143,6 +149,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Measure the delay from performer to puppet](stories/live-puppet/measure-delay.md) (approved)
 - [Set up a performer's microphone as a source](stories/live-puppet/microphone-setup.md) (approved)
 - [Connect an optical studio's live stream](stories/live-puppet/optical-studio-stream.md) (approved)
+- [See radio link quality and drift before they become a drop](stories/live-puppet/radio-and-drift-check.md) (approved)
 - [Set up and calibrate webcam or phone capture](stories/live-puppet/webcam-or-phone-setup.md) (approved)
 
 - Connect a capture source through the common interface and drive a character.
@@ -153,6 +160,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Assign a source to a character's body, hands, face, voice and effects channels.
 - See the measured delay from performer to rendered puppet, and to what the audience sees on each output, measured end to end on the show's hardware. The first test puts a performer beside their character.
 - Complete a guided setup for a performer's microphone, wired or on a radio pack, with a level check and drop detection.
+- See each wireless link's quality and each source's drift, with a walk test of the venue.
 
 </details>
 
@@ -279,10 +287,10 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 |---|---|---|
 | [Every asset fits every target before anyone reviews it](epics/asset-checks.md) | 5 of 5 | 0 |
 | [Characters that change form and move well on every device](epics/character-forms.md) | 5 of 5 | 0 |
-| [From a brief to a character a performer can drive](epics/character-path.md) | 6 of 6 | 0 |
+| [From a brief to a character a performer can drive](epics/character-path.md) | 7 of 7 | 0 |
 | [From a brief to an effect a show can drive](epics/effects-path.md) | 4 of 4 | 0 |
 | [From a brief to a world people can move through](epics/environment-path.md) | 8 of 8 | 0 |
-| [Design what guests can do, and try it early](epics/interaction-design.md) | 6 of 6 | 0 |
+| [Design what guests can do, and try it early](epics/interaction-design.md) | 7 of 7 | 0 |
 | [Reuse work across projects, with its terms intact](epics/shared-library.md) | 5 of 5 | 0 |
 | [Sound that fits the show on every output](epics/sound-path.md) | 6 of 6 | 0 |
 
@@ -329,6 +337,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Lock a character before rehearsal](stories/character-path/lock-character.md) (approved)
 - [Make a mesh and rig from an approved design](stories/character-path/mesh-and-rig.md) (approved)
 - [Make any character style through the same path](stories/character-path/other-styles.md) (approved)
+- [Bring in work I generated in my own tool](stories/character-path/own-tool-generated-work.md) (approved)
 
 - Turn a brief and references into design drafts, and approve one at the design gate.
 - Produce a mesh and rig from an approved design, and approve them at their gate.
@@ -336,6 +345,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Make a stylised, creature or abstract character through the same path as a human one.
 - Put a character on the common skeleton, or retarget it automatically.
 - Lock a character before rehearsal, with later changes needing a named person.
+- Bring in work generated directly in an artist's own tool, with the tool and licence declared and checked against the policy record.
 
 </details>
 
@@ -386,6 +396,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Record what guests can do as a reviewable design](stories/interaction-design/record-design.md) (approved)
 - [Save and configure a reusable interaction pattern](stories/interaction-design/reusable-pattern.md) (approved)
 - [Run a scripted test of each interaction on each target](stories/interaction-design/scripted-tests.md) (approved)
+- [Check comfort and clarity with real guests](stories/interaction-design/test-with-real-guests.md) (approved)
 
 - Record what guests can do and what responds, as a reviewable design.
 - Try an interaction in a playable prototype with placeholder art.
@@ -393,6 +404,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Map one interaction to each target's input, and say what replaces it where a target cannot support it.
 - Save and configure a reusable interaction pattern without code.
 - Run a scripted test of each interaction on each target.
+- Check comfort and clarity with real guests, and see the changes that result.
 
 </details>
 
@@ -439,7 +451,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | [Shows that take different paths, with or without a performer](epics/branching-shows.md) | 6 of 6 | 0 |
 | [Build, rehearse and fire the cues of a show](epics/cue-list.md) | 6 of 6 | 0 |
 | [Work with the show systems a venue already has](epics/external-systems.md) | 11 of 11 | 0 |
-| [Run a session, and the next one](epics/session-operations.md) | 9 of 9 | 0 |
+| [Run a session, and the next one](epics/session-operations.md) | 10 of 10 | 0 |
 | [A show stays safe, even with no agents and no crew](epics/show-safety.md) | 6 of 6 | 0 |
 | [A show that looks after itself](epics/unattended-running.md) | 6 of 6 | 0 |
 
@@ -517,6 +529,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Trim alignment or calibration during a session](stories/session-operations/live-trim.md) (approved)
 - [See a thumbnail of every output](stories/session-operations/output-thumbnails.md) (approved)
 - [Pause and resume, and jump to any cue on any path](stories/session-operations/pause-and-jump.md) (approved)
+- [Pause or end one guest's session](stories/session-operations/pause-one-guest.md) (approved)
 - [Run one pre-show check, and a shorter one between sessions](stories/session-operations/pre-show-check.md) (approved)
 - [Reset for the next session, and signal that the show is ready](stories/session-operations/reset-for-next-session.md) (approved)
 - [See and change who drives each channel](stories/session-operations/routing-control.md) (approved)
@@ -532,6 +545,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - See a thumbnail of every output.
 - Run several sessions at once as separate copies, each with its own guests, performers, cue position and reset, where resetting one does not change another.
 - Start a session with one control, end it by an ending, a person or a time limit, and start and stop its stream destinations with it as the show sets.
+- Pause or end one guest's session from the headset list while the show goes on for everyone else.
 
 </details>
 
@@ -645,7 +659,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | Epic | Stories written | Open questions |
 |---|---|---|
 | [Guests in the world, as whoever the show lets them be](epics/audience-avatars.md) | 6 of 8 | 0 |
-| [Hear from the audience, safely](epics/audience-voice.md) | 6 of 6 | 0 |
+| [Hear from the audience, safely](epics/audience-voice.md) | 7 of 7 | 0 |
 | [Welcome every guest, and look after them](epics/guest-care.md) | 7 of 7 | 0 |
 | [Join from anywhere, in the tier that suits you](epics/remote-guests.md) | 7 of 7 | 0 |
 
@@ -673,6 +687,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 <details>
 <summary>Hear from the audience, safely</summary>
 
+- [Ask for help or report a guest](stories/audience-voice/ask-for-help.md) (approved)
 - [Read a summary of audience presence and reaction at a glance](stories/audience-voice/audience-summary.md) (approved)
 - [Set moderation rules for a show, approved by a person](stories/audience-voice/moderation-rules.md) (approved)
 - [Mute and block other guests](stories/audience-voice/mute-and-block.md) (approved)
@@ -686,6 +701,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Keep a personal space around each guest.
 - Mute and block other guests.
 - Mute, hide or remove a guest during a show.
+- Ask for help, or report a guest, in two steps.
 
 </details>
 
@@ -782,7 +798,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | Epic | Stories written | Open questions |
 |---|---|---|
 | [Know what a production costs while it happens](epics/budgets-and-cost.md) | 5 of 5 | 0 |
-| [Agreements and payments, with a person in charge](epics/contracts-and-payment.md) | 5 of 5 | 0 |
+| [Agreements and payments, with a person in charge](epics/contracts-and-payment.md) | 6 of 6 | 0 |
 | [Tell people about the work, and credit it properly](epics/credits-and-outreach.md) | 6 of 6 | 0 |
 | [Find funding, apply and report, from one set of facts](epics/funding.md) | 6 of 6 | 0 |
 | [Get the right people and kit to the right place](epics/schedule-and-touring.md) | 6 of 6 | 0 |
@@ -809,6 +825,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 
 - [Draft and track contracts, licences and AI-use terms](stories/contracts-and-payment/draft-and-track-contracts.md) (approved)
 - [Keep records for as long as each rule requires](stories/contracts-and-payment/keep-records.md) (approved)
+- [Commission and track legal reviews](stories/contracts-and-payment/legal-reviews.md) (approved)
 - [Prepare payroll and payment information from hours and amounts](stories/contracts-and-payment/prepare-payroll.md) (approved)
 - [Keep bank details and tax numbers away from agents](stories/contracts-and-payment/protect-sensitive-data.md) (approved)
 - [Draft quotes and invoices](stories/contracts-and-payment/quotes-and-invoices.md) (approved)
@@ -818,6 +835,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Prepare payroll and payment information from hours and amounts.
 - Keep bank details and tax numbers where only a person with the right role can reach them.
 - Keep records for as long as each rule requires, showing why and until when.
+- Commission each legal review the project needs, and track it until the approval holder records it.
 
 </details>
 
