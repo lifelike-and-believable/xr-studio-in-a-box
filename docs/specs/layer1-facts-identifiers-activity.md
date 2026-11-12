@@ -44,6 +44,7 @@ derived-from:
   - decision-project-record-model#decision: cd1dfeb7a4dd
   - decision-protected-store#decision: 1c1b55830ba3
   - decision-identifier-format-list#decision: a44bf2d99e03
+tests-commit: 19dcf69
 unlocks:
   - web/e2e/organisations.spec.ts: AC-13. Slice 1's organisation page test expected the placeholder "No organisation facts yet.", which AC-13 replaces with the facts themselves; it now expects **Add legal name** in that place. The other assertions are unchanged.
   - web/test/repo-hygiene.test.ts: Scope (new environment variables). The list of names in `.env.example` gains `CRON_SECRET`, `STORAGE_DIR` and `STORAGE_SIGNING_SECRET`, as the Scope requires; every value is still checked to be a placeholder.
