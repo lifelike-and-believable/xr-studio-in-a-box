@@ -33,6 +33,7 @@ Remote guests join by link or code as interactive guests, player guests or strea
 - Join as a player guest, with a light input layer over the stream.
 - Move guests past the limit to a lower tier.
 - Keep an audience failure from reaching the performer loop or other audiences.
+- Set up hosting for the player page, the cloud sessions and the installed app's download, with each provider's terms on guest data checked and credentials kept from agents.
 
 ## Stories
 
@@ -42,6 +43,7 @@ Remote guests join by link or code as interactive guests, player guests or strea
 - story-remote-guests-player-guest
 - story-remote-guests-move-past-the-limit
 - story-remote-guests-contain-failures
+- story-remote-guests-host-online-audience
 
 ## Release groups
 

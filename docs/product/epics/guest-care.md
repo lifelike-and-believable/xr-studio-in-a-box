@@ -35,6 +35,7 @@ Guests enter through a pre-show with the notices, consent and warnings they need
 - Offer several languages without rework.
 - Keep guests clear of hazards and each other, and name an aftercare step.
 - Declare what guest data is kept, delete it at session end, and record guardian consent where minors may attend.
+- Record an incident (an injury, a near miss or a guest complaint): what happened, when, who was involved and the actions taken, seen only by the holder of the audience-facing safety and consent approval and staff they name, and kept as a business record.
 
 ## Stories
 
@@ -44,6 +45,7 @@ Guests enter through a pre-show with the notices, consent and warnings they need
 - story-guest-care-languages
 - story-guest-care-room-safety
 - story-guest-care-guest-data
+- story-guest-care-record-an-incident
 
 ## Release groups
 
