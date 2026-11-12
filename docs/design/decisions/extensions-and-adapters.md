@@ -34,7 +34,7 @@ Option A. An adapter may use a vendor's MCP server or REST API inside it. The ag
 - **The agent** sees generic capabilities, not vendors. The project's pin decides which adapter serves `generate-mesh`, so swapping Tripo for another generator is a pin change.
 - **Checks** return pass or fail with a reason in plain words and a link to what failed. **Steps** declare their inputs, outputs and the stage they belong to.
 - **Languages:** the first host and helper library are TypeScript. An extension in Python runs as a subprocess speaking the same JSON messages over standard input and output `[assumed]`, because Sam scripts Blender and Unreal in Python.
-- **Versioning and review:** packages live in `extensions/` with semantic versions and are reviewed by pull request. A project moving to a new version is also a review item in that project's queue. "Reviewed like other project work" means both (approver's decision, 2026-11-12).
+- **Versioning and review:** packages live in `extensions/` with semantic versions and are reviewed by pull request. A project moving to a new version is also a review item in that project's queue, accepted by the approver Morgan names for the builds and operations area (story-project-record-name-approvers); the new version takes effect only once accepted. "Reviewed like other project work" means both (approver's decision, 2026-11-12).
 - **Secrets:** vendor API keys are held by the runner for each organisation and are never passed to the agent or written to the log.
 
 ## Consequences

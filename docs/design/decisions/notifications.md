@@ -23,7 +23,7 @@ Identifiers never appear in a notification (decision-protected-store). Riley nee
 
 | Option | For | Against |
 |---|---|---|
-| A. The record writes notification rows to an outbox in the same transaction as the event. A scheduled job sends immediate items and digests through a transactional email provider behind an adapter. The badge is a count from the review queue query. | Nothing is sent for a change that rolled back. Digests and grouping are simple queries. Swapping the provider is an adapter change. | We write the digest and retry logic. |
+| A. The record writes notification rows to an outbox in the same transaction as the event. Immediate items are sent right after the transaction commits; a scheduled job sends digests and retries through a transactional email provider behind an adapter. The badge is a count from the review queue query. | Nothing is sent for a change that rolled back. Digests and grouping are simple queries. Swapping the provider is an adapter change. | We write the digest and retry logic. |
 | B. A notification service (Knock, Novu or Courier) | Preferences, digests and channels come built in. | Another vendor sees item summaries and people's contacts. Its digest rules may not match "blocking sends at once". |
 | C. Send email inline when each event happens | Least code. | Cannot group items. A slow provider slows the request. Sends survive a rolled-back change. |
 
@@ -34,8 +34,8 @@ Option A.
 - Email holds a summary and a link only. The link needs a sign-in, or the limited-page token for a collaborator.
 - Each send and each failure is logged.
 - Other channels (chat apps, text messages) are added later as adapters.
-- One-time codes use the same sender but bypass digests.
-- The digest runs on a scheduled job, for example Vercel Cron `[assumed]`, at a time each person sets.
+- Immediate items (one-time codes, blocking alerts, one email per item) are sent right after the transaction commits, for example with Next.js `after()` `[assumed]`, so a code arrives before it expires. They are still written to the outbox first, so a failed send is retried.
+- Digests and retries run on a scheduled job, for example Vercel Cron `[assumed]`, at a time each person sets. The plan's minimum cron interval sets how often retries run, not how fast immediate items go out.
 
 ## Consequences
 

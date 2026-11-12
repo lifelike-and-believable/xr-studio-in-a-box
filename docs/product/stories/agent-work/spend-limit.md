@@ -14,5 +14,5 @@ As Jordan, the producer, I want to set a project's spend limit and have agents s
 
 - A new project has no limit, and metered work stays blocked until a person sets one. The person whose work is blocked is told in plain words that no limit is set and who can set it.
 - Jordan can set and change the limit, if their role allows it.
-- When a request would pass the limit, the agent stops and asks a person with the right role. Before each metered call, including the agent's own model use, the agent reserves the call's highest estimated cost, so a vendor price change can take spend past the limit by at most one call. The limit is set in the production's currency.
+- When a request would pass the limit, the agent stops and asks a person with the right role. Before each metered call made by an agent the project runs, including that agent's own model use, the project reserves the call's highest estimated cost, and a project's metered calls are made one at a time, so a vendor price change can take spend past the limit by at most one call. The limit is set in the production's currency.
 - Jordan can see spend so far against the limit (story-budgets-and-cost-cost-and-schedule-view).

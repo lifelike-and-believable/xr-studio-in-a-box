@@ -17,7 +17,7 @@ Read `docs/preferences.md` before design, interface, or documentation work, and 
 Each folder follows the rules-for-robots profile named here (docs/design/decisions/system-shape.md):
 
 - `web/`: web-app (the project record, its API, the dashboard and the collaborator pages; Next.js on Vercel with Postgres).
-- `runner/`: general (the agent runner, a long-running Node service on the Claude Agent SDK).
-- `extensions/`: general (tool adapters, steps and checks).
-- `contracts/`: general (versioned schemas shared by the other sub-projects).
+- `runner/`: general, plus the typescript and node-services packs (the agent runner, a long-running Node service on the Claude Agent SDK).
+- `extensions/`: general, plus the typescript and node-services packs (tool adapters, steps and checks).
+- `contracts/`: general, plus the typescript and node-services packs (versioned schemas shared by the other sub-projects).
 - `unreal/`: unreal-plugin (editor and show runtime plugins, from Layer 2).

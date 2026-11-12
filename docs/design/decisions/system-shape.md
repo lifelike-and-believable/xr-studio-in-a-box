@@ -37,11 +37,11 @@ Option A, the cloud (approver's decision, 2026-11-12). It meets the stories with
 
 | Part | Sub-project (profile) | Runs on | Talks to |
 |---|---|---|---|
-| Project record, API, dashboard, limited pages | `web/` (web-app: Next.js on Vercel, Postgres) | Cloud | Everyone, over HTTPS `/api/v1`, and technical roles' Claude Code through an MCP endpoint over the same command layer (decision-agent-runtime) |
-| Object storage for asset versions and backups | Managed storage | Cloud | Uploads go direct, from a URL signed by the record (NODE-001's 4.5 MB body limit) |
-| Agent runner | `runner/` (Node service, web-app rules for code; not deployed to Vercel) | An always-on cloud worker first, and a studio workstation from Layer 3 | Connects out to the record and pulls tasks. It opens no inbound ports |
-| Extensions: adapters, steps, checks | `extensions/` | Loaded by the runner | Through the runner only (decision-extensions-and-adapters) |
-| Shared schemas: API, events, show package, extension messages | `contracts/` | Build time | Read by every sub-project |
+| Project record, API, dashboard, limited pages | `web/` (web-app: Next.js on Vercel, Postgres) | Cloud | Everyone, over HTTPS `/api/v1`, and technical roles' Claude Code, acting as the person, through an MCP endpoint over the same command layer (decision-agent-runtime) |
+| Object storage for asset versions and backups | Managed storage | Cloud | File bytes go direct, from a URL signed by the record (NODE-001's 4.5 MB body limit). A file joins the record only when its upload is registered through the command layer (decision-project-record-model) |
+| Agent runner | `runner/` (Node service: general profile plus the typescript and node-services packs; not deployed to Vercel) | An always-on cloud worker first, and a studio workstation from Layer 3 | Connects out to the record and pulls tasks. It opens no inbound ports |
+| Extensions: adapters, steps, checks | `extensions/` (general plus typescript and node-services) | Loaded by the runner | Through the runner only (decision-extensions-and-adapters) |
+| Shared schemas: API, events, show package, extension messages | `contracts/` (general plus typescript and node-services) | Build time | Read by every sub-project |
 | Editor plugin and show runtime plugin | `unreal/` (unreal-plugin), from Layer 2 | Workstations and show machines | The editor plugin uses the record API. The runtime plugin reads only the show package |
 
 Pipeline code lives in one repository, as rfr-process expects for mixed sub-projects. Each production's Unreal content lives in its own repository with Git LFS and file locking, as the research note recommends for a small team. That content is not stored in this repository. Git LFS with file locking is the approver's decision for show content (2026-11-12).
@@ -50,5 +50,5 @@ Pipeline code lives in one repository, as rfr-process expects for mixed sub-proj
 
 - The record's HTTP API is the boundary every other part depends on, including Unreal clients later. It is versioned (`/v1`) and described in `contracts/`, and changing it is hard. Internal layout behind it stays cheap to change.
 - Long work (agent tasks, generation, backups) never runs inside a web request. It runs in the runner or a scheduled job.
-- AGENTS.md has to record which folder uses which rfr profile (`/rfr-process:setup mixed`). That is outside this note.
+- AGENTS.md records which folder uses which rfr profile and packs, matching the table above.
 - Revisit if the data region rules out the chosen provider (decision-project-record-model), if a venue needs the dashboard with no internet, or if the team grows to need Perforce for content.
