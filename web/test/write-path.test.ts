@@ -25,11 +25,18 @@ describe('writes go through the command layer (layer1-organisations-projects-peo
     expect(source.map((s) => s.file)).toContain('src/record/commands.ts');
   });
 
-  it('keeps database writes inside src/record', () => {
+  // System writers outside the command layer, each with the reason it writes.
+  const SYSTEM_WRITERS: Record<string, string> = {
+    'src/record/mail.ts': 'records each email sent, for the one-a-minute limit (AC-3)',
+    'src/record/sign-in.ts':
+      'sign-in requests, using up an invitation, replacing older sign-in links and linking an auth account to a person (AC-2, AC-5)',
+  };
+
+  it('keeps database writes in the command layer and the named system writers', () => {
     const writers = source
       .filter((s) => /\.(insert|update|delete)\(\s*[a-zA-Z]/.test(s.text) || /\b(insert into|update \w+ set|delete from)\b/i.test(s.text))
       .map((s) => s.file)
-      .filter((file) => !file.startsWith('src/record/'));
+      .filter((file) => file !== 'src/record/commands.ts' && !(file in SYSTEM_WRITERS));
     expect(writers).toEqual([]);
   });
 

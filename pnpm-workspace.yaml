@@ -4,7 +4,8 @@ packages:
 allowBuilds:
   esbuild: true
 engineStrict: true
-# better-auth 1.7.22 was published inside pnpm's minimum release age; pinned on purpose (spec, APIs and assumptions).
+# better-auth 1.7.22 was published inside pnpm's minimum release age; pinned on purpose. Remove these
+# entries once 1.7.22 is past the window (docs/specs/layer1-organisations-projects-people.md, APIs and assumptions).
 minimumReleaseAgeExclude:
   - '@better-auth/core@1.7.22'
   - '@better-auth/drizzle-adapter@1.7.22'
