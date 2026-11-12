@@ -12,7 +12,7 @@ As Sam, the technical artist, I want to check live motion against the show's qua
 
 ## Acceptance criteria
 
-- Sam can set the show's bar for live motion in numbers: how far limbs may pass through bodies, how far feet may slide, float or sink, and how far a held prop may drift from the hand.
+- Sam can set the show's bar for live motion in numbers: how far limbs may pass through bodies, how far feet may slide, float or sink, and how far a held prop may drift from the hand. The bar and correction settings are versioned and approved at story-review-and-status-motion-quality-gate, and in show mode they change only as a change during a live run (story-session-operations-live-changes).
 - During a session, and on a recorded session, Sam can see where and when a proxy character's motion breaks the bar.
 - Sam can turn correction on or off for limbs, feet and held props. Correction is built with Unreal's own tools, such as IK Rig and Control Rig. A vendor's tool is considered only if these cannot meet the delay target, and the measurement that shows it is recorded.
 - With correction on, the performer's measured delay stays within the show's delay target (story-live-puppet-measure-delay). A correction that would pass it is reported to Sam and not used.

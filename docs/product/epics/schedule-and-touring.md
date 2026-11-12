@@ -57,6 +57,7 @@ Crew, performers, rehearsals and shoots are scheduled with call sheets, time in 
 ## Open questions
 
 - Answered: limits for time in kit are set per performer by the director or their delegate with the performer, from rehearsal, and the performer can always stop, in story-schedule-and-touring-time-in-kit. The first real limits are set from a rehearsal with a real performer before that story is accepted.
+- Answered: touring abroad is in scope for the first release. Customs documents for kit, such as an ATA carnet, and work permits for people are travel checklist items that a person confirms, and their numbers stay in the protected store (story-schedule-and-touring-travel-checklist).
 
 ## Out of scope
 
