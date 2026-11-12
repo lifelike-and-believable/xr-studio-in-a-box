@@ -35,7 +35,11 @@ Credits and AI-use statements are built from the record, promotion is drafted, a
 
 ## Stories
 
-- None yet.
+- story-credits-and-outreach-build-credits
+- story-credits-and-outreach-ai-use-statement
+- story-credits-and-outreach-draft-promotion
+- story-credits-and-outreach-collect-audience-data
+- story-credits-and-outreach-audience-data-in-reports
 
 ## Release groups
 
@@ -49,7 +53,7 @@ Credits and AI-use statements are built from the record, promotion is drafted, a
 
 ## Open questions
 
-- Which wording works for audiences? Trade evidence suggests "immersive" may do better than "VR", but this is one report.
+- Answered: the wording is settled by a test with real audiences that the producer runs and records in the project facts before the first public campaign. No wording is assumed: until the result is recorded, drafts mark the wording as a choice for a person. Settled in story-credits-and-outreach-draft-promotion.
 
 ## Out of scope
 
