@@ -34,6 +34,7 @@ A person can start a project, record its facts once, give people roles, and see 
 - Back up a project, including large binary assets, and restore an earlier version.
 - Set up an organisation and keep its company facts (legal name, funder applicant profiles, history, bio and standard work samples), which every project in it reads and never retypes.
 - Close a project in one step: end people's access and agent grants, take a final backup, and leave it read-only with its records under retention.
+- Show a person who joins part way through how the project was set up.
 
 ## Stories
 
@@ -45,6 +46,7 @@ A person can start a project, record its facts once, give people roles, and see 
 - story-project-record-back-up-and-restore
 - story-project-record-set-up-organisation
 - story-project-record-close-project
+- story-project-record-see-how-it-was-set-up
 
 ## Release groups
 

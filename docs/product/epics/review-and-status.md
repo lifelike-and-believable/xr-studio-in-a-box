@@ -35,6 +35,8 @@ A reviewer can clear every pending approval from one queue, quickly, and anyone 
 - See every stage and asset on a status board, with its owner and state.
 - Be told when something is waiting, by a chosen channel, with notifications grouped.
 - Approve motion and performance quality at its gate: mappings, cleaned recordings shown to guests and the show's motion bar, with a rehearsal take, never a live improvisation in advance.
+- Accept a starter set of every target and limit the show needs in one step, and see every value still unset.
+- See what needs me when I sign in, with the next step for each item.
 
 ## Stories
 
@@ -45,6 +47,8 @@ A reviewer can clear every pending approval from one queue, quickly, and anyone 
 - story-review-and-status-status-board
 - story-review-and-status-notifications
 - story-review-and-status-motion-quality-gate
+- story-review-and-status-starter-targets
+- story-review-and-status-what-needs-me
 
 ## Release groups
 

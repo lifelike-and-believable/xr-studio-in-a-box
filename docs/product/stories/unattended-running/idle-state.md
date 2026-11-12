@@ -3,12 +3,12 @@ id: story-unattended-running-idle-state
 status: approved
 derived-from:
   - epic-unattended-running#outcome: d435481b65a1
-  - persona-venue-attendant#goals: ee33f70fd41e
+  - persona-technical-artist#goals: 1fb2055dfdf2
 ---
 
 # Hold an idle state when no guests are present
 
-As Taylor, the venue attendant, I want the show to wait in an idle state when no guests are present so that each group of guests can start the experience on time with no one at the venue.
+As Sam, the technical artist, I want the show to wait in an idle state when no guests are present so that the show keeps running when agents, the internet and staff are gone.
 
 ## Acceptance criteria
 

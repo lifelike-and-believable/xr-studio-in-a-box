@@ -1,3 +1,8 @@
+---
+id: discovery-persona-walkthrough
+status: draft
+---
+
 # Persona walkthrough of the approved stories
 
 A walkthrough of the 257 approved stories once for each persona, in the order each would meet them on a first project, asking where the persona would fail and why. It was run after PR #318, by the rfr-process persona-walkthrough agent, and complements the coverage check in [concept-to-completion.md](concept-to-completion.md), which it does not repeat. "Observed" means the story text shows it; "inferred" means it is predicted from the persona file. Nothing here changes a story yet; each fix waits for the approver.

@@ -33,6 +33,7 @@ A performer can step into a capture source, complete a guided setup and drive a 
 - Assign a source to a character's body, hands, face, voice and effects channels.
 - See the measured delay from performer to rendered puppet, and to what the audience sees on each output, measured end to end on the show's hardware. The first test puts a performer beside their character.
 - Complete a guided setup for a performer's microphone, wired or on a radio pack, with a level check and drop detection.
+- See each wireless link's quality and each source's drift, with a walk test of the venue.
 
 ## Stories
 
@@ -44,6 +45,7 @@ A performer can step into a capture source, complete a guided setup and drive a 
 - story-live-puppet-assign-channels
 - story-live-puppet-measure-delay
 - story-live-puppet-microphone-setup
+- story-live-puppet-radio-and-drift-check
 
 ## Release groups
 

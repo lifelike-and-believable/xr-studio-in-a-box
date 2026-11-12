@@ -30,6 +30,7 @@ Contracts, licences, quotes and invoices are drafted and tracked, payroll inform
 - Prepare payroll and payment information from hours and amounts.
 - Keep bank details and tax numbers where only a person with the right role can reach them.
 - Keep records for as long as each rule requires, showing why and until when.
+- Commission each legal review the project needs, and track it until the approval holder records it.
 
 ## Stories
 
@@ -38,6 +39,7 @@ Contracts, licences, quotes and invoices are drafted and tracked, payroll inform
 - story-contracts-and-payment-prepare-payroll
 - story-contracts-and-payment-protect-sensitive-data
 - story-contracts-and-payment-keep-records
+- story-contracts-and-payment-legal-reviews
 
 ## Release groups
 
