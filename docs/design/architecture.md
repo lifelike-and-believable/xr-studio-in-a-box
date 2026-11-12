@@ -2,6 +2,36 @@
 id: design-architecture
 status: approved
 derived-from:
+  - story-agent-work-agent-permissions#acceptance-criteria: 87d406e5fd7c
+  - story-agent-work-direct-an-agent#acceptance-criteria: d3a11777747f
+  - story-agent-work-extend-the-workflow#acceptance-criteria: 18de5a2740fe
+  - story-agent-work-read-activity-log#acceptance-criteria: 1649ac451653
+  - story-agent-work-spend-limit#acceptance-criteria: d11a993a2ad7
+  - story-agent-work-tool-adapter#acceptance-criteria: 4f71896c024e
+  - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
+  - story-project-record-back-up-and-restore#acceptance-criteria: cc56df9e8866
+  - story-project-record-close-project#acceptance-criteria: 382eae8c8730
+  - story-project-record-name-approvers#acceptance-criteria: 8a28482ee96c
+  - story-project-record-record-facts#acceptance-criteria: 1b82a3da6d7d
+  - story-project-record-same-project-state#acceptance-criteria: 66eece7e589c
+  - story-project-record-see-how-it-was-set-up#acceptance-criteria: 1eda1eba88fa
+  - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
+  - story-project-record-start-project#acceptance-criteria: 83fa11a80149
+  - story-provenance-and-policy-block-generation#acceptance-criteria: 50baf41f1b04
+  - story-provenance-and-policy-collaborator-sign-off#acceptance-criteria: 7670ff7c0bc8
+  - story-provenance-and-policy-no-term-choice#acceptance-criteria: 06024d790de9
+  - story-provenance-and-policy-provenance-record#acceptance-criteria: 7a97218a0c55
+  - story-provenance-and-policy-quality-and-licence-gate#acceptance-criteria: 1b1fe5964f54
+  - story-provenance-and-policy-record-terms#acceptance-criteria: 6dcea5bc7763
+  - story-review-and-status-decide-on-items#acceptance-criteria: 09f7ac5e0805
+  - story-review-and-status-feedback-and-versions#acceptance-criteria: 667f3e80aa75
+  - story-review-and-status-hold-gated-hand-off#acceptance-criteria: a7373f33f9bf
+  - story-review-and-status-motion-quality-gate#acceptance-criteria: 58ccf1392ee2
+  - story-review-and-status-notifications#acceptance-criteria: c661cf768ba2
+  - story-review-and-status-see-review-queue#acceptance-criteria: 0cf0b45ffc70
+  - story-review-and-status-starter-targets#acceptance-criteria: d05f30037c7d
+  - story-review-and-status-status-board#acceptance-criteria: 8c5f38b0e467
+  - story-review-and-status-what-needs-me#acceptance-criteria: 69b7764b8c65
   - epic-project-record#outcome: c7917e3ef44b
   - epic-agent-work#outcome: f707c8c84ba0
   - epic-provenance-and-policy#outcome: c0bb4a44b0d6

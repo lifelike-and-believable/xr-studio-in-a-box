@@ -2,6 +2,11 @@
 id: decision-policy-gate-and-provenance
 status: approved
 derived-from:
+  - story-provenance-and-policy-block-generation#acceptance-criteria: 50baf41f1b04
+  - story-provenance-and-policy-no-term-choice#acceptance-criteria: 06024d790de9
+  - story-provenance-and-policy-provenance-record#acceptance-criteria: 7a97218a0c55
+  - story-provenance-and-policy-quality-and-licence-gate#acceptance-criteria: 1b1fe5964f54
+  - story-provenance-and-policy-record-terms#acceptance-criteria: 6dcea5bc7763
   - epic-provenance-and-policy#outcome: c0bb4a44b0d6
   - persona-collaborator#goals: 72c41c51284f
   - persona-director#goals: a92ca172be83

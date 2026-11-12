@@ -2,6 +2,10 @@
 id: decision-system-shape
 status: approved
 derived-from:
+  - story-project-record-same-project-state#acceptance-criteria: 66eece7e589c
+  - story-agent-work-direct-an-agent#acceptance-criteria: d3a11777747f
+  - story-agent-work-tool-adapter#acceptance-criteria: 4f71896c024e
+  - story-provenance-and-policy-collaborator-sign-off#acceptance-criteria: 7670ff7c0bc8
   - epic-project-record#outcome: c7917e3ef44b
   - epic-agent-work#outcome: f707c8c84ba0
   - persona-director#goals: a92ca172be83

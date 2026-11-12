@@ -2,6 +2,7 @@
 id: decision-protected-store
 status: approved
 derived-from:
+  - story-contracts-and-payment-protect-sensitive-data#acceptance-criteria: 2b9128383b81
   - epic-contracts-and-payment#outcome: 98a1377bb7cd
   - persona-producer#goals: d1cc47b03be9
 ---

@@ -2,6 +2,11 @@
 id: decision-offline-show-package
 status: approved
 derived-from:
+  - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
+  - story-session-operations-live-changes#acceptance-criteria: e29fd44ac72e
+  - story-show-safety-switch-modes#acceptance-criteria: 007967765e66
+  - story-show-safety-without-agents#acceptance-criteria: 7f4fb406aa06
+  - story-unattended-running-maintenance-and-log#acceptance-criteria: 986b8d065052
   - epic-project-record#outcome: c7917e3ef44b
   - epic-review-and-status#outcome: adfddef70e61
   - persona-technical-artist#goals: 1fb2055dfdf2
