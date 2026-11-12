@@ -207,8 +207,9 @@ test('sign in with a passkey (layer1-organisations-projects-people#AC-8)', async
   await withAuthenticator(page, true);
   await signIn(page, FIRST.keys);
   await page.goto('/account');
+  const rowsBefore = await page.getByRole('listitem').filter({ hasText: 'Made on' }).count();
   await page.getByRole('button', { name: 'Add a passkey' }).click();
-  await expect(page.getByRole('listitem').filter({ hasText: 'Made on' }).first()).toBeVisible();
+  await expect(page.getByRole('listitem').filter({ hasText: 'Made on' })).toHaveCount(rowsBefore + 1);
   await context.clearCookies();
 
   await page.goto('/sign-in?next=%2Forganisations');
@@ -220,7 +221,8 @@ test('sign in with a passkey (layer1-organisations-projects-people#AC-8)', async
   // A device with no passkey for XR Studio.
   const bare = await browser.newContext({ baseURL: 'http://localhost:3100' });
   const barePage = await bare.newPage();
-  await withAuthenticator(barePage, false);
+  // A fresh authenticator holds no passkey; presence is simulated so the browser answers at once.
+  await withAuthenticator(barePage, true);
   await barePage.goto('/sign-in');
   await barePage.getByRole('button', { name: 'Sign in with a passkey' }).click();
   await expect(barePage.getByText('That passkey did not work.')).toBeVisible({ timeout: 15_000 });
@@ -244,7 +246,7 @@ test('sign-in email errors (layer1-organisations-projects-people#AC-10)', async 
     await page.goto('/sign-in');
     await page.getByLabel('Email address').fill(value);
     await page.getByRole('button', { name: 'Email me a sign-in link' }).click();
-    const summary = page.getByRole('alert');
+    const summary = page.getByRole('alert', { name: 'There is a problem' });
     await expect(summary).toContainText('Enter an email address, like name@example.com.');
     await expect(summary).toBeFocused();
     await expect(summary.getByRole('link')).toHaveAttribute('href', '#email');

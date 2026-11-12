@@ -60,7 +60,7 @@ test('slice 1 pages pass axe and keyboard checks (layer1-organisations-projects-
   // Errors move focus to the summary and change the title.
   await page.goto('/projects/new');
   await page.getByRole('button', { name: 'Start project' }).click();
-  await expect(page.getByRole('alert')).toBeFocused();
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toBeFocused();
   await expect(page).toHaveTitle(/^Error:/);
   await expect(page.getByLabel('Project name')).toHaveAttribute('aria-invalid', 'true');
 

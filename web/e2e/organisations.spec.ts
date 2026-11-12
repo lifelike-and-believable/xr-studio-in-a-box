@@ -212,7 +212,7 @@ test('organisation and project errors (layer1-organisations-projects-people#AC-2
   await page.goto('/projects/new');
   await page.getByLabel('Brief (optional)').fill('Keep me.');
   await page.getByRole('button', { name: 'Start project' }).click();
-  await expect(page.getByRole('alert')).toContainText('Enter the project name.');
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText('Enter the project name.');
   await expect(page.getByLabel('Brief (optional)')).toHaveValue('Keep me.');
 
   // Duplicate name in the same organisation; fine in another.
@@ -222,7 +222,7 @@ test('organisation and project errors (layer1-organisations-projects-people#AC-2
   await page.getByLabel('Project name').fill(name);
   await page.getByLabel('Organisation').selectOption({ label: org });
   await page.getByRole('button', { name: 'Start project' }).click();
-  await expect(page.getByRole('alert')).toContainText(
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText(
     `There is already a project called ${name} in ${org}. Choose a different name.`,
   );
   await page.getByLabel('Organisation').selectOption({ label: other });
@@ -232,10 +232,10 @@ test('organisation and project errors (layer1-organisations-projects-people#AC-2
   // Organisation names.
   await page.goto('/organisations/new');
   await page.getByRole('button', { name: 'Create organisation' }).click();
-  await expect(page.getByRole('alert')).toContainText('Enter the organisation name.');
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText('Enter the organisation name.');
   await page.getByLabel('Organisation name').fill(org);
   await page.getByRole('button', { name: 'Create organisation' }).click();
-  await expect(page.getByRole('alert')).toContainText(
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText(
     `You already look after an organisation called ${org}. Choose a different name.`,
   );
 
@@ -249,7 +249,7 @@ test('organisation and project errors (layer1-organisations-projects-people#AC-2
   await page.getByLabel('Owner').selectOption({ label: 'Lee Leaving' });
   await sql('delete from project_role where person_id = (select id from person where email = $1)', [leaving]);
   await page.getByRole('button', { name: 'Start project' }).click();
-  await expect(page.getByRole('alert')).toContainText(
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText(
     'The person you chose can no longer own a project here. Choose another owner.',
   );
 

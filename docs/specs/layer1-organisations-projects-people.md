@@ -44,9 +44,14 @@ derived-from:
   - decision-navigation-and-urls: 1d13e71a7e4d
   - decision-identity-and-roles#decision: 402e397cf1b0
   - decision-project-record-model#decision: cd1dfeb7a4dd
-# tests-commit: <sha of the commit that holds the failing tests, once written>
-# unlocks:
-#   - <test path>: <why a locked test had to change>
+tests-commit: 8bd0a36
+unlocks:
+  - web/e2e/sign-in.spec.ts: AC-10. `getByRole('alert')` also matches the route announcer Next.js adds to every page (`#__next-route-announcer__`, role alert), so the strict locator failed; narrowed to the error summary by its name ("There is a problem"). No assertion changes.
+  - web/e2e/organisations.spec.ts: AC-26, the same route-announcer clash; narrowed to the error summary by its name. No assertion changes.
+  - web/e2e/people.spec.ts: AC-34, the same route-announcer clash; narrowed to the error summary by its name. No assertion changes.
+  - web/e2e/slice1-accessibility.spec.ts: AC-38, the same route-announcer clash; narrowed to the error summary by its name. No assertion changes.
+  - web/e2e/sign-in.spec.ts (again): AC-8. After **Add a passkey** the test waited for any "Made on" row, which a passkey left in the database by an earlier run already satisfies, so cookies were cleared before the new passkey was saved. It now waits for the count to go up by one, as AC-7 does. Also, its "device with no passkey" switched off simulated user presence, so the browser waited for a touch until the 60-second WebAuthn timeout instead of reporting no passkey (checked by hand: 265 ms with presence on, 60.3 s with it off); presence is now on, with no passkey stored. No assertion changes.
+  - web/e2e/support/world.ts: the `addPerson` helper waited on "the People heading or a notice", a strict locator that fails when both appear, as they do after every add; it now takes the first. No assertion changes.
 ---
 
 # Layer 1, slice 1: organisations, projects and people
@@ -190,6 +195,16 @@ Creating an organisation is open to any signed-in person. Starting a project in 
   - [assumed] Passkeys can be exercised in Playwright with a virtual WebAuthn authenticator through the Chromium DevTools protocol, including autofill. If autofill cannot be driven there, that half of AC-8 is checked by hand in review and recorded here.
   - [assumed] Better Auth's session carries identity only and caches no permissions; roles are read from `project_role` on each request (decision-identity-and-roles).
   - [assumed] Postgres 18 in CI and Aurora PostgreSQL in ca-central-1 support the same features this slice uses; Aurora's newest major version is checked before the first deployment, and CI is pinned to it if it is older.
+
+- Settled while building (2026-11-12):
+  - Starting a session from an invitation: the invitation route takes a sign-in link from the auth library inside an `AsyncLocalStorage` store, instead of mailing it, and redirects to it with the project as the return page. Requests from outside never run inside that store, so they can only cause an email. The 7-day check stays in our `invitation` record.
+  - First addresses: the request route makes the auth account for a listed address before sending its link, so `disableSignUp` stays on for everyone else. The auth library's own `/sign-in/magic-link` route also sends only to people who may sign in (AC-11 tests it).
+  - Passkeys: Better Auth 1.7.22 with `residentKey: 'required'`, so a passkey signs a person in without their address. The button path and a device with no passkey are tested with Playwright's virtual WebAuthn authenticator. Sign-in from the browser's autofill list is wired (`autocomplete="username webauthn"`, a conditional request started when the email field gets focus) but a virtual authenticator cannot pick from the autofill list, so that half of AC-8 is to be checked by hand in review. A button press cancels a pending autofill request, and Chromium can fail the first request after that cancellation, so the button tries once more.
+  - Sessions hold identity only; roles are read from `project_role` on every request (AC-17 tests it).
+  - UUIDv7 ids come from the `uuidv7` package, so nothing depends on Postgres 18.
+  - The one-a-minute limit (AC-3, AC-31) applies to emails that carry a link a person can ask for again and again: sign-in links and invitations. An "added to a project" email follows one person's add and is always sent.
+  - The auth library's own per-IP rate limits are raised (600 a minute overall, 120 for magic links) so a studio behind one IP address is not blocked; the per-email limit above is the real control.
+  - One more table beyond the Scope list: `sign_in_request` (id, email, return page), so **This sign-in link no longer works** can send another link to the same address without putting the address in the link.
 
 ## Non-functional requirements
 

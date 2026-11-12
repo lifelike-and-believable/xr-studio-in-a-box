@@ -197,14 +197,14 @@ test('add a person errors (layer1-organisations-projects-people#AC-34)', async (
   await page.goto(`/projects/${project}/people/new`);
   await page.getByRole('checkbox', { name: 'Artist', exact: true }).check();
   await page.getByRole('button', { name: 'Add person' }).click();
-  await expect(page.getByRole('alert')).toContainText('Enter an email address, like name@example.com.');
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText('Enter an email address, like name@example.com.');
   await expect(page.getByRole('checkbox', { name: 'Artist', exact: true })).toBeChecked();
   await expect(page).toHaveTitle(/^Error:/);
 
   await page.getByLabel('Email address').fill(`${uniq('x-')}@xr.test`);
   await page.getByRole('checkbox', { name: 'Artist', exact: true }).uncheck();
   await page.getByRole('button', { name: 'Add person' }).click();
-  await expect(page.getByRole('alert')).toContainText('Choose at least one role.');
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText('Choose at least one role.');
 
   const riley = `${uniq('riley-')}@xr.test`;
   await addPerson(page, project, { email: riley, name: 'Riley Chen', roles: ['Artist'] });
@@ -212,7 +212,7 @@ test('add a person errors (layer1-organisations-projects-people#AC-34)', async (
   await page.getByLabel('Email address').fill(riley);
   await page.getByRole('checkbox', { name: 'Artist', exact: true }).check();
   await page.getByRole('button', { name: 'Add person' }).click();
-  await expect(page.getByRole('alert')).toContainText(
+  await expect(page.getByRole('alert', { name: 'There is a problem' })).toContainText(
     'Riley Chen is already on this project. Use Change roles or remove for Riley Chen to change what they can do.',
   );
 

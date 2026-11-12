@@ -128,7 +128,7 @@ export async function addPerson(
   if (person.name) await page.getByLabel('Name (optional)').fill(person.name);
   for (const role of person.roles) await page.getByRole('checkbox', { name: role, exact: true }).check();
   await page.getByRole('button', { name: 'Add person' }).click();
-  await expect(page.getByRole('heading', { level: 2, name: 'People' }).or(page.getByRole('status'))).toBeVisible();
+  await expect(page.getByRole('heading', { level: 2, name: 'People' }).or(page.getByRole('status')).first()).toBeVisible();
 }
 
 export async function acceptInvitation(page: Page, address: string) {
