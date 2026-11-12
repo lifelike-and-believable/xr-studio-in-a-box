@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Create an organisation - XR Studio</title>
+<title>Error: Create an organisation - XR Studio</title>
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: organisation name missing</p>
+<p class="state-label">Wireframe. State: organisation name missing, or already used; values kept</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -19,10 +19,22 @@
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">
-<div class="error-summary" role="alert" tabindex="-1"><h2>There is a problem</h2><ul><li><a href="#org-name">Enter the organisation name.</a></li></ul></div>
+<div class="error-summary" role="alert" tabindex="-1">
+<h2>There is a problem</h2>
+<ul><li><a href="#organisation-name">Enter the organisation name.</a></li></ul>
+</div>
 <h1>Create an organisation</h1>
+<p class="lead">An organisation holds the company facts its projects share, such as the legal name, so they are entered once.</p>
 <form>
-<div class="field"><label for="org-name">Organisation name</label><span class="error-message" id="org-name-error">Enter the organisation name.</span><input type="text" id="org-name" aria-invalid="true" aria-describedby="org-name-error"></div>
+<div class="field"><label for="organisation-name">Organisation name</label><p class="error-message" id="organisation-name-error">Enter the organisation name.</p><input type="text" id="organisation-name" name="organisation-name" aria-describedby="organisation-name-error" aria-invalid="true"></div>
+<fieldset class="roles" aria-describedby="stewards-hint">
+<legend>Looked after by</legend>
+<p class="hint" id="stewards-hint">People who look after an organisation can rename it, change who looks after it and, from slice 2, edit its facts. Choose one or more. People on your projects are listed.</p>
+
+<div class="role"><input type="checkbox" id="steward-0" name="stewards" checked><label for="steward-0">Jordan Lee (you)</label></div>
+<div class="role"><input type="checkbox" id="steward-1" name="stewards" checked><label for="steward-1">Morgan Ray</label></div>
+<div class="role"><input type="checkbox" id="steward-2" name="stewards"><label for="steward-2">Sam Okafor</label></div>
+</fieldset>
 <div class="actions"><button type="submit">Create organisation</button><a href="#">Cancel</a></div>
 </form>
 </main>

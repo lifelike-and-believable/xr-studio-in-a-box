@@ -6,6 +6,7 @@ html { font-family: system-ui, sans-serif; font-size: 16px; color: var(--ink); b
 body { margin: 0; line-height: 1.5; }
 a { color: var(--ink); }
 .skip { position: absolute; left: -9999px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 .skip:focus { left: 8px; top: 8px; background: #fff; padding: 8px; outline: 3px solid var(--focus); }
 header.app { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding: 12px 24px; border-bottom: 2px solid var(--ink); }
 header.app .brand { font-weight: 700; text-decoration: none; }
@@ -14,7 +15,12 @@ header.app nav a[aria-current] { font-weight: 700; text-decoration-thickness: 3p
 .switcher, .account { position: relative; }
 .menu { position: absolute; right: 0; top: 100%; z-index: 2; background: #fff; border: 2px solid var(--ink); min-width: 260px; padding: 8px 0; margin: 4px 0 0; list-style: none; }
 .menu li a, .menu li button { display: block; width: 100%; text-align: left; padding: 8px 16px; border: 0; background: none; font: inherit; }
-.menu .section { padding: 4px 16px; color: var(--muted); font-size: 0.875rem; }
+.menu .section { display: block; padding: 8px 16px 4px; color: var(--muted); font-size: 0.875rem; font-weight: 600; }
+.menu ul { list-style: none; margin: 0; padding: 0; }
+.menu-groups > li + li { border-top: 1px solid var(--line); }
+.menu-foot { margin: 8px 0 0; padding: 8px 16px 0; border-top: 2px solid var(--ink); }
+.menu-foot a { display: block; padding: 4px 0; }
+.menu a[aria-current] { font-weight: 700; }
 main { padding: 24px; max-width: 960px; }
 main.narrow { max-width: 480px; margin: 48px auto; }
 h1 { font-size: 1.75rem; margin: 0 0 8px; }
@@ -25,15 +31,25 @@ button.secondary, .button.secondary { background: #fff; color: var(--ink); }
 button.link { background: none; border: 0; color: var(--ink); text-decoration: underline; padding: 10px 4px; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .field { margin: 16px 0; }
-label, legend { display: block; font-weight: 600; }
-.hint { display: block; color: var(--muted); font-size: 0.9375rem; font-weight: 400; }
+label, legend, .label-like { display: block; font-weight: 600; margin: 0; }
+.optional { font-weight: 400; }
+.hint { display: block; color: var(--muted); font-size: 0.9375rem; font-weight: 400; margin: 2px 0 4px; }
+.today { display: block; }
+.role-note { grid-column: 2; margin: 4px 0 0; padding: 4px 8px; border-left: 4px solid var(--ink); background: var(--panel); }
 input[type=text], input[type=email], textarea, select { display: block; width: 100%; max-width: 480px; min-height: 44px; padding: 8px; border: 2px solid var(--line); font: inherit; }
 textarea { min-height: 96px; }
 [aria-invalid=true] { border-color: var(--error); border-width: 3px; }
-.error-message { display: block; color: var(--error); font-weight: 600; }
+.error-message { display: block; color: var(--error); font-weight: 600; margin: 2px 0 4px; }
 .error-summary { border: 3px solid var(--error); padding: 12px 16px; margin: 16px 0; }
 .error-summary h2 { margin-top: 0; font-size: 1.125rem; }
 .notice { border: 2px solid var(--ink); background: var(--panel); padding: 12px 16px; margin: 16px 0; }
+.notice p { margin: 0; }
+.notice.warning { border-width: 4px; border-left-width: 12px; }
+.tag { display: inline-block; border: 1px solid var(--ink); padding: 0 6px; font-size: 0.875rem; font-weight: 600; }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; }
+.facts dt { font-weight: 600; }
+.facts dd { margin: 0; }
+button.danger { background: var(--error); border-color: var(--error); color: #fff; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px; }
 table { border-collapse: collapse; width: 100%; }
 th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }

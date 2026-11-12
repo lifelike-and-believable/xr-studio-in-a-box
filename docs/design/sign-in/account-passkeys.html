@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your account - XR Studio</title>
+<title>Passkey added - Your account - XR Studio</title>
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: your account, with passkeys listed</p>
+<p class="state-label">Wireframe. State: your account, after adding a passkey</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -19,13 +19,14 @@
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">
+<div class="notice" id="notice" tabindex="-1"><p>Passkey added. You can use it next time you sign in on this device.</p></div>
 <h1>Your account</h1>
-<dl><dt><strong>Name</strong></dt><dd>Jordan Lee</dd><dt><strong>Email address</strong></dt><dd>jordan@example.com</dd></dl>
+<dl class="facts"><dt>Name</dt><dd>Jordan Lee</dd><dt>Email address</dt><dd>jordan@example.com</dd></dl>
 <h2>Passkeys</h2>
-<p>A passkey lets you sign in on this device without waiting for an email. It is stored by your device or password manager, not by XR Studio.</p>
-<table><thead><tr><th scope="col">Passkey</th><th scope="col">Added</th><th scope="col">Last used</th><th scope="col"><span class="skip">Actions</span></th></tr></thead>
-<tbody><tr><td>MacBook (iCloud Keychain)</td><td>12 November 2026</td><td>Today</td><td><button type="button" class="link">Remove<span class="skip"> MacBook passkey</span></button></td></tr></tbody></table>
-<div class="actions"><button type="button">Add a passkey</button></div>
+<table><thead><tr><th scope="col">Passkey</th><th scope="col">Added</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead><tbody>
+<tr><td>Laptop, Chrome</td><td>12 November 2026</td><td><button type="button" class="link">Remove<span class="visually-hidden"> passkey Laptop, Chrome</span></button></td></tr>
+</tbody></table>
+<div class="actions"><button type="button" class="secondary">Add a passkey</button></div>
 </main>
 </body>
 </html>

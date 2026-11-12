@@ -12,17 +12,23 @@
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
   <nav aria-label="Main"><ul>
-    <li><a href="#" aria-current="page">Projects</a></li>
+    <li><a href="#" aria-current="true">Projects</a></li>
     <li><a href="#">Organisations</a></li>
   </ul></nav>
-  <div class="switcher"><button type="button" class="secondary" aria-expanded="true" aria-controls="project-menu">Project: The Lantern Keeper</button><ul class="menu" id="project-menu">
-  <li class="section">Harbourfront Puppet Co.</li>
-  <li><a href="#" aria-current="page">The Lantern Keeper</a></li>
-  <li><a href="#">Tide Songs</a></li>
-  <li class="section">Jordan Lee (default organisation)</li>
-  <li><a href="#">Workshop tests</a></li>
-  <li><a href="#">All projects</a></li>
-</ul></div>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="true" aria-controls="project-menu">Project: The Lantern Keeper</button><div class="menu" id="project-menu">
+  <ul class="menu-groups">
+    <li><span class="section" id="grp-hpc">Harbourfront Puppet Co.</span>
+      <ul aria-labelledby="grp-hpc">
+        <li><a href="#" aria-current="page">The Lantern Keeper</a></li>
+        <li><a href="#">Tide Songs</a></li>
+      </ul></li>
+    <li><span class="section" id="grp-wt">Workshop tests</span>
+      <ul aria-labelledby="grp-wt">
+        <li><a href="#">Workshop tests</a></li>
+      </ul></li>
+  </ul>
+  <p class="menu-foot"><a href="#">All projects</a></p>
+</div></div>
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">

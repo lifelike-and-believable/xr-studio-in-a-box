@@ -23,7 +23,7 @@ Slice 1 adds the dashboard's first screens: sign-in, projects, organisations and
 
 ## Decision
 
-Option A. The main navigation has Projects and Organisations. Inside a project, a header switcher shows the current project and lists the others the person is on, grouped by organisation. Each project has tabs; slice 1 has Overview and People.
+Option A. The main navigation has Projects and Organisations. Inside a project, a header switcher shows the current project and lists the projects the person is on, grouped by organisation, with **All projects** after the groups. Each project has tabs; slice 1 has Overview and People.
 
 Addresses (the user documentation names pages, not addresses, so these can change behind redirects, but links already sent by email must keep working):
 
@@ -39,9 +39,12 @@ Addresses (the user documentation names pages, not addresses, so these can chang
 | Organisations | `/organisations` |
 | Create an organisation | `/organisations/new` |
 | An organisation | `/organisations/<organisation id>` |
+| Edit an organisation | `/organisations/<organisation id>/edit` |
 | Your account (passkeys) | `/account` |
 
-Ids are the record's UUIDv7 ids (decision-project-record-model), not names, so a rename never breaks a link. A page a person may not see answers the same "not available" page whether it does not exist or their role does not allow it, so addresses do not reveal which projects exist.
+Ids are the record's UUIDv7 ids (decision-project-record-model), not names, so a rename never breaks a link. A page a person may not see answers the same "This page is not available" page, with the same status, whether it does not exist or their role does not allow it, so addresses do not reveal which projects exist (design-dashboard-shell). The one exception is a person who had a role on that project and lost it: they see "You no longer have access to this project" (design-people-and-roles).
+
+A person who opens an address while signed out is asked to sign in and then taken to that address. Only paths on this site are followed after sign-in; anything else goes to `/projects` (design-sign-in).
 
 ## Consequences
 

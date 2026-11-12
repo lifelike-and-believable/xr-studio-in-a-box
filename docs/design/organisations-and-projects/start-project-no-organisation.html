@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: no organisation to choose, a default will be made</p>
+<p class="state-label">Wireframe. State: start a project with no organisation to choose</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -19,14 +19,15 @@
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">
+
 <h1>Start a project</h1>
-<p class="lead">A project is one place to take a brief towards a show. Its owner is made its director and producer, and can hand either role on later.</p>
+<p class="lead">A project is one place to take a brief towards a show.</p>
 <form>
-<div class="field"><label for="project-name">Project name</label><input type="text" id="project-name"></div>
-<div class="field"><label for="brief">Brief <span class="hint">A few lines on what the show is. You can change it later.</span></label><textarea id="brief"></textarea></div>
-<div class="field"><label for="owner">Owner <span class="hint">People already on this organisation's projects are listed.</span></label><select id="owner"><option selected>Jordan Lee (you)</option><option>Morgan Ray</option></select></div>
-<div class="field"><span class="label"><strong>Organisation</strong></span>
-<p class="hint">You do not look after an organisation yet. A new organisation named after the project will be made, and you will look after it. You can rename it later.</p></div>
+<div class="field"><label for="project-name">Project name</label><input type="text" id="project-name" name="project-name"></div>
+<div class="field"><label for="brief">Brief <span class="optional">(optional)</span></label><p class="hint" id="brief-hint">A few lines on what the show is. You can change it later.</p><textarea id="brief" name="brief" aria-describedby="brief-hint"></textarea></div>
+<div class="field"><p class="label-like">Organisation</p><p class="hint">You are not on any organisation yet. A new organisation with the same name as the project will be made. You will look after it and can rename it later.</p></div>
+<div class="field"><label for="owner">Owner</label><select id="owner" name="owner"><option selected>Morgan Ray (you)</option></select></div>
+<div class="summary" aria-live="polite" id="start-summary"><h2>When you start it</h2><p>You will own it and have the Director and Producer roles.</p></div>
 <div class="actions"><button type="submit">Start project</button><a href="#">Cancel</a></div>
 </form>
 </main>

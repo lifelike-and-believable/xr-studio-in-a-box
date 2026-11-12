@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Start a project - XR Studio</title>
+<title>Error: Start a project - XR Studio</title>
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: name and owner missing</p>
+<p class="state-label">Wireframe. State: project name missing; brief and choices kept</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -19,16 +19,18 @@
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">
-<div class="error-summary" role="alert" tabindex="-1"><h2>There is a problem</h2><ul>
-<li><a href="#project-name">Enter the project name.</a></li>
-<li><a href="#owner">Choose who owns the project.</a></li></ul></div><h1>Start a project</h1>
-<p class="lead">A project is one place to take a brief towards a show. Its owner is made its director and producer, and can hand either role on later.</p>
+<div class="error-summary" role="alert" tabindex="-1">
+<h2>There is a problem</h2>
+<ul><li><a href="#project-name">Enter the project name.</a></li></ul>
+</div>
+<h1>Start a project</h1>
+<p class="lead">A project is one place to take a brief towards a show.</p>
 <form>
-<div class="field"><label for="project-name">Project name</label><span class="error-message" id="project-name-error">Enter the project name.</span><input type="text" id="project-name" aria-invalid="true" aria-describedby="project-name-error"></div>
-<div class="field"><label for="brief">Brief <span class="hint">A few lines on what the show is. You can change it later.</span></label><textarea id="brief"></textarea></div>
-<div class="field"><label for="owner">Owner <span class="hint">People already on this organisation's projects are listed.</span></label><span class="error-message" id="owner-error">Choose who owns the project.</span><select id="owner" aria-invalid="true" aria-describedby="owner-error"><option value="">Choose an owner</option><option>Jordan Lee (you)</option><option>Morgan Ray</option></select></div>
-<div class="field"><label for="organisation">Organisation <span class="hint">Only organisations you look after are listed.</span></label>
-<select id="organisation"><option>Harbourfront Puppet Co.</option><option>Jordan Lee (default organisation)</option></select></div>
+<div class="field"><label for="project-name">Project name</label><p class="error-message" id="project-name-error">Enter the project name.</p><input type="text" id="project-name" name="project-name" aria-describedby="project-name-error" aria-invalid="true"></div>
+<div class="field"><label for="brief">Brief <span class="optional">(optional)</span></label><p class="hint" id="brief-hint">A few lines on what the show is. You can change it later.</p><textarea id="brief" name="brief" aria-describedby="brief-hint">A lighthouse keeper and the puppet storm she talks to. Livestreamed from the studio.</textarea></div>
+<div class="field"><label for="organisation">Organisation</label><p class="hint" id="organisation-hint">Organisations you look after or have projects in.</p><select id="organisation" name="organisation" aria-describedby="organisation-hint"><option selected>Harbourfront Puppet Co.</option><option>Workshop tests</option></select></div>
+<div class="field"><label for="owner">Owner</label><p class="hint" id="owner-hint">People already on this organisation's projects are listed. Add anyone else afterwards on the project's People page.</p><select id="owner" name="owner" aria-describedby="owner-hint"><option selected>Jordan Lee (you)</option><option>Morgan Ray</option><option>Sam Okafor</option></select></div>
+<div class="summary" aria-live="polite" id="start-summary"><h2>When you start it</h2><p>You will own it and have the Director and Producer roles.</p></div>
 <div class="actions"><button type="submit">Start project</button><a href="#">Cancel</a></div>
 </form>
 </main>
