@@ -33,12 +33,15 @@ describe('env files are ignored and the example holds no secrets (layer1-skeleto
     expect(Object.keys(values).sort()).toEqual([
       'APP_ORIGINS',
       'BETTER_AUTH_SECRET',
+      'CRON_SECRET',
       'DATABASE_URL',
       'DATABASE_URL_UNPOOLED',
       'MAIL_CAPTURE_DIR',
       'PASSKEY_ORIGINS',
       'PASSKEY_RP_ID',
       'SIGN_IN_FIRST_ADDRESSES',
+      'STORAGE_DIR',
+      'STORAGE_SIGNING_SECRET',
     ]);
     expect(values.DATABASE_URL).toBe('postgres://USER:PASSWORD@HOST:5432/DATABASE');
     expect(values.DATABASE_URL_UNPOOLED).toBe('postgres://USER:PASSWORD@HOST:5432/DATABASE');

@@ -34,11 +34,11 @@ export default async function ProjectLayout({ children, params }: { children: Re
           groups={[...groups.values()]}
         />
       </div>
-      <h1>{view.project.name}</h1>
       <p>
         Organisation: <Link href={`/organisations/${view.project.organisationId}`}>{view.organisation}</Link>
       </p>
-      <ProjectTabs id={id} />
+      <h1>{view.project.name}</h1>
+      <ProjectTabs id={id} activity={view.can.has('read-activity')} />
       {children}
     </main>
   );
