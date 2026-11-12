@@ -18,13 +18,13 @@ derived-from:
   - docs-your-projects#your-account-and-signing-out: 37eb865924db
   - docs-your-projects#what-you-see-depends-on-your-roles: c2ab48583d70
   - docs-your-projects#if-something-goes-wrong: a5fe61c78855
-  - docs-organisations-and-projects#create-an-organisation: b79564cea746
+  - docs-organisations-and-projects#create-an-organisation: 5c734ccbae2e
   - docs-organisations-and-projects#start-a-project: 7a9f06d62be0
   - docs-organisations-and-projects#roles-when-the-project-starts: 4e0f2abc848b
   - docs-organisations-and-projects#if-you-are-not-on-any-organisation-yet: eb5f28a840c2
   - docs-organisations-and-projects#change-a-projects-name-or-brief: c935b0ea7cdb
   - docs-organisations-and-projects#change-an-organisation: f358c113348f
-  - docs-organisations-and-projects#an-organisations-page: 580dac557a51
+  - docs-organisations-and-projects#an-organisations-page: ba859e5e9e18
   - docs-organisations-and-projects#see-your-organisations: 1d1f5655b61a
   - docs-organisations-and-projects#who-can-do-this: 32d64a12bc9a
   - docs-organisations-and-projects#if-something-goes-wrong: 535191ea052a

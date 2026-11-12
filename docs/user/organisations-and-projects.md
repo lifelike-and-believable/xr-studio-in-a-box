@@ -9,7 +9,7 @@ derived-from:
 
 # Organisations and projects
 
-A project holds one show's brief and work. Every project belongs to an organisation. In a later release, an organisation will also hold the company facts its projects share, such as the legal name, so they are entered once; until then the facts sections say there are none yet.
+A project holds one show's brief and work. Every project belongs to an organisation. An organisation also holds the company facts its projects share, such as the legal name and bio, so they are entered once; see [Organisation facts](organisation-facts.md).
 
 On a solo production you do not need to create an organisation first: select **Start a project** and XR Studio makes one for you.
 
@@ -26,7 +26,7 @@ Three ideas to keep apart:
 3. Under **Looked after by**, tick who looks after it. You are ticked already; you can add people from your projects by ticking them in the list.
 4. Select **Create organisation**.
 
-The organisation's page opens. People who look after an organisation can rename it, change who looks after it and, in a later release, edit its facts.
+The organisation's page opens. People who look after an organisation can rename it, change who looks after it and edit its facts.
 
 ![Create an organisation](../design/organisations-and-projects/create-organisation.png)
 
@@ -64,7 +64,7 @@ Merging two organisations comes in a later release.
 
 ## An organisation's page
 
-It shows the organisation's name, who it is **Looked after by**, **Start a project in this organisation**, **Edit organisation** if you look after it, its **Projects** (the ones you are on, or all of them if you look after it), and **Organisation facts**, which stay empty until a later release.
+It shows the organisation's name, who it is **Looked after by**, **Start a project in this organisation**, **Edit organisation** if you look after it, its **Organisation facts** (see [Organisation facts](organisation-facts.md)), and its **Projects** (the ones you are on, or all of them if you look after it). People who look after it also see **Identifier formats** and **Activity**.
 
 ## See your organisations
 
