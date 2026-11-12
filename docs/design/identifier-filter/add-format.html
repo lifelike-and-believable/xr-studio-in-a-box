@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: add a format, with a test of an example</p>
+<p class="state-label">Wireframe. State: add a format, with a test of an example; the status region is present, empty, from page load</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -24,8 +24,8 @@
 <h1>Add a format</h1>
 <form method="post">
 <div class="field"><label for="format-name">Name</label><p class="hint" id="format-name-hint">What people will see when text matches, for example "Funder account number".</p><input type="text" id="format-name" name="format-name" value="Funder account number" aria-describedby="format-name-hint"></div>
-<div class="field"><label for="format-pattern">Pattern</label><p class="hint" id="format-pattern-hint">Write # for any digit and A for any letter. Spaces and other characters must match as typed. At least 6 # or A.</p><input type="text" id="format-pattern" name="format-pattern" value="###-AA-#####" aria-describedby="format-pattern-hint"></div>
-<div class="field"><label for="format-example">Try it with an example <span class="optional">(optional)</span></label><p class="hint" id="format-example-hint">Not saved. Shows whether the pattern matches it.</p><input type="text" id="format-example" name="format-example" value="204-HP-11872" aria-describedby="format-example-hint"></div>
+<div class="field"><label for="format-pattern">Pattern</label><p class="hint" id="format-pattern-hint">Write # for any digit and A for any letter. Other characters must match as typed, but spaces, hyphens and dots are ignored when checking. At least 6 # or A.</p><input type="text" id="format-pattern" name="format-pattern" value="###-AA-#####" aria-describedby="format-pattern-hint"></div>
+<div class="field"><label for="format-example">Try it with an example <span class="optional">(optional)</span></label><p class="hint" id="format-example-hint">Not saved. The result shows below when you stop typing or leave the field.</p><input type="text" id="format-example" name="format-example" value="204-HP-11872" aria-describedby="format-example-hint"></div>
 <p class="notice" id="example-result" role="status">"204-HP-11872" matches this pattern.</p>
 <div class="actions"><button type="submit">Add format</button><a href="#">Cancel</a></div>
 </form>

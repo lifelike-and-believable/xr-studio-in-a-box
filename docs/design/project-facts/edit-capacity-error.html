@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: a number fact with a value that is not a whole number; values kept</p>
+<p class="state-label">Wireframe. State: capacity: guests in the room is not a whole number; values kept; focus on the summary</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -19,17 +19,18 @@
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">
+
 <div class="error-summary" role="alert" tabindex="-1">
 <h2>There is a problem</h2>
-<ul><li><a href="#fact">Enter the number of guests as a whole number, like 40.</a></li></ul>
+<ul><li><a href="#capacity-room">Enter the number of guests in the room as a whole number, like 40.</a></li></ul>
 </div>
 <p class="hint"><a href="#">The Lantern Keeper</a> &gt; Facts</p>
 <h1>Edit capacity</h1>
 <form method="post">
-<div class="field"><label for="fact">Capacity</label><p class="hint" id="fact-hint">Guests in the room per show, as a whole number.</p><p class="error-message" id="fact-error">Enter the number of guests as a whole number, like 40.</p><input type="text" id="fact" name="fact" value="about forty" aria-describedby="fact-hint fact-error" aria-invalid="true"></div>
+<div class="field"><label for="capacity-room">Guests in the room per show</label><p class="hint" id="capacity-room-hint">A whole number. Enter 0 if the show has no room.</p><p class="error-message" id="capacity-room-error">Enter the number of guests in the room as a whole number, like 40.</p><input type="text" id="capacity-room" name="capacity-room" value="about forty" aria-describedby="capacity-room-hint capacity-room-error" aria-invalid="true" inputmode="numeric"></div>
+<div class="field"><label for="capacity-online">Viewers online per show</label><p class="hint" id="capacity-online-hint">A whole number. Enter 0 if the show is not streamed.</p><input type="text" id="capacity-online" name="capacity-online" value="200" aria-describedby="capacity-online-hint" inputmode="numeric"></div>
 <div class="actions"><button type="submit">Save capacity</button><a href="#">Cancel</a></div>
 </form>
-
 </main>
 </body>
 </html>

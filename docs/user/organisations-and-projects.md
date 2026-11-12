@@ -2,7 +2,7 @@
 id: docs-organisations-and-projects
 status: approved
 derived-from:
-  - design-organisations-and-projects: c503cc5ca77e
+  - design-organisations-and-projects: 202a8d9fef23
   - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
   - story-project-record-start-project#acceptance-criteria: 83fa11a80149
 ---

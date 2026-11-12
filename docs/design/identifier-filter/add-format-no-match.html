@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add a format - Harbourfront Puppet Co. - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: the example does not match the pattern</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#" aria-current="page">Organisations</a></li>
+  </ul></nav>
+  
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<p class="hint"><a href="#">Harbourfront Puppet Co.</a> &gt; Identifier formats</p>
+<h1>Add a format</h1>
+<form method="post">
+<div class="field"><label for="format-name">Name</label><p class="hint" id="format-name-hint">What people will see when text matches, for example "Funder account number".</p><input type="text" id="format-name" name="format-name" value="Funder account number" aria-describedby="format-name-hint"></div>
+<div class="field"><label for="format-pattern">Pattern</label><p class="hint" id="format-pattern-hint">Write # for any digit and A for any letter. Other characters must match as typed, but spaces, hyphens and dots are ignored when checking. At least 6 # or A.</p><input type="text" id="format-pattern" name="format-pattern" value="###-AA-#####" aria-describedby="format-pattern-hint"></div>
+<div class="field"><label for="format-example">Try it with an example <span class="optional">(optional)</span></label><p class="hint" id="format-example-hint">Not saved. The result shows below when you stop typing or leave the field.</p><input type="text" id="format-example" name="format-example" value="204-11872" aria-describedby="format-example-hint"></div>
+<p class="notice" id="example-result" role="status">"204-11872" does not match this pattern.</p>
+<div class="actions"><button type="submit">Add format</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

@@ -26,10 +26,11 @@ The identifier filter (story-contracts-and-payment-protect-sensitive-data) check
 
 ## Decision
 
-Option A with simple patterns. The list belongs to the organisation and is changed by the people who look after it (design-organisations-and-projects). It starts with the starter formats from decision-protected-store, which can be turned off but not removed. Added formats are simple patterns with at least 6 # or A, so they cannot match short ordinary numbers.
+Option A with simple patterns (approver's decision, 2026-11-12). The list belongs to the organisation and is changed by the people who look after it (design-organisations-and-projects). It starts with the starter formats from decision-protected-store, which can be turned off but not removed. Added formats are simple patterns with at least 6 # or A, so they cannot match short ordinary numbers. When checking, spaces, hyphens and dots between characters are ignored, so a number typed with or without separators matches the same pattern. Where formats overlap (any 9 digits is a Business Number; 9 digits that pass the SIN check digit are also a Social Insurance Number), a match names every format it meets.
 
 ## Consequences
 
 - Every write to an agent-readable field checks the list of the project's organisation; organisation facts use their own organisation's list.
-- A starter format that needs more than a pattern (the card check digit, spacing variants) is written in code and reviewed like other code.
+- A starter format that needs more than a pattern (the card and SIN check digits) is written in code and reviewed like other code.
+- Ignoring separators means a pattern cannot tell "123-456-789" from "123 456 789"; that is intended, because people type identifiers both ways.
 - Revisit if an organisation needs formats per project, or if the business layer's own list of identifiers (story-contracts-and-payment-protect-sensitive-data) needs more than patterns.

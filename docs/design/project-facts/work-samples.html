@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work samples - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: the project's work samples, with a held upload and Add a work sample</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+
+<p class="hint"><a href="#">The Lantern Keeper</a> &gt; Facts</p>
+<h1>Work samples</h1>
+<p class="lead">This project's own samples. The organisation's standard samples are on <a href="#">Harbourfront Puppet Co.'s facts</a>.</p>
+<div class="held"><h2>Held: grant-letter.pdf</h2>
+<p>Not added: its text looks like it has a GST/HST number. It will be deleted at 15:40 on 13 November unless you confirm it is not a GST/HST number.</p>
+<form class="inline" method="post"><button type="submit" class="secondary">Confirm grant-letter.pdf is not a GST/HST number</button></form>
+<form class="inline" method="post"><button type="submit" class="link">Delete grant-letter.pdf now</button></form></div>
+<table class="people"><caption>Work samples for The Lantern Keeper</caption><thead><tr><th scope="col">Title</th><th scope="col">File</th><th scope="col">Added</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+<tbody><tr><td data-label="Title">Lantern test</td><td data-label="File">lantern-test.mp4, 2 minutes</td><td data-label="Added">Jordan Lee, 7 November</td><td><form class="inline" method="post"><button type="submit" class="link">Remove<span class="visually-hidden"> Lantern test</span></button></form></td></tr><tr><td data-label="Title">Rehearsal photos</td><td data-label="File">5 images</td><td data-label="Added">Jordan Lee, 7 November</td><td><form class="inline" method="post"><button type="submit" class="link">Remove<span class="visually-hidden"> Rehearsal photos</span></button></form></td></tr></tbody></table>
+<h2>Add a work sample</h2>
+<form method="post" enctype="multipart/form-data">
+<div class="field"><label for="sample-title">Title</label><input type="text" id="sample-title" name="sample-title"></div>
+<div class="field"><label for="sample-file">File</label><p class="hint" id="sample-file-hint">Video, images, audio or a PDF, up to 2 GB. Text in PDFs and text files is checked for bank details and tax numbers; video, images and audio are not checked.</p><input type="file" id="sample-file" name="sample-file" aria-describedby="sample-file-hint"></div>
+<div class="actions"><button type="submit">Add work sample</button></div>
+</form>
+</main>
+</body>
+</html>

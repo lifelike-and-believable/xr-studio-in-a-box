@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Check before saving: Edit description - The Lantern Keeper - XR Studio</title>
+<title>Error: Check before saving: Edit description - The Lantern Keeper - XR Studio</title>
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: someone else saved this fact after the page was opened</p>
+<p class="state-label">Wireframe. State: someone else saved this fact after the page was opened; focus on the message</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -19,14 +19,21 @@
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">
-<div class="notice warning" role="alert"><p>Morgan Ray saved a new description at 14:20, after you opened this page. Their text is shown below yours. Check both, then save the text you want. Saving keeps Morgan's version in the history.</p></div>
+
+<div class="error-summary" role="alert" tabindex="-1">
+<h2>Check before saving: Morgan Ray saved a new description at 14:20</h2>
+<p>Morgan saved after you opened this page, so your text has not been saved. Nothing is overwritten.</p>
+<ul><li><a href="#their-version">Read Morgan Ray's version</a></li><li><a href="#fact">Your text, still in the box</a></li></ul>
+<p>Save the text you want. Morgan's version stays in the earlier versions either way. <strong>Cancel</strong> leaves without saving your text.</p>
+</div>
 <p class="hint"><a href="#">The Lantern Keeper</a> &gt; Facts</p>
 <h1>Edit description</h1>
+<h2 id="their-version">Morgan Ray's version, saved at 14:20</h2>
+<p class="quote">A lantern keeper on a drowned coast talks with the guests who row out to her light. Live puppetry, streamed and in a hybrid room.</p>
 <form method="post">
-<div class="field"><label for="fact">Description</label><p class="hint" id="fact-hint">What the project is, in a few sentences. Do not put bank details or tax numbers here.</p><textarea id="fact" name="fact" aria-describedby="fact-hint">A lantern keeper on a drowned coast talks with the guests who row out to her light. Live puppetry, streamed and in a hybrid room.</textarea></div>
-<div class="actions"><button type="submit">Save description</button><a href="#">Cancel</a></div>
+<div class="field"><label for="fact">Description</label><p class="hint" id="fact-hint">What the project is, in a few sentences. Do not put bank details or tax numbers here.</p><textarea id="fact" name="fact" aria-describedby="fact-hint">A lantern keeper on a drowned coast talks with guests who row out to her light. Live puppetry in a hybrid room and online.</textarea></div>
+<div class="actions"><button type="submit">Save my description</button><a href="#">Cancel</a></div>
 </form>
-<h2>Morgan Ray's version, saved at 14:20</h2><p class="quote">A lantern keeper on a drowned coast talks with guests who row out to her light. Live puppetry in a hybrid room and online.</p>
 </main>
 </body>
 </html>

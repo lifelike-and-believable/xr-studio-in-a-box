@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: confirming a false match; the confirmation is logged</p>
+<p class="state-label">Wireframe. State: confirming a false match; the answer is checked and logged</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -24,9 +24,9 @@
 <h1>Confirm it is not a bank account number</h1>
 <p>You are saving this text in <strong>Description</strong>:</p>
 <p class="quote"><mark>00123-004-1234567</mark></p>
-<p>It matches the format for a bank account number. Confirm only if it is something else. Your confirmation is recorded in the project's activity with your name and the time; the text itself is not copied there.</p>
+<p>It matches the format for a bank account number. Confirm only if it is something else. Your confirmation is recorded in the project's activity with your name, the time and your answer below; the matching text itself is not copied there.</p>
 <form method="post">
-<div class="field"><label for="what-is-it">What is it?</label><p class="hint" id="what-is-it-hint">A few words, recorded with your confirmation.</p><input type="text" id="what-is-it" name="what-is-it" value="Catalogue number for the lantern prop" aria-describedby="what-is-it-hint"></div>
+<div class="field"><label for="what-is-it">What is it?</label><p class="hint" id="what-is-it-hint">A few words, like "catalogue number for the lantern prop". Recorded in Activity with your name, so do not type the number itself or any bank or tax details here.</p><input type="text" id="what-is-it" name="what-is-it" value="Catalogue number for the lantern prop" aria-describedby="what-is-it-hint"></div>
 <div class="actions"><button type="submit">Confirm and save description</button><a href="#">Go back and edit the text</a></div>
 </form>
 </main>

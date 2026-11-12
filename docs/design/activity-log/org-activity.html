@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: organisation activity, as Jordan, who looks after it</p>
+<p class="state-label">Wireframe. State: organisation activity, as Jordan, who looks after it, with the same filters</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -23,7 +23,16 @@
 <p class="hint"><a href="#">Harbourfront Puppet Co.</a></p>
 <h1>Activity for Harbourfront Puppet Co.</h1>
 <p class="lead">Changes to the organisation, its facts and its identifier formats, newest first. Nobody can change or remove an entry. Each project has its own activity.</p>
-<table class="people"><caption class="visually-hidden">Activity, newest first</caption>
+<form method="get" class="filters" aria-label="Filter activity">
+<div class="filter-row">
+<div class="field"><label for="f-who">Who</label><select id="f-who" name="f-who"><option selected>Anyone</option><option>Jordan Lee</option><option>Morgan Ray</option></select></div>
+<div class="field"><label for="f-area">Area</label><select id="f-area" name="f-area"><option selected>All areas</option><option>Organisation</option><option>Organisation facts</option><option>Identifier formats</option></select></div>
+<div class="field"><label for="f-from">From <span class="optional">(optional)</span></label><input type="date" id="f-from" name="f-from"></div>
+<div class="field"><label for="f-to">To <span class="optional">(optional)</span></label><input type="date" id="f-to" name="f-to"></div>
+</div>
+<div class="actions"><button type="submit">Apply filters</button><a href="#">Clear filters</a></div>
+</form>
+<table class="people"><caption class="visually-hidden">Organisation activity, newest first</caption>
 <thead><tr><th scope="col">When</th><th scope="col">Who</th><th scope="col">What</th><th scope="col">Area</th></tr></thead>
 <tbody><tr><td data-label="When">6 November, 10:12</td><td data-label="Who">Jordan Lee</td><td data-label="What">Added the identifier format "Funder account number"</td><td data-label="Area">Identifier formats</td></tr><tr><td data-label="When">5 November, 15:40</td><td data-label="Who">Jordan Lee</td><td data-label="What">Added the standard work sample "Press pack"</td><td data-label="Area">Organisation facts</td></tr><tr><td data-label="When">5 November, 15:20</td><td data-label="Who">Jordan Lee</td><td data-label="What">Saved the applicant profile for Canada Council for the Arts</td><td data-label="Area">Organisation facts</td></tr><tr><td data-label="When">3 November, 10:05</td><td data-label="Who">Jordan Lee</td><td data-label="What">Saved the bio</td><td data-label="Area">Organisation facts</td></tr><tr><td data-label="When">3 November, 09:58</td><td data-label="Who">Jordan Lee</td><td data-label="What">Created the organisation</td><td data-label="Area">Organisation</td></tr></tbody></table>
 </main>

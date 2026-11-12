@@ -14,7 +14,7 @@ derived-from:
 
 # Project facts design
 
-A project's facts recorded once, in one place, so that later drafts (funding documents, contracts, call sheets) are made from the same record (story-project-record-record-facts). Slice 2 covers entering, editing and reading facts by role, who last changed each fact, a fact's history, and comparing or restoring an earlier version with later versions kept. Agent drafts of facts from a document arrive in slice 7; drafting documents from facts arrives with the funding, contracts and schedule stories.
+A project's facts recorded once, in one place, so that later drafts (funding documents, contracts, call sheets) are made from the same record (story-project-record-record-facts). Slice 2 covers entering, editing and reading facts by role, who last changed each fact, a fact's earlier versions, and comparing or restoring an earlier version with later versions kept. Agent drafts of facts from a document arrive in slice 7; drafting documents from facts arrives with the funding, contracts and schedule stories.
 
 ## Personas
 
@@ -24,16 +24,17 @@ A project's facts recorded once, in one place, so that later drafts (funding doc
 
 ## Flow
 
-1. On a project, the **Facts** tab sits between **Overview** and **People**. It lists the project's facts in a fixed order: **Description**, **Plan**, **Budget**, **Credits**, **Collaborators**, **Schedule**, **Work samples**, **Capacity**. Under each: its value, "Last changed by <name>, <date and time>", and **Edit** and **History**.
+1. On a project, the **Facts** tab sits between **Overview** and **People**. Above the project's name, every project tab shows **Organisation: <organisation>** as a link, as on the slice 1 overview. The tab lists the project's facts in a fixed order: **Description**, **Plan**, **Budget**, **Credits**, **Collaborators**, **Schedule**, **Work samples**, **Capacity**. Under each: its value, "Last changed by <name>, <date and time>", and **Edit** and **Earlier versions**.
 2. Below them, **From <organisation>** shows the organisation facts this project reads (legal name and bio; design-organisation-facts), with **Open <organisation>'s facts**. They are not edited here.
 3. A person who may edit chooses **Edit** beside a fact. One fact is edited at a time, on its own page, with **Save <fact>** and **Cancel**. On save, the **Facts** tab opens with a notice ("Description saved."); focus moves to it.
 4. Before saving, the text is checked against the identifier formats (design-identifier-filter). Text that matches is not saved; the person is told why and what to do.
-5. **History** beside a fact lists every saved version, newest first, with who saved it and when. **Compare with current** shows an earlier version beside the current one. **Restore** asks for confirmation, then saves that earlier text as a new version; every version stays in the history.
-6. Someone whose roles do not allow editing sees the facts without **Edit**, and a line naming who edits them. A fact their roles may not see is listed by name with "The budget is visible to the director and producer." and no value.
+5. **Earlier versions** beside a fact lists every saved version, newest first, with who saved it and when. **Compare with current** shows an earlier version beside the current one. **Restore** asks for confirmation, then saves that earlier text as a new version; every version stays. The restored text goes through the identifier check like any save: if it matches a format turned on since, the person sees the "Not saved" page and the confirm path (design-identifier-filter), and nothing is restored until they act.
+6. **Work samples** opens its own page: the project's samples with **Remove**, any held uploads with their deletion time, and **Add a work sample** (title and file). The organisation's standard samples have the same page on the organisation (design-organisation-facts).
+7. Someone whose roles do not allow editing sees the facts without **Edit** and a line naming who edits them. Their **Earlier versions** page shows **Compare with current** but not **Restore**. A fact their roles may not see is listed by name with "The budget is visible to the director and producer." and no value.
 
 ## Who sees and edits which facts
 
-Each fact has a data class (decision-identity-and-roles). Slice 2 uses two classes; later slices map new roles' permissions onto them.
+Each fact has a data class (decision-identity-and-roles). Slice 2 uses two classes; later slices map new roles' permissions onto them (approver's decision, 2026-11-12).
 
 | Fact | Class | Who sees it | Who edits it |
 |---|---|---|---|
@@ -48,31 +49,39 @@ Organisation facts read into a project follow design-organisation-facts. No fact
 |---|---|---|
 | Facts, as Jordan (can edit) | ![Facts](project-facts/facts.png) | Phone: ![Facts at 320px](project-facts/facts-phone.png) |
 | Facts, after saving | ![Fact saved](project-facts/facts-saved.png) | Focus on the notice. |
-| Facts, as Riley (read only, budget hidden) | ![Facts, read only](project-facts/facts-read-only.png) | Phone: ![Read only at 320px](project-facts/facts-read-only-phone.png). No Activity tab for this role. |
+| Facts, after restoring | ![Fact restored](project-facts/facts-restored.png) | Focus on the notice. |
+| Facts, as Riley (read only, budget hidden) | ![Facts, read only](project-facts/facts-read-only.png) | Phone: ![Read only at 320px](project-facts/facts-read-only-phone.png). No **Activity** tab for this role. |
 | Facts, nothing recorded yet | ![No facts yet](project-facts/facts-empty.png) | **Add** instead of **Edit**. |
 | Edit a text fact | ![Edit description](project-facts/edit-fact.png) | Phone: ![Edit at 320px](project-facts/edit-fact-phone.png) |
-| Edit a number fact, not a whole number | ![Capacity error](project-facts/edit-capacity-error.png) | Value kept. |
-| Someone else saved while you were editing | ![Edit conflict](project-facts/edit-conflict.png) | Both texts shown; nothing lost. |
-| History of one fact | ![History](project-facts/history.png) | Phone: ![History at 320px](project-facts/history-phone.png) |
+| Edit capacity, guests not a whole number | ![Capacity error](project-facts/edit-capacity-error.png) | Two fields; values kept; focus on the summary. |
+| Edit the budget | ![Edit budget](project-facts/edit-budget.png) | Total in CAD and a note. |
+| Someone else saved while you were editing | ![Edit conflict](project-facts/edit-conflict.png) | Their text above the form; yours kept; nothing lost. |
+| Earlier versions of one fact | ![Earlier versions](project-facts/history.png) | Phone: ![Earlier versions at 320px](project-facts/history-phone.png) |
+| Earlier versions, as Riley | ![Earlier versions, read only](project-facts/history-read-only.png) | **Compare with current** only. |
 | Compare an earlier version with the current one | ![Compare](project-facts/compare.png) | Changes marked and both versions written out. |
 | Restore, confirmation | ![Restore confirmation](project-facts/restore-confirm.png) | Dialog; focus on its heading. |
+| Work samples, with a held upload | ![Work samples](project-facts/work-samples.png) | Phone: ![Work samples at 320px](project-facts/work-samples-phone.png). Upload errors and progress as on the organisation's page (design-organisation-facts). |
+| Remove a work sample, confirmation | ![Remove work sample](project-facts/sample-remove-confirm.png) | Phone: ![Remove at 320px](project-facts/sample-remove-confirm-phone.png) |
 
 ## Layout
 
 - The project tabs are **Overview**, **Facts**, **People** and, for roles that may read it, **Activity** (design-activity-log).
+- The project facts sit under a visually hidden heading "Project facts", so the fact headings sit below it and **From <organisation>** is its peer.
 - Each fact is a block with a heading (the fact's name), its value, the last-changed line and its actions. At 320 pixels the blocks stack with no change.
-- Control names: **Facts**, **Edit** (with the fact's name in visually hidden text), **Add**, **History**, **Save <fact>**, **Cancel**, **Compare with current**, **Restore**, **Restore version <n>**, **Keep the current <fact>**, **Back to history**, **Open <organisation>'s facts**.
-- Value types: Description, Plan, Credits, Collaborators and Schedule are text; Budget is a total in CAD plus a note; Capacity is guests in the room and viewers online, as whole numbers; Work samples are files with a title (the organisation's standard samples are in design-organisation-facts). Detailed budget lines and actual cost come with the budgets stories.
+- Control names: **Facts**, **Organisation: <organisation>**, **Edit** (with the fact's name in visually hidden text), **Add**, **Earlier versions**, **Save <fact>**, **Save my <fact>** (after a conflict), **Cancel**, **Compare with current**, **Restore**, **Restore version <n>**, **Keep the current <fact>**, **Back to earlier versions**, **Open <organisation>'s facts**, **Work samples**, **Add a work sample**, **Add work sample**, **Remove**, **Keep <title>**, **Remove <title>**.
+- Value types: Description, Plan, Credits, Collaborators and Schedule are text. Budget is **Total in Canadian dollars** (whole dollars; "148000", "148,000" and "$148,000" are all read as 148000) and an optional **Note**. Capacity is **Guests in the room per show** and **Viewers online per show**, each a whole number, 0 allowed. Work samples are files with a title. Detailed budget lines and actual cost come with the budgets stories.
 
 ## States and errors
 
 - **No facts yet:** each fact shows "Not recorded yet." with **Add**.
-- **Number not valid:** "Enter the number of guests as a whole number, like 40." Values typed are kept.
-- **Someone else saved after you opened the page:** nothing is overwritten. The page says who saved and when, shows their version below yours, and keeps your text in the box; saving then makes yours the newest version and theirs stays in the history.
-- **Text matches an identifier format:** not saved; see design-identifier-filter.
-- **Restore:** "Restore version 3 of description?" with **Keep the current description** first and **Restore version 3**. After it: "Description restored to version 3, saved as version 5. Earlier versions are kept."
-- **Fact a role may not see:** named, with who can see it, and no value. Its history and the API answer the same way: not available.
-- **Agents:** in slice 2 no agent can read or write facts. From slice 7, an agent's suggested facts are marked as drafts until a person accepts them (story-project-record-record-facts).
+- **Capacity not valid:** "Enter the number of guests in the room as a whole number, like 40." or "Enter the number of viewers online as a whole number, like 200." Each field has its own error, linked from the summary. Values typed are kept.
+- **Budget not valid:** "Enter the total in whole Canadian dollars, like 148000."
+- **Someone else saved after you opened the page (approver's decision, 2026-11-12):** nothing is overwritten. The error summary takes focus, says who saved and when, and links to their version, which is shown above the form, and to your text, still in the box. **Save my <fact>** makes yours the newest version; theirs stays in the earlier versions. **Cancel** leaves without saving your text, and the summary says so.
+- **Text matches an identifier format:** not saved; see design-identifier-filter. This includes text being restored.
+- **Restore:** "Restore version 3 of description?" with **Keep the current description** first and **Restore version 3**. After it: "Description restored to version 3, saved as version 7. Earlier versions are kept."
+- **Work sample removed:** "Lantern test removed from the work samples. It stays in the earlier versions of Work samples." The removed file is kept with that earlier version, so restoring the version brings it back.
+- **Fact a role may not see:** named, with who can see it, and no value. Its earlier versions and the API answer the same way: not available.
+- **Agents:** in slice 2 no agent, and no Claude Code session, can read or write facts. From slice 7, an agent's suggested facts are marked as drafts until a person accepts them (story-project-record-record-facts).
 
 ## How it works
 
@@ -81,16 +90,19 @@ Organisation facts read into a project follow design-organisation-facts. No fact
   - "A saved change is visible to anyone on the project whose role allows it": pages read the current version on each request, and the command layer and API check the fact's data class against the person's roles. A test signs in with each role.
   - "Who last changed each fact, and when": the version row records the person and time inside the command that saved it. A test.
   - "Earlier versions kept; restoring keeps later ones": restore is a new version equal to the earlier one; no version is deleted or changed. A test restores and checks every version is still listed.
+  - "Restoring cannot bring back an identifier": restore is the same save command, so it runs the identifier check. A test adds a format, restores a version holding matching text, and gets "Not saved".
   - "Nothing is overwritten by someone else's save": the edit form carries the version it started from; the command refuses a save whose starting version is no longer current and the page shows both texts. A test.
   - "Every change is in the activity log": the same transaction writes the log entry (design-activity-log). A test.
 - **What is published together?** Each fact is saved on its own; there is no multi-fact publish.
 
 ## Accessibility
 
-- Each fact is a heading followed by its value, so screen reader users can move fact to fact. **Edit** and **History** carry the fact's name in visually hidden text.
+- Each fact is a heading followed by its value, so screen reader users can move fact to fact. **Edit** and **Earlier versions** carry the fact's name in visually hidden text.
 - Changes in **Compare** use `del` and `ins` with strike-through and a thick underline, and the page also writes out both versions in full, so the change is not shown by colour or markup alone.
-- Notices after an action take focus, and the page title starts with the outcome. The restore dialog starts focus on its heading, with **Keep** first and Escape as **Keep**.
-- The history table becomes one block per version at 320 pixels, with each value labelled.
+- Notices after an action take focus, and the page title starts with the outcome. Failed saves start the page title with "Error:", and their summaries list each problem as a link to its field, as in slice 1.
+- Dialogs (restore, remove a work sample) start focus on their heading, put the safe choice first, treat Escape as the safe choice, and return focus to the control that opened them (**Restore version <n>**, **Remove <title>**).
+- **Remove** is a button in a form, never a link.
+- The earlier-versions and work-sample tables have captions and become one block per row at 320 pixels, with each value labelled.
 - All mock-ups were checked with axe (WCAG 2.2 AA tags) with no violations, and the phone frames have no horizontal scrolling.
 
 ## Open items

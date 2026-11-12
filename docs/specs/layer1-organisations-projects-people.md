@@ -39,9 +39,9 @@ derived-from:
   - docs-people-and-roles#if-something-goes-wrong: 9f8d3bf3bfab
   - design-sign-in: da4b611e6a00
   - design-dashboard-shell: a56bdc0e80ae
-  - design-organisations-and-projects: c503cc5ca77e
+  - design-organisations-and-projects: 202a8d9fef23
   - design-people-and-roles: a2487b05978f
-  - decision-navigation-and-urls: 6203da9367a5
+  - decision-navigation-and-urls: c3755f7064e2
   - decision-identity-and-roles#decision: 402e397cf1b0
   - decision-project-record-model#decision: cd1dfeb7a4dd
 tests-commit: 8bd0a36

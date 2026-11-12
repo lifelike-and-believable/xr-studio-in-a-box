@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-<p class="state-label">Wireframe. State: pattern too short to be safe; values kept</p>
+<p class="state-label">Wireframe. State: pattern too short to be safe; values kept, including the example; focus on the summary</p>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="app">
   <a class="brand" href="#">XR Studio</a>
@@ -19,7 +19,6 @@
   <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
 </header>
 <main id="main">
-
 <div class="error-summary" role="alert" tabindex="-1">
 <h2>There is a problem</h2>
 <ul><li><a href="#format-pattern">Use at least 6 # or A in the pattern. A shorter pattern would match ordinary numbers like dates and prices.</a></li></ul>
@@ -28,7 +27,9 @@
 <h1>Add a format</h1>
 <form method="post">
 <div class="field"><label for="format-name">Name</label><p class="hint" id="format-name-hint">What people will see when text matches, for example "Funder account number".</p><input type="text" id="format-name" name="format-name" value="Locker code" aria-describedby="format-name-hint"></div>
-<div class="field"><label for="format-pattern">Pattern</label><p class="hint" id="format-pattern-hint">Write # for any digit and A for any letter. Spaces and other characters must match as typed. At least 6 # or A.</p><p class="error-message" id="format-pattern-error">Use at least 6 # or A in the pattern. A shorter pattern would match ordinary numbers like dates and prices.</p><input type="text" id="format-pattern" name="format-pattern" value="####" aria-describedby="format-pattern-hint format-pattern-error" aria-invalid="true"></div>
+<div class="field"><label for="format-pattern">Pattern</label><p class="hint" id="format-pattern-hint">Write # for any digit and A for any letter. Other characters must match as typed, but spaces, hyphens and dots are ignored when checking. At least 6 # or A.</p><p class="error-message" id="format-pattern-error">Use at least 6 # or A in the pattern. A shorter pattern would match ordinary numbers like dates and prices.</p><input type="text" id="format-pattern" name="format-pattern" value="####" aria-describedby="format-pattern-hint format-pattern-error" aria-invalid="true"></div>
+<div class="field"><label for="format-example">Try it with an example <span class="optional">(optional)</span></label><p class="hint" id="format-example-hint">Not saved. The result shows below when you stop typing or leave the field.</p><input type="text" id="format-example" name="format-example" value="0451" aria-describedby="format-example-hint"></div>
+<p class="notice" id="example-result" role="status">"0451" matches this pattern.</p>
 <div class="actions"><button type="submit">Add format</button><a href="#">Cancel</a></div>
 </form>
 </main>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Confirm it is not a bank account number - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: the answer itself matches a format, so it is refused; focus on the summary</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+<div class="error-summary" role="alert" tabindex="-1">
+<h2>There is a problem</h2>
+<ul><li><a href="#what-is-it">Your answer also looks like a bank account number. Say what it is in words, without the number.</a></li></ul>
+</div>
+<p class="hint"><a href="#">The Lantern Keeper</a> &gt; Facts &gt; Edit description</p>
+<h1>Confirm it is not a bank account number</h1>
+<p>You are saving this text in <strong>Description</strong>:</p>
+<p class="quote"><mark>00123-004-1234567</mark></p>
+<p>It matches the format for a bank account number. Confirm only if it is something else. Your confirmation is recorded in the project's activity with your name, the time and your answer below; the matching text itself is not copied there.</p>
+<form method="post">
+<div class="field"><label for="what-is-it">What is it?</label><p class="hint" id="what-is-it-hint">A few words, like "catalogue number for the lantern prop". Recorded in Activity with your name, so do not type the number itself or any bank or tax details here.</p><p class="error-message" id="what-is-it-error">Your answer also looks like a bank account number. Say what it is in words, without the number.</p><input type="text" id="what-is-it" name="what-is-it" value="Our account 00123-004-1234567" aria-describedby="what-is-it-hint what-is-it-error" aria-invalid="true"></div>
+<div class="actions"><button type="submit">Confirm and save description</button><a href="#">Go back and edit the text</a></div>
+</form>
+</main>
+</body>
+</html>
