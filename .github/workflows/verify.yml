@@ -1,4 +1,4 @@
-# Install, migrate and verify on every pull request and push to main (docs/specs/layer1-skeleton.md, AC-7 and AC-8).
+# Install, migrate and verify on every pull request and push to main (docs/engineering/layer1-skeleton.md, AC-7 and AC-8).
 name: verify
 
 on:
