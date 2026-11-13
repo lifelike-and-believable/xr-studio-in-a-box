@@ -12,6 +12,19 @@ This packet moves XR Studio In A Box onto lasting tutorials, a place to try the 
 6. **Help is proposed, and is the last delivery step.** The `/help` pages and the Help link are in the design because the second story needs them, and because the lasting-tutorials spec says the help ships with the product. Step 6 can follow the lead's validation of slices 2 to 4. If the lead wants it left out, remove step 6, the three help mock-ups and `docs/user/help/help-and-tutorials.md`.
 7. **Twelve tutorials from four.** One for each task, as the spec asks. The table in the design says which steps each takes over. Fewer, longer tutorials would be quicker to validate once and slower to keep.
 
+## Changed after the independent reviews
+
+A persona walkthrough and a security review read the packet before it was pushed. What changed:
+
+- Tutorial 1 adds all four other people; the design says how the lead reaches a protected preview, and that **Start** signs everyone out; three mock-ups were added.
+- The step that empties a preview's database, the local command and **Start** check the database before they touch it, and never run with the production setting on. A production instance refuses to start on a database marked as a trial copy.
+- Only **Start** and the build step can delete the append-only records, as the database's owner, and production's runtime gets no owner connection.
+- Preview functions stay in `yul1`: the function region is one setting for the whole project, so moving it for previews would move production.
+- The tutorials' files are made up and offered on **Try XR Studio**, so nobody uploads a file of their own to a preview.
+- Sign-in as a person is not triggered by a prefetch, and checks that the person may sign in.
+- The lead's checks gained: the Neon integration on Preview only, no shared secrets, and no shareable links.
+- Not acted on: the walkthrough asked that decision-navigation-and-urls and design-dashboard-shell be amended for `/try`, `/help` and the Help link. Many approved artifacts link to both, so the design states the additions and both take them in at their next revision.
+
 ## Other choices
 
 8. **Stories.** No approved story fitted, so two were added: `story-project-record-try-from-a-link` for Morgan, the director, and `story-project-record-follow-a-tutorial` for Drew, the sound designer. The lead is not a persona; persona-director's evidence says it is close to a self-description of the approver, so the lead's validation is written as Morgan's. Both are in epic-project-record, because no epic is about learning the product and the first pages a new person meets are in that one. The alternative is an epic of its own, which needs requirements that do not exist yet.

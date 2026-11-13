@@ -2,7 +2,7 @@
 id: docs-help-and-tutorials
 status: approved
 derived-from:
-  - design-trying-the-product: bd5c78fd5a86
+  - design-trying-the-product: f491f059413f
   - story-project-record-follow-a-tutorial#acceptance-criteria: 61ac0ed21873
 covers:
   - /help

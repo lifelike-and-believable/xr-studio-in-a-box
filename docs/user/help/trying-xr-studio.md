@@ -2,7 +2,7 @@
 id: docs-trying-xr-studio
 status: approved
 derived-from:
-  - design-trying-the-product: bd5c78fd5a86
+  - design-trying-the-product: f491f059413f
   - story-project-record-try-from-a-link#acceptance-criteria: 74fb3e25a279
 covers:
   - /try
@@ -19,7 +19,7 @@ Every page of a trial copy has this line at the top: "Trial copy. The people, pr
 
 ## Open a trial copy
 
-1. Open the link to the trial copy. It is in the description of the change you were asked to decide on, under "Try it", with the tutorials to follow. If you are asked to sign in to Vercel first, do so; if you cannot, ask the person who sent you the change for access. **Sign in** opens, with the trial line above it.
+1. Open the link to the trial copy. It is in the description of the change you were asked to decide on, under "Try it", with the tutorials to follow. If you are asked to sign in to Vercel first, do so. A trial copy opens only for members of the team's Vercel account; if you are not one, ask the project lead. **Sign in** opens, with the trial line above it.
 2. Select **Try XR Studio** in the trial line.
 
 ![Try XR Studio](../../design/trying-the-product/try.png)
@@ -48,6 +48,10 @@ Under "Sign in as a person" there are five made-up people: Jordan Lee, producer;
 To act as two people at once, open a private window for the second person, open **Try XR Studio** there, and select them.
 
 A person who has not been added to a project yet has no button. The page says, for example, "Not added yet. Jordan adds Riley in the tutorial." Once Jordan adds Riley, select **Sign in as Riley**: it accepts Riley's invitation, as the link in the email would.
+
+## Use the tutorials' files
+
+Where a tutorial asks you to choose a file, use the made-up file it names. **Try XR Studio** lists them under "Files for the tutorials", each with a link to download it. Do not use a file of your own.
 
 ## Read the email a trial copy would have sent
 

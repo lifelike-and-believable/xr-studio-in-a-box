@@ -6,7 +6,7 @@ derived-from:
   - story-project-record-follow-a-tutorial#acceptance-criteria: 61ac0ed21873
   - persona-director#goals: a92ca172be83
   - persona-sound-designer#skills-and-tools: c8a8a4959cf9
-  - design-architecture#trying-the-product: e67e560ceac9
+  - design-architecture#trying-the-product: 713b5821898d
   - design-architecture#amendment-2026-11-13-previews-hold-made-up-data-and-may-be-hosted-outside-canada: e8875ba9ecc8
   - decision-navigation-and-urls#decision: 0eed88adf12e
 ---
@@ -68,9 +68,10 @@ The pages of **Try XR Studio** do not exist outside a trial copy. Opening their 
 ## Layout
 
 - **The trial line.** In a trial copy, every page has one line above the header: "Trial copy. The people, projects and files here are made up. Do not enter real information." followed by the link **Try XR Studio**. It is text on a bordered band, not colour alone, and it is in the page before the skip link's target, so a screen reader reads it once at the top.
-- **Try XR Studio** (`/try`) has no project navigation. It has three parts, in this order:
+- **Try XR Studio** (`/try`) has no project navigation. It has four parts, in this order:
   - **Choose a tutorial**: a table with the columns **Tutorial**, **For**, **Starts with**, and a **Start** button for each row. Each button's accessible name includes the tutorial, for example "Start: Record a project's facts". The tutorial's title links to it in Help.
   - **Sign in as a person**: a line saying who is signed in in this browser ("Nobody is signed in in this browser." or "Signed in as Jordan Lee."), then one row for each of the five people with their role and a link styled as a button: **Sign in as Jordan**, **Sign in as Morgan**, **Sign in as Riley**, **Sign in as Sam**, **Sign in as Drew**. A person who is not on a project yet at this starting point has no button and the text "Not added yet. Jordan adds Riley in the tutorial." Below: "To act as two people at once, open a private window for the second person."
+  - **Files for the tutorials**: a list of the made-up files the tutorials use, each a link that downloads it.
   - **Email**: the link **Email sent by this copy**, and the sentence "No email leaves a trial copy."
 - **The Start dialog** has the heading "Start <tutorial>?", the text "Everything done in this trial copy so far is replaced by the tutorial's starting point: <starting point>. Anyone else using this copy loses what they did.", and the buttons **Keep what is here** and **Start**, in that order.
 - **Email sent by this copy** (`/try/mail`) is a table with **To**, **Subject**, **Sent** and a link **Open** for each message. A message's page shows the same three facts and the text, with its link live, and **Back to email sent by this copy**.
@@ -107,7 +108,7 @@ The pages of **Try XR Studio** do not exist outside a trial copy. Opening their 
 6. Starts the app and prints three lines: that the trial copy is running, the address of **Try XR Studio**, and that Ctrl+C stops and deletes it.
 7. On exit, stops the app, removes the container and deletes the folder.
 
-It refuses a database that holds anything and is not marked as a trial copy (see the third guard below), so it cannot be pointed at real data by mistake.
+Before it migrates anything, it checks that the database is empty or marked as a trial copy (see the third guard below), and stops otherwise, so it cannot be pointed at real data by mistake. "Empty" means no table outside the system schemas. It sets both connection variables from the one address and does not read `web/.env`. The app and the container listen on 127.0.0.1 only, and the database password is made fresh for each run.
 
 The `try:` block for `docs/product/process.yml`:
 
@@ -127,36 +128,44 @@ The lead decided on 2026-11-13 that a preview holding only made-up data may be h
 - **What a preview is.** A Vercel preview deployment of `web/` for each pull request, built with `XR_TRY=1`. Vercel's own protection for previews stays on, so only people on the team can open one.
 - **Its database.** A Postgres database made for that pull request alone and removed when it closes: a Neon database branch, through Neon's integration in the Vercel marketplace, in a United States region `[assumed]`. The integration gives each preview its own `DATABASE_URL` and `DATABASE_URL_UNPOOLED`, the names the app already reads.
 - **Its files and email.** Kept in that same database (design-architecture, "Trying the product"), so a preview has one place that holds data, and removing the database removes everything.
-- **Fresh at each deployment.** The preview's build step empties the database, applies the migrations and loads the first starting point. Every push to the pull request therefore starts the preview again. **Start** does the same for one tutorial at any time.
+- **Fresh at each deployment.** The preview's build step empties the database, applies the migrations and loads the first starting point. Every push to the pull request therefore starts the preview again. **Start** does the same for one tutorial at any time. The step runs only when `tryMode()` says yes. Before it migrates or empties anything, it checks that the database is empty or marked as a trial copy, and stops the build otherwise. A production build never runs it. Emptying removes XR Studio's own tables by name, nothing else.
+- **Its functions** run in `yul1`, as production's do. The function region is one setting for the whole project, so it is not changed for previews.
+- **Its addresses.** In try mode only, the app takes its allowed origins and its passkey address from the address Vercel gives the deployment. Outside try mode they come from `APP_ORIGINS`, as today.
+- **Who can open one.** Members of the Vercel team only. Previews get no shareable links.
 - **How "real data never goes in a preview" is kept:**
   - The preview environment has no production setting, secret or connection. Its only database is its own.
   - Nothing leaves it: email is kept, not sent, so nobody outside can be invited into one.
   - The only accounts that can be signed in to are the five made-up people, plus anyone they add, who can never receive the invitation.
   - The trial line on every page says not to enter real information.
-  - It is deleted with its pull request.
+  - Its database is removed when its pull request closes. Vercel removes the deployment itself after its own retention time.
+  - The tutorials' files are made up too. **Try XR Studio** offers each file a tutorial uses for download, each step that chooses a file names one of them, and each step that types a number gives a made-up one. Nobody needs a file of their own.
   - What this cannot stop: a team member who types real information into a made-up project. The trial line is the guard for that, and the lead accepts it with this design.
 
 ### Signing in as a tutorial's person
 
 The five people are Jordan Lee (producer), Morgan Ray (director), Riley Chen (artist), Sam Okafor (technical artist) and Drew Patel (sound designer), with addresses at `xr.test`, a domain that can never receive mail. They are one list in one file, `web/src/try/people.ts`.
 
-`/try/sign-in?as={name}` takes one of the five first names. It mints a one-time sign-in link for that person inside the app, as the invitation route already does, and follows it at once. So the session is an ordinary session, made by the ordinary sign-in code, and roles are read on every request as always.
+`/try/sign-in?as={name}` takes one of the five first names. It mints a one-time sign-in link for that person inside the app, as the invitation route already does, and follows it at once. So the session is an ordinary session, made by the ordinary sign-in code, and roles are read on every request as always. The path checks that the person may sign in, as the sign-in form does, so a person whose last dashboard role was removed is refused. It answers with `Cache-Control: no-store`, the **Sign in as** links are plain links that the browser does not fetch ahead, and a request marked as a prefetch is refused, so nobody is signed in and no invitation is accepted without a selection.
 
 The guide's four conditions, and how each is met:
 
 1. **It exists only in a build started for trying.** Three guards, each enough alone:
-   - *The build.* The pages and routes under `/try` are in files with their own extension, which `next.config.ts` includes only when `XR_TRY=1` at build time `[assumed]`. A build without the setting has no such routes.
+   - *The build.* The pages and routes under `/try`, and the **Start** action, are in files with their own extension, which `next.config.ts` includes only when `XR_TRY=1` at build time `[assumed]`. A build without the setting has no such routes. The code those files call (the loader, the stand-ins, accepting an invitation without its link) is in ordinary files, so each of those functions asks `tryMode()` and checks the mark itself before it does anything. If the installed Next.js cannot leave the files out, this guard does not exist, condition 1 rests on the other two, and the spec says so for the lead to accept or refuse.
    - *The setting at run time.* One function, `tryMode()`, is asked by every try page, route and transport before anything else. Without `XR_TRY=1` it answers no, and the page answers 404.
-   - *The database.* Loading a starting point marks the database as a trial copy, in `app_meta`. Sign-in as a person, **Start** and the loader refuse a database without the mark, and the loader refuses to mark a database that already holds anything.
-2. **It is refused when the production setting is on, whatever else is set.** The production setting is `XR_PRODUCTION=1`, set in the production environment, or `VERCEL_ENV=production`, which Vercel sets itself. `tryMode()` checks these first and answers no, even with `XR_TRY=1`. The app also writes an error to its log at start-up when both are set.
+   - *The database.* Loading a starting point marks the database as a trial copy, in `app_meta`. Sign-in as a person, **Start** and the loader refuse a database without the mark, and the loader refuses to mark a database that already holds anything. The loader also refuses when the production setting is on. A production instance that finds the mark in its database refuses to start, and its health check fails, so a database that was ever a trial copy cannot become production's.
+2. **It is refused when the production setting is on, whatever else is set.** The production setting is `XR_PRODUCTION` with any value other than empty or `0`, set in the production environment, or `VERCEL_ENV=production`, which Vercel sets itself. `tryMode()` checks these first and answers no, even with `XR_TRY=1`. The app also writes an error to its log at start-up when both are set.
 3. **It lists only those people, with fixture data.** The path accepts only the five first names in the list, never an address or an id. It signs in only an account whose address is that person's in the list. A person added to a trial copy under any other address cannot be signed in to this way.
-4. **A test proves the path answers 404 without the setting.** The ordinary end-to-end suite runs against a build without `XR_TRY`. It asks for `/try`, `/try/sign-in?as=Jordan`, `/try/mail` and the **Start** action, and expects **This page is not available** with status 404 for each. Unit tests cover `tryMode()` for every combination of the three settings, and one test reads the ordinary build's list of routes and fails if any begins `/try`.
+4. **A test proves the path answers 404 without the setting.** The ordinary end-to-end suite runs against a build without `XR_TRY`. It asks for `/try`, `/try/sign-in?as=Jordan`, `/try/mail` and the **Start** action, and expects **This page is not available** with status 404 for each. Unit tests cover `tryMode()` for every combination of the three settings, and one test reads the ordinary build's list of routes and fails if any begins `/try`. The same requests are made to a try build started with the production setting on, each way of setting it, and expect 404; **Start** is refused there, and the build step and the loader refuse.
 
 The path signs a browser in from a link, with no form. That is accepted in a trial copy because the people are made up. The change that adds it gets a security review against these four points.
 
 ### What stands in for each outside service
 
 The table is in design-architecture, "Trying the product", where the lead approves it with the architecture: the database, the web functions, object storage, email, scheduled jobs and passkeys, with what each stand-in hides. In short: no email leaves a trial copy; a preview keeps files in its database, 4 MB at most; scheduled jobs do not run; a passkey belongs to the one copy it was made in.
+
+### Start and the append-only records
+
+**Start** and the preview's build step remove everything, including the activity log and the other records the app's own database role can never delete. They connect as the database's owner, through `DATABASE_URL_UNPOOLED`, and only they do. The production runtime is given no `DATABASE_URL_UNPOOLED`: production's migrations run in their own step, outside the app. So in production the code that empties has no connection able to do it, whatever else fails. Inside a trial copy the append-only rules hold for everything except **Start**.
 
 ### Starting points
 
@@ -166,6 +175,7 @@ A starting point is the result of a tutorial that others start from. The loader 
 
 - The help is built from `docs/user/` and `docs/tutorials/` at each build, with the map from `checks/docs-map.mjs --json`, and served under `/help`. Approved pages only.
 - **Help** opens the page whose `covers:` matches the current address, or else the overview of the area whose pages cover the nearest address above it, or else the start page.
+- Raw HTML in a page is shown as text, never run. Only the pages and images in the map are built, at build time; no file is read from a path made from the address.
 - Help pages hold no project data, so they open signed in or signed out. A link to a tutorial that Jordan sends therefore opens for a new person at once.
 - **How does the system know?** Nothing is stored: the help is the files, and the match is made from the address.
 - **What enforces each promise?**
@@ -212,7 +222,7 @@ Steps the runner cannot do are written as manual steps, last in their tutorial, 
 Build in this order. Each step ends with something that runs.
 
 1. **The try command and sign-in.** `tryMode()` and its tests first, then the three guards, the mail and file stand-ins, the starting-point loader for the first starting point, **Try XR Studio**, `pnpm run try`, and the `try:` block in `process.yml` in the same pull request. The pull request touches `docs/product/`, so it waits for the lead's review. It gets a security review against the four conditions (rfr-core's `security-reviewer`).
-2. **Previews.** The Vercel project and its preview database are the lead's to connect; see the checks below. Then copy `rfr-tutorials-preview.yml` from the rfr-process templates, so the tutorials run on each preview and the recording is kept.
+2. **Previews.** The Vercel project and its preview database are the lead's to connect; see the checks below. Then copy `rfr-tutorials-preview.yml` from the rfr-process templates, so the tutorials run on each preview and the recording is kept. In the copy, pass only the `RFR_PREVIEW_BYPASS` secret, not every secret, and pin the workflow and `rules-ref` to one commit: the bypass token with the sign-in path opens every preview.
 3. **The tutorials.** Write the twelve as `runner: web`, each with its starting point in the loader, and run them with `tutorial-run` against the try command's product. Add **Try it** to each user documentation page, linking its tutorial: sign-in to 2; your-projects, organisations-and-projects and people-and-roles to 1; project-facts to 3; organisation-facts to 4; identifier-formats to 5; approvers to 6; review to 7 and 8; board to 9; versions-and-feedback to 10; what-needs-you to 11; activity to 12.
 4. **Remove what they replace.** `web/e2e/tutorial-board.spec.ts`, `tutorial-facts.spec.ts` and `tutorial-review.spec.ts`, and the four old tutorials, in the pull request where the new ones pass.
 5. **Turn the rules on.** Set `lasting-tutorials: fail` in the `with:` of `.github/workflows/rfr-process.yml` once the tutorials pass the rules.
@@ -224,13 +234,16 @@ What the delivery must know:
 - **The runner signs in by first name.** `Sign in as **Jordan**.` opens `/try/sign-in?as=Jordan`.
 - **Moving `docs/user/sign-in.md` changed one test's path** (`web/test/emails.test.ts` reads the page). No assertion changed.
 - **Four user documentation pages end with stray lines** (`</content>`, and `</invoke>` in people-and-roles). They were there before this packet and will show in Help. Remove them in step 6, as a revision.
+- The spec also settles: whether the trial line and the `/try` pages are rendered at build time, which would decide `tryMode()` at build and not at run time; how an invitation is accepted without its link, in a function that is try-only; and that `.env.example` and AGENTS.md gain the new settings in the same pull request.
+- Found in review, outside this design: `web/src/db/client.ts` only logs when `set role xr_app` fails and carries on as the login user. It needs its own fix.
 - `[assumed]` items are checked against the installed versions and the vendors' documentation when the spec is written. If the build guard cannot be made with `pageExtensions`, the other two guards stand and the spec says so.
 
 Checks only a person can do, for the lead's validation list:
 
 - Connect the repository to a Vercel project if it is not connected, add the Neon integration with a database branch for each preview, and set `XR_TRY=1` and the trial secrets for the Preview environment only. An agent may do this through the Vercel tools only after the lead says so (NODE-002).
+- Confirm the Neon integration is connected to the Preview environment only, that its database branch is deleted when a pull request closes, and that no variable set for Production is also set for Preview. The preview's secrets are values of their own.
 - Save the preview bypass token as the `RFR_PREVIEW_BYPASS` repository secret.
-- Open the production environment's settings and confirm `XR_TRY` is absent and `XR_PRODUCTION=1` is set, before the first production deployment.
+- Open the production environment's settings and confirm `XR_TRY` and `DATABASE_URL_UNPOOLED` are absent, `XR_PRODUCTION=1` is set, and the database addresses are Aurora's in ca-central-1, before the first production deployment. Confirm that database has never been used as a trial copy.
 - Follow tutorials 3 to 12 on a preview, to validate slices 2, 3 and 4.
 - The first-task test with a person new to the pipeline (design-what-needs-you) is still owed. It moves out of the tutorial and stays on this list.
 - A manual pass of **Try XR Studio** and one help page with a screen reader.
@@ -241,3 +254,4 @@ Checks only a person can do, for the lead's validation list:
 - The app's `SET ROLE xr_app` holds on the preview database's connections. If the pooled address does not keep it, the preview uses the direct address for both variables `[assumed]`.
 - `pageExtensions` in the installed Next.js can leave the `/try` files out of a build `[assumed]`.
 - Vercel runs scheduled jobs for production deployments only `[assumed]`.
+- Vercel uses one build command and one function region for every environment of a project, and its shareable links pass the preview protection `[assumed]`. The guards above are written as if all three are true.
