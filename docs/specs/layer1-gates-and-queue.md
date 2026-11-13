@@ -24,6 +24,8 @@ derived-from:
   - decision-navigation-and-urls: f6531b0599e9
   - decision-identity-and-roles#decision: 402e397cf1b0
   - decision-project-record-model#decision: cd1dfeb7a4dd
+unlocks:
+  - contracts/test/roles.test.ts: Roles and permissions. Slice 1's test compares each role's permissions with an exact list; the Director and Producer list gains `manage-gates` as the spec's Roles and permissions section gives it. Every earlier permission is still checked, and so is the rule that no permission is an approval.
 ---
 
 # Layer 1, slice 3: gates and the queue
@@ -120,12 +122,12 @@ Nearly every stage of a production needs a person's approval, and today XR Studi
 
 ## Roles and permissions
 
-One new permission in `contracts/src/roles.ts`, `manage-approvers`, held by the Director and the Producer. Sending for review, **Sent by you**, **Everything waiting** and opening an item follow `open-project`. Deciding, handing on and the queue follow the person's approval assignments, not their roles.
+One new permission in `contracts/src/roles.ts`, `manage-gates` (naming approvers, delegates and holders), held by the Director and the Producer. It is not an approval, and its name keeps slice 1's check that no permission is one. Sending for review, **Sent by you**, **Everything waiting** and opening an item follow `open-project`. Deciding, handing on and the queue follow the person's approval assignments, not their roles.
 
 ## Scope
 
 - In:
-  - `contracts/`: the gate list and its labels (AC-1); `manage-approvers`; request schemas for the endpoints of AC-39; the review file types and their error (AC-17); the length limits.
+  - `contracts/`: the gate list and its labels (AC-1); `manage-gates`; request schemas for the endpoints of AC-39; the review file types and their error (AC-17); the length limits.
   - Database (Drizzle, generated migrations, UUIDv7 ids):
     - `approval_assignment` (project, slot, approver person, delegate person or none): one row per area and per protected approval. Working state.
     - `review_item` (id, project, hand-off, title, what changed, file, waiting hand-off or none, sent by, sent at, handed to, handed by): working state.
