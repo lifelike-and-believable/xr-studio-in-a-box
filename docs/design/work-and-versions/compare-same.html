@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Choose two different versions - Lighthouse concept - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: Compare with the same version chosen twice; focus on the error</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">What needs you</a></li>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Riley Chen</button></div>
+</header>
+<main id="main">
+<p><a href="#">Lighthouse concept</a></p>
+<h1>Compare versions of Lighthouse concept</h1>
+<form method="get" class="filters" aria-label="Choose versions to compare">
+<span class="error-message" id="cmp-error" tabindex="-1">Error: Choose two different versions.</span>
+<div class="filter-row">
+<div class="field"><label for="a">Compare version</label><select id="a" name="a" aria-invalid="true" aria-describedby="cmp-error"><option selected>1</option><option>2</option></select></div>
+<div class="field"><label for="b">with version</label><select id="b" name="b" aria-invalid="true" aria-describedby="cmp-error"><option selected>1</option><option>2</option></select></div>
+</div>
+<div class="actions"><button type="submit" class="secondary">Compare</button></div>
+</form>
+</main>
+</body>
+</html>

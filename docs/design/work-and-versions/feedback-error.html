@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Feedback not added - Lighthouse concept - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: Add feedback with nothing written; focus on the error summary</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">What needs you</a></li>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Riley Chen</button></div>
+</header>
+<main id="main">
+<p><a href="#">Board</a></p>
+<h1>Lighthouse concept</h1>
+<div class="error-summary" role="alert" tabindex="-1"><h2>Feedback not added</h2><ul><li><a href="#note">Write your feedback before adding it.</a></li></ul></div>
+<dl class="meta"><dt>Stage</dt><dd>Look and concept art (Creative)</dd><dt>Owner</dt><dd>Riley Chen</dd><dt>State</dt><dd><span class="state">In progress</span>. Version 2: revision requested by Morgan Ray, 11 November, 16:40.</dd><dt>Decided by</dt><dd>Morgan Ray, the Creative approver, or Sam Okafor, the delegate</dd></dl>
+<div class="actions"><a class="button" href="#">Send a revised version</a><a href="#">Compare versions</a></div>
+<h2>Version 2, the latest</h2>
+<div class="with-feedback">
+<div>
+<div class="preview large" role="img" aria-label="Preview of lighthouse-v2.png">lighthouse-v2.png</div>
+<p><a href="#">Open the file</a></p>
+<dl class="meta"><dt>Sent by</dt><dd>Riley Chen, 9 November, 15:00</dd><dt>What changed</dt><dd>Warmer light in the lamp room; stairs moved to the sea side.</dd><dt>Decision</dt><dd>Revision requested by Morgan Ray, 11 November, 16:40</dd></dl>
+</div>
+<section class="feedback" aria-labelledby="fb-head">
+<h3 id="fb-head">Feedback on version 2</h3>
+<ol>
+<li><p class="who">Sam Okafor, 10 November, 10:15</p><p>The sea-side stairs will need a second rig for the keeper's climb.</p></li>
+<li><p class="who">Morgan Ray, 11 November, 16:40 <span class="tag">Revision requested</span></p><p>The first version was clearer. From the audience side the new stairs are hard to read, and the warm light flattens the lamp room. Go back to version 1.</p></li>
+<li><p class="who">Riley Chen, 11 November, 17:02</p><p>Understood. I will restore version 1.</p></li>
+</ol>
+<form method="post">
+<div class="field"><label for="note">Add feedback on version 2</label><span class="hint" id="note-hint">Everyone on the project who uses the dashboard can read it. It cannot be edited or removed afterwards.</span><span class="error-message" id="note-error">Error: Write your feedback before adding it.</span><textarea id="note" name="note" aria-describedby="note-hint note-error" aria-invalid="true"></textarea></div>
+<div class="actions"><button type="submit" class="secondary">Add feedback</button></div>
+</form>
+</section>
+</div>
+<h2>Versions</h2>
+
+<table class="people"><caption class="visually-hidden">Every version of this work, newest first</caption>
+<thead><tr><th scope="col">Version</th><th scope="col">Sent</th><th scope="col">What changed</th><th scope="col">Decision</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+<tbody>
+<tr><td><a href="#">Version 2</a> (latest)</td><td data-label="Sent">Riley Chen, 9 November, 15:00</td><td data-label="What changed">Warmer light in the lamp room; stairs moved to the sea side.</td><td data-label="Decision">Revision requested by Morgan Ray, 11 November, 16:40</td><td></td></tr>
+<tr><td><a href="#">Version 1</a></td><td data-label="Sent">Riley Chen, 5 November, 12:00</td><td data-label="What changed">First pass from the brief.</td><td data-label="Decision">Accepted by Morgan Ray, 6 November, 09:10</td><td><button type="button" class="secondary" aria-haspopup="dialog">Restore version 1</button></td></tr>
+</tbody></table>
+</main>
+</body>
+</html>

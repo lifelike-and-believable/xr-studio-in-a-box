@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare versions 1 and 2 - Lighthouse concept - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: Compare versions, side by side (stacked at phone width)</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">What needs you</a></li>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Riley Chen</button></div>
+</header>
+<main id="main">
+<p><a href="#">Lighthouse concept</a></p>
+<h1>Compare versions of Lighthouse concept</h1>
+<form method="get" class="filters" aria-label="Choose versions to compare">
+
+<div class="filter-row">
+<div class="field"><label for="a">Compare version</label><select id="a" name="a"><option selected>1</option><option>2</option></select></div>
+<div class="field"><label for="b">with version</label><select id="b" name="b"><option>1</option><option selected>2</option></select></div>
+</div>
+<div class="actions"><button type="submit" class="secondary">Compare</button></div>
+</form>
+<div class="compare">
+<section aria-labelledby="v1">
+<h2 id="v1">Version 1</h2>
+<div class="preview large" role="img" aria-label="Preview of lighthouse-v1.png">lighthouse-v1.png</div>
+<p><a href="#">Open the file<span class="visually-hidden">, version 1</span></a></p>
+<dl class="meta"><dt>Sent by</dt><dd>Riley Chen, 5 November, 12:00</dd><dt>What changed</dt><dd>First pass from the brief.</dd><dt>Decision</dt><dd>Accepted by Morgan Ray, 6 November, 09:10</dd></dl>
+<p class="quote">Good start. Try warmer light in the lamp room.</p>
+<div class="actions"><button type="button" class="secondary" aria-haspopup="dialog">Restore version 1</button></div>
+</section>
+<section aria-labelledby="v2">
+<h2 id="v2">Version 2</h2>
+<div class="preview large" role="img" aria-label="Preview of lighthouse-v2.png">lighthouse-v2.png</div>
+<p><a href="#">Open the file<span class="visually-hidden">, version 2</span></a></p>
+<dl class="meta"><dt>Sent by</dt><dd>Riley Chen, 9 November, 15:00</dd><dt>What changed</dt><dd>Warmer light in the lamp room; stairs moved to the sea side.</dd><dt>Decision</dt><dd>Revision requested by Morgan Ray, 11 November, 16:40</dd></dl>
+<p class="quote">The first version was clearer. From the audience side the new stairs are hard to read, and the warm light flattens the lamp room. Go back to version 1.</p>
+
+</section>
+</div>
+</main>
+</body>
+</html>

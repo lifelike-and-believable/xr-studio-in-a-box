@@ -66,6 +66,13 @@ Addresses (the user documentation names pages, not addresses, so these can chang
 | A project's approvers | `/projects/<project id>/approvers` |
 | Change an area's approver and delegate | `/projects/<project id>/approvers/<area>` |
 | Change a protected approval's holder | `/projects/<project id>/approvers/protected/<approval>` |
+| What needs you (home after sign-in for people on a project; added with the slice 4 designs) | `/what-needs-you` |
+| A project's board | `/projects/<project id>/board` |
+| A project's board, blocked work only | `/projects/<project id>/board?show=blocked` |
+| Add work | `/projects/<project id>/board/new` |
+| One piece of work | `/projects/<project id>/board/<work id>` |
+| Compare two versions of a piece of work | `/projects/<project id>/board/<work id>/compare?a=<version>&b=<version>` |
+| Send a revised version | `/projects/<project id>/review/new?work=<work id>` |
 
 The `<fact>` part is a fixed slug, never an id: for projects `description`, `plan`, `budget`, `credits`, `collaborators`, `schedule`, `capacity`; for organisations `legal-name`, `bio`, `company-history`, and `funder-profile-<funder>` with the funder slugs `canada-council-for-the-arts`, `canada-media-fund`, `creative-bc` and `epic-megagrants` (added with the slice 2 designs). Work samples have their own page rather than an edit page. The `<area>` part is `creative`, `performance-and-behaviour`, `builds-and-operations` or `business`, and `<approval>` is `contracts-and-licence-terms`, `funding-applications-and-reports`, `publishing-and-marketing` or `audience-facing-safety-and-consent` (added with the slice 3 designs).
 

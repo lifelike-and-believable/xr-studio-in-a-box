@@ -21,7 +21,7 @@ derived-from:
   - design-approvers: 983b149cfa2a
   - design-review-queue: 5ae80c4a15b8
   - design-identifier-filter: 069c84a56674
-  - decision-navigation-and-urls: f6531b0599e9
+  - decision-navigation-and-urls: 2dd0e158ee13
   - decision-identity-and-roles#decision: 402e397cf1b0
   - decision-project-record-model#decision: cd1dfeb7a4dd
 tests-commit: 32925eb

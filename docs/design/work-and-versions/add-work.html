@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add work - Board - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: Add work, filled in, as Jordan (producer)</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#">What needs you</a></li>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Jordan Lee</button></div>
+</header>
+<main id="main">
+<p><a href="#">Board</a></p>
+<h1>Add work</h1>
+<p class="lead">Put a piece of work on the board before anyone sends it, so its owner sees it under What needs you.</p>
+<form method="post">
+<div class="field"><label for="title">Title</label><input type="text" id="title" name="title" value="Harbour ambience"></div>
+<div class="field"><label for="stage">Stage</label><select id="stage" name="stage"><option value="">Choose a stage</option>
+<optgroup label="Creative"><option>Look and concept art</option><option>Character design</option><option>Mesh and rig</option><option>Environments</option><option>Visual effects</option><option selected>Sound and music</option><option>Interaction design</option></optgroup>
+<optgroup label="Performance and behaviour"><option>Motion and performance quality</option><option>AI behaviour, voice and dialogue</option><option>Cue list</option><option>Audience-facing safety and consent</option></optgroup>
+<optgroup label="Business"><option>Funding applications and reports</option><option>Contracts and licence terms</option><option>Spend above a limit</option><option>Publishing and marketing</option><option>AI-use statements and credits</option></optgroup></select></div>
+<p class="hint" role="status">Morgan Ray, the Creative approver, or Sam Okafor, the delegate, decides this.</p>
+<div class="field"><label for="owner">Owner</label><span class="hint" id="owner-hint">The person who makes it. They see it under What needs you.</span><select id="owner" name="owner" aria-describedby="owner-hint"><option value="">Choose a person</option><option>Morgan Ray</option><option>Jordan Lee</option><option>Sam Okafor</option><option>Riley Chen</option><option selected>Drew Patel</option><option>Alex Kim</option></select></div>
+<div class="actions"><button type="submit">Add work</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

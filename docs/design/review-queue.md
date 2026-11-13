@@ -10,7 +10,7 @@ derived-from:
   - persona-artist#goals: 0767918db571
   - design-approvers: 983b149cfa2a
   - design-identifier-filter: 069c84a56674
-  - decision-navigation-and-urls#decision: ea71319803f6
+  - decision-navigation-and-urls#decision: 0eed88adf12e
 ---
 
 # Review queue design
