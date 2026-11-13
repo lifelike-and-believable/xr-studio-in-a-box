@@ -78,6 +78,16 @@ describe('writes go through the command layer (layer1-organisations-projects-peo
     }
   });
 
+  // layer1-gates-and-queue#AC-38: approvers, review items, decisions and recommendations are
+  // written by commands too, and the system writers gain no file.
+  it('keeps the slice 3 writes in the command layer (layer1-gates-and-queue#AC-38)', () => {
+    expect(Object.keys(SYSTEM_WRITERS).sort()).toEqual(['src/record/mail.ts', 'src/record/sign-in.ts']);
+    const commands = source.find((s) => s.file === 'src/record/commands.ts')?.text ?? '';
+    for (const name of ['setAreaApprovers', 'setProtectedHolder', 'sendForReview', 'decide', 'handOn', 'withdrawItem', 'addRecommendation']) {
+      expect(commands, name).toMatch(new RegExp(`export async function ${name}\\(`));
+    }
+  });
+
   it('reads roles from the database on each command, not from the session', () => {
     const commands = source.find((s) => s.file === 'src/record/commands.ts')?.text ?? '';
     expect(commands).toMatch(/rolesOf\(/);

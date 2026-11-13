@@ -29,6 +29,20 @@
       "when": 1794523023926,
       "tag": "0003_database_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794531562994,
+      "tag": "0004_gates_and_queue",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794531566697,
+      "tag": "0005_gates_grants_and_backfill",
+      "breakpoints": true
     }
   ]
 }

@@ -29,8 +29,8 @@ derived-from:
   - docs-identifier-filter#remove-a-format-you-added: 5d639a925d3a
   - docs-identifier-filter#who-can-do-this: faf12f82ab66
   - docs-identifier-filter#if-something-goes-wrong: d37c31c290fa
-  - docs-activity-log#read-a-projects-activity: ca6a436f518d
-  - docs-activity-log#filter-the-activity: 18487b9e2eb4
+  - docs-activity-log#read-a-projects-activity: 759961dac622
+  - docs-activity-log#filter-the-activity: 66e90e1035e3
   - docs-activity-log#read-an-organisations-activity: 52200c927d11
   - docs-activity-log#entries-nobody-can-change: 1fbbb53961e4
   - docs-activity-log#who-can-do-this: 34d9091ea09f
@@ -55,7 +55,7 @@ Or run every step at once: `pnpm --filter @xr/web run e2e -- e2e/tutorial-facts.
 
 ## Steps
 
-1. **Set up.** Sign in. Under **Organisations**, create **Harbourfront Puppet Co.**, then select **Start a project in this organisation** and start **The Lantern Keeper**. The project's Overview opens, with **Organisation: Harbourfront Puppet Co.** above its name and the tabs **Overview**, **Facts**, **People** and **Activity**.
+1. **Set up.** Sign in. Under **Organisations**, create **Harbourfront Puppet Co.**, then select **Start a project in this organisation** and start **The Lantern Keeper**. The project's Overview opens, with **Organisation: Harbourfront Puppet Co.** above its name and the tabs **Overview**, **Review**, **Facts**, **People**, **Approvers** and **Activity**.
 2. **See the Facts tab.** Select **Facts**. Description, Plan, Budget, Credits, Collaborators, Schedule, Work samples and Capacity are listed in that order, each "Not recorded yet." with **Add**. Under **From Harbourfront Puppet Co.**: "Harbourfront Puppet Co. has no facts recorded yet. People who look after it add them on its page."
 3. **Add the description.** Select **Add** beside Description, type a sentence about the show, and select **Save description**. Facts opens with "Description saved." and the description shows "Last changed by <you>, <date> at <time>", in your own time zone.
 4. **Add the budget.** Select **Add** beside Budget. Type `$148,000` in **Total in Canadian dollars** and a note, and select **Save budget**. The budget reads "Total: $148,000 CAD. Note: …".

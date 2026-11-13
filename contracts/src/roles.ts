@@ -23,6 +23,7 @@ export const RoleIdSchema = z.enum(ROLE_IDS);
 // No permission is an approval: approvers are named separately (story-project-record-name-approvers).
 // Slice 2 adds the facts and activity permissions (layer1-facts-identifiers-activity, Roles and
 // permissions): general facts, the budget, editing facts and work samples, and the activity log.
+// Slice 3 adds manage-gates, naming approvers, delegates and holders (layer1-gates-and-queue).
 export const PERMISSIONS = [
   'open-project',
   'see-people',
@@ -32,6 +33,7 @@ export const PERMISSIONS = [
   'see-budget',
   'edit-facts',
   'read-activity',
+  'manage-gates',
 ] as const;
 export type Permission = (typeof PERMISSIONS)[number];
 
@@ -44,6 +46,7 @@ const MANAGER: Permission[] = [
   'see-budget',
   'edit-facts',
   'read-activity',
+  'manage-gates',
 ];
 const VIEWER: Permission[] = ['open-project', 'see-people', 'see-facts'];
 

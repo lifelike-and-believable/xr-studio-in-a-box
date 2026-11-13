@@ -23,6 +23,8 @@ export const RequestUploadRequest = z.object({
   fileName: z.string().min(1).max(255),
   mediaType: z.string().max(255),
   size: z.number().int().nonnegative(),
+  // A review file joins the record as a file, never as a work sample (layer1-gates-and-queue#AC-17).
+  purpose: z.enum(['work-sample', 'review']).default('work-sample'),
 });
 export type RequestUploadRequest = z.infer<typeof RequestUploadRequest>;
 

@@ -14,7 +14,7 @@ test('facts tab lists the facts in order with who last changed each (layer1-fact
   await expect(page.getByText('No project facts yet.')).toHaveCount(0);
 
   const tabs = page.getByRole('navigation', { name: 'Project' }).getByRole('link');
-  await expect(tabs).toHaveText(['Overview', 'Facts', 'People', 'Activity']);
+  await expect(tabs).toHaveText(['Overview', 'Review', 'Facts', 'People', 'Approvers', 'Activity']);
   await tabs.filter({ hasText: 'Facts' }).click();
   await expect(page).toHaveURL(new RegExp(`/projects/${project}/facts$`));
   await expect(page.getByRole('navigation', { name: 'Project' }).getByRole('link', { name: 'Facts' })).toHaveAttribute('aria-current', 'page');
@@ -126,9 +126,9 @@ test('facts visible and editable by role (layer1-facts-identifiers-activity#AC-4
     expect(put.status()).toBe(403);
   }
   await t.riley.goto(`/projects/${t.project}/facts`);
-  await expect(t.riley.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Facts', 'People']);
+  await expect(t.riley.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Review', 'Facts', 'People', 'Approvers']);
   await t.tess.goto(`/projects/${t.project}/facts`);
-  await expect(t.tess.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Facts', 'People', 'Activity']);
+  await expect(t.tess.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Review', 'Facts', 'People', 'Approvers', 'Activity']);
   await t.close();
 });
 

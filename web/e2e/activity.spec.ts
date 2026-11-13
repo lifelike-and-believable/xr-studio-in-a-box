@@ -60,7 +60,7 @@ test('filter the activity (layer1-facts-identifiers-activity#AC-35)', async ({ p
   await page.goto(`/projects/${t.project}/activity`);
   const who = page.getByLabel('Who');
   await expect(who.locator('option')).toContainText(['Anyone', 'Riley Chen (removed)', 'Agents']);
-  await expect(page.getByLabel('Area').locator('option')).toHaveText(['All areas', 'Project', 'Facts', 'People']);
+  await expect(page.getByLabel('Area').locator('option')).toHaveText(['All areas', 'Project', 'Facts', 'People', 'Approvers', 'Review']);
   const jordan = (await who.locator('option').allTextContents()).find((o) => o !== 'Anyone' && !o.includes('Riley') && o !== 'Agents') ?? '';
   await who.selectOption({ label: jordan });
   await page.getByLabel('Area').selectOption({ label: 'Facts' });
