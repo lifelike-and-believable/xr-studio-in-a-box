@@ -7,6 +7,7 @@ import { batchAction, type BatchState } from './actions';
 export type QueueItem = {
   id: string;
   title: string;
+  version: number;
   stage: string;
   area: string;
   requester: string;
@@ -118,6 +119,7 @@ export function QueueForm({ projectId, groups }: { projectId: string; groups: Qu
                   <div>
                     <h3>
                       <Link href={i.href}>{i.title}</Link>
+                      {i.version > 1 ? <span className="version"> Version {i.version}</span> : null}
                     </h3>
                     <dl className="meta">
                       <dt>Stage</dt>

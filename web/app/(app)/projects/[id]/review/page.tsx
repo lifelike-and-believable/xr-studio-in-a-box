@@ -102,6 +102,7 @@ export default async function Review({ params, searchParams }: Props) {
     items: g.items.map((i) => ({
       id: i.id,
       title: i.title,
+      version: i.version,
       stage: i.stage,
       area: i.area,
       requester: i.requester.display,

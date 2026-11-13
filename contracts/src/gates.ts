@@ -126,6 +126,8 @@ export const SendForReviewRequest = z.object({
   fileId: z.string().nullable(),
   waitingOn: z.string().nullable(),
   answer: z.string().optional(),
+  // The piece of work this is the next version of (layer1-versions-board-first-view#AC-2).
+  workId: z.string().nullable().optional(),
 });
 export type SendForReviewRequest = z.infer<typeof SendForReviewRequest>;
 

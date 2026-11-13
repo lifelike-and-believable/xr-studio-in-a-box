@@ -110,8 +110,10 @@ test('sign-in returns to the requested page, same site only (layer1-organisation
   await page.getByLabel('Email address').fill(FIRST.jordan);
   await page.getByRole('button', { name: 'Email me a sign-in link' }).click();
   await page.goto(linkIn(await nextMail(FIRST.jordan, before)));
-  await expect(page).toHaveURL('http://127.0.0.1:3100/');
-  await expect(page.getByRole('heading', { level: 1, name: 'Projects' })).toBeVisible();
+  // Jordan is on projects, so the home page sends them to What needs you
+  // (layer1-versions-board-first-view#AC-32).
+  await expect(page).toHaveURL('http://127.0.0.1:3100/what-needs-you');
+  await expect(page.getByRole('heading', { level: 1, name: 'What needs you' })).toBeVisible();
 });
 
 test('invitation links last 7 days and open the project (layer1-organisations-projects-people#AC-5)', async ({ page, browser }) => {
@@ -129,7 +131,8 @@ test('invitation links last 7 days and open the project (layer1-organisations-pr
   const other = await browser.newContext({ baseURL: 'http://127.0.0.1:3100' });
   const rileyPage = await other.newPage();
   await acceptInvitation(rileyPage, riley);
-  await expect(rileyPage).toHaveURL(new RegExp(`/projects/${project}$`));
+  await expect(rileyPage).toHaveURL(/\/what-needs-you$/);
+  await rileyPage.goto(`/projects/${project}`);
   await expect(rileyPage.getByRole('heading', { level: 1, name })).toBeVisible();
 
   await other.clearCookies();
@@ -158,6 +161,7 @@ test('what each role sees the first time (layer1-organisations-projects-people#A
   const other = await browser.newContext({ baseURL: 'http://127.0.0.1:3100' });
   const rileyPage = await other.newPage();
   await acceptInvitation(rileyPage, riley);
+  await rileyPage.goto(`/projects/${project}`);
   await expect(rileyPage.getByText('A puppet show.')).toBeVisible();
   await expect(rileyPage.getByRole('link', { name: 'Edit name and brief' })).toHaveCount(0);
   await rileyPage.getByRole('link', { name: 'People', exact: true }).click();

@@ -2,13 +2,15 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-// Overview, Review, Facts, People, Approvers and, for roles that may read it, Activity
-// (layer1-facts-identifiers-activity#AC-1, AC-34; layer1-gates-and-queue#AC-2).
+// Overview, Review, Board, Facts, People, Approvers and, for roles that may read it, Activity
+// (layer1-facts-identifiers-activity#AC-1, AC-34; layer1-gates-and-queue#AC-2;
+// layer1-versions-board-first-view#AC-5).
 export function ProjectTabs({ id, activity }: { id: string; activity: boolean }) {
   const path = usePathname();
   const tabs = [
     { href: `/projects/${id}`, label: 'Overview' },
     { href: `/projects/${id}/review`, label: 'Review' },
+    { href: `/projects/${id}/board`, label: 'Board' },
     { href: `/projects/${id}/facts`, label: 'Facts' },
     { href: `/projects/${id}/people`, label: 'People' },
     { href: `/projects/${id}/approvers`, label: 'Approvers' },

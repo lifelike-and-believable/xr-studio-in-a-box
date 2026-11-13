@@ -66,6 +66,8 @@ import {
   reviewRecommendation,
   storedFile,
   upload,
+  work,
+  workFeedback,
 } from '../db/schema';
 import { docxText, kindOf, pdfPages } from '../storage/document-text';
 import { newStorageKey, readAll, readStart, removeStored, sha256Of, signUpload, storedSize } from '../storage/storage';
@@ -1027,16 +1029,26 @@ async function inspect(item: typeof upload.$inferSelect, formats: (FormatSpec & 
   const head = await readStart(item.storageKey, 32);
   const kind = item.purpose === 'review' && isModelFile(item.fileName) ? modelKind(head, item.fileName) : kindOf(head, item.mediaType);
   if (!kind) return { ok: false, field: 'file', message: typeError, discard: true };
-  const found: { page: number | null; matches: Found[] }[] = [];
+  const found = await documentMatches(item.storageKey, kind, formats);
+  if (!found) return { ok: false, field: 'file', message: typeError, discard: true };
+  return { ok: true, size, sha256: await sha256Of(item.storageKey), found };
+}
+
+type DocumentFound = { page: number | null; matches: Found[] }[];
+
+// The identifier matches in a PDF's, Word document's or .gltf file's text, by page for a PDF; null
+// for a Word document whose text cannot be read. Other kinds have no text to check.
+async function documentMatches(storageKey: string, kind: string, formats: (FormatSpec & { noun: string })[]): Promise<DocumentFound | null> {
+  const found: DocumentFound = [];
   // A .gltf is JSON text an agent could read, so its text is checked as a document's is.
   if (kind === 'gltf') {
-    const matches = scan([{ field: 'file', text: new TextDecoder().decode(await readAll(item.storageKey)) }], formats);
+    const matches = scan([{ field: 'file', text: new TextDecoder().decode(await readAll(storageKey)) }], formats);
     if (matches.length) found.push({ page: null, matches });
   }
   if (kind === 'pdf') {
     let pages: string[] = [];
     try {
-      pages = await pdfPages(await readAll(item.storageKey));
+      pages = await pdfPages(await readAll(storageKey));
     } catch {
       // A PDF whose text cannot be read joins the record unchecked, as a scan does.
       pages = [];
@@ -1046,12 +1058,12 @@ async function inspect(item: typeof upload.$inferSelect, formats: (FormatSpec & 
       if (matches.length) found.push({ page: i + 1, matches });
     });
   } else if (kind === 'docx') {
-    const text = docxText(await readAll(item.storageKey));
-    if (text === null) return { ok: false, field: 'file', message: typeError, discard: true };
+    const text = docxText(await readAll(storageKey));
+    if (text === null) return null;
     const matches = scan([{ field: 'file', text }], formats);
     if (matches.length) found.push({ page: null, matches });
   }
-  return { ok: true, size, sha256: await sha256Of(item.storageKey), found };
+  return found;
 }
 
 // A 3D model is told from its first bytes, as other files are (layer1-gates-and-queue#AC-17):
@@ -1547,18 +1559,54 @@ async function recordReviewConfirmation(tx: Tx, projectId: string, itemId: strin
 const confirmedNote = (held: Found[], answer: string | null) =>
   held.length > 0 && answer ? ` after confirming that text in it is not ${formatList(nounsOf(held))} ("${answer}")` : '';
 
-export type Sent = { movedOn: false; itemId: string; title: string; deciders: string[] } | { movedOn: true; title: string };
+export type Sent =
+  | { movedOn: false; itemId: string; workId: string; version: number; title: string; deciders: string[] }
+  | { movedOn: true; title: string };
 
+type WorkRow = typeof work.$inferSelect;
+
+// Locks a piece of work, so its versions are numbered in turn and only one waits at a time
+// (layer1-versions-board-first-view#AC-1, AC-3).
+async function lockWork(tx: Tx, projectId: string, workId: string): Promise<WorkRow | null> {
+  if (!isId(workId)) return null;
+  const rows = await tx.select().from(work).where(and(eq(work.projectId, projectId), eq(work.id, workId))).for('update');
+  return rows[0] ?? null;
+}
+
+// A piece of work's latest version and its decision, if any.
+async function latestVersion(reader: Reader, workId: string) {
+  const item = (await reader.select().from(reviewItem).where(eq(reviewItem.workId, workId)).orderBy(desc(reviewItem.version)).limit(1))[0];
+  if (!item) return null;
+  const decision = (await reader.select().from(reviewDecision).where(eq(reviewDecision.itemId, item.id)).limit(1))[0] ?? null;
+  return { item, decision };
+}
+
+// "14:20", in the zone slice 3's refusals use.
+const clock = (date: Date) =>
+  new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Toronto', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(date);
+
+async function decidersNames(tx: Tx, projectId: string, handoff: string): Promise<string[]> {
+  const a = decidersOf(await assignmentsOf(tx, projectId), handoff);
+  const names = await namesOf(tx, [a?.approverId, a?.delegateId]);
+  return [a?.approverId, a?.delegateId].flatMap((id) => (id && names.get(id) ? [names.get(id) ?? ''] : []));
+}
+
+// Sending without a piece of work makes one, owned by the sender, with the item as version 1;
+// sending with one adds its next version (layer1-versions-board-first-view#AC-2).
 export async function sendForReview(
   principal: Principal,
   projectId: string,
-  input: { title: string; handoff: string; whatChanged: string; fileId: string | null; waitingOn: string | null; answer?: string },
+  input: { title: string; handoff: string; whatChanged: string; fileId: string | null; waitingOn: string | null; answer?: string; workId?: string | null },
 ): Promise<ReviewResult<Sent>> {
   if (isAgent(principal)) return forbidden();
   if (!isId(projectId)) return notFound();
-  const title = input.title.trim();
+  if (!(await can(db(), projectId, principal.personId, 'open-project'))) return forbidden();
+  if (input.workId && !isId(input.workId)) return notFound();
+  const existing = input.workId ? ((await db().select().from(work).where(and(eq(work.projectId, projectId), eq(work.id, input.workId))).limit(1))[0] ?? null) : null;
+  if (input.workId && !existing) return notFound();
+  const title = existing ? existing.title : input.title.trim();
   const whatChanged = input.whatChanged.trim();
-  const handoff = handoffById(input.handoff);
+  const handoff = handoffById(existing ? existing.handoff : input.handoff);
   const fields: Record<string, string> = {};
   if (!title) fields.title = 'Enter a title.';
   else fields.title = lengthError('the title', title, TITLE_MAX) ?? '';
@@ -1570,7 +1618,6 @@ export async function sendForReview(
   const waiting = input.waitingOn ? handoffById(input.waitingOn) : null;
   if (input.waitingOn && !waiting?.gated) fields.waitingOn = 'Choose a stage that is waiting, or Nothing is waiting.';
   for (const key of Object.keys(fields)) if (!fields[key]) delete fields[key];
-  if (!(await can(db(), projectId, principal.personId, 'open-project'))) return forbidden();
   if (Object.keys(fields).length > 0 || !handoff) return refuse(400, { fields });
   return db().transaction(async (tx) => {
     const me = principal.personId;
@@ -1583,7 +1630,22 @@ export async function sendForReview(
     if (!file) return refuse(400, { fields: { file: 'Choose a file to send.' } });
     const checked = await checkReviewText(tx, projectId, [{ field: 'title', text: title }, { field: 'whatChanged', text: whatChanged }], input.answer);
     if ('ok' in checked) return checked;
-    const deciders = decidersOf(await assignmentsOf(tx, projectId), handoff.id);
+    let workId: string;
+    let version = 1;
+    if (existing) {
+      const locked = await lockWork(tx, projectId, existing.id);
+      if (!locked) return notFound();
+      const latest = await latestVersion(tx, locked.id);
+      if (latest && !latest.decision) {
+        return refuse(409, { message: `Not sent: version ${latest.item.version} of ${locked.title} is waiting for review. Withdraw it first.` });
+      }
+      workId = locked.id;
+      version = (latest?.item.version ?? 0) + 1;
+    } else {
+      workId = newId();
+      const now = new Date();
+      await tx.insert(work).values({ id: workId, projectId, title, handoff: handoff.id, ownerId: me, addedBy: null, addedAt: now, assignedAt: now });
+    }
     const itemId = newId();
     await tx.insert(reviewItem).values({
       id: itemId,
@@ -1595,12 +1657,12 @@ export async function sendForReview(
       waitingHandoff: waiting?.id ?? null,
       sentBy: me,
       sentAt: new Date(),
+      workId,
+      version,
     });
     if (checked.answer) await recordReviewConfirmation(tx, projectId, itemId, checked.held, checked.answer, me);
     await log(tx, { kind: 'project', id: projectId }, me, 'Review', `Sent ${title} for review (${handoff.label})${confirmedNote(checked.held, checked.answer)}`);
-    const names = await namesOf(tx, [deciders?.approverId, deciders?.delegateId]);
-    const list = [deciders?.approverId, deciders?.delegateId].flatMap((id) => (id && names.get(id) ? [names.get(id) ?? ''] : []));
-    return { ok: true as const, value: { movedOn: false as const, itemId, title, deciders: list } };
+    return { ok: true as const, value: { movedOn: false as const, itemId, workId, version, title, deciders: await decidersNames(tx, projectId, handoff.id) } };
   });
 }
 
@@ -1750,5 +1812,180 @@ export async function addRecommendation(
     const id = newId();
     await tx.insert(reviewRecommendation).values({ id, itemId: found.item.id, result: input.result, reason, at: new Date() });
     return { ok: true as const, value: { id } };
+  });
+}
+
+// --- Pieces of work, feedback and restore (layer1-versions-board-first-view)
+
+const OWNER_MISSING = 'Choose who owns this work.';
+
+// The owner of a piece of work is one person on the project who uses the dashboard (AC-12).
+async function ownerChoice(reader: Reader, projectId: string, ownerId: string): Promise<string | null> {
+  if (!(await eligible(reader, projectId, ownerId))) return null;
+  return (await namesOf(reader, [ownerId])).get(ownerId) ?? null;
+}
+
+// **Add work**, for the director and producer (AC-12 to AC-14, AC-17).
+export async function addWork(
+  principal: Principal,
+  projectId: string,
+  input: { title: string; handoff: string; ownerId: string; answer?: string },
+): Promise<ReviewResult<{ workId: string; title: string; stage: string; owner: string }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  if (!(await can(db(), projectId, principal.personId, 'plan-work'))) return forbidden();
+  const title = input.title.trim();
+  const handoff = handoffById(input.handoff);
+  const fields: Record<string, string> = {};
+  if (!title) fields.title = 'Enter a title.';
+  else if (title.length > TITLE_MAX) fields.title = `Keep the title to ${TITLE_MAX} characters or fewer.`;
+  if (!handoff?.gated) fields.handoff = 'Choose the stage this work is at.';
+  const owner = input.ownerId ? await ownerChoice(db(), projectId, input.ownerId) : null;
+  if (!owner) fields.owner = OWNER_MISSING;
+  if (Object.keys(fields).length > 0 || !handoff || !owner) return refuse(400, { fields });
+  return db().transaction(async (tx) => {
+    const checked = await checkReviewText(tx, projectId, [{ field: 'title', text: title }], input.answer);
+    if ('ok' in checked) return checked;
+    const workId = newId();
+    const now = new Date();
+    await tx.insert(work).values({ id: workId, projectId, title, handoff: handoff.id, ownerId: input.ownerId, addedBy: principal.personId, addedAt: now, assignedAt: now });
+    await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Review', `Added work ${title} (${handoff.label}) for ${owner}${confirmedNote(checked.held, checked.answer)}`);
+    return { ok: true as const, value: { workId, title, stage: handoff.label, owner } };
+  });
+}
+
+// **Change owner** (AC-15, AC-17).
+export async function changeOwner(principal: Principal, projectId: string, workId: string, input: { ownerId: string }): Promise<Result<{ title: string; owner: string }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  return db().transaction(async (tx) => {
+    if (!(await can(tx, projectId, principal.personId, 'plan-work'))) return forbidden();
+    const found = await lockWork(tx, projectId, workId);
+    if (!found) return notFound();
+    const owner = await ownerChoice(tx, projectId, input.ownerId);
+    if (!owner) return refuse(400, { fields: { owner: OWNER_MISSING } });
+    await tx.update(work).set({ ownerId: input.ownerId, assignedAt: new Date() }).where(eq(work.id, found.id));
+    await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Review', `Changed the owner of ${found.title} to ${owner}`);
+    return { ok: true as const, value: { title: found.title, owner } };
+  });
+}
+
+// **Remove <title>**: only work with no versions, whose versions would be part of the review
+// record (AC-16, AC-17).
+export async function removeWork(principal: Principal, projectId: string, workId: string): Promise<Result<{ title: string }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  return db().transaction(async (tx) => {
+    if (!(await can(tx, projectId, principal.personId, 'plan-work'))) return forbidden();
+    const found = await lockWork(tx, projectId, workId);
+    if (!found) return notFound();
+    const first = (await tx.select().from(reviewItem).where(eq(reviewItem.workId, found.id)).orderBy(asc(reviewItem.version)).limit(1))[0];
+    if (first) {
+      const by = (await namesOf(tx, [first.sentBy])).get(first.sentBy) ?? '';
+      return refuse(409, { message: `Not removed: ${by} sent version ${first.version} at ${clock(first.sentAt)}. Work with versions stays on the board.` });
+    }
+    await tx.delete(work).where(eq(work.id, found.id));
+    await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Review', `Removed work ${found.title}`);
+    return { ok: true as const, value: { title: found.title } };
+  });
+}
+
+// **Add feedback** on any version, by anyone on the project who uses the dashboard. Feedback is
+// a ledger row; its text never enters the activity log (AC-22 to AC-24, AC-41).
+export async function addFeedback(principal: Principal, projectId: string, itemId: string, input: { text: string; answer?: string }): Promise<ReviewResult<{ id: string }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId) || !isId(itemId)) return notFound();
+  if (!(await can(db(), projectId, principal.personId, 'open-project'))) return forbidden();
+  const text = input.text.trim();
+  if (!text) return refuse(400, { fields: { text: 'Write your feedback before adding it.' } });
+  if (text.length > TEXT_MAX) return refuse(400, { fields: { text: 'Keep feedback to 2,000 characters or fewer.' } });
+  return db().transaction(async (tx) => {
+    const item = (await tx.select().from(reviewItem).where(and(eq(reviewItem.projectId, projectId), eq(reviewItem.id, itemId))).limit(1))[0];
+    if (!item) return notFound();
+    const checked = await checkReviewText(tx, projectId, [{ field: 'text', text }], input.answer);
+    if ('ok' in checked) return checked;
+    const id = newId();
+    await tx.insert(workFeedback).values({ id, itemId: item.id, text, personId: principal.personId, at: new Date() });
+    if (checked.answer) await recordReviewConfirmation(tx, projectId, item.id, checked.held, checked.answer, principal.personId);
+    await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Review', `Added feedback on ${item.title}, version ${item.version}${confirmedNote(checked.held, checked.answer)}`);
+    return { ok: true as const, value: { id } };
+  });
+}
+
+export type HeldFile = { fileName: string; nouns: string[] };
+type RestoreRefusal = ReviewRefusal & { heldFile?: HeldFile };
+
+// **Restore version <n>** sends that version's file for review again as the next version. Every
+// version is kept (AC-30, AC-31). The file's text is checked again against the formats on now.
+export async function restoreVersion(
+  principal: Principal,
+  projectId: string,
+  workId: string,
+  input: { version: number; whatChanged: string; answer?: string; fileAnswer?: string },
+): Promise<{ ok: true; value: { itemId: string; version: number; restored: number; title: string; deciders: string[] } } | RestoreRefusal> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  if (!(await can(db(), projectId, principal.personId, 'open-project'))) return forbidden();
+  const whatChanged = input.whatChanged.trim();
+  if (!whatChanged) return refuse(400, { fields: { whatChanged: 'Say what changed.' } });
+  const tooLong = lengthError('what changed', whatChanged, TEXT_MAX);
+  if (tooLong) return refuse(400, { fields: { whatChanged: tooLong } });
+  return db().transaction(async (tx): Promise<{ ok: true; value: { itemId: string; version: number; restored: number; title: string; deciders: string[] } } | RestoreRefusal> => {
+    const found = await lockWork(tx, projectId, workId);
+    if (!found) return notFound();
+    const earlier = (await tx.select().from(reviewItem).where(and(eq(reviewItem.workId, found.id), eq(reviewItem.version, input.version))).limit(1))[0];
+    if (!earlier) return notFound();
+    const latest = await latestVersion(tx, found.id);
+    if (latest && !latest.decision) {
+      const by = (await namesOf(tx, [latest.item.sentBy])).get(latest.item.sentBy) ?? '';
+      return refuse(409, {
+        message: `Not restored: ${by} sent version ${latest.item.version} at ${clock(latest.item.sentAt)}, and it is waiting for review. Withdraw it first to restore an earlier version.`,
+      });
+    }
+    const checked = await checkReviewText(tx, projectId, [{ field: 'whatChanged', text: whatChanged }], input.answer);
+    if ('ok' in checked) return checked;
+    const file = earlier.fileId ? ((await tx.select().from(storedFile).where(eq(storedFile.id, earlier.fileId)).limit(1))[0] ?? null) : null;
+    let fileHeld: Found[] = [];
+    let fileAnswer: string | null = null;
+    if (file) {
+      const org = await organisationOf(tx, { kind: 'project', id: projectId });
+      const formats = org ? await formatsOn(tx, org.id) : [];
+      const head = await readStart(file.storageKey, 32);
+      const kind = isModelFile(file.fileName) ? modelKind(head, file.fileName) : kindOf(head, file.mediaType);
+      fileHeld = kind ? ((await documentMatches(file.storageKey, kind, formats)) ?? []).flatMap((f) => f.matches) : [];
+      if (fileHeld.length > 0) {
+        const heldFile = { fileName: file.fileName, nouns: nounsOf(fileHeld) };
+        if (input.fileAnswer === undefined) return { ...refuse(400, { message: 'Not restored.' }), heldFile };
+        const answered = checkAnswer(input.fileAnswer, formats);
+        if ('error' in answered) return { ...refuse(400, { fields: { fileAnswer: answered.error } }), heldFile };
+        fileAnswer = answered.answer;
+      }
+    }
+    const version = (latest?.item.version ?? 0) + 1;
+    const itemId = newId();
+    await tx.insert(reviewItem).values({
+      id: itemId,
+      projectId,
+      handoff: found.handoff,
+      title: found.title,
+      whatChanged,
+      fileId: earlier.fileId,
+      waitingHandoff: latest?.item.waitingHandoff ?? null,
+      sentBy: principal.personId,
+      sentAt: new Date(),
+      workId: found.id,
+      version,
+      restoredFrom: earlier.version,
+    });
+    if (checked.answer) await recordReviewConfirmation(tx, projectId, itemId, checked.held, checked.answer, principal.personId);
+    if (fileAnswer) await recordReviewConfirmation(tx, projectId, itemId, fileHeld, fileAnswer, principal.personId);
+    await log(
+      tx,
+      { kind: 'project', id: projectId },
+      principal.personId,
+      'Review',
+      `Restored ${found.title} version ${earlier.version} as version ${version}${confirmedNote([...checked.held, ...fileHeld], checked.answer ?? fileAnswer)}`,
+    );
+    return { ok: true as const, value: { itemId, version, restored: earlier.version, title: found.title, deciders: await decidersNames(tx, projectId, found.handoff) } };
   });
 }

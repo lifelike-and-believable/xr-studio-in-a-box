@@ -296,8 +296,10 @@ test('sent by you shows every status (layer1-gates-and-queue#AC-33, AC-35)', asy
   await expect(table.getByRole('row', { name: new RegExp(accepted) })).toContainText('Accepted by Sam Okafor,');
   await expect(table.getByRole('row', { name: new RegExp(accepted) })).toContainText('Keep the glass this colour.');
   await table.getByRole('row', { name: new RegExp(revised) }).getByRole('link', { name: /Send a revised version/ }).click();
-  await expect(c.riley.getByLabel('Title')).toHaveValue(revised);
-  await expect(c.riley.getByLabel('Stage').locator('option:checked')).toHaveText('Look and concept art');
+  // The form is for the item's piece of work, with its title and stage fixed
+  // (layer1-versions-board-first-view#AC-26, AC-27).
+  await expect(c.riley.getByRole('main')).toContainText(new RegExp(`Work\\s*${revised}`));
+  await expect(c.riley.getByRole('main')).toContainText(/Stage\s*Look and concept art/);
   await expect(c.riley.getByLabel('Is other work waiting on this decision? (optional)').locator('option:checked')).toHaveText('Character design');
   await c.close();
 });

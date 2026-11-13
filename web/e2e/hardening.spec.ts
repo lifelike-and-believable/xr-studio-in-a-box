@@ -23,6 +23,8 @@ test('a performer given a dashboard role is invited and can open the project (la
   const invitation = await nextMail(kai, 0);
   expect(invitation.subject).toBe(`You have been added to ${name} in XR Studio`);
   await page.goto(linkIn(invitation));
+  // The invitation lands on What needs you (layer1-versions-board-first-view#AC-32).
+  await page.goto(`/projects/${project}`);
   await expect(page.getByRole('heading', { level: 1, name })).toBeVisible();
   await jordan.context().close();
 });

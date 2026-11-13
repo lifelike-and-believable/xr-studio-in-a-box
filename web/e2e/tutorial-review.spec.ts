@@ -146,13 +146,14 @@ test('tutorial: name approvers, send work for review and decide on it (tutorial-
   await expect(rows.getByRole('row', { name: new RegExp(sheet) })).toContainText('Revision requested by Morgan Ray');
   await expect(rows.getByRole('row', { name: new RegExp(props) })).toContainText('Rejected by Morgan Ray');
   await rows.getByRole('row', { name: new RegExp(sheet) }).getByRole('link', { name: /Send a revised version/ }).click();
-  await expect(riley.getByLabel('Title')).toHaveValue(sheet);
+  await expect(riley.getByRole('main')).toContainText(new RegExp(`Work\\s*${sheet}`));
+  await expect(riley.getByLabel('Is other work waiting on this decision? (optional)')).toHaveValue('mesh-and-rig');
   await riley.getByLabel('What changed').fill('Lamp room warmer; stairs lit from the audience side.');
   await riley.getByLabel('File').setInputFiles(png('keeper-sheet-2.png'));
   await riley.getByRole('button', { name: 'Send for review' }).click();
-  await expect(riley.getByRole('status')).toContainText(`Sent for review: ${sheet}.`);
-  await riley.getByRole('button', { name: `Withdraw ${sheet}` }).click();
-  await expect(riley.getByRole('status')).toHaveText(`Withdrawn: ${sheet}. It has left the queue of Morgan Ray and Sam Okafor. To send it again, use Send it again.`);
+  await expect(riley.getByRole('status').filter({ hasText: 'Sent for review' })).toHaveText(`Sent for review: ${sheet}, version 2. It waits for Morgan Ray or Sam Okafor.`);
+  await riley.getByRole('button', { name: 'Withdraw version 2' }).click();
+  await expect(riley.getByRole('status').filter({ hasText: 'Withdrawn' })).toHaveText(`Withdrawn: ${sheet}, version 2. It has left the queue of Morgan Ray and Sam Okafor.`);
 
   // Step 15: several at once.
   await send(riley, project, { title: 'Bell sounds, take 1', stage: 'Sound and music', whatChanged: 'First take.', file: 'bells-1.png' });

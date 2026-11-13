@@ -162,6 +162,6 @@ test('tutorial: record a project once, keep identifiers out, and read who change
   await rileyPage.goto(`/projects/${projectId}/facts`);
   await expect(rileyPage.getByText('The budget is visible to the director and producer.')).toBeVisible();
   await expect(rileyPage.getByRole('link', { name: /^(Edit|Add)\b/ })).toHaveCount(0);
-  await expect(rileyPage.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Review', 'Facts', 'People', 'Approvers']);
+  await expect(rileyPage.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Review', 'Board', 'Facts', 'People', 'Approvers']);
   await context.close();
 });

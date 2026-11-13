@@ -7,9 +7,9 @@ test('review and approvers tabs sit in order (layer1-gates-and-queue#AC-2)', asy
   const c = await crew(page, browser, { approvers: false });
   await page.goto(`/projects/${c.project}`);
   const tabs = page.getByRole('navigation', { name: 'Project' }).getByRole('link');
-  await expect(tabs).toHaveText(['Overview', 'Review', 'Facts', 'People', 'Approvers', 'Activity']);
+  await expect(tabs).toHaveText(['Overview', 'Review', 'Board', 'Facts', 'People', 'Approvers', 'Activity']);
   await c.riley.goto(`/projects/${c.project}`);
-  await expect(c.riley.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Review', 'Facts', 'People', 'Approvers']);
+  await expect(c.riley.getByRole('navigation', { name: 'Project' }).getByRole('link')).toHaveText(['Overview', 'Review', 'Board', 'Facts', 'People', 'Approvers']);
   await c.close();
 });
 

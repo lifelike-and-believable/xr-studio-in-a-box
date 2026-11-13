@@ -53,13 +53,13 @@ Any feedback the reviewer wrote is shown under the status.
 
 While an item is still waiting, select **Withdraw** beside it in **Sent by you**, or on its page. It leaves the queue at once, and you see, for example, "Withdrawn: Ferry pilot character sheet. It has left the queue of Morgan Ray and Sam Okafor. To send it again, use Send it again." Its status becomes "Withdrawn by you, <date and time>".
 
-You cannot edit something you sent. To correct the stage, the file or the text, withdraw it and send it again.
+You cannot edit something you sent. To correct the file or the text, withdraw it and send it again. To correct the stage, withdraw it and send it as new work from **Send for review**.
 
 ![Withdrawn](../design/review-queue/sent-withdrawn.png)
 
 ### Send a revised version
 
-Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection or a withdrawal). **Send for review** opens with the title, stage and blocking choice filled in. Choose the new file, say what changed, and send it. In this release the new item is not linked to the old one: both stay in **Sent by you**, the old one with its decision and the new one waiting. Comparing versions comes in a later release.
+Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection or a withdrawal). **Send for review** opens for the same piece of work, with its stage fixed and the blocking choice filled in, and says which version this will be. Choose the new file, say what changed, and send it. The new item is the work's next version: both stay in **Sent by you**, the old one with its decision and the new one waiting, and the work's page lists every version with its feedback, where you can compare them (see [Versions and feedback](versions-and-feedback.md)).
 
 ## See everything that is waiting
 

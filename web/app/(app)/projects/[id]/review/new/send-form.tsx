@@ -29,6 +29,9 @@ export function SendForm(props: {
   waiting: StageGroup[];
   whoDecides: Record<string, string>;
   start: { title: string; handoff: string; waitingOn: string };
+  // Sending the next version of a piece of work: its title and stage are fixed
+  // (layer1-versions-board-first-view#AC-26).
+  work?: { id: string; title: string; stage: string; version: number; decidedBy: string; asked: { by: string; version: number; feedback: string } | null };
 }) {
   const router = useRouter();
   const api = `/api/v1/projects/${props.projectId}`;
@@ -97,9 +100,11 @@ export function SendForm(props: {
     const input = event.currentTarget.elements.namedItem('file');
     const file = input instanceof HTMLInputElement ? input.files?.[0] : undefined;
     const found: Record<string, string> = {};
-    if (!title.trim()) found.title = 'Enter a title.';
-    else if (title.trim().length > TITLE_MAX) found.title = `Keep the title to ${TITLE_MAX} characters or fewer.`;
-    if (!handoff) found.handoff = 'Choose the stage this work is at.';
+    if (!props.work) {
+      if (!title.trim()) found.title = 'Enter a title.';
+      else if (title.trim().length > TITLE_MAX) found.title = `Keep the title to ${TITLE_MAX} characters or fewer.`;
+      if (!handoff) found.handoff = 'Choose the stage this work is at.';
+    }
     if (!whatChanged.trim()) found.whatChanged = 'Say what changed.';
     else if (whatChanged.trim().length > TEXT_MAX) found.whatChanged = 'Keep what changed to 2,000 characters or fewer.';
     if (!file && !fileId && !heldFile) found.file = 'Choose a file to send.';
@@ -117,12 +122,16 @@ export function SendForm(props: {
       const sent = await fetch(`${api}/review-items`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ title, handoff, whatChanged, fileId: id, waitingOn: waitingOn || null, ...(answering ? { answer } : {}) }),
+        body: JSON.stringify({ title, handoff, whatChanged, fileId: id, waitingOn: waitingOn || null, workId: props.work?.id ?? null, ...(answering ? { answer } : {}) }),
       }).catch(() => null);
       const result = (await sent?.json().catch(() => ({}))) as { itemId?: string; fields?: Record<string, string>; held?: Held[]; message?: string } | undefined;
       if (!sent?.ok || !result?.itemId) {
         if (result?.held?.length) setHeld(result.held);
-        setErrors(result?.fields ?? (result?.held?.length ? {} : { title: result?.message ?? 'The item could not be sent.' }));
+        setErrors(result?.fields ?? (result?.held?.length ? {} : { [props.work ? 'whatChanged' : 'title']: result?.message ?? 'The item could not be sent.' }));
+        return;
+      }
+      if (props.work) {
+        router.push(`/projects/${props.projectId}/board/${props.work.id}?${new URLSearchParams({ notice: 'sent', item: result.itemId })}`);
         return;
       }
       router.push(`/projects/${props.projectId}/review/sent?${new URLSearchParams({ notice: 'sent', item: result.itemId })}`);
@@ -154,6 +163,29 @@ export function SendForm(props: {
         </div>
       ) : null}
       <form method="post" onSubmit={send} noValidate>
+        {props.work ? (
+          <>
+            <dl className="meta">
+              <dt>Work</dt>
+              <dd>{props.work.title}</dd>
+              <dt>Stage</dt>
+              <dd>{props.work.stage}</dd>
+              <dt>This will be</dt>
+              <dd>Version {props.work.version}</dd>
+              <dt>Decided by</dt>
+              <dd>{props.work.decidedBy}</dd>
+            </dl>
+            {props.work.asked ? (
+              <div className="panel">
+                <p>
+                  {props.work.asked.by} asked, on version {props.work.asked.version}:
+                </p>
+                <p className="quote">{props.work.asked.feedback}</p>
+              </div>
+            ) : null}
+          </>
+        ) : (
+          <>
         <div className="field">
           <label htmlFor={IDS.title}>Title</label>
           <FieldError id="title-error" message={summary.title} />
@@ -194,6 +226,8 @@ export function SendForm(props: {
         <div className="panel" aria-live="polite">
           {say ? <p>{say}</p> : null}
         </div>
+          </>
+        )}
         <div className="field">
           <label htmlFor={IDS.whatChanged}>What changed</label>
           <p className="hint" id="what-changed-hint">
@@ -274,7 +308,7 @@ export function SendForm(props: {
           <button type="submit" disabled={busy} aria-disabled={busy}>
             Send for review
           </button>
-          <Link href={`/projects/${props.projectId}/review`}>Cancel</Link>
+          <Link href={props.work ? `/projects/${props.projectId}/board/${props.work.id}` : `/projects/${props.projectId}/review`}>Cancel</Link>
         </div>
       </form>
     </>

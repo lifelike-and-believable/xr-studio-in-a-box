@@ -11,8 +11,9 @@ import {
 // The table in docs/user/people-and-roles.md, "What each role can do".
 // Slice 2 adds see-facts, see-budget, edit-facts and read-activity
 // (layer1-facts-identifiers-activity, Roles and permissions). Slice 3 adds manage-gates
-// (layer1-gates-and-queue, Roles and permissions).
-const MANAGERS = ['open-project', 'see-people', 'manage-people', 'edit-project', 'see-facts', 'see-budget', 'edit-facts', 'read-activity', 'manage-gates'];
+// (layer1-gates-and-queue, Roles and permissions). Slice 4 adds plan-work
+// (layer1-versions-board-first-view, Roles and permissions).
+const MANAGERS = ['open-project', 'see-people', 'manage-people', 'edit-project', 'see-facts', 'see-budget', 'edit-facts', 'read-activity', 'manage-gates', 'plan-work'];
 const VIEWERS = ['open-project', 'see-people', 'see-facts'];
 
 describe('permission table matches the role table (layer1-organisations-projects-people#AC-35)', () => {

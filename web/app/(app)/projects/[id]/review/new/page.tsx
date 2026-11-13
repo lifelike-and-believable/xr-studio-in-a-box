@@ -1,38 +1,54 @@
-import { AREAS, handoffById, handoffsByHand } from '@xr/contracts';
+import { AREAS, areaLabel, handoffById, handoffsByHand } from '@xr/contracts';
 import type { Metadata } from 'next';
-import { isId } from '@/record/ids';
-import { itemFor, sendFormFor } from '@/record/review';
+import { notFound } from 'next/navigation';
+import { decidersLine, sendFormFor } from '@/record/review';
+import { workFor } from '@/record/work';
 import { openProject } from '@/ui/project-access';
 import { SendForm, type StageGroup } from './send-form';
 
-type Props = { params: Promise<{ id: string }>; searchParams: Promise<{ from?: string }> };
+type Props = { params: Promise<{ id: string }>; searchParams: Promise<{ work?: string }> };
 
 export const metadata: Metadata = { title: 'Send for review' };
 
 const groupsOf = (keep: (id: string) => boolean): StageGroup[] =>
   AREAS.map((a) => ({ area: a.label, stages: a.handoffs.filter(keep).map((h) => ({ id: h, label: handoffById(h)?.label ?? h })) })).filter((g) => g.stages.length > 0);
 
-// **Send for review** (layer1-gates-and-queue#AC-13 to AC-18, AC-35).
+// **Send for review** (layer1-gates-and-queue#AC-13 to AC-18), and for a piece of work its next
+// version, with the stage fixed (layer1-versions-board-first-view#AC-26, AC-27).
 export default async function SendForReview({ params, searchParams }: Props) {
   const { id } = await params;
-  const { from } = await searchParams;
-  const { me, view } = await openProject(id, `/projects/${id}/review/new`);
+  const { work: workId } = await searchParams;
+  const { view } = await openProject(id, `/projects/${id}/review/new${workId ? `?work=${workId}` : ''}`);
   if (view.state !== 'open') return null;
   const byHand = new Set(handoffsByHand().map((h) => h.id));
-  // **Send a revised version** and **Send it again** fill in the earlier item's title, stage and
-  // waiting choice; only for the person who sent it.
-  const earlier = from && isId(from) ? await itemFor(id, from) : null;
-  const start = earlier && earlier.requester.id === me.person.id ? { title: earlier.title, handoff: earlier.handoff, waitingOn: earlier.waitingHandoff ?? '' } : null;
+  const found = workId ? await workFor(id, workId) : null;
+  if (workId && !found) notFound();
+  const handoff = found ? handoffById(found.handoff) : undefined;
+  const last = found?.latest ?? null;
+  const asked = found?.versions.find((v) => v.decision && v.decision.decision !== 'withdraw' && v.decision.feedback);
+  const work = found
+    ? {
+        id: found.id,
+        title: found.title,
+        stage: `${handoff?.label ?? found.handoff}${handoff?.area ? ` (${areaLabel(handoff.area)})` : ''}`,
+        version: (last?.version ?? 0) + 1,
+        decidedBy: decidersLine(found.deciders),
+        asked: asked?.decision ? { by: asked.decision.by.display, version: asked.version, feedback: asked.decision.feedback } : null,
+      }
+    : undefined;
+  const heading = found && found.versions.length > 0 ? 'Send a revised version' : 'Send for review';
   return (
     <section aria-labelledby="send-title">
-      <h2 id="send-title">Send for review</h2>
-      <p className="lead">Send work for approval to the person who decides it. It waits until they accept it.</p>
+      {found ? <p className="lead">{found.title}</p> : null}
+      <h2 id="send-title">{heading}</h2>
+      {found ? null : <p className="lead">Send work for approval to the person who decides it. It waits until they accept it.</p>}
       <SendForm
         projectId={id}
         stages={groupsOf((h) => byHand.has(h))}
         waiting={groupsOf(() => true)}
         whoDecides={await sendFormFor(id)}
-        start={start ?? { title: '', handoff: '', waitingOn: '' }}
+        start={found ? { title: found.title, handoff: found.handoff, waitingOn: last?.waitingHandoff ?? '' } : { title: '', handoff: '', waitingOn: '' }}
+        work={work}
       />
     </section>
   );

@@ -54,7 +54,7 @@ test('start a project (layer1-organisations-projects-people#AC-19)', async ({ pa
   await page.getByRole('button', { name: 'Start project' }).click();
   await expect(page.getByRole('heading', { level: 1, name })).toBeVisible();
   await expect(page.getByRole('status')).toHaveText('Project started. You own it and have the Director and Producer roles.');
-  await page.goto('/');
+  await page.goto('/projects');
   await expect(page.getByRole('listitem').filter({ hasText: name })).toBeVisible();
 });
 
@@ -133,6 +133,7 @@ test('edit a project\'s name and brief (layer1-organisations-projects-people#AC-
   const other = await browser.newContext({ baseURL: 'http://127.0.0.1:3100' });
   const rileyPage = await other.newPage();
   await acceptInvitation(rileyPage, riley);
+  await rileyPage.goto(`/projects/${project}`);
   await expect(rileyPage.getByRole('link', { name: 'Edit name and brief' })).toHaveCount(0);
   await expect(rileyPage.getByText(/can change the name and brief\./)).toBeVisible();
   const edit = await rileyPage.goto(`/projects/${project}/edit`);
@@ -178,6 +179,7 @@ test('organisation page contents (layer1-organisations-projects-people#AC-24)', 
   const other = await browser.newContext({ baseURL: 'http://127.0.0.1:3100' });
   const rileyPage = await other.newPage();
   await acceptInvitation(rileyPage, riley);
+  await rileyPage.goto(`/projects/${project}`);
   await rileyPage.getByRole('link', { name: org }).first().click();
   await expect(rileyPage.getByRole('heading', { level: 1, name: org })).toBeVisible();
   await expect(rileyPage.getByRole('link', { name: 'Edit organisation' })).toHaveCount(0);

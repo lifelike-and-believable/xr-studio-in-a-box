@@ -422,8 +422,15 @@ export const reviewItem = pgTable(
     sentAt: at('sent_at').notNull().defaultNow(),
     handedTo: uuid('handed_to').references(() => person.id),
     handedBy: uuid('handed_by').references(() => person.id),
+    // Every item is a version of a piece of work; the number is given in the transaction that
+    // makes the item (layer1-versions-board-first-view#AC-1).
+    workId: uuid('work_id')
+      .notNull()
+      .references((): AnyPgColumn => work.id),
+    version: integer('version').notNull(),
+    restoredFrom: integer('restored_from'),
   },
-  (t) => [index('review_item_project_idx').on(t.projectId, t.sentAt)],
+  (t) => [index('review_item_project_idx').on(t.projectId, t.sentAt), uniqueIndex('review_item_work_version_idx').on(t.workId, t.version)],
 );
 
 // The decisions on review items, and withdrawals. A ledger with at most one row per item: the
@@ -452,3 +459,46 @@ export const reviewRecommendation = pgTable('review_recommendation', {
   reason: text('reason').notNull(),
   at: at('at').notNull().defaultNow(),
 });
+
+// --- Versions, the board and the first view (layer1-versions-board-first-view)
+
+// A piece of work: a title, one gated stage, one owner and its versions (the review items that
+// name it). Working state; its state on the board is worked out on every read (AC-4).
+export const work = pgTable(
+  'work',
+  {
+    id: uuid('id').primaryKey(),
+    projectId: uuid('project_id')
+      .notNull()
+      .references(() => project.id),
+    title: text('title').notNull(),
+    handoff: text('handoff').notNull(),
+    ownerId: uuid('owner_id')
+      .notNull()
+      .references(() => person.id),
+    // Set for work added on the board; null for work made by sending it.
+    addedBy: uuid('added_by').references(() => person.id),
+    addedAt: at('added_at').notNull().defaultNow(),
+    // When the owner was last set, for "oldest first" under Assigned to you (AC-35).
+    assignedAt: at('assigned_at').notNull().defaultNow(),
+  },
+  (t) => [index('work_project_idx').on(t.projectId)],
+);
+
+// Written feedback on a version. A ledger: the application role may insert and read, never
+// update or delete (AC-24). Decision feedback stays in review_decision.
+export const workFeedback = pgTable(
+  'work_feedback',
+  {
+    id: uuid('id').primaryKey(),
+    itemId: uuid('item_id')
+      .notNull()
+      .references(() => reviewItem.id),
+    text: text('text').notNull(),
+    personId: uuid('person_id')
+      .notNull()
+      .references(() => person.id),
+    at: at('at').notNull().defaultNow(),
+  },
+  (t) => [index('work_feedback_item_idx').on(t.itemId, t.at)],
+);

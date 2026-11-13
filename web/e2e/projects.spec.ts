@@ -24,7 +24,10 @@ test('projects list shows only the person\'s projects (layer1-organisations-proj
   const name = uniq('Listed ');
   await startProject(jordan, name);
   await jordan.getByRole('link', { name: 'XR Studio' }).click();
-  await expect(jordan).toHaveURL('http://127.0.0.1:3100/');
+  // A person on a project lands on What needs you; Projects is at /projects
+  // (layer1-versions-board-first-view#AC-32).
+  await expect(jordan).toHaveURL('http://127.0.0.1:3100/what-needs-you');
+  await jordan.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Projects' }).click();
   const card = jordan.getByRole('listitem').filter({ hasText: name });
   await expect(card).toContainText(name);
   await expect(card).toContainText('Your roles: Director, Producer');
@@ -100,6 +103,7 @@ test('not available, access removed and nothing for you (layer1-organisations-pr
   const rileyContext = await browser.newContext({ baseURL: 'http://127.0.0.1:3100' });
   const rileyPage = await rileyContext.newPage();
   await acceptInvitation(rileyPage, riley);
+  await rileyPage.goto(`/projects/${project}`);
   await jordan.goto(`/projects/${project}/people`);
   await jordan.getByRole('link', { name: 'Change roles or remove Riley Chen' }).click();
   await jordan.getByRole('button', { name: 'Remove Riley Chen from the project' }).click();
@@ -135,6 +139,7 @@ test('role change applies at the next request (layer1-organisations-projects-peo
   const rileyContext = await browser.newContext({ baseURL: 'http://127.0.0.1:3100' });
   const rileyPage = await rileyContext.newPage();
   await acceptInvitation(rileyPage, riley);
+  await rileyPage.goto(`/projects/${project}`);
   await expect(rileyPage.getByRole('link', { name: 'Edit name and brief' })).toHaveCount(0);
 
   await page.goto(`/projects/${project}/people`);
