@@ -27,6 +27,15 @@ derived-from:
 tests-commit: 32925eb
 unlocks:
   - contracts/test/roles.test.ts: Roles and permissions. Slice 1's test compares each role's permissions with an exact list; the Director and Producer list gains `manage-gates` as the spec's Roles and permissions section gives it. Every earlier permission is still checked, and so is the rule that no permission is an approval.
+  - contracts/test/gates.test.ts: AC-1. The test counted 17 hand-offs sent by hand; the gate list has 19 gated hand-offs less the three builds, so 16. No other assertion changes.
+  - web/test/review-commands.test.ts: AC-15 to AC-37. Made-up titles used random UUIDs, whose digits can form a Business Number that the filter rightly refuses; they now use letters only. The decision ledger is checked as the application role (AC-28), as slice 2's ledgers are, not as the superuser the test pool connects as. The send helper narrows the moved-on case so it type-checks. No behaviour assertion is weakened.
+  - web/e2e/approvers.spec.ts: AC-8, AC-9, AC-11. `getByRole('alert')` also matched Next.js's route announcer, so error summaries are found inside `main`, as slice 2's tests do; adding two people now waits for each notice before moving on. No assertion changes.
+  - web/e2e/review.spec.ts: AC-13, AC-16, AC-18, AC-23, AC-24, AC-27, AC-28. The same `main` scoping for alerts and the filter's result line, and the link to **Approvers** is found in the page's text rather than among the tabs. The **Stage** list has three groups, not four: Builds and operations has no stage sent by hand (AC-13). No other assertion changes.
+  - web/e2e/slice3-accessibility.spec.ts: AC-40. The same `main` scoping for alerts.
+  - web/e2e/facts.spec.ts: AC-2. Slice 2's tests list the project tabs; AC-2 adds **Review** after **Overview** and **Approvers** after **People**, so the three lists gain them. Nothing else changes.
+  - web/e2e/tutorial-facts.spec.ts: AC-2. The same tab list in the slice 2 tutorial's runner gains **Review** and **Approvers**.
+  - web/e2e/activity.spec.ts: AC-37. The project **Area** filter gains **Approvers** and **Review**.
+  - web/e2e/support/slice3.ts: AC-2 to AC-40 (set-up only). The auth library allows 120 sign-ins a minute from one address, which the whole suite reached; the set-up now signs Morgan, Riley and Sam in once and adds them to each test's new project, and keeps Jordan's session. Every test still has its own project. No assertion changes.
 ---
 
 # Layer 1, slice 3: gates and the queue
@@ -147,8 +156,7 @@ One new permission in `contracts/src/roles.ts`, `manage-gates` (naming approvers
 ## APIs and assumptions
 
 - No new dependency. The PDF preview uses the browser's own viewer (`object type="application/pdf"`), with its fallback text where a browser has none.
-- Assumptions that could be wrong:
-  - [assumed] A unique index on `review_decision.item_id` is enough to make two decisions at once refuse one of them, with the refusal read back in the same request.
+- Two decisions at once: the decision command locks the item rows (`for update`) before it reads earlier decisions, so the second waits and finds the first; the unique index on `review_decision.item_id` refuses any row that slips past. Settled when the tests were written (AC-28's unit and end-to-end tests).
 
 ## Non-functional requirements
 

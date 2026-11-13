@@ -22,7 +22,8 @@ test('send for review form (layer1-gates-and-queue#AC-13, AC-14)', async ({ page
   await c.riley.getByRole('link', { name: 'Send for review' }).click();
   await expect(c.riley.getByRole('heading', { name: 'Send for review' })).toBeVisible();
   const stage = c.riley.getByLabel('Stage');
-  await expect(stage.locator('optgroup')).toHaveCount(4);
+  // Builds and operations has no stage sent by hand, so it has no group.
+  await expect(stage.locator('optgroup')).toHaveCount(3);
   await expect(stage.locator('option').first()).toHaveText('Choose a stage');
   await expect(stage.locator('option', { hasText: 'Build for a public show' })).toHaveCount(0);
   const waiting = c.riley.getByLabel('Is other work waiting on this decision? (optional)');
@@ -59,7 +60,7 @@ test('send for review errors (layer1-gates-and-queue#AC-16, AC-17)', async ({ pa
   const c = await crew(page, browser);
   await c.riley.goto(`/projects/${c.project}/review/new`);
   await c.riley.getByRole('button', { name: 'Send for review' }).click();
-  const summary = c.riley.getByRole('alert');
+  const summary = c.riley.locator('main [role="alert"]');
   for (const m of ['Enter a title.', 'Choose the stage this work is at.', 'Say what changed.', 'Choose a file to send.']) await expect(summary).toContainText(m);
   await expect(summary).toBeFocused();
   await expect(c.riley).toHaveTitle(/^Error: Not sent/);
@@ -78,7 +79,7 @@ test('identifiers in review text and files (layer1-gates-and-queue#AC-18)', asyn
   await c.riley.goto(`/projects/${c.project}/review/new`);
   await fillSend(c.riley, { title, stage: 'Look and concept art', whatChanged: 'Catalogue number 046 454 286 added.' });
   await c.riley.getByRole('button', { name: 'Send for review' }).click();
-  await expect(c.riley.getByRole('alert')).toContainText('046 454 286');
+  await expect(c.riley.locator('main [role="alert"]')).toContainText('046 454 286');
   await c.riley.getByRole('button', { name: 'It is none of these' }).click();
   await c.riley.getByLabel('What is it?').fill('A catalogue number');
   await c.riley.getByLabel('File').setInputFiles({ name: 'keeper-sheet.png', mimeType: 'image/png', buffer: Buffer.from(PNG) });
@@ -122,7 +123,7 @@ test('the queue shows only what you can decide (layer1-gates-and-queue#AC-20, AC
   await expect(page.getByRole('link', { name: licence })).toBeVisible();
   await c.riley.goto(`/projects/${c.project}/review`);
   await expect(c.riley.getByText('You do not approve any area on this project, so nothing waits for your decision here.')).toBeVisible();
-  await expect(c.riley.getByRole('main').getByRole('link', { name: 'Approvers' })).toBeVisible();
+  await expect(c.riley.locator('main p').getByRole('link', { name: 'Approvers' })).toBeVisible();
   expect(licenceId).toBeTruthy();
   await c.close();
 });
@@ -138,7 +139,7 @@ test('filter the queue (layer1-gates-and-queue#AC-23)', async ({ page, browser }
   await expect(c.morgan.getByLabel('Handed to').locator('option')).toHaveText(['Anyone', 'Not handed on', 'Sam Okafor']);
   await c.morgan.getByLabel('Handed to').selectOption({ label: 'Sam Okafor' });
   await c.morgan.getByRole('button', { name: 'Apply filters' }).click();
-  const line = c.morgan.getByText('1 item waiting for your decision: handed to Sam Okafor.');
+  const line = c.morgan.locator('main').getByText('1 item waiting for your decision: handed to Sam Okafor.');
   await expect(line).toBeFocused();
   await expect(c.morgan).toHaveTitle(/^1 item waiting for your decision: handed to Sam Okafor\./);
   await c.sam.goto(`/projects/${c.project}/review`);
@@ -190,7 +191,7 @@ test('decide on one item (layer1-gates-and-queue#AC-26, AC-27, AC-37)', async ({
 
   await c.morgan.goto(`/projects/${c.project}/review/${r}`);
   await c.morgan.getByRole('button', { name: 'Request revision' }).click();
-  await expect(c.morgan.getByRole('alert')).toContainText('Write feedback for Riley Chen: say what to change.');
+  await expect(c.morgan.locator('main [role="alert"]')).toContainText('Write feedback for Riley Chen: say what to change.');
   await c.morgan.getByLabel('Feedback for Riley Chen (needed to request a revision)').fill('Warmer light in the lamp room.');
   await c.morgan.getByRole('button', { name: 'Request revision' }).click();
   await expect(c.morgan.getByRole('status')).toContainText(`Revision requested: ${revised}.`);
@@ -222,7 +223,7 @@ test('a decision is final and recorded once (layer1-gates-and-queue#AC-28)', asy
   await c.sam.getByRole('button', { name: 'Accept' }).click();
   await expect(c.sam.getByRole('status')).toBeVisible();
   await c.morgan.getByRole('button', { name: 'Accept' }).click();
-  await expect(c.morgan.getByRole('alert')).toHaveText(
+  await expect(c.morgan.locator('main [role="alert"]')).toHaveText(
     /^Your decision was not recorded: Sam Okafor accepted this item at \d\d:\d\d on \d+ \w+, while you had it open\. It has left your queue\.$/,
   );
   await expect(c.morgan.getByRole('link', { name: 'Back to Review' })).toBeVisible();

@@ -43,13 +43,13 @@ test('slice 3 pages pass axe and keyboard checks (layer1-gates-and-queue#AC-40)'
   // States: the error summaries, the removal refusal and the dialogs.
   await check(c.riley, `${p}/review/new`, async (pg) => {
     await pg.getByRole('button', { name: 'Send for review' }).click();
-    await expect(pg.getByRole('alert')).toBeVisible();
+    await expect(pg.locator('main [role="alert"]')).toBeVisible();
   });
   await check(page, `${p}/approvers/creative`, async (pg) => {
     await pg.getByLabel('Delegate (optional)').selectOption({ index: 1 });
     await pg.getByLabel('Approver').selectOption({ index: 0 });
     await pg.getByRole('button', { name: 'Save Creative' }).click();
-    await expect(pg.getByRole('alert')).toBeVisible();
+    await expect(pg.locator('main [role="alert"]')).toBeVisible();
   });
   const samId = (await page.request.get(`/api/v1/projects/${c.project}/people`).then((r) => r.json()) as { id: string; display: string }[]).find((x) => x.display === 'Sam Okafor')?.id;
   await check(page, `${p}/people/${samId}/remove`);

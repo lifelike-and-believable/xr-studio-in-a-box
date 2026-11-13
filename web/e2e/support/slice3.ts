@@ -24,17 +24,28 @@ async function invitee(browser: Browser, address: string) {
   return page;
 }
 
+// The auth library allows 120 sign-ins a minute from one address, which the whole suite run in
+// one go can reach. So Morgan, Riley and Sam sign in once, by their first invitation, and are added
+// to each later test's new project as people who already use XR Studio; Jordan's session is kept
+// too. Every test still gets a project of its own.
+type Signed = { emails: { morgan: string; riley: string; sam: string }; morgan: Page; riley: Page; sam: Page };
+let signed: Signed | undefined;
+let jordanCookies: Awaited<ReturnType<ReturnType<Page['context']>['cookies']>> | undefined;
+
 export async function crew(page: Page, browser: Browser, opts: { approvers?: boolean } = { approvers: true }): Promise<Crew> {
-  await signIn(page, FIRST.jordan);
+  if (jordanCookies) await page.context().addCookies(jordanCookies);
+  else {
+    await signIn(page, FIRST.jordan);
+    jordanCookies = await page.context().cookies();
+  }
   const projectName = uniq('Lantern ');
   const project = await startProject(page, projectName);
-  const emails = { morgan: `${uniq('morgan-')}@xr.test`, riley: `${uniq('riley-')}@xr.test`, sam: `${uniq('sam-')}@xr.test` };
+  const emails = signed?.emails ?? { morgan: `${uniq('morgan-')}@xr.test`, riley: `${uniq('riley-')}@xr.test`, sam: `${uniq('sam-')}@xr.test` };
   await addPerson(page, project, { email: emails.morgan, name: 'Morgan Ray', roles: ['Director'] });
   await addPerson(page, project, { email: emails.riley, name: 'Riley Chen', roles: ['Artist'] });
   await addPerson(page, project, { email: emails.sam, name: 'Sam Okafor', roles: ['Technical artist'] });
-  const morgan = await invitee(browser, emails.morgan);
-  const riley = await invitee(browser, emails.riley);
-  const sam = await invitee(browser, emails.sam);
+  signed ??= { emails, morgan: await invitee(browser, emails.morgan), riley: await invitee(browser, emails.riley), sam: await invitee(browser, emails.sam) };
+  const { morgan, riley, sam } = signed;
   if (opts.approvers !== false) {
     await setArea(page, project, 'creative', 'Morgan Ray', 'Sam Okafor');
     await setArea(page, project, 'performance-and-behaviour', 'Morgan Ray', null);
@@ -46,9 +57,8 @@ export async function crew(page: Page, browser: Browser, opts: { approvers?: boo
     sam,
     project,
     projectName,
-    close: async () => {
-      for (const p of [morgan, riley, sam]) await p.context().close();
-    },
+    // The three sessions are kept for the next test (see above).
+    close: async () => undefined,
   };
 }
 

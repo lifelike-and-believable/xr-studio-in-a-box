@@ -88,11 +88,13 @@ test('only people who use the dashboard can be chosen (layer1-gates-and-queue#AC
   await page.getByLabel('Name (optional)').fill('Kai Morin');
   await page.getByRole('checkbox', { name: 'Performer', exact: true }).check();
   await page.getByRole('button', { name: 'Add person' }).click();
+  await expect(page.getByRole('status')).toBeVisible();
   await page.goto(`/projects/${c.project}/people/new`);
   await page.getByLabel('Email address').fill(`ash-${Date.now()}@xr.test`);
   await page.getByLabel('Name (optional)').fill('Ash Nadeau');
   await page.getByRole('checkbox', { name: 'Artist', exact: true }).check();
   await page.getByRole('button', { name: 'Add person' }).click();
+  await expect(page.getByRole('status')).toBeVisible();
   await page.goto(`/projects/${c.project}/approvers/creative`);
   const options = page.getByLabel('Approver').locator('option');
   await expect(options).not.toContainText(['Kai Morin']);
@@ -106,7 +108,7 @@ test('approver and delegate must differ (layer1-gates-and-queue#AC-9)', async ({
   await page.getByLabel('Approver').selectOption({ label: 'Morgan Ray' });
   await page.getByLabel('Delegate (optional)').selectOption({ label: 'Morgan Ray' });
   await page.getByRole('button', { name: 'Save Creative' }).click();
-  const summary = page.getByRole('alert');
+  const summary = page.locator('main [role="alert"]');
   await expect(summary).toContainText('Choose someone other than the approver as delegate, or No delegate.');
   await expect(summary).toBeFocused();
   await expect(page.getByLabel('Approver')).toHaveValue(/.+/);
@@ -131,6 +133,6 @@ test('someone who approves cannot be removed (layer1-gates-and-queue#AC-11)', as
   await page.getByRole('checkbox', { name: 'Technical artist', exact: true }).uncheck();
   await page.getByRole('checkbox', { name: 'Performer', exact: true }).check();
   await page.getByRole('button', { name: 'Save roles' }).click();
-  await expect(page.getByRole('alert')).toContainText('Sam is the delegate for Creative.');
+  await expect(page.locator('main [role="alert"]')).toContainText('Sam is the delegate for Creative.');
   await c.close();
 });
