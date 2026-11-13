@@ -4,6 +4,10 @@ status: approved
 derived-from:
   - design-organisation-facts: 944f01c03608
   - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
+covers:
+  - /organisations/{id}/facts/{fact}/edit
+  - /organisations/{id}/facts/{fact}/history
+  - /organisations/{id}/work-samples
 ---
 
 # Organisation facts
@@ -16,7 +20,7 @@ Bank details and tax numbers are not organisation facts. They will be kept in th
 
 Open the organisation's page from **Organisations**, or from **Organisation: <organisation>** above any of its projects. **Organisation facts** comes after the buttons and before **Projects**, in this order: **Legal name**, **Bio**, **Company history**, **Funder applicant profiles** and **Standard work samples**. Each shows its value and "Last changed by <name>, <date and time>".
 
-![Organisation facts](../design/organisation-facts/org-facts.png)
+![Organisation facts](../../design/organisation-facts/org-facts.png)
 
 A fact that has never been saved shows "Not recorded yet." with **Add**.
 
@@ -36,9 +40,9 @@ You need to look after the organisation (you are listed under **Looked after by*
 
 The organisation's page opens with a notice, for example "Bio saved. Every project in Harbourfront Puppet Co. now reads the new bio."
 
-![Edit the bio](../design/organisation-facts/edit-bio.png)
+![Edit the bio](../../design/organisation-facts/edit-bio.png)
 
-**Earlier versions**, **Compare with current**, **Restore**, and what happens when someone else saved while you were editing, all work as they do for project facts. See [Earlier versions of a fact](project-facts.md#earlier-versions-of-a-fact), [Restore an earlier version](project-facts.md#restore-an-earlier-version) and [If someone else saved while you were editing](project-facts.md#if-someone-else-saved-while-you-were-editing).
+**Earlier versions**, **Compare with current**, **Restore**, and what happens when someone else saved while you were editing, all work as they do for project facts. See [Earlier versions of a fact](../facts/project-facts.md#earlier-versions-of-a-fact), [Restore an earlier version](../facts/project-facts.md#restore-an-earlier-version) and [If someone else saved while you were editing](../facts/project-facts.md#if-someone-else-saved-while-you-were-editing).
 
 ## Record a funder applicant profile
 
@@ -48,7 +52,7 @@ The organisation's page opens with a notice, for example "Bio saved. Every proje
 2. Fill in **Applicant name as registered with the funder**, **Applicant category** and **Mandate**. **Funder's applicant profile number (optional)** is the funder portal's own number for your company, not a tax or business number.
 3. Select **Save profile**.
 
-![Edit a funder applicant profile](../design/organisation-facts/edit-funder-profile.png)
+![Edit a funder applicant profile](../../design/organisation-facts/edit-funder-profile.png)
 
 ## Add standard work samples
 
@@ -58,9 +62,9 @@ Standard work samples are the company's showreel, press pack and other samples t
 2. Under **Add a work sample**, type a **Title** and choose a **File**: video, images, audio, a PDF or a Word document (.docx), up to 2 GB.
 3. Select **Add work sample** and keep the page open while it uploads.
 
-Removing a sample, the upload progress and held files work as on a project's work samples page. See [Add and remove work samples](project-facts.md#add-and-remove-work-samples).
+Removing a sample, the upload progress and held files work as on a project's work samples page. See [Add and remove work samples](../facts/project-facts.md#add-and-remove-work-samples).
 
-![Standard work samples](../design/organisation-facts/work-samples.png)
+![Standard work samples](../../design/organisation-facts/work-samples.png)
 
 ## Who can do this
 
@@ -70,13 +74,13 @@ Removing a sample, the upload progress and held files work as on a project's wor
 | Funder applicant profiles | People who look after the organisation, and the Director and Producer on its projects | People who look after the organisation |
 
 - Someone on one of the organisation's projects with another role, such as an artist, sees the general facts without **Edit**, and a line under **Funder applicant profiles** says who can see them.
-- A Director or Producer on a project who does not look after the organisation cannot edit its facts either. To be able to, ask a person who looks after it to add you under **Looked after by**, using **Edit organisation**. See [Change an organisation](organisations-and-projects.md#change-an-organisation).
+- A Director or Producer on a project who does not look after the organisation cannot edit its facts either. To be able to, ask a person who looks after it to add you under **Looked after by**, using **Edit organisation**. See [Change an organisation](../projects/organisations-and-projects.md#change-an-organisation).
 - Only people who look after the organisation see **Identifier formats** and **Activity** on its page. A Director who does not look after it sees the project's activity, not the organisation's.
 - Agents cannot change organisation facts yet. In a later release, an agent will be able to draft them from a document you point it at, marked as drafts until a person who looks after the organisation accepts them.
 
-![Organisation facts, read only](../design/organisation-facts/org-facts-read-only.png)
+![Organisation facts, read only](../../design/organisation-facts/org-facts-read-only.png)
 
-Every change to an organisation fact is recorded in the organisation's **Activity**. See [Activity](activity.md).
+Every change to an organisation fact is recorded in the organisation's **Activity**. See [Activity](../activity/activity.md).
 
 ## If something goes wrong
 
@@ -84,5 +88,5 @@ Every change to an organisation fact is recorded in the organisation's **Activit
 |---|---|---|
 | "<organisation> has no facts recorded yet. People who look after it add them on its page." | You are on a project's **Facts** tab, and nobody has recorded the organisation's facts. | Ask a person who looks after the organisation. They are named on its page. |
 | "Not saved: this looks like a <format>" | The text, or the applicant profile number, matches an identifier format. | See [Bank details, tax numbers and identifier formats](identifier-formats.md). |
-| "Enter a title for the work sample.", "Choose a file to add." or "The file is larger than 2 GB. Choose a smaller file." | A work sample is missing its title or file, or the file is too large. | See the table in [Project facts](project-facts.md#if-something-goes-wrong). |
+| "Enter a title for the work sample.", "Choose a file to add." or "The file is larger than 2 GB. Choose a smaller file." | A work sample is missing its title or file, or the file is too large. | See the table in [Project facts](../facts/project-facts.md#if-something-goes-wrong). |
 | "The upload of <file> stopped before it finished. Choose the file again to try again." | The upload was interrupted. | Choose the file again. The title is kept. |

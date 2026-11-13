@@ -3,10 +3,10 @@ id: tutorial-organisations-projects-people
 status: approved
 runner: manual
 derived-from:
-  - docs-sign-in: fd75a535d2b1
-  - docs-your-projects: 9f550e665a71
-  - docs-organisations-and-projects: e2a19ab061fa
-  - docs-people-and-roles: d32ee2eab0f8
+  - docs-sign-in: 47c9994b867f
+  - docs-your-projects: b0b632ebac5e
+  - docs-organisations-and-projects: e2d12ab033d0
+  - docs-people-and-roles: ae48c2b436ec
 ---
 
 # Tutorial: start a production and bring in your team
@@ -61,7 +61,7 @@ You have not given yourself a name, so XR Studio shows your email address, `morg
 ### Tidy up the project and organisation
 
 14. Select **Overview**, then **Edit name and brief**. Change **Brief (optional)** to `A lighthouse keeper's last night, told with puppets and light.` and select **Save changes**. You see "Name and brief saved."
-15. Select **Organisations** in the header. The Lantern Keeper is listed, and **You** reads "Look after it". Select it. You see **Looked after by**, **Start a project in this organisation**, **Edit organisation**, **Organisation facts** and **Projects**. Because you look after it, you also see **Identifier formats** and **Activity**. [Organisation facts](../user/organisation-facts.md) covers those sections.
+15. Select **Organisations** in the header. The Lantern Keeper is listed, and **You** reads "Look after it". Select it. You see **Looked after by**, **Start a project in this organisation**, **Edit organisation**, **Organisation facts** and **Projects**. Because you look after it, you also see **Identifier formats** and **Activity**. [Organisation facts](../user/organisations/organisation-facts.md) covers those sections.
 16. Select **Edit organisation** and change **Organisation name** to `Lantern Works`. Under **Looked after by**, your own tick cannot be removed, because you are the only person looking after it. Select **Save changes**. You see "Organisation saved."
 17. Select **XR Studio**, then **The Lantern Keeper**. In the header, select **Project: The Lantern Keeper**. Your projects are listed under Lantern Works, with **All projects** after them. Select **All projects**. You see **Projects**.
 
@@ -75,7 +75,7 @@ You have not given yourself a name, so XR Studio shows your email address, `morg
 
 A project, The Lantern Keeper, in the organisation Lantern Works, which you own and look after. Riley Chen is on it as an Artist and can see it but not change it. Kai Morin was added as a Performer, which needs no dashboard account, and then removed. You signed in with an email link and with a passkey.
 
-Next: read [People and roles](../user/people-and-roles.md) for what each role gives, and [Organisations and projects](../user/organisations-and-projects.md) for creating an organisation first and starting projects in it.
+Next: read [People and roles](../user/people/people-and-roles.md) for what each role gives, and [Organisations and projects](../user/projects/organisations-and-projects.md) for creating an organisation first and starting projects in it.
 
 ## Walk record
 

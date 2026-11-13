@@ -3,35 +3,35 @@ id: tutorial-layer1-facts-identifiers-activity
 status: draft
 runner: manual
 derived-from:
-  - docs-project-facts#see-a-projects-facts: 220d72042aed
-  - docs-project-facts#edit-a-fact: ca66d0f94049
-  - docs-project-facts#what-each-fact-takes: aaf02a6ffb73
-  - docs-project-facts#earlier-versions-of-a-fact: 5e6ff875df26
-  - docs-project-facts#restore-an-earlier-version: 0c762b844951
-  - docs-project-facts#add-and-remove-work-samples: b764215c788d
-  - docs-project-facts#if-someone-else-saved-while-you-were-editing: a942057730fb
-  - docs-project-facts#who-can-do-this: cbcb39ff204d
-  - docs-project-facts#if-something-goes-wrong: 18b06698ba44
-  - docs-organisation-facts#see-an-organisations-facts: a283dfab3c28
+  - docs-project-facts#see-a-projects-facts: 774a71278ca6
+  - docs-project-facts#edit-a-fact: db1322b2c494
+  - docs-project-facts#what-each-fact-takes: f64f8be4323d
+  - docs-project-facts#earlier-versions-of-a-fact: 7594707ec40b
+  - docs-project-facts#restore-an-earlier-version: e6a1a566cc6e
+  - docs-project-facts#add-and-remove-work-samples: 828909e4fe9f
+  - docs-project-facts#if-someone-else-saved-while-you-were-editing: b8e1fa637765
+  - docs-project-facts#who-can-do-this: f4272b6f3cef
+  - docs-project-facts#if-something-goes-wrong: af88e7394ff6
+  - docs-organisation-facts#see-an-organisations-facts: a722562a44db
   - docs-organisation-facts#how-projects-use-them: f7ee4047175d
-  - docs-organisation-facts#edit-an-organisation-fact: 141cb39eba3d
-  - docs-organisation-facts#record-a-funder-applicant-profile: db8ede0e4907
-  - docs-organisation-facts#add-standard-work-samples: fc084e4754ec
-  - docs-organisation-facts#who-can-do-this: 71879709f78c
-  - docs-organisation-facts#if-something-goes-wrong: 08bffb6d2e79
+  - docs-organisation-facts#edit-an-organisation-fact: e097e2ed51eb
+  - docs-organisation-facts#record-a-funder-applicant-profile: b206e3df8807
+  - docs-organisation-facts#add-standard-work-samples: bbe6e558b563
+  - docs-organisation-facts#who-can-do-this: 391b66dbf2a8
+  - docs-organisation-facts#if-something-goes-wrong: df98e90fc407
   - docs-identifier-filter#what-is-checked: e96f28321b42
-  - docs-identifier-filter#text-that-looks-like-an-identifier: 80f1210ad6e1
-  - docs-identifier-filter#text-that-matches-several-formats: 8aba7e80e6da
-  - docs-identifier-filter#a-document-that-is-held: 8d0c730a7e8e
-  - docs-identifier-filter#keep-the-list-of-identifier-formats: 80ea5ae5f155
-  - docs-identifier-filter#add-a-format: ce3441d9d1d8
-  - docs-identifier-filter#turn-a-format-off-or-on: f881ff68a355
+  - docs-identifier-filter#text-that-looks-like-an-identifier: bce1c6f3fe21
+  - docs-identifier-filter#text-that-matches-several-formats: ee996ea08b1a
+  - docs-identifier-filter#a-document-that-is-held: b08dcaad8d4f
+  - docs-identifier-filter#keep-the-list-of-identifier-formats: db86c84deaac
+  - docs-identifier-filter#add-a-format: 9d80a29462bc
+  - docs-identifier-filter#turn-a-format-off-or-on: 68454952c132
   - docs-identifier-filter#remove-a-format-you-added: 5d639a925d3a
   - docs-identifier-filter#who-can-do-this: faf12f82ab66
   - docs-identifier-filter#if-something-goes-wrong: d37c31c290fa
-  - docs-activity-log#read-a-projects-activity: 759961dac622
-  - docs-activity-log#filter-the-activity: 66e90e1035e3
-  - docs-activity-log#read-an-organisations-activity: 52200c927d11
+  - docs-activity-log#read-a-projects-activity: 76e7c3f0a37c
+  - docs-activity-log#filter-the-activity: e8704792ef26
+  - docs-activity-log#read-an-organisations-activity: 84e9dc528bd7
   - docs-activity-log#entries-nobody-can-change: 1fbbb53961e4
   - docs-activity-log#who-can-do-this: 34d9091ea09f
   - docs-activity-log#if-something-goes-wrong: df47be0ba235
@@ -73,7 +73,7 @@ Or run every step at once: `pnpm --filter @xr/web run e2e -- e2e/tutorial-facts.
 
 ## What you made
 
-The Lantern Keeper's facts are recorded once, with every version kept and who saved each; the organisation's bio and funder profile are read by each of its projects; a bank account number was stopped before it was saved, and a catalogue number was saved with your confirmation on record; and the activity log shows each change. Next, see [Project facts](../user/project-facts.md), [Organisation facts](../user/organisation-facts.md), [Bank details, tax numbers and identifier formats](../user/identifier-formats.md) and [Activity](../user/activity.md).
+The Lantern Keeper's facts are recorded once, with every version kept and who saved each; the organisation's bio and funder profile are read by each of its projects; a bank account number was stopped before it was saved, and a catalogue number was saved with your confirmation on record; and the activity log shows each change. Next, see [Project facts](../user/facts/project-facts.md), [Organisation facts](../user/organisations/organisation-facts.md), [Bank details, tax numbers and identifier formats](../user/organisations/identifier-formats.md) and [Activity](../user/activity/activity.md).
 
 ## Run record
 

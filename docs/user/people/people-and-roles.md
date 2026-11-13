@@ -5,6 +5,10 @@ derived-from:
   - design-people-and-roles: a2487b05978f
   - design-approvers: 983b149cfa2a
   - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
+covers:
+  - /projects/{id}/people
+  - /projects/{id}/people/new
+  - /projects/{id}/people/{person}
 ---
 
 # People and roles
@@ -19,7 +23,7 @@ Open the project and select **People**. Each person is listed with their roles, 
 - **Invited, not signed in yet**: they have an invitation but have not used it.
 - **No dashboard access**: none of their roles on this project uses the dashboard.
 
-![People](../design/people-and-roles/people-list.png)
+![People](../../design/people-and-roles/people-list.png)
 
 ## Add a person
 
@@ -33,7 +37,7 @@ You need the Director or Producer role on the project.
 
 The **People** list opens with a notice, for example "Riley Chen added as Artist and Sound designer. We have emailed riley@example.com an invitation link that lasts 7 days."
 
-![Add a person](../design/people-and-roles/add-person-filled.png)
+![Add a person](../../design/people-and-roles/add-person-filled.png)
 
 What the new person gets depends on their roles:
 

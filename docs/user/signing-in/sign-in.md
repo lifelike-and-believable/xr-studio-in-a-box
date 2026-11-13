@@ -4,6 +4,9 @@ status: approved
 derived-from:
   - design-sign-in: da4b611e6a00
   - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
+covers:
+  - /sign-in
+  - /account
 ---
 
 # Signing in
@@ -40,7 +43,7 @@ You are signed in on that device. If you followed a link to a page in XR Studio 
 
 The sign-in link works once, for 15 minutes. Asking for a new link stops any older link from working.
 
-![Sign in](../design/sign-in/request.png)
+![Sign in](../../design/sign-in/request.png)
 
 ### If the email does not arrive
 

@@ -3,19 +3,19 @@ id: tutorial-layer1-versions-board-first-view
 status: draft
 runner: manual
 derived-from:
-  - docs-board#see-where-everything-stands: eb1e0ba19f25
-  - docs-board#show-only-blocked-work: 8626926d160e
-  - docs-board#when-things-change: e859d541e842
-  - docs-board#how-work-gets-on-the-board: f3dc395cf332
-  - docs-versions-and-feedback#see-a-piece-of-work-and-its-feedback: 3c5f504df8ed
-  - docs-versions-and-feedback#give-feedback-on-a-version: ac491689f685
-  - docs-versions-and-feedback#send-a-revised-version: 9c0a8dc0bc33
-  - docs-versions-and-feedback#compare-two-versions: 69cf359f89b6
-  - docs-versions-and-feedback#restore-an-earlier-version: 32b3e0cf64b7
-  - docs-what-needs-you#find-what-to-do-next: 9b223e63823b
-  - docs-what-needs-you#if-you-are-new-to-a-project: d7f3a3bbc11c
-  - docs-what-needs-you#when-things-change: 3cfd2d9ed993
-  - docs-your-projects: 9f550e665a71
+  - docs-board#see-where-everything-stands: 9d6237da4331
+  - docs-board#show-only-blocked-work: 06080b0b13f5
+  - docs-board#when-things-change: aacd00b8f0c4
+  - docs-board#how-work-gets-on-the-board: 865b9134cbcb
+  - docs-versions-and-feedback#see-a-piece-of-work-and-its-feedback: b7e2d10a12b5
+  - docs-versions-and-feedback#give-feedback-on-a-version: 884eb0a3610a
+  - docs-versions-and-feedback#send-a-revised-version: bb4d7f109c99
+  - docs-versions-and-feedback#compare-two-versions: 23c9eb871975
+  - docs-versions-and-feedback#restore-an-earlier-version: b68968e83f0a
+  - docs-what-needs-you#find-what-to-do-next: 808b191a578e
+  - docs-what-needs-you#if-you-are-new-to-a-project: 16c45b6a1213
+  - docs-what-needs-you#when-things-change: 6b30ef912722
+  - docs-your-projects: b0b632ebac5e
 ---
 
 # Tutorial: put work on the board, give feedback on versions, and see what needs you
@@ -54,7 +54,7 @@ Or run every step at once: `pnpm --filter @xr/web run e2e -- e2e/tutorial-board.
 
 ## What you made
 
-The Lantern Keeper's board shows every stage, who decides it and where each piece of work stands, and changes by itself as work moves. The character sheet has three versions with their feedback, and the restored one passed the gate. Drew found the first task without help, and everyone else started from what needed them. Next, see [Board](../user/board.md), [Versions and feedback](../user/versions-and-feedback.md) and [What needs you](../user/what-needs-you.md).
+The Lantern Keeper's board shows every stage, who decides it and where each piece of work stands, and changes by itself as work moves. The character sheet has three versions with their feedback, and the restored one passed the gate. Drew found the first task without help, and everyone else started from what needed them. Next, see [Board](../user/board/board.md), [Versions and feedback](../user/board/versions-and-feedback.md) and [What needs you](../user/what-needs-you/what-needs-you.md).
 
 ## The first-task test, for the lead
 

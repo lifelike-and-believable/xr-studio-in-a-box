@@ -3,20 +3,20 @@ id: tutorial-layer1-gates-and-queue
 status: draft
 runner: manual
 derived-from:
-  - docs-approvers#see-who-approves-what: 91cd1cd3028f
-  - docs-approvers#name-an-approver-and-a-delegate-for-an-area: e0c6ceae13dc
-  - docs-approvers#name-the-holder-of-a-protected-approval: 5a9c1bcfe507
-  - docs-approvers#removing-someone-who-approves: da8035c6b6a4
+  - docs-approvers#see-who-approves-what: 4bffc3e2ef34
+  - docs-approvers#name-an-approver-and-a-delegate-for-an-area: d44000e3283e
+  - docs-approvers#name-the-holder-of-a-protected-approval: 40fa29fe4e53
+  - docs-approvers#removing-someone-who-approves: 115bbfe3785d
   - docs-approvers#if-something-goes-wrong: 049938a5f7fa
-  - docs-review#send-work-for-review: 581b7cdcd5d4
-  - docs-review#see-what-you-have-sent: fea857dae05d
-  - docs-review#see-everything-that-is-waiting: 386a5b787fcc
-  - docs-review#clear-your-review-queue: ae12b606ef54
-  - docs-review#decide-on-an-item: 0e33882d3059
-  - docs-review#decide-on-several-items-at-once: c8aa8ff50c72
+  - docs-review#send-work-for-review: 9883b5386bdf
+  - docs-review#see-what-you-have-sent: 800dc109d101
+  - docs-review#see-everything-that-is-waiting: 43bc68df81ec
+  - docs-review#clear-your-review-queue: cc8f096ce493
+  - docs-review#decide-on-an-item: 3e2d314f2287
+  - docs-review#decide-on-several-items-at-once: 0422562a8dfb
   - docs-review#hand-an-item-to-your-delegate: 3560c6b466ca
-  - docs-review#if-something-goes-wrong: d4da1b19f200
-  - docs-activity-log#read-a-projects-activity: 759961dac622
+  - docs-review#if-something-goes-wrong: 318196a7e498
+  - docs-activity-log#read-a-projects-activity: 76e7c3f0a37c
 ---
 
 # Tutorial: name approvers, send work for review and decide on it
@@ -58,7 +58,7 @@ Or run every step at once: `pnpm --filter @xr/web run e2e -- e2e/tutorial-review
 
 ## What you made
 
-Morgan approves the creative work with Sam as delegate, and holds the publishing and marketing approval. Work Riley sent waited at its gate until a person decided it, each decision is recorded with who made it and when, and the activity log shows every step. Next, see [Approvers](../user/approvers.md) and [Review](../user/review.md).
+Morgan approves the creative work with Sam as delegate, and holds the publishing and marketing approval. Work Riley sent waited at its gate until a person decided it, each decision is recorded with who made it and when, and the activity log shows every step. Next, see [Approvers](../user/people/approvers.md) and [Review](../user/review/review.md).
 
 ## Run record
 

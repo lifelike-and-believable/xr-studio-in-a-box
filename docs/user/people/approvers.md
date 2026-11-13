@@ -4,6 +4,10 @@ status: approved
 derived-from:
   - design-approvers: 983b149cfa2a
   - story-project-record-name-approvers#acceptance-criteria: 8a28482ee96c
+covers:
+  - /projects/{id}/approvers
+  - /projects/{id}/approvers/{area}
+  - /projects/{id}/approvers/protected/{approval}
 ---
 
 # Approvers
@@ -24,7 +28,7 @@ Open the project and select **Approvers**. Everyone on the project who uses the 
 - **Areas** lists each area, the gates it decides, its **Approver** and its **Delegate** ("None" when there is none).
 - **Protected approvals** lists the four protected approvals and the **Holder** of each.
 
-![Approvers](../design/approvers/approvers.png)
+![Approvers](../../design/approvers/approvers.png)
 
 Work at a gate that is not listed, such as a build for rehearsal, moves on without waiting for anyone.
 
@@ -41,11 +45,11 @@ You need the Director or Producer role on the project.
 
 You see, for example, "Creative saved: Morgan Ray approves it, with Sam Okafor as delegate. Items already waiting in Creative now wait for them."
 
-![Change Creative](../design/approvers/change-area.png)
+![Change Creative](../../design/approvers/change-area.png)
 
 The lists show only people on the project who use the dashboard. Anyone who has not signed in yet is marked "(invited, not signed in yet)": an item can wait for them before they have started, so check with them. Agents are never listed, and can never approve.
 
-A delegate can decide every item in the area, the same as the approver. The approver can also hand single items to the delegate from the review queue (see [Review](review.md)).
+A delegate can decide every item in the area, the same as the approver. The approver can also hand single items to the delegate from the review queue (see [Review](../review/review.md)).
 
 ## Name the holder of a protected approval
 
@@ -57,7 +61,7 @@ You need the Director or Producer role on the project.
 
 You see, for example, "Contracts and licence terms saved: Jordan Lee holds it."
 
-![Change holder](../design/approvers/change-protected.png)
+![Change holder](../../design/approvers/change-protected.png)
 
 The holder decides every item of that kind and cannot hand it on. Only a person can hold a protected approval; agents are never listed.
 
@@ -69,7 +73,7 @@ A change applies at once. Items already waiting in that area, or of that protect
 
 You cannot remove a person from the project while they hold an approval or are a delegate. On **People**, instead of the removal confirmation, you see, for example, "Sam Okafor cannot be removed yet" and which approvals they hold, with **Keep Sam** and **Go to Approvers**. Give their approvals to someone else, then remove them.
 
-![Cannot be removed yet](../design/approvers/remove-holder-refused.png)
+![Cannot be removed yet](../../design/approvers/remove-holder-refused.png)
 
 The same applies if you change their roles so that none of them uses the dashboard.
 

@@ -4,6 +4,11 @@ status: approved
 derived-from:
   - design-identifier-filter: 069c84a56674
   - story-contracts-and-payment-protect-sensitive-data#acceptance-criteria: 2b9128383b81
+covers:
+  - /projects/{id}/facts/{fact}/confirm
+  - /organisations/{id}/facts/{fact}/confirm
+  - /organisations/{id}/identifier-formats
+  - /organisations/{id}/identifier-formats/new
 ---
 
 # Bank details, tax numbers and identifier formats
@@ -26,7 +31,7 @@ Matching ignores spaces, hyphens and dots between characters, so "046 454 286", 
 
 When you save a fact whose text matches a format, nothing is saved. The edit page comes back with your text still in the box and a message such as "Not saved: this looks like a bank account number". It quotes the matching text and says which format it matches.
 
-![Not saved](../design/identifier-filter/fact-held.png)
+![Not saved](../../design/identifier-filter/fact-held.png)
 
 If it is an identifier, take it out and save again.
 
@@ -38,7 +43,7 @@ If it is not, confirm so:
 
 The **Facts** tab opens with a notice such as "Description saved. Your confirmation that "00123-004-1234567" is not a bank account number is recorded in Activity." The activity entry names you, the time, the format and your answer; the matching text itself is not copied there. It goes in the project's **Activity** for a project's facts and work samples, and in the organisation's **Activity** for organisation facts and standard work samples.
 
-![Confirm it is not an identifier](../design/identifier-filter/confirm-not-identifier.png)
+![Confirm it is not an identifier](../../design/identifier-filter/confirm-not-identifier.png)
 
 Your confirmation covers that exact text in that fact. Later saves that still contain it are not stopped again. New text that matches is.
 
@@ -48,13 +53,13 @@ Some formats overlap. Any 9 digits can be a Business Number, and 9 digits that p
 
 If different pieces of the text match, each is listed in the message with a link to its field.
 
-![Text matches several formats](../design/identifier-filter/fact-held-several.png)
+![Text matches several formats](../../design/identifier-filter/fact-held-several.png)
 
 ## A document that is held
 
 When you add a PDF or Word document as a work sample and its text matches a format, the file is not added. You see, for example, "Not added: grant-letter.pdf looks like it has a GST/HST number". The message says when the file will be deleted and, for a PDF, which page matched: it is held for 24 hours, then deleted unless you confirm it.
 
-![Document held](../design/identifier-filter/document-held.png)
+![Document held](../../design/identifier-filter/document-held.png)
 
 - If it is not an identifier, select **It is not a <format>, add <file>**, answer **What is it?** as above, and confirm. The file is added.
 - If it is, remove the number from the document, then use **Or choose a different file** and **Upload a different file**.
@@ -67,7 +72,7 @@ You need to look after the organisation. The list belongs to the organisation an
 
 On the organisation's page, select **Identifier formats**. Each format shows its name, what it matches with an example, whether checking is **On** or **Off**, and its source: **Starter**, or who added it and when.
 
-![Identifier formats](../design/identifier-filter/formats.png)
+![Identifier formats](../../design/identifier-filter/formats.png)
 
 The starter formats are:
 
@@ -91,7 +96,7 @@ Starter formats can be turned off and on, but not removed. Every change to the l
 
 You see, for example, "Funder account number added. It is checked from now on; text already saved is not changed."
 
-![Add a format](../design/identifier-filter/add-format.png)
+![Add a format](../../design/identifier-filter/add-format.png)
 
 ### Turn a format off or on
 
@@ -99,7 +104,7 @@ Select **Turn off** beside the format. A dialog explains that text that only loo
 
 The row then shows **Off** and **Turn on**. **Turn on** needs no confirmation; the format is checked from then on, and text already saved is not changed. A restore of older text is checked like any save.
 
-![Turn off a format](../design/identifier-filter/turn-off-confirm.png)
+![Turn off a format](../../design/identifier-filter/turn-off-confirm.png)
 
 ### Remove a format you added
 

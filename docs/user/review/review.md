@@ -6,11 +6,17 @@ derived-from:
   - story-review-and-status-hold-gated-hand-off#acceptance-criteria: a7373f33f9bf
   - story-review-and-status-see-review-queue#acceptance-criteria: 0cf0b45ffc70
   - story-review-and-status-decide-on-items#acceptance-criteria: 09f7ac5e0805
+covers:
+  - /projects/{id}/review
+  - /projects/{id}/review/new
+  - /projects/{id}/review/sent
+  - /projects/{id}/review/waiting
+  - /projects/{id}/review/{item}
 ---
 
 # Review
 
-Work at a gated stage waits until a person accepts it. You send the work for review; the approver for that stage sees it in their queue and accepts it, asks for a revision, or rejects it. Nothing at a gate moves on without a person's decision. An AI can recommend a result, but it can never pass a gate. Who decides each stage is set on the project's **Approvers** tab (see [Approvers](approvers.md)).
+Work at a gated stage waits until a person accepts it. You send the work for review; the approver for that stage sees it in their queue and accepts it, asks for a revision, or rejects it. Nothing at a gate moves on without a person's decision. An AI can recommend a result, but it can never pass a gate. Who decides each stage is set on the project's **Approvers** tab (see [Approvers](../people/approvers.md)).
 
 In this release you send work for review yourself. In later releases agents and pipeline steps send their work the same way, and AI checks add recommendations.
 
@@ -30,9 +36,9 @@ In this release XR Studio sends no email or alert when something is waiting for 
 
 **Sent by you** opens with a notice, for example "Sent for review: Ferry pilot character sheet. It waits for Morgan Ray or Sam Okafor."
 
-![Send for review](../design/review-queue/send.png)
+![Send for review](../../design/review-queue/send.png)
 
-Keep bank details and tax numbers out of the title, **What changed** and the file: agents can read them. XR Studio checks the text, and the text of PDFs and Word documents, as it does for facts and work samples (see [Identifier formats](identifier-formats.md)).
+Keep bank details and tax numbers out of the title, **What changed** and the file: agents can read them. XR Studio checks the text, and the text of PDFs and Word documents, as it does for facts and work samples (see [Identifier formats](../organisations/identifier-formats.md)).
 
 Builds are not sent by hand, so the build stages are not listed under **Stage**. They reach their gates from the build pipeline, in a later release.
 
@@ -47,7 +53,7 @@ Select **Sent by you**. Everything you have sent on this project is listed, newe
 
 Any feedback the reviewer wrote is shown under the status.
 
-![Sent by you](../design/review-queue/sent.png)
+![Sent by you](../../design/review-queue/sent.png)
 
 ### Withdraw something you sent
 
@@ -55,17 +61,17 @@ While an item is still waiting, select **Withdraw** beside it in **Sent by you**
 
 You cannot edit something you sent. To correct the file or the text, withdraw it and send it again. To correct the stage, withdraw it and send it as new work from **Send for review**.
 
-![Withdrawn](../design/review-queue/sent-withdrawn.png)
+![Withdrawn](../../design/review-queue/sent-withdrawn.png)
 
 ### Send a revised version
 
-Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection or a withdrawal). **Send for review** opens for the same piece of work, with its stage fixed and the blocking choice filled in, and says which version this will be. Choose the new file, say what changed, and send it. The new item is the work's next version: both stay in **Sent by you**, the old one with its decision and the new one waiting, and the work's page lists every version with its feedback, where you can compare them (see [Versions and feedback](versions-and-feedback.md)).
+Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection or a withdrawal). **Send for review** opens for the same piece of work, with its stage fixed and the blocking choice filled in, and says which version this will be. Choose the new file, say what changed, and send it. The new item is the work's next version: both stay in **Sent by you**, the old one with its decision and the new one waiting, and the work's page lists every version with its feedback, where you can compare them (see [Versions and feedback](../board/versions-and-feedback.md)).
 
 ## See everything that is waiting
 
 Select **Everything waiting** to see all the work held at a gate on this project, oldest first: each item's stage, who sent it and when, a **Blocking** tag where something waits on it, and **Waiting for**, the person or people who can decide it. You can open any item to look at it. Only the people it waits for can decide it.
 
-![Everything waiting](../design/review-queue/waiting.png)
+![Everything waiting](../../design/review-queue/waiting.png)
 
 ## Clear your review queue
 
@@ -79,7 +85,7 @@ Items are grouped by stage, with the area beside each group. Groups with blockin
 
 A line above the groups counts them, for example "5 items waiting for your decision, 1 blocking."
 
-![Review queue](../design/review-queue/queue.png)
+![Review queue](../../design/review-queue/queue.png)
 
 To narrow the list, choose an **Area** or a **Handed to** value and select **Apply filters**. **Clear filters** shows everything again.
 
@@ -91,7 +97,7 @@ To narrow the list, choose an **Area** or a **Handed to** value and select **App
 
 The **Review** tab opens with a notice, for example "Accepted: Lantern Keeper character sheet. Recorded as your decision at 14:20 on 13 November. Riley Chen sees it under Sent by you." The item has left your queue.
 
-![An item](../design/review-queue/item.png)
+![An item](../../design/review-queue/item.png)
 
 A decision is final. It is recorded with your name and the time, and cannot be changed afterwards. After a revision request or a rejection, the requester sends the work again.
 
@@ -108,7 +114,7 @@ To accept a whole group of two or more items, select **Accept all <n> in <stage>
 
 You see, for example, "Accepted 2 items in Character design."
 
-![Accept 2 items?](../design/review-queue/batch-accept.png)
+![Accept 2 items?](../../design/review-queue/batch-accept.png)
 
 ## Hand an item to your delegate
 
@@ -132,7 +138,7 @@ Protected approvals cannot be handed on.
 | "Enter a title.", "Choose the stage this work is at.", "Say what changed." or "Choose a file to send." | Something is missing. | Fill it in. What you typed is kept, but choose the file again. |
 | "Keep the title to 120 characters or fewer." | The title is too long. **What changed** and feedback take up to 2,000 characters. | Shorten it. Nothing is cut for you. |
 | "Choose a video, image, audio, PDF, Word or 3D model file." | XR Studio does not take that kind of file. | Send it in one of those types. |
-| An error saying text looks like a bank account, tax or card number | The title, **What changed** or feedback matches one of your organisation's identifier formats. | Take the number out and send again, or, if it is not that kind of number, select **It is not a <format>** and say what it is (see [Identifier formats](identifier-formats.md)). |
+| An error saying text looks like a bank account, tax or card number | The title, **What changed** or feedback matches one of your organisation's identifier formats. | Take the number out and send again, or, if it is not that kind of number, select **It is not a <format>** and say what it is (see [Identifier formats](../organisations/identifier-formats.md)). |
 | A notice that your file is held | The text of your PDF or Word document looks like it holds a bank or tax number. It is not sent, and is deleted after 24 hours unless you confirm. | If it is not such a number, confirm with **It is not a <format>, add <file>**. If the document really holds one, such as a signed contract or a funding report, send a copy with those numbers removed and keep the original outside XR Studio. |
 | "Write feedback for <requester>: say what to change." | You asked for a revision without feedback. Nothing was recorded. | Write what to change, then select **Request revision** again. |
 | "Write the feedback each requester will see." | You asked for a revision of several items without feedback. | Write what to change, then confirm again. |

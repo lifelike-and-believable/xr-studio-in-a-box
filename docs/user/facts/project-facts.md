@@ -5,6 +5,11 @@ derived-from:
   - design-project-facts: 1a327e4e7efd
   - story-project-record-record-facts#acceptance-criteria: 1b82a3da6d7d
   - story-review-and-status-feedback-and-versions#acceptance-criteria: 667f3e80aa75
+covers:
+  - /projects/{id}/facts
+  - /projects/{id}/facts/{fact}/edit
+  - /projects/{id}/facts/{fact}/history
+  - /projects/{id}/facts/work-samples
 ---
 
 # Project facts
@@ -19,9 +24,9 @@ Open the project and select **Facts**. It sits between **Overview** and **People
 
 The facts are listed in this order: **Description**, **Plan**, **Budget**, **Credits**, **Collaborators**, **Schedule**, **Work samples** and **Capacity**. Under each one you see its value and "Last changed by <name>, <date and time>". Times are shown in your own time zone.
 
-Below them, **From <organisation>** shows the organisation's legal name and bio, which every project in the organisation reads. You cannot edit them here; select **Open <organisation>'s facts** to go to them. See [Organisation facts](organisation-facts.md).
+Below them, **From <organisation>** shows the organisation's legal name and bio, which every project in the organisation reads. You cannot edit them here; select **Open <organisation>'s facts** to go to them. See [Organisation facts](../organisations/organisation-facts.md).
 
-![Facts](../design/project-facts/facts.png)
+![Facts](../../design/project-facts/facts.png)
 
 A fact that has never been saved shows "Not recorded yet." with **Add** instead of **Edit**.
 
@@ -35,7 +40,7 @@ You need the Director or Producer role on the project.
 
 The **Facts** tab opens with a notice, for example "Description saved.", and the fact shows you as the last person to change it. Everyone on the project whose role lets them see that fact sees the new value the next time they open the page.
 
-![Edit the description](../design/project-facts/edit-fact.png)
+![Edit the description](../../design/project-facts/edit-fact.png)
 
 ### What each fact takes
 
@@ -46,7 +51,7 @@ The **Facts** tab opens with a notice, for example "Description saved.", and the
 | Capacity | **Guests in the room per show** and **Viewers online per show**, each a whole number. 0 is allowed, for example for a show with no online audience. |
 | Work samples | Files with a title, on their own page. See [Add and remove work samples](#add-and-remove-work-samples). |
 
-Do not put bank details or tax numbers in a fact. Facts can be read by agents, so text that looks like one is not saved. See [Bank details, tax numbers and identifier formats](identifier-formats.md).
+Do not put bank details or tax numbers in a fact. Facts can be read by agents, so text that looks like one is not saved. See [Bank details, tax numbers and identifier formats](../organisations/identifier-formats.md).
 
 ## Earlier versions of a fact
 
@@ -54,9 +59,9 @@ Do not put bank details or tax numbers in a fact. Facts can be read by agents, s
 2. The list shows every saved version, newest first, with who saved it and when. The current version is marked "(current)". A version made by restoring says so, for example "2, restored from version 1".
 3. Select **Compare with current** beside a version. The page marks what changed and writes out both versions in full. **Back to earlier versions** returns to the list.
 
-![Earlier versions](../design/project-facts/history.png)
+![Earlier versions](../../design/project-facts/history.png)
 
-![Compare an earlier version with the current one](../design/project-facts/compare.png)
+![Compare an earlier version with the current one](../../design/project-facts/compare.png)
 
 Anyone who can see the fact can read and compare its earlier versions.
 
@@ -69,9 +74,9 @@ You need the Director or Producer role on the project.
 
 The **Facts** tab opens with a notice such as "Description restored to version 3, saved as version 7. Earlier versions are kept." Restoring saves the earlier text as a new version; no version is removed or changed, so you can restore the one you replaced later.
 
-![Restore confirmation](../design/project-facts/restore-confirm.png)
+![Restore confirmation](../../design/project-facts/restore-confirm.png)
 
-Restored text is checked for bank details and tax numbers like any save. If an identifier format was turned on after that version was saved, you may see "Not saved"; see [Bank details, tax numbers and identifier formats](identifier-formats.md).
+Restored text is checked for bank details and tax numbers like any save. If an identifier format was turned on after that version was saved, you may see "Not saved"; see [Bank details, tax numbers and identifier formats](../organisations/identifier-formats.md).
 
 ## Add and remove work samples
 
@@ -85,9 +90,9 @@ The sample appears in the list with its title, file, who added it and when.
 
 To remove a sample, select **Remove** beside it, then **Remove <title>** in the dialog, or **Keep <title>** to leave it. You see, for example, "Lantern test removed from the work samples. It stays in the earlier versions of Work samples." Restoring that earlier version of **Work samples** brings the file back. Restoring brings back the whole list as it was in that version, so samples added since then leave the current list (they stay in the later versions).
 
-![Work samples](../design/project-facts/work-samples.png)
+![Work samples](../../design/project-facts/work-samples.png)
 
-Text in PDFs and Word documents is checked for bank details and tax numbers when you add them. Scanned PDFs, video, images and audio are not checked, so do not add scans or photos of bank or tax documents. A file whose text matches is held, not added, and listed at the top of the page as **Held**; see [A document that is held](identifier-formats.md#a-document-that-is-held).
+Text in PDFs and Word documents is checked for bank details and tax numbers when you add them. Scanned PDFs, video, images and audio are not checked, so do not add scans or photos of bank or tax documents. A file whose text matches is held, not added, and listed at the top of the page as **Held**; see [A document that is held](../organisations/identifier-formats.md#a-document-that-is-held).
 
 The organisation's standard work samples have their own page; the line at the top of this page links to it.
 
@@ -99,7 +104,7 @@ If another person saves the same fact after you opened it, your text is not save
 - Or change your text first, for example to combine both, then select **Save my <fact>**.
 - **Cancel** leaves without saving your text.
 
-![Someone else saved while you were editing](../design/project-facts/edit-conflict.png)
+![Someone else saved while you were editing](../../design/project-facts/edit-conflict.png)
 
 ## Who can do this
 
@@ -114,9 +119,9 @@ If another person saves the same fact after you opened it, your text is not save
 - Written feedback on drafts, and restoring by roles other than the director and producer, come with drafts in a later release.
 - Agents and Claude Code sessions cannot read or change facts yet. In a later release, an agent will be able to suggest facts from a document you point it at, marked as drafts until you accept them.
 
-![Facts, read only](../design/project-facts/facts-read-only.png)
+![Facts, read only](../../design/project-facts/facts-read-only.png)
 
-Every change to a fact is recorded in the project's **Activity**. See [Activity](activity.md).
+Every change to a fact is recorded in the project's **Activity**. See [Activity](../activity/activity.md).
 
 ## If something goes wrong
 
@@ -126,7 +131,7 @@ Every change to a fact is recorded in the project's **Activity**. See [Activity]
 | "Enter the number of viewers online as a whole number, like 200." | **Viewers online per show** is not a whole number. | Type a whole number. 0 is allowed. |
 | "Enter the total in whole Canadian dollars, like 148000." | **Total in Canadian dollars** is not a whole number of dollars. | Type the total without cents. |
 | "Check before saving: <name> saved a new <fact> at <time>" | Someone saved the fact after you opened the page. | See [If someone else saved while you were editing](#if-someone-else-saved-while-you-were-editing). |
-| "Not saved: this looks like a <format>" | The text matches an identifier format, such as a bank account number. | See [Bank details, tax numbers and identifier formats](identifier-formats.md). |
+| "Not saved: this looks like a <format>" | The text matches an identifier format, such as a bank account number. | See [Bank details, tax numbers and identifier formats](../organisations/identifier-formats.md). |
 | "Enter a title for the work sample." | **Title** is empty. | Type a title. If the file is no longer chosen, choose it again. |
 | "Choose a file to add." | No file was chosen. | Choose a file. |
 | "Choose a video, image, audio, PDF or Word file." | The file is not one of the types work samples take. | Choose another file, or save it as a PDF first. |

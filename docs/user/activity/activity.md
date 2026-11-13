@@ -6,6 +6,9 @@ derived-from:
   - design-review-queue: 5ae80c4a15b8
   - design-approvers: 983b149cfa2a
   - story-agent-work-read-activity-log#acceptance-criteria: 1649ac451653
+covers:
+  - /projects/{id}/activity
+  - /organisations/{id}/activity
 ---
 
 # Activity
@@ -29,7 +32,7 @@ Open the project and select **Activity**, the last tab. Entries are listed newes
 
 A line above the list says how many there are, for example "Showing the newest 50 of 128 entries." Select **Older entries** to see the next fifty.
 
-![Activity](../design/activity-log/activity.png)
+![Activity](../../design/activity-log/activity.png)
 
 An entry says what was saved, never the text or figures of a fact, so an entry about the budget does not show the budget. The one free text an entry can hold is a person's answer when they confirmed that some text is not an identifier, for example "Saved the description (version 5) after confirming that text in it is not a bank account number ("Catalogue number for the lantern prop")".
 
@@ -43,7 +46,7 @@ An entry says what was saved, never the text or figures of a fact, so an entry a
 
 The page shows how many entries match and which filters you used, for example "3 entries: Jordan Lee, Facts." **Clear filters** shows everything again.
 
-![Filtered activity](../design/activity-log/activity-filtered.png)
+![Filtered activity](../../design/activity-log/activity-filtered.png)
 
 ## Read an organisation's activity
 
@@ -51,7 +54,7 @@ You need to look after the organisation.
 
 On the organisation's page, select **Activity**. It lists changes to the organisation itself, its facts, its standard work samples and its identifier formats, and confirmations made on them, with the same columns and filters, except that **Who** lists only people. Its areas are Organisation, Organisation facts and Identifier formats.
 
-![Organisation activity](../design/activity-log/org-activity.png)
+![Organisation activity](../../design/activity-log/org-activity.png)
 
 ## Entries nobody can change
 

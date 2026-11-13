@@ -5,11 +5,18 @@ derived-from:
   - design-organisations-and-projects: 202a8d9fef23
   - story-project-record-set-up-organisation#acceptance-criteria: eb7a4e1f7ca0
   - story-project-record-start-project#acceptance-criteria: 83fa11a80149
+covers:
+  - /projects/new
+  - /projects/{id}
+  - /organisations
+  - /organisations/new
+  - /organisations/{id}
+  - /organisations/{id}/edit
 ---
 
 # Organisations and projects
 
-A project holds one show's brief and work. Every project belongs to an organisation. An organisation also holds the company facts its projects share, such as the legal name and bio, so they are entered once; see [Organisation facts](organisation-facts.md).
+A project holds one show's brief and work. Every project belongs to an organisation. An organisation also holds the company facts its projects share, such as the legal name and bio, so they are entered once; see [Organisation facts](../organisations/organisation-facts.md).
 
 On a solo production you do not need to create an organisation first: select **Start a project** and XR Studio makes one for you.
 
@@ -17,7 +24,7 @@ Three ideas to keep apart:
 
 - **Owner** (a project): the person who owns it. Today the tag carries no rights beyond the Director and Producer roles it comes with, and it cannot be changed after the project starts.
 - **Looked after by** (an organisation): the people who can rename it and change who looks after it.
-- **Roles** (a project): what each person on the project can see and do. See [People and roles](people-and-roles.md).
+- **Roles** (a project): what each person on the project can see and do. See [People and roles](../people/people-and-roles.md).
 
 ## Create an organisation
 
@@ -28,7 +35,7 @@ Three ideas to keep apart:
 
 The organisation's page opens. People who look after an organisation can rename it, change who looks after it and edit its facts.
 
-![Create an organisation](../design/organisations-and-projects/create-organisation.png)
+![Create an organisation](../../design/organisations-and-projects/create-organisation.png)
 
 ## Start a project
 
@@ -41,7 +48,7 @@ The organisation's page opens. People who look after an organisation can rename 
 
 The project opens on its **Overview** with "Project started. You own it and have the Director and Producer roles." It also appears on **Projects**.
 
-![Start a project](../design/organisations-and-projects/start-project.png)
+![Start a project](../../design/organisations-and-projects/start-project.png)
 
 ### Roles when the project starts
 
@@ -64,7 +71,7 @@ Merging two organisations comes in a later release.
 
 ## An organisation's page
 
-It shows the organisation's name, who it is **Looked after by**, **Start a project in this organisation**, **Edit organisation** if you look after it, its **Organisation facts** (see [Organisation facts](organisation-facts.md)), and its **Projects** (the ones you are on, or all of them if you look after it). People who look after it also see **Identifier formats** and **Activity**.
+It shows the organisation's name, who it is **Looked after by**, **Start a project in this organisation**, **Edit organisation** if you look after it, its **Organisation facts** (see [Organisation facts](../organisations/organisation-facts.md)), and its **Projects** (the ones you are on, or all of them if you look after it). People who look after it also see **Identifier formats** and **Activity**.
 
 ## See your organisations
 
