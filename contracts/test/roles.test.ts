@@ -9,8 +9,10 @@ import {
 } from '../src/index';
 
 // The table in docs/user/people-and-roles.md, "What each role can do".
-const MANAGERS = ['open-project', 'see-people', 'manage-people', 'edit-project'];
-const VIEWERS = ['open-project', 'see-people'];
+// Slice 2 adds see-facts, see-budget, edit-facts and read-activity
+// (layer1-facts-identifiers-activity, Roles and permissions).
+const MANAGERS = ['open-project', 'see-people', 'manage-people', 'edit-project', 'see-facts', 'see-budget', 'edit-facts', 'read-activity'];
+const VIEWERS = ['open-project', 'see-people', 'see-facts'];
 
 describe('permission table matches the role table (layer1-organisations-projects-people#AC-35)', () => {
   it('lists the eleven roles in the documented order', () => {
@@ -32,7 +34,8 @@ describe('permission table matches the role table (layer1-organisations-projects
   it('gives each role the documented permissions', () => {
     expect([...ROLE_PERMISSIONS.director].sort()).toEqual([...MANAGERS].sort());
     expect([...ROLE_PERMISSIONS.producer].sort()).toEqual([...MANAGERS].sort());
-    for (const role of ['technical-artist', 'artist', 'sound-designer', 'interaction-designer', 'capture-crew', 'show-operator'] as const) {
+    expect([...ROLE_PERMISSIONS['technical-artist']].sort()).toEqual([...VIEWERS, 'read-activity'].sort());
+    for (const role of ['artist','sound-designer', 'interaction-designer', 'capture-crew', 'show-operator'] as const) {
       expect([...ROLE_PERMISSIONS[role]].sort(), role).toEqual([...VIEWERS].sort());
     }
     for (const role of ['venue-attendant', 'performer', 'collaborator'] as const) {

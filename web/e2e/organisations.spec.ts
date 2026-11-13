@@ -170,7 +170,7 @@ test('organisation page contents (layer1-organisations-projects-people#AC-24)', 
   await expect(main.getByRole('heading', { name: 'Projects' })).toBeVisible();
   await expect(main.getByRole('link', { name: p1 })).toBeVisible();
   await expect(main.getByRole('heading', { name: 'Organisation facts' })).toBeVisible();
-  await expect(main.getByText('No organisation facts yet.')).toBeVisible();
+  await expect(main.getByRole('link', { name: 'Add legal name' })).toBeVisible();
 
   // A member who does not look after it sees no Edit organisation.
   const riley = `${uniq('riley-')}@xr.test`;

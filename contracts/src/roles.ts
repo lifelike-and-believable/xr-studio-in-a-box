@@ -21,16 +21,36 @@ export type RoleId = (typeof ROLE_IDS)[number];
 export const RoleIdSchema = z.enum(ROLE_IDS);
 
 // No permission is an approval: approvers are named separately (story-project-record-name-approvers).
-export const PERMISSIONS = ['open-project', 'see-people', 'manage-people', 'edit-project'] as const;
+// Slice 2 adds the facts and activity permissions (layer1-facts-identifiers-activity, Roles and
+// permissions): general facts, the budget, editing facts and work samples, and the activity log.
+export const PERMISSIONS = [
+  'open-project',
+  'see-people',
+  'manage-people',
+  'edit-project',
+  'see-facts',
+  'see-budget',
+  'edit-facts',
+  'read-activity',
+] as const;
 export type Permission = (typeof PERMISSIONS)[number];
 
-const MANAGER: Permission[] = ['open-project', 'see-people', 'manage-people', 'edit-project'];
-const VIEWER: Permission[] = ['open-project', 'see-people'];
+const MANAGER: Permission[] = [
+  'open-project',
+  'see-people',
+  'manage-people',
+  'edit-project',
+  'see-facts',
+  'see-budget',
+  'edit-facts',
+  'read-activity',
+];
+const VIEWER: Permission[] = ['open-project', 'see-people', 'see-facts'];
 
 export const ROLE_PERMISSIONS: Record<RoleId, Permission[]> = {
   director: MANAGER,
   producer: MANAGER,
-  'technical-artist': VIEWER,
+  'technical-artist': [...VIEWER, 'read-activity'],
   artist: VIEWER,
   'sound-designer': VIEWER,
   'interaction-designer': VIEWER,

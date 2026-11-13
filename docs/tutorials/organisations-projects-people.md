@@ -5,7 +5,7 @@ runner: manual
 derived-from:
   - docs-sign-in: fd75a535d2b1
   - docs-your-projects: b6b8557f98b6
-  - docs-organisations-and-projects: 1f45db9d94f9
+  - docs-organisations-and-projects: e2a19ab061fa
   - docs-people-and-roles: ad185b267db1
 ---
 
@@ -61,7 +61,7 @@ You have not given yourself a name, so XR Studio shows your email address, `morg
 ### Tidy up the project and organisation
 
 14. Select **Overview**, then **Edit name and brief**. Change **Brief (optional)** to `A lighthouse keeper's last night, told with puppets and light.` and select **Save changes**. You see "Name and brief saved."
-15. Select **Organisations** in the header. The Lantern Keeper is listed, and **You** reads "Look after it". Select it. You see **Looked after by**, **Start a project in this organisation**, **Edit organisation**, **Projects** and **Organisation facts**.
+15. Select **Organisations** in the header. The Lantern Keeper is listed, and **You** reads "Look after it". Select it. You see **Looked after by**, **Start a project in this organisation**, **Edit organisation**, **Organisation facts** and **Projects**. Because you look after it, you also see **Identifier formats** and **Activity**. [Organisation facts](../user/organisation-facts.md) covers those sections.
 16. Select **Edit organisation** and change **Organisation name** to `Lantern Works`. Under **Looked after by**, your own tick cannot be removed, because you are the only person looking after it. Select **Save changes**. You see "Organisation saved."
 17. Select **XR Studio**, then **The Lantern Keeper**. In the header, select **Project: The Lantern Keeper**. Your projects are listed under Lantern Works, with **All projects** after them. Select **All projects**. You see **Projects**.
 
@@ -89,7 +89,9 @@ Walked on 2026-11-12 by the delivery agent, against a production build of this b
 | 8 to 10 | Both notices as written; Riley **Invited, not signed in yet**, Kai **No dashboard access**, no email to Kai; the resend notice after waiting 61 seconds. |
 | 11 | The older invitation showed **This sign-in link no longer works**; the newer one signed Riley in on the **Overview** with no edit button; **People** showed the "Ask morgan@example.com" line and no **Add a person**. |
 | 12 and 13 | "Riley Chen's roles saved: Artist."; Riley's reload showed Artist and stayed signed in; Kai's removal notice as written. |
-| 14 to 17 | "Name and brief saved."; **Organisations** showed "Look after it"; the organisation page showed all five parts; Morgan's **Looked after by** box was disabled; "Organisation saved."; the switcher grouped the project under Lantern Works and **All projects** returned to **Projects**. |
+| 14 to 17 | "Name and brief saved."; **Organisations** showed "Look after it"; the organisation page showed all seven parts; Morgan's **Looked after by** box was disabled; "Organisation saved."; the switcher grouped the project under Lantern Works and **All projects** returned to **Projects**. |
 | 18 to 20 | The passkey was listed as "Chrome on Linux. Made on 12 November 2026."; sign out, then passkey sign-in, landed on **Projects**; the removal notice as written. |
 
-Seen on the way, recorded in `docs/decisions/layer1-organisations-projects-people.md`: after **Your account** is selected, the account menu stays open on the new page, so selecting your name again closes it rather than opening it.
+Walked again on 2026-11-13 after merging `main`, which added slice 2 (organisation facts, identifier formats and activity) and closed the account menu on a page change. Every step gave the result written above.
+
+Seen on the first walk, recorded in `docs/decisions/layer1-organisations-projects-people.md`: the account menu stayed open after **Your account** was selected. `main` has since fixed it.

@@ -47,8 +47,6 @@ export default async function Overview({ params, searchParams }: Props) {
       ) : (
         <p>{who} can change the name and brief.</p>
       )}
-      <h3>Project facts</h3>
-      <p>No project facts yet.</p>
     </section>
   );
 }

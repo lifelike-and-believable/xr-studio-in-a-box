@@ -15,6 +15,20 @@
       "when": 1794493766379,
       "tag": "0001_people_and_projects",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794523023404,
+      "tag": "0002_facts_identifiers_activity",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794523023926,
+      "tag": "0003_database_roles",
+      "breakpoints": true
     }
   ]
 }

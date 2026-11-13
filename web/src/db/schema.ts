@@ -1,8 +1,11 @@
 import { sql } from 'drizzle-orm';
 import {
+  bigint,
   boolean,
+  check,
   index,
   integer,
+  jsonb,
   pgTable,
   primaryKey,
   text,
@@ -229,3 +232,149 @@ export const signInRequest = pgTable('sign_in_request', {
   returnTo: text('return_to'),
   createdAt: at('created_at').notNull().defaultNow(),
 });
+
+// --- Slice 2: facts, files, the identifier filter and the activity log
+// (layer1-facts-identifiers-activity, Scope). An owner is a project or an organisation, never both.
+
+// Every saved version of a fact. A ledger: the application role may insert and read, never
+// update or delete (AC-38).
+export const factVersion = pgTable(
+  'fact_version',
+  {
+    id: uuid('id').primaryKey(),
+    projectId: uuid('project_id').references(() => project.id),
+    organisationId: uuid('organisation_id').references(() => organisation.id),
+    fact: text('fact').notNull(),
+    number: integer('number').notNull(),
+    value: jsonb('value').notNull(),
+    savedBy: uuid('saved_by')
+      .notNull()
+      .references(() => person.id),
+    savedAt: at('saved_at').notNull().defaultNow(),
+    restoredFrom: integer('restored_from'),
+    // The confirmation the person made, or that covered the text, when it was saved (AC-24, AC-32).
+    confirmationId: uuid('confirmation_id'),
+  },
+  (t) => [
+    uniqueIndex('fact_version_project_idx').on(t.projectId, t.fact, t.number).where(sql`${t.projectId} is not null`),
+    uniqueIndex('fact_version_organisation_idx').on(t.organisationId, t.fact, t.number).where(sql`${t.organisationId} is not null`),
+    check('fact_version_one_owner', sql`num_nonnulls(${t.projectId}, ${t.organisationId}) = 1`),
+  ],
+);
+
+// Files that joined the record. Their bytes stay in object storage even after a sample is
+// removed, so restoring an earlier Work samples version brings the file back (AC-12).
+export const storedFile = pgTable(
+  'stored_file',
+  {
+    id: uuid('id').primaryKey(),
+    projectId: uuid('project_id').references(() => project.id),
+    organisationId: uuid('organisation_id').references(() => organisation.id),
+    storageKey: text('storage_key').notNull().unique(),
+    fileName: text('file_name').notNull(),
+    mediaType: text('media_type').notNull(),
+    size: bigint('size', { mode: 'number' }).notNull(),
+    sha256: text('sha256').notNull(),
+    addedBy: uuid('added_by')
+      .notNull()
+      .references(() => person.id),
+    addedAt: at('added_at').notNull().defaultNow(),
+  },
+  (t) => [check('stored_file_one_owner', sql`num_nonnulls(${t.projectId}, ${t.organisationId}) = 1`)],
+);
+
+// An upload in progress, held because its text matched, added, or deleted. Working state.
+export const upload = pgTable(
+  'upload',
+  {
+    id: uuid('id').primaryKey(),
+    projectId: uuid('project_id').references(() => project.id),
+    organisationId: uuid('organisation_id').references(() => organisation.id),
+    requestId: uuid('request_id').notNull().unique(),
+    title: text('title').notNull(),
+    fileName: text('file_name').notNull(),
+    mediaType: text('media_type').notNull(),
+    declaredSize: bigint('declared_size', { mode: 'number' }).notNull(),
+    storageKey: text('storage_key').notNull().unique(),
+    state: text('state').notNull().default('pending'),
+    heldUntil: at('held_until'),
+    // Which formats matched, and on which page of a PDF: never the matching text.
+    matches: jsonb('matches'),
+    fileId: uuid('file_id').references(() => storedFile.id),
+    createdBy: uuid('created_by')
+      .notNull()
+      .references(() => person.id),
+    createdAt: at('created_at').notNull().defaultNow(),
+  },
+  (t) => [
+    index('upload_held_idx').on(t.state, t.heldUntil),
+    check('upload_one_owner', sql`num_nonnulls(${t.projectId}, ${t.organisationId}) = 1`),
+  ],
+);
+
+// An organisation's identifier formats. A starter format has a kind and no pattern; an added
+// one has a pattern. Its history is the organisation's activity entries (decision 7).
+export const identifierFormat = pgTable(
+  'identifier_format',
+  {
+    id: uuid('id').primaryKey(),
+    organisationId: uuid('organisation_id')
+      .notNull()
+      .references(() => organisation.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    kind: text('kind').notNull(),
+    pattern: text('pattern'),
+    isOn: boolean('is_on').notNull().default(true),
+    starter: boolean('starter').notNull().default(false),
+    position: integer('position').notNull().default(0),
+    addedBy: uuid('added_by').references(() => person.id),
+    addedAt: at('added_at').notNull().defaultNow(),
+    removedAt: at('removed_at'),
+  },
+  (t) => [index('identifier_format_organisation_idx').on(t.organisationId)],
+);
+
+// A person's confirmation that matching text is not an identifier. A ledger. It keeps a keyed
+// hash of the matching text, never the text (AC-23).
+export const identifierConfirmation = pgTable(
+  'identifier_confirmation',
+  {
+    id: uuid('id').primaryKey(),
+    projectId: uuid('project_id').references(() => project.id),
+    organisationId: uuid('organisation_id').references(() => organisation.id),
+    fact: text('fact'),
+    uploadId: uuid('upload_id').references(() => upload.id),
+    formatIds: jsonb('format_ids').notNull(),
+    textHash: text('text_hash').notNull(),
+    answer: text('answer').notNull(),
+    personId: uuid('person_id')
+      .notNull()
+      .references(() => person.id),
+    at: at('at').notNull().defaultNow(),
+  },
+  (t) => [
+    index('identifier_confirmation_fact_idx').on(t.projectId, t.organisationId, t.fact, t.textHash),
+    check('identifier_confirmation_one_owner', sql`num_nonnulls(${t.projectId}, ${t.organisationId}) = 1`),
+  ],
+);
+
+// The activity log. A ledger: entries are written by commands in the same transaction as their
+// change and never changed (AC-33, AC-38).
+export const activityEntry = pgTable(
+  'activity_entry',
+  {
+    id: uuid('id').primaryKey(),
+    projectId: uuid('project_id').references(() => project.id),
+    organisationId: uuid('organisation_id').references(() => organisation.id),
+    at: at('at').notNull().defaultNow(),
+    actorPersonId: uuid('actor_person_id').references(() => person.id),
+    actorKind: text('actor_kind').notNull(),
+    area: text('area').notNull(),
+    what: text('what').notNull(),
+  },
+  (t) => [
+    index('activity_entry_project_idx').on(t.projectId, t.at),
+    index('activity_entry_organisation_idx').on(t.organisationId, t.at),
+    check('activity_entry_one_owner', sql`num_nonnulls(${t.projectId}, ${t.organisationId}) = 1`),
+  ],
+);
