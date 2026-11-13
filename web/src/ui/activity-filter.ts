@@ -5,7 +5,7 @@ import { startOfDay } from './time';
 // The activity filters in the address (layer1-facts-identifiers-activity#AC-35, AC-36). From and
 // To are whole days in the viewer's zone and both are included.
 
-export const PROJECT_AREAS = { project: 'Project', facts: 'Facts', people: 'People' } as const;
+export const PROJECT_AREAS = { project: 'Project', facts: 'Facts', people: 'People', approvers: 'Approvers', review: 'Review' } as const;
 export const ORGANISATION_AREAS = {
   organisation: 'Organisation',
   'organisation-facts': 'Organisation facts',

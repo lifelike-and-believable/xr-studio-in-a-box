@@ -61,6 +61,7 @@ Addresses (the user documentation names pages, not addresses, so these can chang
 | A project's review queue (added with the slice 3 designs) | `/projects/<project id>/review` |
 | Send for review | `/projects/<project id>/review/new` |
 | Sent by you | `/projects/<project id>/review/sent` |
+| Everything waiting (added with the slice 3 spec) | `/projects/<project id>/review/waiting` |
 | One review item | `/projects/<project id>/review/<item id>` |
 | A project's approvers | `/projects/<project id>/approvers` |
 | Change an area's approver and delegate | `/projects/<project id>/approvers/<area>` |

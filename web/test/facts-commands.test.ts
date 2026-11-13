@@ -381,7 +381,8 @@ describe('every command writes its entry (layer1-facts-identifiers-activity#AC-3
 
 describe('entries hold no values (layer1-facts-identifiers-activity#AC-39)', () => {
   it('never copies a fact value or file name into an entry beyond the command words', async () => {
-    const secret = `Budget note ${randomUUID()}`;
+    // Letters only: a UUID's digits can form 9 digits, which the identifier filter rightly refuses.
+    const secret = `Budget note ${randomUUID().replace(/\d/g, (d) => String.fromCharCode(103 + Number(d)))}`;
     ok(await saveFact(jordanP, project, 'budget', { values: { total: '987654', note: secret }, baseVersion: await version(project, 'budget') }));
     const all = (await entries(project)).map((e) => e.what).join('\n');
     expect(all).not.toContain(secret);

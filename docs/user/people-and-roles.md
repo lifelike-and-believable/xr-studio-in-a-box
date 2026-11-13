@@ -3,12 +3,13 @@ id: docs-people-and-roles
 status: approved
 derived-from:
   - design-people-and-roles: a2487b05978f
+  - design-approvers: 983b149cfa2a
   - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
 ---
 
 # People and roles
 
-Everyone on a project has one or more roles. A role decides what the person can see and do. Holding a role never gives an approval; approvers are named separately in a later release.
+Everyone on a project has one or more roles. A role decides what the person can see and do. Holding a role never gives an approval; approvers are named separately, on the project's **Approvers** tab (see [Approvers](approvers.md)).
 
 ## See who is on a project
 
@@ -62,7 +63,7 @@ You see, for example, "Riley Chen's roles saved: Artist." The change applies the
 2. Select **Remove <name> from the project**.
 3. Confirm with **Remove <name>**, or select **Keep <name>** to go back.
 
-You see, for example, "Sam Okafor removed from The Lantern Keeper. Their past work stays on the project." They lose access the next time they do anything in XR Studio. Their past work and its history stay on the project. Unticking every role and saving does the same, with the same confirmation.
+You see, for example, "Sam Okafor removed from The Lantern Keeper. Their past work stays on the project." They lose access the next time they do anything in XR Studio. Their past work and its history stay on the project. Unticking every role and saving does the same, with the same confirmation. You cannot remove someone who holds an approval or is a delegate until you give their approvals to someone else (see [Approvers](approvers.md#removing-someone-who-approves)).
 
 ## What each role can do
 

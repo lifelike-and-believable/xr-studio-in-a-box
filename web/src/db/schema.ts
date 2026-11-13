@@ -12,6 +12,7 @@ import {
   timestamp,
   uniqueIndex,
   uuid,
+  type AnyPgColumn,
 } from 'drizzle-orm/pg-core';
 
 const at = (name: string) => timestamp(name, { withTimezone: true });
@@ -297,6 +298,9 @@ export const upload = pgTable(
     declaredSize: bigint('declared_size', { mode: 'number' }).notNull(),
     storageKey: text('storage_key').notNull().unique(),
     state: text('state').notNull().default('pending'),
+    // A work sample joins a fact; a review file joins the record as a file only
+    // (layer1-gates-and-queue#AC-17).
+    purpose: text('purpose').notNull().default('work-sample'),
     heldUntil: at('held_until'),
     // Which formats matched, and on which page of a PDF: never the matching text.
     matches: jsonb('matches'),
@@ -344,6 +348,7 @@ export const identifierConfirmation = pgTable(
     organisationId: uuid('organisation_id').references(() => organisation.id),
     fact: text('fact'),
     uploadId: uuid('upload_id').references(() => upload.id),
+    reviewItemId: uuid('review_item_id').references((): AnyPgColumn => reviewItem.id),
     formatIds: jsonb('format_ids').notNull(),
     textHash: text('text_hash').notNull(),
     answer: text('answer').notNull(),
@@ -378,3 +383,72 @@ export const activityEntry = pgTable(
     check('activity_entry_one_owner', sql`num_nonnulls(${t.projectId}, ${t.organisationId}) = 1`),
   ],
 );
+
+// --- Gates and the queue (layer1-gates-and-queue)
+
+// Who decides each area and each protected approval. Access control: working state that a
+// restore never touches. Both columns reference person, so an agent can never be stored (AC-8).
+export const approvalAssignment = pgTable(
+  'approval_assignment',
+  {
+    projectId: uuid('project_id')
+      .notNull()
+      .references(() => project.id),
+    slot: text('slot').notNull(),
+    approverId: uuid('approver_id')
+      .notNull()
+      .references(() => person.id),
+    delegateId: uuid('delegate_id').references(() => person.id),
+  },
+  (t) => [primaryKey({ columns: [t.projectId, t.slot] })],
+);
+
+// Work held at a gate. Its state comes from the decision ledger (AC-28, AC-38).
+export const reviewItem = pgTable(
+  'review_item',
+  {
+    id: uuid('id').primaryKey(),
+    projectId: uuid('project_id')
+      .notNull()
+      .references(() => project.id),
+    handoff: text('handoff').notNull(),
+    title: text('title').notNull(),
+    whatChanged: text('what_changed').notNull(),
+    fileId: uuid('file_id').references(() => storedFile.id),
+    waitingHandoff: text('waiting_handoff'),
+    sentBy: uuid('sent_by')
+      .notNull()
+      .references(() => person.id),
+    sentAt: at('sent_at').notNull().defaultNow(),
+    handedTo: uuid('handed_to').references(() => person.id),
+    handedBy: uuid('handed_by').references(() => person.id),
+  },
+  (t) => [index('review_item_project_idx').on(t.projectId, t.sentAt)],
+);
+
+// The decisions on review items, and withdrawals. A ledger with at most one row per item: the
+// application role may insert and read, never update or delete (AC-28).
+export const reviewDecision = pgTable('review_decision', {
+  id: uuid('id').primaryKey(),
+  itemId: uuid('item_id')
+    .notNull()
+    .unique()
+    .references(() => reviewItem.id),
+  decision: text('decision').notNull(),
+  feedback: text('feedback').notNull().default(''),
+  decidedBy: uuid('decided_by')
+    .notNull()
+    .references(() => person.id),
+  decidedAt: at('decided_at').notNull().defaultNow(),
+});
+
+// An AI reviewer's suggestion on an item. Never a decision (AC-30).
+export const reviewRecommendation = pgTable('review_recommendation', {
+  id: uuid('id').primaryKey(),
+  itemId: uuid('item_id')
+    .notNull()
+    .references(() => reviewItem.id),
+  result: text('result').notNull(),
+  reason: text('reason').notNull(),
+  at: at('at').notNull().defaultNow(),
+});
