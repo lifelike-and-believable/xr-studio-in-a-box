@@ -45,7 +45,8 @@ describe('the gate list matches REQ-workflow-2 (layer1-gates-and-queue#AC-1)', (
     expect(byHand).not.toContain('update-to-a-remote-venue');
     expect(byHand).not.toContain('changes-during-a-live-run');
     expect(byHand).toContain('contracts-and-licence-terms');
-    expect(byHand).toHaveLength(17);
+    // 19 gated hand-offs, less the three builds.
+    expect(byHand).toHaveLength(16);
   });
 });
 

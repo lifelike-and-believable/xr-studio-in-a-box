@@ -33,6 +33,26 @@ async function person(name: string): Promise<{ id: string; email: string }> {
   return { id, email };
 }
 
+// Titles are checked for identifiers, so made-up ones use letters only: a UUID's digits can look
+// like a Business Number.
+const tag = () => randomUUID().replace(/\d/g, (d) => String.fromCharCode(103 + Number(d)));
+
+// Runs one statement as the application role, as the app's pool does.
+async function asApp(statement: string, values: unknown[]): Promise<string> {
+  const client = await pool.connect();
+  try {
+    await client.query('begin');
+    await client.query('set local role xr_app');
+    await client.query(statement, values);
+    return 'allowed';
+  } catch (error) {
+    return (error as { code?: string }).code ?? 'error';
+  } finally {
+    await client.query('rollback');
+    client.release();
+  }
+}
+
 const as = (personId: string): Principal => ({ type: 'person', personId, channel: 'dashboard' });
 const asAgent = (personId: string): Principal => ({ type: 'agent-session', personId, channel: 'agent' });
 const ok = <T>(r: { ok: true; value: T } | { ok: false }): T => {
@@ -65,7 +85,9 @@ async function send(by: string, title: string, handoff: string, waitingOn: strin
   const { registered } = await reviewFile(by);
   const file = ok(registered);
   if (file.state !== 'stored') throw new Error(`file not stored: ${JSON.stringify(file)}`);
-  return ok(await sendForReview(as(by), projectId, { title, handoff, whatChanged: 'Front and side views.', fileId: file.fileId, waitingOn }));
+  const sent = ok(await sendForReview(as(by), projectId, { title, handoff, whatChanged: 'Front and side views.', fileId: file.fileId, waitingOn }));
+  if (sent.movedOn) throw new Error(`${handoff} is not gated`);
+  return sent;
 }
 
 beforeAll(async () => {
@@ -78,8 +100,8 @@ beforeAll(async () => {
   riley = r.id;
   sam = s.id;
   kai = k.id;
-  orgId = ok(await createOrganisation(as(jordan), { name: `Org ${randomUUID()}`, stewardIds: [jordan] })).id;
-  projectId = ok(await startProject(as(jordan), { name: `Lantern ${randomUUID()}`, brief: '', organisationId: orgId, ownerId: jordan })).id;
+  orgId = ok(await createOrganisation(as(jordan), { name: `Org ${tag()}`, stewardIds: [jordan] })).id;
+  projectId = ok(await startProject(as(jordan), { name: `Lantern ${tag()}`, brief: '', organisationId: orgId, ownerId: jordan })).id;
   ok(await addPerson(as(jordan), projectId, { email: m.email, name: 'Morgan Ray', roles: ['director'] }));
   ok(await addPerson(as(jordan), projectId, { email: r.email, name: 'Riley Chen', roles: ['artist'] }));
   ok(await addPerson(as(jordan), projectId, { email: s.email, name: 'Sam Okafor', roles: ['technical-artist'] }));
@@ -205,6 +227,7 @@ describe('identifiers in review text and files (layer1-gates-and-queue#AC-18)', 
     const held = await sendForReview(as(riley), projectId, input);
     expect(held).toMatchObject({ ok: false, status: 400, held: [{ field: 'whatChanged', text: '046 454 286' }] });
     const sent = ok(await sendForReview(as(riley), projectId, { ...input, answer: 'A catalogue number' }));
+    if (sent.movedOn) throw new Error('look and concept art is gated');
     const confirmations = await q('select count(*)::int as n from identifier_confirmation where review_item_id = $1', [sent.itemId]);
     expect(confirmations.rows[0].n).toBe(1);
   });
@@ -227,9 +250,9 @@ describe('work at a hand-off not on the gate list moves on (layer1-gates-and-que
 
 describe('the queue shows only what you can decide, in order (layer1-gates-and-queue#AC-10, AC-20, AC-21)', () => {
   it('groups by stage with blocking groups first, and follows a change of approver', async () => {
-    const env = await send(riley, `Harbour ${randomUUID()}`, 'environments');
-    const blocking = await send(riley, `Pilot ${randomUUID()}`, 'visual-effects', 'interaction-design');
-    const contract = await send(riley, `Licence ${randomUUID()}`, 'contracts-and-licence-terms');
+    const env = await send(riley, `Harbour ${tag()}`, 'environments');
+    const blocking = await send(riley, `Pilot ${tag()}`, 'visual-effects', 'interaction-design');
+    const contract = await send(riley, `Licence ${tag()}`, 'contracts-and-licence-terms');
     const morganQueue = await queueFor(morgan, projectId, {});
     const ids = morganQueue.groups.flatMap((g) => g.items.map((i) => i.id));
     expect(ids).toContain(env.itemId);
@@ -249,9 +272,9 @@ describe('the queue shows only what you can decide, in order (layer1-gates-and-q
 
 describe('decide on one item, once (layer1-gates-and-queue#AC-26, AC-27, AC-28, AC-37)', () => {
   it('records accept, revise and reject with who and when, and logs none of the feedback', async () => {
-    const a = await send(riley, `Accept ${randomUUID()}`, 'character-design');
-    const r = await send(riley, `Revise ${randomUUID()}`, 'character-design');
-    const j = await send(riley, `Reject ${randomUUID()}`, 'character-design');
+    const a = await send(riley, `Accept ${tag()}`, 'character-design');
+    const r = await send(riley, `Revise ${tag()}`, 'character-design');
+    const j = await send(riley, `Reject ${tag()}`, 'character-design');
     expect(await decide(as(morgan), projectId, [r.itemId], { decision: 'revise', feedback: ' ' })).toMatchObject({
       ok: false,
       status: 400,
@@ -275,17 +298,18 @@ describe('decide on one item, once (layer1-gates-and-queue#AC-26, AC-27, AC-28, 
   });
 
   it('refuses a second decision by anyone, naming the first', async () => {
-    const item = await send(riley, `Twice ${randomUUID()}`, 'environments');
+    const item = await send(riley, `Twice ${tag()}`, 'environments');
     ok(await decide(as(sam), projectId, [item.itemId], { decision: 'accept', feedback: '' }));
     const second = ok(await decide(as(morgan), projectId, [item.itemId], { decision: 'reject', feedback: '' }));
     expect(second.decided).toEqual([]);
     expect(second.skipped).toMatchObject([{ id: item.itemId, by: 'Sam Okafor', decision: 'accept' }]);
-    await expect(q('update review_decision set decision = $1 where item_id = $2', ['reject', item.itemId])).rejects.toThrow();
-    await expect(q('insert into review_decision (id, item_id, decision, feedback, decided_by, decided_at) values ($1, $2, $3, $4, $5, now())', [randomUUID(), item.itemId, 'reject', '', morgan])).rejects.toThrow();
+    expect(await asApp('update review_decision set decision = $1 where item_id = $2', ['reject', item.itemId])).toBe('42501');
+    expect(await asApp('delete from review_decision where item_id = $1', [item.itemId])).toBe('42501');
+    expect(await asApp('insert into review_decision (id, item_id, decision, feedback, decided_by, decided_at) values ($1, $2, $3, $4, $5, now())', [randomUUID(), item.itemId, 'reject', '', morgan])).toBe('23505');
   });
 
   it('refuses people who cannot decide the item, and agent sessions', async () => {
-    const item = await send(riley, `Not yours ${randomUUID()}`, 'contracts-and-licence-terms');
+    const item = await send(riley, `Not yours ${tag()}`, 'contracts-and-licence-terms');
     expect(await decide(as(morgan), projectId, [item.itemId], { decision: 'accept', feedback: '' })).toMatchObject({ ok: false, status: 403 });
     expect(await decide(asAgent(jordan), projectId, [item.itemId], { decision: 'accept', feedback: '' })).toMatchObject({ ok: false, status: 403 });
   });
@@ -293,8 +317,8 @@ describe('decide on one item, once (layer1-gates-and-queue#AC-26, AC-27, AC-28, 
 
 describe('decide on several items at once (layer1-gates-and-queue#AC-29)', () => {
   it('decides each still waiting, with one feedback, and names the ones decided meanwhile', async () => {
-    const one = await send(riley, `One ${randomUUID()}`, 'sound-and-music');
-    const two = await send(riley, `Two ${randomUUID()}`, 'sound-and-music');
+    const one = await send(riley, `One ${tag()}`, 'sound-and-music');
+    const two = await send(riley, `Two ${tag()}`, 'sound-and-music');
     ok(await decide(as(sam), projectId, [two.itemId], { decision: 'accept', feedback: '' }));
     const batch = ok(await decide(as(morgan), projectId, [one.itemId, two.itemId], { decision: 'revise', feedback: 'Shorter, please.' }));
     expect(batch.decided.map((d) => d.id)).toEqual([one.itemId]);
@@ -305,7 +329,7 @@ describe('decide on several items at once (layer1-gates-and-queue#AC-29)', () =>
 
 describe('an AI recommendation cannot pass the gate (layer1-gates-and-queue#AC-30)', () => {
   it('is added only by an agent session, shown, and leaves the item waiting', async () => {
-    const item = await send(riley, `Recommended ${randomUUID()}`, 'mesh-and-rig');
+    const item = await send(riley, `Recommended ${tag()}`, 'mesh-and-rig');
     expect(await addRecommendation(as(morgan), projectId, item.itemId, { result: 'accept', reason: 'Fine.' })).toMatchObject({ ok: false, status: 403 });
     ok(await addRecommendation(asAgent(jordan), projectId, item.itemId, { result: 'accept', reason: 'The proportions match the accepted concept art.' }));
     const queued = (await queueFor(morgan, projectId, {})).groups.flatMap((g) => g.items).find((i) => i.id === item.itemId);
@@ -318,7 +342,7 @@ describe('an AI recommendation cannot pass the gate (layer1-gates-and-queue#AC-3
 
 describe('hand an item to your delegate (layer1-gates-and-queue#AC-31, AC-23)', () => {
   it('marks the item handed, filters by it, and both can still decide', async () => {
-    const item = await send(riley, `Handed ${randomUUID()}`, 'environments');
+    const item = await send(riley, `Handed ${tag()}`, 'environments');
     expect(await handOn(as(sam), projectId, item.itemId)).toMatchObject({ ok: false, status: 403 });
     expect(ok(await handOn(as(morgan), projectId, item.itemId))).toEqual({ to: 'Sam Okafor', title: expect.any(String) });
     const handed = await queueFor(sam, projectId, { handedTo: 'you' });
@@ -327,25 +351,25 @@ describe('hand an item to your delegate (layer1-gates-and-queue#AC-31, AC-23)', 
     expect((await queueFor(morgan, projectId, { handedTo: 'none' })).groups.flatMap((g) => g.items.map((i) => i.id))).not.toContain(item.itemId);
     expect((await entries()).at(-1)).toMatchObject({ what: `Handed ${item.title} to Sam Okafor`, area: 'Review' });
     ok(await decide(as(morgan), projectId, [item.itemId], { decision: 'accept', feedback: '' }));
-    const contract = await send(riley, `Licence ${randomUUID()}`, 'contracts-and-licence-terms');
+    const contract = await send(riley, `Licence ${tag()}`, 'contracts-and-licence-terms');
     expect(await handOn(as(jordan), projectId, contract.itemId)).toMatchObject({ ok: false, status: 409 });
   });
 });
 
 describe('decide your own item (layer1-gates-and-queue#AC-32)', () => {
   it('lets a decider decide an item they sent', async () => {
-    const item = await send(morgan, `Own ${randomUUID()}`, 'cue-list');
+    const item = await send(morgan, `Own ${tag()}`, 'cue-list');
     expect(ok(await decide(as(morgan), projectId, [item.itemId], { decision: 'accept', feedback: '' })).decided).toHaveLength(1);
   });
 });
 
 describe('withdraw something you sent (layer1-gates-and-queue#AC-33, AC-34)', () => {
   it('withdraws while waiting, only by the sender, and refuses once decided', async () => {
-    const item = await send(riley, `Withdrawn ${randomUUID()}`, 'look-and-concept-art');
+    const item = await send(riley, `Withdrawn ${tag()}`, 'look-and-concept-art');
     expect(await withdrawItem(as(morgan), projectId, item.itemId)).toMatchObject({ ok: false, status: 403 });
     expect(ok(await withdrawItem(as(riley), projectId, item.itemId))).toMatchObject({ deciders: ['Morgan Ray', 'Sam Okafor'] });
     expect((await entries()).at(-1)).toMatchObject({ what: `Withdrew ${item.title}`, area: 'Review' });
-    const decided = await send(riley, `Decided ${randomUUID()}`, 'look-and-concept-art');
+    const decided = await send(riley, `Decided ${tag()}`, 'look-and-concept-art');
     ok(await decide(as(morgan), projectId, [decided.itemId], { decision: 'accept', feedback: '' }));
     const refused = await withdrawItem(as(riley), projectId, decided.itemId);
     expect(refused).toMatchObject({ ok: false, status: 409 });
@@ -358,7 +382,7 @@ describe('withdraw something you sent (layer1-gates-and-queue#AC-33, AC-34)', ()
 
 describe('everything waiting (layer1-gates-and-queue#AC-36)', () => {
   it('lists every waiting item oldest first, with who it waits for', async () => {
-    const item = await send(riley, `Waiting ${randomUUID()}`, 'contracts-and-licence-terms');
+    const item = await send(riley, `Waiting ${tag()}`, 'contracts-and-licence-terms');
     const all = await waitingOn(projectId, riley);
     const row = all.find((w) => w.id === item.itemId);
     expect(row?.waitingFor).toBe('Jordan Lee');
