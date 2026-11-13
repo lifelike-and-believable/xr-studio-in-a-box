@@ -27,7 +27,7 @@ Who decides the work that waits at each gate (story-project-record-name-approver
 3. Under **Protected approvals**, a table lists the four protected approvals with their **Holder**: **Contracts and licence terms**, **Funding applications and reports**, **Publishing and marketing** and **Audience-facing safety and consent**. Each is also a hand-off in the gate list (the first three in Business, the last in Performance and behaviour), and items at it go to its holder, not to the area's approver or delegate.
 4. The page says that hand-offs not listed, such as a build for rehearsal, move on without waiting, and that one person can hold every approval.
 5. A person with the Director or Producer role sees **Change** on each row `[proposed]`. Others see the tables and a line naming who can change them.
-6. **Change** on an area opens **<Area>: approver and delegate**: an **Approver** list and a **Delegate (optional)** list with **No delegate** first. Both list only people on the project whose roles open the dashboard; agents are never listed. **Save <Area>** returns to the tab with a notice; focus moves to it.
+6. **Change** on an area opens **<Area>: approver and delegate**: an **Approver** list and a **Delegate (optional)** list with **No delegate** first. Both list only people on the project whose roles open the dashboard, marking anyone who has not signed in yet "(invited, not signed in yet)"; agents are never listed. **Save <Area>** returns to the tab with a notice; focus moves to it.
 7. **Change** on a protected approval opens **<Approval>: holder** with a **Holder** list of the same people. **Save <approval>** returns to the tab with a notice.
 8. A change applies at once to items already waiting: they wait for the new approver and delegate, or the new holder (design-review-queue).
 
@@ -51,7 +51,7 @@ Who decides the work that waits at each gate (story-project-record-name-approver
 
 ## States and errors
 
-- **A new project:** its owner is the approver of all four areas and the holder of all four protected approvals, with no delegates `[proposed]`. So a solo production needs no setup, and no item can ever wait for nobody.
+- **A new project:** its owner is the approver of all four areas and the holder of all four protected approvals, with no delegates `[proposed]`. So a solo production needs no setup, and no item can ever wait for nobody. When the owner is not the director (Jordan started the project for Morgan, say), Morgan's **Review** says they approve no area and links to **Approvers**, where Morgan, as Director, can name themselves.
 - **Same person as approver and delegate:** "Choose someone other than the approver as delegate, or No delegate." Nothing is saved; the choices are kept.
 - **Saved:** "Creative saved: Morgan Ray approves it, with Sam Okafor as delegate. Items already waiting in Creative now wait for them." and "Contracts and licence terms saved: Jordan Lee holds it."
 - **Removing a person who holds an approval:** refused until their approvals are given to someone else `[proposed]`. **People** shows "Sam Okafor cannot be removed yet" with which approvals they hold, **Keep Sam** and **Go to Approvers**, instead of the removal confirmation (design-people-and-roles). The same applies when a role change would leave them with only roles that do not open the dashboard: the change is refused with the same text in an error summary.

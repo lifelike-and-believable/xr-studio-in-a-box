@@ -8,7 +8,7 @@ derived-from:
   - persona-director#goals: a92ca172be83
   - persona-director#frustrations: 3721421a3614
   - persona-artist#goals: 0767918db571
-  - design-approvers: 3a84aca4e901
+  - design-approvers: 983b149cfa2a
   - design-identifier-filter: 069c84a56674
   - decision-navigation-and-urls#decision: 0efbb1ac8df4
 ---
@@ -29,8 +29,8 @@ In slice 3 a person puts work at a gate with **Send for review**: a title, the s
 
 ### Send work for review
 
-1. On a project, the **Review** tab sits after **Overview**. Everyone on the project who uses the dashboard can open it. It has **Send for review** and **Sent by you** at the top.
-2. **Send for review** opens a form: **Title**, **Stage** (the gated hand-offs, grouped by area), **What changed**, **File**, and **Is other work waiting on this decision? (optional)**, which lists the same stages with **Nothing is waiting** first.
+1. On a project, the **Review** tab sits after **Overview**. Everyone on the project who uses the dashboard can open it. It has **Send for review**, **Sent by you** and **Everything waiting** at the top.
+2. **Send for review** opens a form: **Title**, **Stage** (the stages that need someone's approval, which are the gated hand-offs, grouped by area), **What changed**, **File**, and **Is other work waiting on this decision? (optional)**, which lists the same stages with **Nothing is waiting** first.
 3. Once a stage is chosen, a line under it says who decides: "Morgan Ray, the Creative approver, or Sam Okafor, the delegate, decides this." For a protected hand-off it names the holder only.
 4. **Send for review** puts the item at the gate. **Sent by you** opens with a notice: "Sent for review: Ferry pilot character sheet. It waits for Morgan Ray or Sam Okafor."
 5. Only gated hand-offs are offered. Work at a hand-off that is not on the gate list does not wait for anyone, so there is nothing to send.
@@ -41,22 +41,29 @@ In slice 3 a person puts work at a gate with **Send for review**: a title, the s
 2. Items are grouped by the gate they are held at (the stage), with the area beside each group heading. Groups with a blocking item come first, ordered by their oldest blocking item; then the other groups, by their oldest item. Inside a group, blocking items come first, then the rest, oldest first.
 3. Each item shows a preview, its title (a link to the item), **Stage**, **Requested by** (with the date and time), and **What changed**. A blocking item shows the **Blocking** tag and "<stage> waits on this decision." An item handed to the delegate shows **Handed to <name>**. An AI recommendation is shown in its own dashed box headed **AI recommendation, not a decision**.
 4. A line above the groups counts them: "5 items waiting for your decision, 1 blocking."
-5. Filters: **Area** (**All areas** and the four areas) and **Handed to** (**Anyone**, **Not handed on**, and each delegate of an area the person approves). **Apply filters** reloads the page; focus moves to the result line and the page title starts with it. **Clear filters** shows everything again.
+5. Filters: **Area** (**All areas** and the areas the person decides in) and **Handed to** (**Anyone**, **Not handed on**, each delegate of an area the person approves, and **Handed to you** for a delegate). **Apply filters** reloads the page; focus moves to the result line and the page title starts with it. **Clear filters** shows everything again.
 
 ### Decide
 
 1. Opening an item shows a large preview, **Open the file**, its details, **Waiting for** (who can decide it), and any blocking note and AI recommendation.
-2. Under **Your decision**: **Feedback for <requester> (needed to request a revision)**, then **Accept**, **Request revision** and **Reject**. Feedback is optional for accepting and rejecting, and required for a revision.
-3. The approver of an area that has a delegate also sees **Hand to <delegate>**. It marks the item as handed to them; either of them can still decide it.
-4. After a decision, **Review** opens with a notice, focus on it: "Accepted: Lantern Keeper character sheet. Recorded as your decision at 14:20 on 13 November. Riley Chen sees it under Sent by you." The item has left the queue.
-5. Several at once: tick items and choose **Accept selected**, **Request revision for selected** or **Reject selected**; or, on a group with two or more items, **Accept all <n> in <stage>**. A confirmation lists the items. A batch revision request asks for one **Feedback**, which each requester sees with their item. The notice counts the decisions: "Accepted 2 items in Character design."
-6. A decision is final. It is recorded with who made it and when, and cannot be changed afterwards. To try again after a revision or a rejection, the requester sends the work again.
+2. Under **Your decision**: **Feedback for <requester> (needed to request a revision)**, then **Accept**, **Request revision** and **Reject**. Feedback is optional for accepting and rejecting, and required for a revision. Whatever feedback is given, the requester sees it with the decision.
+3. **Accept** and **Request revision** act at once. **Reject** asks for confirmation first, because a rejected item does not move on: the same confirmation as for several items, with optional feedback `[proposed]`.
+4. The approver of an area that has a delegate also sees **Hand to <delegate>**. It marks the item as handed to them, and the queue opens with a notice: "Handed to Sam Okafor: Harbour at night, lighting pass. It shows in Sam's queue as handed to them. You can still decide it." Either of them can still decide it.
+5. A person who can decide an item they sent themselves may decide it, so one person can run a production alone (story-project-record-name-approvers).
+6. After a decision, **Review** opens with a notice, focus on it: "Accepted: Lantern Keeper character sheet. Recorded as your decision at 14:20 on 13 November. Riley Chen sees it under Sent by you." The item has left the queue.
+7. Several at once: tick items and choose **Accept selected**, **Request revision for selected** or **Reject selected**; or, on a group with two or more items, **Accept all <n> in <stage>**. A confirmation lists the items. A batch rejection takes optional **Feedback**; a batch revision request asks for one **Feedback**, which each requester sees with their item. The notice counts the decisions: "Accepted 2 items in Character design."
+8. A decision is final. It is recorded with who made it and when, and cannot be changed afterwards. To try again after a revision or a rejection, the requester sends the work again.
 
 ### See your requests
 
 1. **Sent by you** lists what the person has sent, newest first: the item, its stage, when it was sent, and its status.
-2. Status is one of: "Waiting for <approver> or <delegate> (delegate)" (or the holder, for a protected approval); "Accepted by <name>, <date and time>"; "Revision requested by <name>, <date and time>" with the feedback and **Send a revised version**; "Rejected by <name>, <date and time>" with the feedback if any.
-3. **Send a revised version** opens **Send for review** with the title and stage filled in.
+2. Status is one of: "Waiting for <approver> or <delegate> (delegate)" (or the holder, for a protected approval); "Accepted by <name>, <date and time>"; "Revision requested by <name>, <date and time>" with **Send a revised version**; "Rejected by <name>, <date and time>" with **Send it again**. Any feedback is shown under the status.
+3. **Send a revised version** and **Send it again** open **Send for review** with the title, stage and blocking choice filled in. Linking the new item to the old one as a version comes with story-review-and-status-feedback-and-versions (slice 4).
+
+### See everything waiting
+
+1. **Everything waiting** lists every item held at a gate on the project, oldest first, with its stage, who sent it and when, a **Blocking** tag where it applies, and **Waiting for**: the person or people who can decide it, "<name> (handed on by <approver>)", or "You". Everyone on the project who uses the dashboard can open it, and open each item read only (story-review-and-status-hold-gated-hand-off: the status of held work shows who it is waiting for).
+2. Only the people named under **Waiting for** see decision controls on the item.
 
 ## Mock-ups
 
@@ -72,6 +79,9 @@ In slice 3 a person puts work at a gate with **Send for review**: a title, the s
 | Decided by someone else meanwhile | ![Not recorded](review-queue/item-conflict.png) | |
 | One item, as the person who sent it | ![Item, requester](review-queue/item-requester.png) | No decision controls. |
 | An item at a protected hand-off, as its holder | ![Protected item](review-queue/item-protected.png) | No **Hand to**. |
+| Queue after Hand to | ![Handed to Sam Okafor](review-queue/queue-handed.png) | Focus on the notice. |
+| Reject one item or a selection, confirmation | ![Reject 2 items?](review-queue/batch-reject.png) | Feedback optional. |
+| Everything waiting, as Jordan | ![Everything waiting](review-queue/waiting.png) | Phone: ![At 320px](review-queue/waiting-phone.png). Read only. |
 | Accept a group or a selection, confirmation | ![Accept 2 items?](review-queue/batch-accept.png) | Phone: ![At 320px](review-queue/batch-accept-phone.png) |
 | Request revision for a selection | ![Request a revision of 2 items?](review-queue/batch-revise.png) | One feedback for all. |
 | Send for review | ![Send for review](review-queue/send.png) | Phone: ![At 320px](review-queue/send-phone.png) |
@@ -83,13 +93,15 @@ In slice 3 a person puts work at a gate with **Send for review**: a title, the s
 - **Review** is a project tab after **Overview**. The queue is per project, like every tab (decision-navigation-and-urls); a person's items across all their projects come with "What needs you" in slice 4 (story-review-and-status-what-needs-me).
 - An item in the queue is a row: a checkbox, a preview 120 pixels wide, then its details. At 320 pixels the preview sits above the details and each label sits above its value.
 - Previews: an image is shown scaled down; a video shows its first frame and audio its file name, with a player on the item page; a PDF shows its first page; a Word document shows its file name and page count. **Open the file** opens the file itself.
-- Control names: **Review**, **Send for review**, **Sent by you**, **Title**, **Stage**, **What changed**, **File**, **Is other work waiting on this decision?**, **Nothing is waiting**, **Cancel**, **Area**, **All areas**, **Handed to**, **Anyone**, **Not handed on**, **Apply filters**, **Clear filters**, **Accept selected**, **Request revision for selected**, **Reject selected**, **Accept all <n> in <stage>**, **Accept**, **Request revision**, **Reject**, **Feedback for <requester>**, **Hand to <delegate>**, **Open the file**, **Go back**, **Accept <n> items**, **Request revision of <n> items**, **Feedback**, **Back to Review**, **Send a revised version**, **Blocking**, **Handed to <name>**, **AI recommendation, not a decision**.
+- Control names: **Review**, **Send for review**, **Sent by you**, **Everything waiting**, **Send it again**, **Reject <n> items**, **Handed to you**, **Waiting for**, **Title**, **Stage**, **What changed**, **File**, **Is other work waiting on this decision?**, **Nothing is waiting**, **Cancel**, **Area**, **All areas**, **Handed to**, **Anyone**, **Not handed on**, **Apply filters**, **Clear filters**, **Accept selected**, **Request revision for selected**, **Reject selected**, **Accept all <n> in <stage>**, **Accept**, **Request revision**, **Reject**, **Feedback for <requester>**, **Hand to <delegate>**, **Open the file**, **Go back**, **Accept <n> items**, **Request revision of <n> items**, **Feedback**, **Back to Review**, **Send a revised version**, **Blocking**, **Handed to <name>**, **AI recommendation, not a decision**.
 
 ## States and errors
 
 - **Send for review, fields missing:** "Enter a title.", "Choose the stage this work is at.", "Say what changed.", "Choose a file to send." in an error summary that takes focus; everything typed is kept, except the file, which has to be chosen again.
 - **Lengths:** **Title** at most 120 characters, **What changed** and feedback at most 2,000 `[assumed]`. Longer text is refused, not cut: "Keep the title to 120 characters or fewer." and the same wording for the others.
-- **Identifiers:** **Title**, **What changed** and feedback can be read by agents, so they are checked against the organisation's identifier formats before anything is saved, with the same error and **It is not a <format>** confirmation as facts (design-identifier-filter). A PDF or Word file is checked as a work sample is: a matching file is held, not sent, with the same held notice and 24-hour deletion. File types are those of work samples: "Choose a video, image, audio, PDF or Word file."
+- **Identifiers:** **Title**, **What changed** and feedback can be read by agents, so they are checked against the organisation's identifier formats before anything is saved, with the same error and **It is not a <format>** confirmation as facts (design-identifier-filter). A PDF or Word file is checked as a work sample is: a matching file is held, not sent, with the same held notice, the same **It is not a <format>, add <file>** confirmation and the same 24-hour deletion.
+- **A document that really holds bank details or a tax number,** such as a signed contract or a funding report: until the protected store arrives (story-contracts-and-payment-protect-sensitive-data), it cannot be sent, and the held notice says to send a copy with those numbers removed and keep the original outside XR Studio, as design-identifier-filter advises for facts `[open]`. The approver may prefer that items at the contracts and funding hand-offs wait for the protected store.
+- **File types:** those of work samples plus 3D models (.glb, .gltf, .fbx, .usdz) `[proposed]`, so mesh, rig, environment and effects work can be sent as itself rather than a screenshot. A model shows its file name in the preview, with **Open the file**; a 3D viewer comes with the content layer. Any other type: "Choose a video, image, audio, PDF, Word or 3D model file." Builds are not sent by hand; they reach their gates from the build pipeline (Layer 5).
 - **Request revision with no feedback:** "Write feedback for <requester>: say what to change." Nothing is recorded. In the batch dialog: "Write the feedback each requester will see."
 - **Nothing selected:** "Select at least one item." above the batch buttons, with focus moved to it.
 - **Decided by someone else while open** (the approver and the delegate both acting): the second decision is not recorded. "Your decision was not recorded: Sam Okafor accepted this item at 14:18 on 13 November, while you had it open. It has left your queue." with **Back to Review**. In a batch, the items still waiting are decided and the notice names the ones that were not.
@@ -98,13 +110,14 @@ In slice 3 a person puts work at a gate with **Send for review**: a title, the s
 - **Not an approver:** "You do not approve any area on this project, so nothing waits for your decision here.", with a link to **Approvers**.
 - **Sent by you, nothing sent:** "You have not sent anything for review on this project."
 - **Agents:** an agent cannot accept, request revision, reject or hand on; the command layer refuses it. An agent's recommendation is shown only in the **AI recommendation, not a decision** box, and nothing in the record treats it as a decision.
-- **Who can open an item:** its requester, and whoever can decide it. Anyone else gets **This page is not available**. (The status board in slice 4 shows everyone where each stage stands.)
+- **Who can open an item:** everyone on the project who uses the dashboard, read only; only the people it waits for can decide it.
+- **Approvers and delegates not signed in yet:** the lists on **Approvers** mark them "(invited, not signed in yet)", so Morgan can see an item may wait for someone who has not started.
 
 ## How it works
 
 - **How does the system know?**
   - Who an item waits for is worked out on each page load from its stage and the current assignments (design-approvers). "Waiting for" and the queue therefore follow a change of approver at once.
-  - An item is blocking when its requester said a stage waits on it. When the status board arrives (slice 4), stages waiting on an item are also known from the board. `[proposed]`
+  - An item is blocking when its requester said a stage waits on it. In slice 3 that is the only source, so an item whose requester did not say is not marked; the status board (slice 4) also marks items that stages on the board wait on. `[proposed]`
   - Decisions are entries in the append-only approvals ledger (decision-project-record-model), with the person, the time, the decision and any feedback. An item's state comes from that ledger, so it survives a reload, another device and a restore.
 - **What enforces each promise?**
   - "Gated work does not move on until the named person or their delegate accepts it": an item's state changes only through a decision command, which checks on the server that the person can decide it now. A test tries to decide as someone else, and as an agent session.

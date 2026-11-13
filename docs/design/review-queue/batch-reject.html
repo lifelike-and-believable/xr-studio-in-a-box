@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reject 2 items? - Review - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: Reject (one item or a selection), confirmation; focus starts on the heading</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Morgan Ray</button></div>
+</header>
+<main id="main">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+<h1 id="dlg-title" tabindex="-1">Reject 2 items?</h1>
+<ul><li>Bell sounds for the opening, from Riley Chen</li><li>Opening scene cue list, from Sam Okafor</li></ul>
+<p>A rejected item does not move on. Each requester sees your decision, and can send the work again.</p>
+<form method="post">
+<div class="field"><label for="reject-feedback">Feedback <span class="optional">(optional)</span></label><span class="hint" id="reject-feedback-hint">Each requester sees this with their item. Say why.</span><textarea id="reject-feedback" name="feedback" aria-describedby="reject-feedback-hint"></textarea></div>
+<div class="actions"><button type="button" class="secondary">Go back</button><button type="submit">Reject 2 items</button></div></form>
+</div>
+</main>
+</body>
+</html>
