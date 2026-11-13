@@ -260,7 +260,12 @@ test('restore conflicts and identifier checks (layer1-versions-board-first-view#
   );
 
   // A PDF that matches a format added since it was sent is held, not sent.
-  const pdf = Buffer.from(pdfWithPages(['Prop 123-XY-45678']));
+  // Jordan's organisation keeps its formats between runs, so this run's format has a literal prefix
+  // of its own (letters other than A are literal in a pattern), and seven digits no starter matches.
+  // The number starts the text: spaces are dropped when matching, and a letter before the prefix
+  // would run into it.
+  const prefix = Array.from({ length: 4 }, () => 'BCDEFGHJKLMNPQRSTUVWXYZ'[Math.floor(Math.random() * 23)]).join('');
+  const pdf = Buffer.from(pdfWithPages([`${prefix}-4567890 is the prop number.`]));
   const up = (await (
     await c.riley.request.post(`/api/v1/projects/${c.project}/uploads`, {
       data: { requestId: crypto.randomUUID(), title: 'props.pdf', fileName: 'props.pdf', mediaType: 'application/pdf', size: pdf.length, purpose: 'review' },
@@ -278,7 +283,7 @@ test('restore conflicts and identifier checks (layer1-versions-board-first-view#
   await c.riley.request.post(`/api/v1/projects/${c.project}/review-items/${later.itemId}/withdraw`);
   const org = (await (await page.request.get(`/api/v1/projects/${c.project}`)).json()) as { organisationId: string };
   const added = await page.request.post(`/api/v1/organisations/${org.organisationId}/identifier-formats`, {
-    data: { name: `Prop number ${Date.now().toString(36).replace(/\d/g, 'p')}`, pattern: '###-AA-#####' },
+    data: { name: `Prop number ${prefix}`, pattern: `${prefix}-#######` },
   });
   expect(added.ok(), await added.text()).toBe(true);
   await c.riley.goto(`/projects/${c.project}/board/${sent.workId}`);
