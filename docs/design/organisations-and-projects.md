@@ -6,7 +6,7 @@ derived-from:
   - story-project-record-start-project#acceptance-criteria: 83fa11a80149
   - persona-director#goals: a92ca172be83
   - persona-producer#frustrations: a9b85718690b
-  - decision-navigation-and-urls#decision: f7c965cb194d
+  - decision-navigation-and-urls#decision: 0efbb1ac8df4
 ---
 
 # Organisations and projects design

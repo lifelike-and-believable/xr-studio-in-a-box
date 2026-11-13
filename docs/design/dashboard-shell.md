@@ -7,7 +7,7 @@ derived-from:
   - story-project-record-start-project#acceptance-criteria: 83fa11a80149
   - persona-producer#goals: d1cc47b03be9
   - persona-director#frustrations: 3721421a3614
-  - decision-navigation-and-urls#decision: f7c965cb194d
+  - decision-navigation-and-urls#decision: 0efbb1ac8df4
 ---
 
 # Dashboard shell design

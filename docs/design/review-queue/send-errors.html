@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Not sent - Send for review - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: Send for review with nothing filled in; focus on the summary</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Riley Chen</button></div>
+</header>
+<main id="main">
+<p><a href="#">Review</a></p>
+<h1>Send for review</h1>
+<p class="lead">Send work at a gated hand-off to the person who decides it. It waits there until they accept it.</p>
+<div class="error-summary" role="alert" tabindex="-1" aria-labelledby="err-title"><h2 id="err-title">Not sent</h2><ul><li><a href="#title">Enter a title.</a></li><li><a href="#handoff">Choose the stage this work is at.</a></li><li><a href="#changed">Say what changed.</a></li><li><a href="#file">Choose a file to send.</a></li></ul></div>
+<form method="post" enctype="multipart/form-data">
+<div class="field"><label for="title">Title</label><span class="error-message" id="title-error">Enter a title.</span><input type="text" id="title" name="title" aria-describedby="title-error" aria-invalid="true" value=""></div>
+<div class="field"><label for="handoff">Stage</label><span class="hint" id="handoff-hint">Only gated hand-offs are listed. Work at other hand-offs moves on without review.</span><span class="error-message" id="handoff-error">Choose the stage this work is at.</span><select id="handoff" name="handoff" aria-describedby="handoff-error handoff-hint" aria-invalid="true"><option value="" selected>Choose a stage</option><optgroup label="Creative"><option>Look and concept art</option><option>Character design</option><option>Mesh and rig</option><option>Environments</option><option>Visual effects</option><option>Sound and music</option><option>Interaction design</option></optgroup><optgroup label="Performance and behaviour"><option>Motion and performance quality</option><option>AI behaviour, voice and dialogue</option><option>Cue list</option><option>Audience-facing safety and consent</option></optgroup><optgroup label="Builds and operations"><option>Build for a public show</option><option>Update to a remote venue</option><option>Changes during a live run</option></optgroup><optgroup label="Business"><option>Funding applications and reports</option><option>Contracts and licence terms</option><option>Spend above a limit</option><option>Publishing and marketing</option><option>AI-use statements and credits</option></optgroup></select></div>
+<div class="summary" role="status" aria-live="polite"></div>
+<div class="field"><label for="changed">What changed</label><span class="hint" id="changed-hint">What the reviewer should look at. Keep bank details and tax numbers out: agents can read this.</span><span class="error-message" id="changed-error">Say what changed.</span><textarea id="changed" name="changed" aria-describedby="changed-error changed-hint" aria-invalid="true"></textarea></div>
+<div class="field"><label for="file">File</label><span class="hint" id="file-hint">A video, image, audio, PDF or Word file. The text of PDFs and Word documents is checked for identifiers, as for work samples.</span><span class="error-message" id="file-error">Choose a file to send.</span><input type="file" id="file" name="file" aria-describedby="file-error file-hint" aria-invalid="true"></div>
+<div class="field"><label for="waiting">Is other work waiting on this decision? <span class="optional">(optional)</span></label><span class="hint" id="waiting-hint">Choose the stage that cannot start until this is decided. The item is then marked as blocking.</span><select id="waiting" name="waiting" aria-describedby="waiting-hint"><option value="" selected>Nothing is waiting</option><optgroup label="Creative"><option>Look and concept art</option><option>Character design</option><option>Mesh and rig</option><option>Environments</option><option>Visual effects</option><option>Sound and music</option><option>Interaction design</option></optgroup><optgroup label="Performance and behaviour"><option>Motion and performance quality</option><option>AI behaviour, voice and dialogue</option><option>Cue list</option><option>Audience-facing safety and consent</option></optgroup><optgroup label="Builds and operations"><option>Build for a public show</option><option>Update to a remote venue</option><option>Changes during a live run</option></optgroup><optgroup label="Business"><option>Funding applications and reports</option><option>Contracts and licence terms</option><option>Spend above a limit</option><option>Publishing and marketing</option><option>AI-use statements and credits</option></optgroup></select></div>
+<div class="actions"><button type="submit">Send for review</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

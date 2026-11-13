@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative: approver and delegate - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: change the approver and delegate for an area</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Morgan Ray</button></div>
+</header>
+<main id="main">
+<p><a href="#">Approvers</a></p>
+<h1>Creative: approver and delegate</h1>
+<p class="lead">Creative covers look and concept art, character design, mesh and rig, environments, visual effects, sound and music, and interaction design.</p>
+<form method="post">
+<div class="field"><label for="approver">Approver</label><span class="hint" id="approver-hint">Only people on this project who use the dashboard are listed. An agent can never approve.</span><select id="approver" name="approver" aria-describedby="approver-hint"><option>Jordan Lee</option><option selected>Morgan Ray</option><option>Riley Chen</option><option>Sam Okafor</option></select></div>
+<div class="field"><label for="delegate">Delegate <span class="optional">(optional)</span></label><span class="hint" id="delegate-hint">The delegate can decide every item in Creative, and the approver can hand items to them.</span><select id="delegate" name="delegate" aria-describedby="delegate-hint"><option>No delegate</option><option>Jordan Lee</option><option>Morgan Ray</option><option>Riley Chen</option><option selected>Sam Okafor</option></select></div>
+<div class="actions"><button type="submit">Save Creative</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

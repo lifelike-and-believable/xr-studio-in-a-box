@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accepted - Review - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: the queue after accepting one item; focus on the notice</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Morgan Ray</button></div>
+</header>
+<main id="main">
+<p>Organisation: <a href="#">Harbourfront Puppet Co.</a></p>
+<h1>The Lantern Keeper</h1>
+<nav aria-label="Project"><ul class="tabs"><li><a href="#">Overview</a></li><li><a href="#" aria-current="page">Review</a></li><li><a href="#">Facts</a></li><li><a href="#">People</a></li><li><a href="#">Approvers</a></li><li><a href="#">Activity</a></li></ul></nav>
+<div class="notice" role="status" tabindex="-1"><p>Accepted: Lantern Keeper character sheet. Recorded as your decision at 14:20 on 13 November. Riley Chen sees it under Sent by you.</p></div>
+<p class="lead">Work waiting for your decision, grouped by the gate it is held at. Groups with blocking items come first, oldest first.</p>
+<div class="subnav"><a class="button" href="#">Send for review</a><a href="#">Sent by you</a></div>
+<form method="get" class="filters" aria-label="Filter the queue">
+<div class="filter-row">
+<div class="field"><label for="f-area">Area</label><select id="f-area" name="area"><option selected>All areas</option><option>Creative</option><option>Performance and behaviour</option><option>Builds and operations</option><option>Business</option></select></div>
+<div class="field"><label for="f-handed">Handed to</label><select id="f-handed" name="handed"><option selected>Anyone</option><option>Not handed on</option><option>Sam Okafor</option></select></div>
+</div>
+<div class="actions"><button type="submit">Apply filters</button><a href="#">Clear filters</a></div>
+</form>
+<p>4 items waiting for your decision, none blocking.</p>
+<form method="post">
+<div class="batch" role="group" aria-labelledby="batch-label"><p id="batch-label"><strong>With the items you select</strong></p>
+<div class="actions"><button type="submit" name="batch" value="accept">Accept selected</button><button type="submit" name="batch" value="revise" class="secondary">Request revision for selected</button><button type="submit" name="batch" value="reject" class="secondary">Reject selected</button></div></div>
+<section aria-labelledby="g-character-design">
+<div class="group-head"><h2 id="g-character-design">Character design</h2><p class="hint">Creative. 1 item.</p></div>
+<ul class="items">
+<li class="item">
+<input type="checkbox" id="sel-2" name="items" value="2" aria-label="Select Ferry pilot character sheet">
+<div class="preview" role="img" aria-label="Preview of pilot-sheet.png">pilot-sheet.png</div>
+<div>
+<h3><a href="#">Ferry pilot character sheet</a></h3>
+<dl class="meta"><dt>Stage</dt><dd>Character design (Creative)</dd><dt>Requested by</dt><dd>Riley Chen, 12 November, 11:30</dd><dt>What changed</dt><dd>First version.</dd></dl>
+
+</div>
+</li>
+</ul>
+</section>
+<section aria-labelledby="g-environments">
+<div class="group-head"><h2 id="g-environments">Environments</h2><p class="hint">Creative. 1 item.</p></div>
+<ul class="items">
+<li class="item">
+<input type="checkbox" id="sel-3" name="items" value="3" aria-label="Select Harbour at night, lighting pass">
+<div class="preview" role="img" aria-label="Preview of harbour-night.png">harbour-night.png</div>
+<div>
+<h3><a href="#">Harbour at night, lighting pass</a></h3>
+<dl class="meta"><dt>Stage</dt><dd>Environments (Creative)</dd><dt>Requested by</dt><dd>Riley Chen, 11 November, 09:40</dd><dt>What changed</dt><dd>Lamps warmer; fog lowered so the stage edge shows.</dd></dl>
+<p><span class="tag">Handed to Sam Okafor</span></p>
+</div>
+</li>
+</ul>
+</section>
+<section aria-labelledby="g-sound-and-music">
+<div class="group-head"><h2 id="g-sound-and-music">Sound and music</h2><p class="hint">Creative. 1 item.</p></div>
+<ul class="items">
+<li class="item">
+<input type="checkbox" id="sel-4" name="items" value="4" aria-label="Select Bell sounds for the opening">
+<div class="preview" role="img" aria-label="Preview of bells.wav">bells.wav</div>
+<div>
+<h3><a href="#">Bell sounds for the opening</a></h3>
+<dl class="meta"><dt>Stage</dt><dd>Sound and music (Creative)</dd><dt>Requested by</dt><dd>Riley Chen, 12 November, 15:10</dd><dt>What changed</dt><dd>Three takes; the second is the one I prefer.</dd></dl>
+
+</div>
+</li>
+</ul>
+</section>
+<section aria-labelledby="g-cue-list">
+<div class="group-head"><h2 id="g-cue-list">Cue list</h2><p class="hint">Performance and behaviour. 1 item.</p></div>
+<ul class="items">
+<li class="item">
+<input type="checkbox" id="sel-5" name="items" value="5" aria-label="Select Opening scene cue list">
+<div class="preview" role="img" aria-label="Preview of opening-cues.pdf">opening-cues.pdf</div>
+<div>
+<h3><a href="#">Opening scene cue list</a></h3>
+<dl class="meta"><dt>Stage</dt><dd>Cue list (Performance and behaviour)</dd><dt>Requested by</dt><dd>Sam Okafor, 12 November, 17:20</dd><dt>What changed</dt><dd>Added the bell cue and moved the blackout later.</dd></dl>
+
+</div>
+</li>
+</ul>
+</section>
+</form>
+</main>
+</body>
+</html>
