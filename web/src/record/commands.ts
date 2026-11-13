@@ -3,6 +3,22 @@ import { createHash, createHmac, randomBytes } from 'node:crypto';
 import {
   EmailSchema,
   MAX_SAMPLE_BYTES,
+  REVIEW_TYPE_ERROR,
+  SLOTS,
+  TEXT_MAX,
+  TITLE_MAX,
+  acceptedReviewType,
+  areaLabel,
+  handoffById,
+  isAreaId,
+  isModelFile,
+  isProtectedId,
+  protectedLabel,
+  slotFor,
+  type AreaId,
+  type Decision,
+  type ProtectedId,
+  type Slot,
   SAMPLE_SIZE_ERROR,
   SAMPLE_TYPE_ERROR,
   STARTER_FORMATS,
@@ -35,6 +51,7 @@ import { z } from 'zod';
 import { db } from '../db/client';
 import {
   activityEntry,
+  approvalAssignment,
   factVersion,
   identifierConfirmation,
   identifierFormat,
@@ -45,6 +62,9 @@ import {
   project,
   projectRole,
   projectRoleRemoved,
+  reviewDecision,
+  reviewItem,
+  reviewRecommendation,
   storedFile,
   upload,
 } from '../db/schema';
@@ -334,6 +354,8 @@ export async function startProject(
       // Someone else as owner: the starter keeps Producer (layer1-organisations-projects-people#AC-20).
       if (input.ownerId !== me) roles.push({ projectId: id, personId: me, role: 'producer' });
       await tx.insert(projectRole).values(roles);
+      // The owner holds every approval until someone else is named (layer1-gates-and-queue#AC-3).
+      await tx.insert(approvalAssignment).values(SLOTS.map((slot) => ({ projectId: id, slot, approverId: input.ownerId, delegateId: null })));
       await log(tx, { kind: 'project', id }, me, 'Project', 'Started the project');
       // An owner who has never signed in (for example someone added only as a performer) gets an
       // account and an invitation, so the owner can open the project (AC-30).
@@ -500,6 +522,10 @@ export async function setRoles(
     if (current.length === 0) return notFound();
     if (roles.length === 0) return refuse(400, { fields: { roles: 'Choose at least one role.' } });
     if ((await managersLeft(tx, projectId, personId, roles)) === 0) return refuse(409, { message: LAST_MANAGER });
+    if (!usesDashboard(roles)) {
+      const holds = await approvalsHeldBy(tx, projectId, personId);
+      if (holds) return refuse(409, { message: holds });
+    }
     await tx.delete(projectRole).where(and(eq(projectRole.projectId, projectId), eq(projectRole.personId, personId)));
     await tx.insert(projectRole).values(roles.map((role) => ({ projectId, personId, role })));
     // Losing every dashboard role is told as "access removed"; regaining one clears it (AC-16).
@@ -534,6 +560,8 @@ export async function removePerson(
     const current = await rolesOf(tx, projectId, personId);
     if (current.length === 0) return notFound();
     if ((await managersLeft(tx, projectId, personId, [])) === 0) return refuse(409, { message: LAST_MANAGER });
+    const holds = await approvalsHeldBy(tx, projectId, personId);
+    if (holds) return refuse(409, { message: holds });
     await tx.delete(projectRole).where(and(eq(projectRole.projectId, projectId), eq(projectRole.personId, personId)));
     await tx
       .insert(projectRoleRemoved)
@@ -590,7 +618,15 @@ export function rolesText(roles: RoleId[]): string {
 // (layer1-facts-identifiers-activity).
 
 export type Owner = { kind: 'project' | 'organisation'; id: string };
-export type ActivityArea = 'Project' | 'Facts' | 'People' | 'Organisation' | 'Organisation facts' | 'Identifier formats';
+export type ActivityArea =
+  | 'Project'
+  | 'Facts'
+  | 'People'
+  | 'Approvers'
+  | 'Review'
+  | 'Organisation'
+  | 'Organisation facts'
+  | 'Identifier formats';
 
 const ownerColumns = (owner: Owner) =>
   owner.kind === 'project' ? { projectId: owner.id, organisationId: null } : { projectId: null, organisationId: owner.id };
@@ -924,22 +960,35 @@ async function findUpload(reader: Reader, owner: Owner, uploadId: string, lock =
   return rows[0] ?? null;
 }
 
+// Work samples are added by the people who edit facts; a review file by anyone on the project who
+// uses the dashboard, and only its sender registers it (layer1-gates-and-queue#AC-17).
+async function mayUpload(reader: Reader, owner: Owner, personId: string, purpose: string): Promise<boolean> {
+  if (purpose === 'review') return owner.kind === 'project' && can(reader, owner.id, personId, 'open-project');
+  return mayEdit(reader, owner, personId);
+}
+
+const mayHandle = async (reader: Reader, owner: Owner, personId: string, item: typeof upload.$inferSelect) =>
+  (await mayUpload(reader, owner, personId, item.purpose)) && (item.purpose !== 'review' || item.createdBy === personId);
+
 export async function requestUpload(
   principal: Principal,
   owner: Owner,
-  input: { requestId: string; title: string; fileName: string; mediaType: string; size: number },
+  input: { requestId: string; title: string; fileName: string; mediaType: string; size: number; purpose?: 'work-sample' | 'review' },
 ): Promise<Result<{ uploadId: string; uploadUrl: string }>> {
   if (isAgent(principal)) return forbidden();
   if (!isId(owner.id) || !isId(input.requestId)) return notFound();
-  const title = input.title.trim();
+  const purpose = input.purpose ?? 'work-sample';
+  const review = purpose === 'review';
+  const title = input.title.trim() || (review ? input.fileName.trim() : '');
   return db().transaction(async (tx) => {
     if (!(await organisationOf(tx, owner))) return notFound();
-    if (!(await mayEdit(tx, owner, principal.personId))) return forbidden();
+    if (!(await mayUpload(tx, owner, principal.personId, purpose))) return forbidden();
     const fields: Record<string, string> = {};
     if (!title) fields.title = 'Enter a title for the work sample.';
-    if (!input.fileName.trim()) fields.file = 'Choose a file to add.';
-    else if (!acceptedSampleType(input.mediaType, input.fileName)) fields.file = SAMPLE_TYPE_ERROR;
-    else if (input.size > MAX_SAMPLE_BYTES) fields.file = SAMPLE_SIZE_ERROR;
+    if (!input.fileName.trim()) fields.file = review ? 'Choose a file to send.' : 'Choose a file to add.';
+    else if (review ? !acceptedReviewType(input.mediaType, input.fileName) : !acceptedSampleType(input.mediaType, input.fileName)) {
+      fields.file = review ? REVIEW_TYPE_ERROR : SAMPLE_TYPE_ERROR;
+    } else if (input.size > MAX_SAMPLE_BYTES) fields.file = SAMPLE_SIZE_ERROR;
     if (Object.keys(fields).length > 0) return refuse(400, { fields });
     const existing = (await tx.select().from(upload).where(eq(upload.requestId, input.requestId)).limit(1))[0];
     if (existing) {
@@ -958,6 +1007,7 @@ export async function requestUpload(
       declaredSize: input.size,
       storageKey,
       state: 'pending',
+      purpose,
       createdBy: principal.personId,
     });
     return { ok: true as const, value: { uploadId: id, uploadUrl: `/api/v1/storage/${await signUpload(storageKey, input.size)}` } };
@@ -974,9 +1024,16 @@ async function inspect(item: typeof upload.$inferSelect, formats: (FormatSpec & 
   const size = await storedSize(item.storageKey);
   if (size === null) return { ok: false, field: 'file', message: UPLOAD_STOPPED(item.fileName), discard: false };
   if (size > MAX_SAMPLE_BYTES || size > item.declaredSize) return { ok: false, field: 'file', message: SAMPLE_SIZE_ERROR, discard: true };
-  const kind = kindOf(await readStart(item.storageKey, 16), item.mediaType);
-  if (!kind) return { ok: false, field: 'file', message: SAMPLE_TYPE_ERROR, discard: true };
+  const typeError = item.purpose === 'review' ? REVIEW_TYPE_ERROR : SAMPLE_TYPE_ERROR;
+  const head = await readStart(item.storageKey, 32);
+  const kind = item.purpose === 'review' && isModelFile(item.fileName) ? modelKind(head, item.fileName) : kindOf(head, item.mediaType);
+  if (!kind) return { ok: false, field: 'file', message: typeError, discard: true };
   const found: { page: number | null; matches: Found[] }[] = [];
+  // A .gltf is JSON text an agent could read, so its text is checked as a document's is.
+  if (kind === 'gltf') {
+    const matches = scan([{ field: 'file', text: new TextDecoder().decode(await readAll(item.storageKey)) }], formats);
+    if (matches.length) found.push({ page: null, matches });
+  }
   if (kind === 'pdf') {
     let pages: string[] = [];
     try {
@@ -991,11 +1048,41 @@ async function inspect(item: typeof upload.$inferSelect, formats: (FormatSpec & 
     });
   } else if (kind === 'docx') {
     const text = docxText(await readAll(item.storageKey));
-    if (text === null) return { ok: false, field: 'file', message: SAMPLE_TYPE_ERROR, discard: true };
+    if (text === null) return { ok: false, field: 'file', message: typeError, discard: true };
     const matches = scan([{ field: 'file', text }], formats);
     if (matches.length) found.push({ page: null, matches });
   }
   return { ok: true, size, sha256: await sha256Of(item.storageKey), found };
+}
+
+// A 3D model is told from its first bytes, as other files are (layer1-gates-and-queue#AC-17):
+// .glb by "glTF", .fbx by its binary header or an ASCII file's comment, .usdz as a zip, .gltf as JSON.
+function modelKind(head: Uint8Array, fileName: string): 'model' | 'gltf' | null {
+  const text = new TextDecoder('latin1').decode(head);
+  const ext = fileName.toLowerCase().split('.').at(-1);
+  if (ext === 'glb') return text.startsWith('glTF') ? 'model' : null;
+  if (ext === 'fbx') return text.startsWith('Kaydara FBX Binary') || text.trimStart().startsWith(';') ? 'model' : null;
+  if (ext === 'usdz') return head[0] === 0x50 && head[1] === 0x4b && head[2] === 0x03 && head[3] === 0x04 ? 'model' : null;
+  if (ext === 'gltf') return text.trimStart().startsWith('{') ? 'gltf' : null;
+  return null;
+}
+
+// A review file joins the record as a stored file, ready to be sent; never as a work sample.
+async function joinReviewFile(tx: Tx, owner: Owner, item: typeof upload.$inferSelect, personId: string, size: number, sha256: string) {
+  const fileId = newId();
+  await tx.insert(storedFile).values({
+    id: fileId,
+    ...ownerColumns(owner),
+    storageKey: item.storageKey,
+    fileName: item.fileName,
+    mediaType: item.mediaType,
+    size,
+    sha256,
+    addedBy: personId,
+    addedAt: new Date(),
+  });
+  await tx.update(upload).set({ state: 'added', fileId, heldUntil: null }).where(eq(upload.id, item.id));
+  return { fileId };
 }
 
 async function joinSample(tx: Tx, owner: Owner, item: typeof upload.$inferSelect, personId: string, size: number, sha256: string) {
@@ -1022,6 +1109,7 @@ async function joinSample(tx: Tx, owner: Owner, item: typeof upload.$inferSelect
 
 export type Registered =
   | { state: 'added'; version: number; fileId: string }
+  | { state: 'stored'; fileId: string }
   | { state: 'held'; heldUntil: Date; matches: UploadMatch[]; formats: HeldFormat[] };
 
 async function heldView(reader: Reader, item: typeof upload.$inferSelect, organisationId: string): Promise<Registered> {
@@ -1041,13 +1129,14 @@ export async function registerUpload(principal: Principal, owner: Owner, uploadI
   if (!isId(owner.id) || !isId(uploadId)) return notFound();
   const org = await organisationOf(db(), owner);
   if (!org) return notFound();
-  if (!(await mayEdit(db(), owner, principal.personId))) return forbidden();
   const first = await findUpload(db(), owner, uploadId);
   if (!first || first.state === 'deleted') return notFound();
+  if (!(await mayHandle(db(), owner, principal.personId, first))) return forbidden();
   const inspection = first.state === 'pending' ? await inspect(first, await formatsOn(db(), org.id)) : null;
   return db().transaction(async (tx) => {
     const item = await findUpload(tx, owner, uploadId, true);
     if (!item || item.state === 'deleted') return notFound();
+    if (item.state === 'added' && item.fileId && item.purpose === 'review') return { ok: true as const, value: { state: 'stored' as const, fileId: item.fileId } };
     if (item.state === 'added' && item.fileId) {
       const current = await currentVersion(tx, owner, samplesFact(owner));
       return { ok: true as const, value: { state: 'added' as const, version: current?.number ?? 0, fileId: item.fileId } };
@@ -1070,6 +1159,10 @@ export async function registerUpload(principal: Principal, owner: Owner, uploadI
       await tx.update(upload).set({ state: 'held', heldUntil, matches }).where(eq(upload.id, item.id));
       return { ok: true as const, value: await heldView(tx, { ...item, heldUntil, matches }, org.id) };
     }
+    if (item.purpose === 'review') {
+      const stored = await joinReviewFile(tx, owner, item, principal.personId, inspection.size, inspection.sha256);
+      return { ok: true as const, value: { state: 'stored' as const, ...stored } };
+    }
     const joined = await joinSample(tx, owner, item, principal.personId, inspection.size, inspection.sha256);
     await log(tx, owner, principal.personId, factsArea(owner), `Added the ${sampleNoun(owner)} "${item.title}" (version ${joined.version})`);
     return { ok: true as const, value: { state: 'added' as const, ...joined } };
@@ -1087,9 +1180,9 @@ export async function confirmUpload(
   if (!isId(owner.id) || !isId(uploadId)) return notFound();
   const org = await organisationOf(db(), owner);
   if (!org) return notFound();
-  if (!(await mayEdit(db(), owner, principal.personId))) return forbidden();
   const first = await findUpload(db(), owner, uploadId);
   if (!first || first.state !== 'held' || !first.heldUntil || first.heldUntil <= new Date()) return notFound();
+  if (!(await mayHandle(db(), owner, principal.personId, first))) return forbidden();
   const formats = await formatsOn(db(), org.id);
   const answer = checkAnswer(input.answer, formats);
   if ('error' in answer) return refuse(400, { fields: { answer: answer.error } });
@@ -1111,6 +1204,17 @@ export async function confirmUpload(
       personId: principal.personId,
       at: new Date(),
     });
+    if (item.purpose === 'review') {
+      const stored = await joinReviewFile(tx, owner, item, principal.personId, inspection.size, inspection.sha256);
+      await log(
+        tx,
+        owner,
+        principal.personId,
+        'Review',
+        `Added ${item.fileName} for review after confirming that it does not have ${formatList(held.formats.map((f) => f.noun))} ("${answer.answer}")`,
+      );
+      return { ok: true as const, value: { version: 0, fileId: stored.fileId, title: item.title, fileName: item.fileName, formats: held.formats } };
+    }
     const joined = await joinSample(tx, owner, item, principal.personId, inspection.size, inspection.sha256);
     await log(
       tx,
@@ -1131,7 +1235,7 @@ async function deleteHeld(tx: Tx, owner: Owner, item: typeof upload.$inferSelect
   const what = actor
     ? `Deleted ${item.fileName}, held because its text looked like it had ${nouns}`
     : `Deleted ${item.fileName}, held because its text looked like it had ${nouns} and not confirmed within ${HELD_HOURS} hours`;
-  await log(tx, owner, actor, factsArea(owner), what);
+  await log(tx, owner, actor, item.purpose === 'review' ? 'Review' : factsArea(owner), what);
 }
 
 export async function deleteUpload(principal: Principal, owner: Owner, uploadId: string): Promise<Result<{ fileName: string }>> {
@@ -1140,9 +1244,9 @@ export async function deleteUpload(principal: Principal, owner: Owner, uploadId:
   return db().transaction(async (tx) => {
     const org = await organisationOf(tx, owner);
     if (!org) return notFound();
-    if (!(await mayEdit(tx, owner, principal.personId))) return forbidden();
     const item = await findUpload(tx, owner, uploadId, true);
     if (!item || item.state !== 'held') return notFound();
+    if (!(await mayHandle(tx, owner, principal.personId, item))) return forbidden();
     await deleteHeld(tx, owner, item, org.id, principal.personId);
     return { ok: true as const, value: { fileName: item.fileName } };
   });
@@ -1277,4 +1381,375 @@ export async function heldIn(owner: Owner, fact: Fact, value: FactValue): Promis
   if (!org) return [];
   const { held } = await uncovered(db(), owner, fact, scan(factTexts(fact, value), await formatsOn(db(), org.id)));
   return held.map(publicMatch);
+}
+
+// --- Gates and the queue (layer1-gates-and-queue)
+
+type Assignment = { approverId: string; delegateId: string | null };
+
+export async function assignmentsOf(reader: Reader, projectId: string): Promise<Map<Slot, Assignment>> {
+  const rows = await reader.select().from(approvalAssignment).where(eq(approvalAssignment.projectId, projectId));
+  return new Map(rows.map((r) => [r.slot as Slot, { approverId: r.approverId, delegateId: r.delegateId }]));
+}
+
+// The people who can decide an item at this hand-off: its holder, or its area's approver and
+// delegate (AC-20).
+export function decidersOf(assignments: Map<Slot, Assignment>, handoffId: string): Assignment | null {
+  const handoff = handoffById(handoffId);
+  const slot = handoff ? slotFor(handoff) : null;
+  return slot ? (assignments.get(slot) ?? null) : null;
+}
+
+const decides = (a: Assignment | null, personId: string) => !!a && (a.approverId === personId || a.delegateId === personId);
+
+async function namesOf(reader: Reader, ids: (string | null | undefined)[]): Promise<Map<string, string>> {
+  const wanted = [...new Set(ids.filter((id): id is string => !!id))];
+  if (wanted.length === 0) return new Map();
+  const rows = await reader.select().from(person).where(inArray(person.id, wanted));
+  return new Map(rows.map((r) => [r.id, displayName(r)]));
+}
+
+// "Sam" in "Keep Sam" and "Sam's queue"; an email address stays whole.
+export const firstName = (display: string) => (display.includes('@') ? display : (display.split(' ')[0] ?? display));
+
+const andList = (items: string[]) => (items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`);
+
+// Why a person cannot be removed, or lose their dashboard roles, while they decide something
+// (layer1-gates-and-queue#AC-11). Null when they hold nothing.
+export async function approvalsHeldBy(reader: Reader, projectId: string, personId: string): Promise<string | null> {
+  const assignments = await assignmentsOf(reader, projectId);
+  const approves: string[] = [];
+  const delegates: string[] = [];
+  const holds: string[] = [];
+  for (const [slot, a] of assignments) {
+    const [kind, id] = slot.split(':') as ['area' | 'protected', string];
+    if (kind === 'area' && isAreaId(id)) {
+      if (a.approverId === personId) approves.push(areaLabel(id));
+      if (a.delegateId === personId) delegates.push(areaLabel(id));
+    } else if (kind === 'protected' && isProtectedId(id) && a.approverId === personId) {
+      holds.push(protectedLabel(id).toLowerCase());
+    }
+  }
+  const parts = [
+    ...(approves.length ? [`approves ${andList(approves)}`] : []),
+    ...(delegates.length ? [`is the delegate for ${andList(delegates)}`] : []),
+    ...(holds.length ? [`holds the ${andList(holds)} approval${holds.length > 1 ? 's' : ''}`] : []),
+  ];
+  if (parts.length === 0) return null;
+  const who = (await namesOf(reader, [personId])).get(personId) ?? '';
+  return `${firstName(who)} ${andList(parts)}. Give those to someone else on Approvers first, so that no item waits for a person who has left.`;
+}
+
+const NOT_ELIGIBLE = 'Choose someone on this project who uses the dashboard.';
+const SAME_PERSON = 'Choose someone other than the approver as delegate, or No delegate.';
+
+async function eligible(reader: Reader, projectId: string, personId: string | null): Promise<boolean> {
+  if (!personId || !isId(personId)) return false;
+  return usesDashboard(await rolesOf(reader, projectId, personId));
+}
+
+export async function setAreaApprovers(
+  principal: Principal,
+  projectId: string,
+  area: string,
+  input: { approverId: string; delegateId: string | null },
+): Promise<Result<{ area: string; approver: string; delegate: string | null }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId) || !isAreaId(area)) return notFound();
+  return db().transaction(async (tx) => {
+    if (!(await lockProject(tx, projectId))) return notFound();
+    if (!(await can(tx, projectId, principal.personId, 'manage-gates'))) return forbidden();
+    const fields: Record<string, string> = {};
+    if (!(await eligible(tx, projectId, input.approverId))) fields.approver = NOT_ELIGIBLE;
+    if (input.delegateId !== null && !(await eligible(tx, projectId, input.delegateId))) fields.delegate = NOT_ELIGIBLE;
+    else if (input.delegateId !== null && input.delegateId === input.approverId) fields.delegate = SAME_PERSON;
+    if (Object.keys(fields).length > 0) return refuse(400, { fields });
+    const slot: Slot = `area:${area}`;
+    await tx
+      .insert(approvalAssignment)
+      .values({ projectId, slot, approverId: input.approverId, delegateId: input.delegateId })
+      .onConflictDoUpdate({ target: [approvalAssignment.projectId, approvalAssignment.slot], set: { approverId: input.approverId, delegateId: input.delegateId } });
+    const names = await namesOf(tx, [input.approverId, input.delegateId]);
+    const approver = names.get(input.approverId) ?? '';
+    const delegate = input.delegateId ? (names.get(input.delegateId) ?? '') : null;
+    await log(
+      tx,
+      { kind: 'project', id: projectId },
+      principal.personId,
+      'Approvers',
+      `Named ${approver} as approver and ${delegate ? `${delegate} as delegate` : 'no delegate'} for ${areaLabel(area)}`,
+    );
+    return { ok: true as const, value: { area: areaLabel(area), approver, delegate } };
+  });
+}
+
+export async function setProtectedHolder(
+  principal: Principal,
+  projectId: string,
+  approval: string,
+  input: { holderId: string },
+): Promise<Result<{ approval: string; holder: string }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId) || !isProtectedId(approval)) return notFound();
+  return db().transaction(async (tx) => {
+    if (!(await lockProject(tx, projectId))) return notFound();
+    if (!(await can(tx, projectId, principal.personId, 'manage-gates'))) return forbidden();
+    if (!(await eligible(tx, projectId, input.holderId))) return refuse(400, { fields: { holder: NOT_ELIGIBLE } });
+    const slot: Slot = `protected:${approval as ProtectedId}`;
+    await tx
+      .insert(approvalAssignment)
+      .values({ projectId, slot, approverId: input.holderId, delegateId: null })
+      .onConflictDoUpdate({ target: [approvalAssignment.projectId, approvalAssignment.slot], set: { approverId: input.holderId, delegateId: null } });
+    const holder = (await namesOf(tx, [input.holderId])).get(input.holderId) ?? '';
+    await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Approvers', `Gave the ${protectedLabel(approval).toLowerCase()} approval to ${holder}`);
+    return { ok: true as const, value: { approval: protectedLabel(approval), holder } };
+  });
+}
+
+type ReviewRefusal = Refusal & { held?: HeldMatch[]; decided?: { by: string; decision: string; at: Date } };
+type ReviewResult<T> = { ok: true; value: T } | ReviewRefusal;
+
+const lengthError = (what: string, text: string, max: number) =>
+  text.length > max ? `Keep ${what} to ${max.toLocaleString('en-GB')} characters or fewer.` : null;
+
+// Text an agent can read is checked before anything is saved; an answer confirms it (AC-18).
+async function checkReviewText(
+  reader: Reader,
+  projectId: string,
+  texts: { field: string; text: string }[],
+  answer: string | undefined,
+): Promise<{ held: Found[]; answer: string | null } | ReviewRefusal> {
+  const org = await organisationOf(reader, { kind: 'project', id: projectId });
+  if (!org) return notFound();
+  const formats = await formatsOn(reader, org.id);
+  const held = scan(texts.filter((t) => t.text), formats);
+  if (held.length === 0) return { held, answer: null };
+  if (answer === undefined) return { ...refuse(400, { message: 'Not saved.' }), held: held.map(publicMatch) };
+  const checked = checkAnswer(answer, formats);
+  if ('error' in checked) return { ...refuse(400, { fields: { answer: checked.error } }), held: held.map(publicMatch) };
+  return { held, answer: checked.answer };
+}
+
+async function recordReviewConfirmation(tx: Tx, projectId: string, itemId: string, held: Found[], answer: string, personId: string) {
+  for (const match of held) {
+    await tx.insert(identifierConfirmation).values({
+      id: newId(),
+      projectId,
+      reviewItemId: itemId,
+      formatIds: match.formats.map((f) => f.id),
+      textHash: textHash(match.normalised),
+      answer,
+      personId,
+      at: new Date(),
+    });
+  }
+}
+
+const confirmedNote = (held: Found[], answer: string | null) =>
+  held.length > 0 && answer ? ` after confirming that text in it is not ${formatList(nounsOf(held))} ("${answer}")` : '';
+
+export type Sent = { movedOn: false; itemId: string; title: string; deciders: string[] } | { movedOn: true; title: string };
+
+export async function sendForReview(
+  principal: Principal,
+  projectId: string,
+  input: { title: string; handoff: string; whatChanged: string; fileId: string | null; waitingOn: string | null; answer?: string },
+): Promise<ReviewResult<Sent>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  const title = input.title.trim();
+  const whatChanged = input.whatChanged.trim();
+  const handoff = handoffById(input.handoff);
+  const fields: Record<string, string> = {};
+  if (!title) fields.title = 'Enter a title.';
+  else fields.title = lengthError('the title', title, TITLE_MAX) ?? '';
+  if (!handoff) fields.handoff = 'Choose the stage this work is at.';
+  if (!whatChanged) fields.whatChanged = 'Say what changed.';
+  else fields.whatChanged = lengthError('what changed', whatChanged, TEXT_MAX) ?? '';
+  const gated = handoff?.gated ?? true;
+  if (gated && (!input.fileId || !isId(input.fileId))) fields.file = 'Choose a file to send.';
+  const waiting = input.waitingOn ? handoffById(input.waitingOn) : null;
+  if (input.waitingOn && !waiting?.gated) fields.waitingOn = 'Choose a stage that is waiting, or Nothing is waiting.';
+  for (const key of Object.keys(fields)) if (!fields[key]) delete fields[key];
+  if (!(await can(db(), projectId, principal.personId, 'open-project'))) return forbidden();
+  if (Object.keys(fields).length > 0 || !handoff) return refuse(400, { fields });
+  return db().transaction(async (tx) => {
+    const me = principal.personId;
+    if (!handoff.gated) {
+      // Work at a hand-off that is not gated moves on without waiting (AC-19).
+      await log(tx, { kind: 'project', id: projectId }, me, 'Review', `Moved ${title} on (${handoff.label} is not gated)`);
+      return { ok: true as const, value: { movedOn: true as const, title } };
+    }
+    const file = (await tx.select().from(storedFile).where(and(eq(storedFile.id, input.fileId ?? ''), eq(storedFile.projectId, projectId))).limit(1))[0];
+    if (!file) return refuse(400, { fields: { file: 'Choose a file to send.' } });
+    const checked = await checkReviewText(tx, projectId, [{ field: 'title', text: title }, { field: 'whatChanged', text: whatChanged }], input.answer);
+    if ('ok' in checked) return checked;
+    const deciders = decidersOf(await assignmentsOf(tx, projectId), handoff.id);
+    const itemId = newId();
+    await tx.insert(reviewItem).values({
+      id: itemId,
+      projectId,
+      handoff: handoff.id,
+      title,
+      whatChanged,
+      fileId: file.id,
+      waitingHandoff: waiting?.id ?? null,
+      sentBy: me,
+      sentAt: new Date(),
+    });
+    if (checked.answer) await recordReviewConfirmation(tx, projectId, itemId, checked.held, checked.answer, me);
+    await log(tx, { kind: 'project', id: projectId }, me, 'Review', `Sent ${title} for review (${handoff.label})${confirmedNote(checked.held, checked.answer)}`);
+    const names = await namesOf(tx, [deciders?.approverId, deciders?.delegateId]);
+    const list = [deciders?.approverId, deciders?.delegateId].flatMap((id) => (id && names.get(id) ? [names.get(id) ?? ''] : []));
+    return { ok: true as const, value: { movedOn: false as const, itemId, title, deciders: list } };
+  });
+}
+
+async function lockItems(tx: Tx, projectId: string, itemIds: string[]) {
+  return tx
+    .select()
+    .from(reviewItem)
+    .where(and(eq(reviewItem.projectId, projectId), inArray(reviewItem.id, itemIds)))
+    .orderBy(asc(reviewItem.sentAt))
+    .for('update');
+}
+
+export type DecidedItem = { id: string; title: string; requester: string };
+export type SkippedItem = { id: string; title: string; by: string; decision: string; at: Date };
+
+// One item or several (AC-26 to AC-29). Items someone else decided first are left as they are and
+// named; the rest are decided in this transaction.
+export async function decide(
+  principal: Principal,
+  projectId: string,
+  itemIds: string[],
+  input: { decision: Decision; feedback: string; answer?: string },
+): Promise<ReviewResult<{ decided: DecidedItem[]; skipped: SkippedItem[]; at: Date }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  const ids = [...new Set(itemIds)];
+  if (ids.length === 0) return refuse(400, { message: 'Select at least one item.' });
+  if (!ids.every(isId)) return notFound();
+  const feedback = input.feedback.trim();
+  return db().transaction(async (tx) => {
+    const items = await lockItems(tx, projectId, ids);
+    if (items.length !== ids.length) return notFound();
+    const assignments = await assignmentsOf(tx, projectId);
+    if (!items.every((i) => decides(decidersOf(assignments, i.handoff), principal.personId))) return forbidden();
+    const names = await namesOf(tx, items.map((i) => i.sentBy));
+    if (input.decision === 'revise' && !feedback) {
+      const message = ids.length > 1 ? 'Write the feedback each requester will see.' : `Write feedback for ${names.get(items[0]?.sentBy ?? '') ?? ''}: say what to change.`;
+      return refuse(400, { fields: { feedback: message } });
+    }
+    const tooLong = lengthError('your feedback', feedback, TEXT_MAX);
+    if (tooLong) return refuse(400, { fields: { feedback: tooLong } });
+    const checked = await checkReviewText(tx, projectId, [{ field: 'feedback', text: feedback }], input.answer);
+    if ('ok' in checked) return checked;
+    const earlier = await tx.select().from(reviewDecision).where(inArray(reviewDecision.itemId, ids));
+    const deciderNames = await namesOf(tx, earlier.map((d) => d.decidedBy));
+    const skipped: SkippedItem[] = earlier.map((d) => ({
+      id: d.itemId,
+      title: items.find((i) => i.id === d.itemId)?.title ?? '',
+      by: deciderNames.get(d.decidedBy) ?? '',
+      decision: d.decision,
+      at: d.decidedAt,
+    }));
+    const at = new Date();
+    const decided: DecidedItem[] = [];
+    const words = { accept: 'Accepted', revise: 'Requested a revision of', reject: 'Rejected' } as const;
+    for (const item of items) {
+      if (earlier.some((d) => d.itemId === item.id)) continue;
+      await tx.insert(reviewDecision).values({ id: newId(), itemId: item.id, decision: input.decision, feedback, decidedBy: principal.personId, decidedAt: at });
+      if (checked.answer) await recordReviewConfirmation(tx, projectId, item.id, checked.held, checked.answer, principal.personId);
+      await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Review', `${words[input.decision]} ${item.title}${confirmedNote(checked.held, checked.answer)}`);
+      decided.push({ id: item.id, title: item.title, requester: names.get(item.sentBy) ?? '' });
+    }
+    return { ok: true as const, value: { decided, skipped, at } };
+  });
+}
+
+async function waitingItem(tx: Tx, projectId: string, itemId: string) {
+  if (!isId(itemId)) return null;
+  const item = (await lockItems(tx, projectId, [itemId]))[0];
+  if (!item) return null;
+  const decision = (await tx.select().from(reviewDecision).where(eq(reviewDecision.itemId, itemId)).limit(1))[0] ?? null;
+  return { item, decision };
+}
+
+export async function handOn(principal: Principal, projectId: string, itemId: string): Promise<Result<{ to: string; title: string }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  return db().transaction(async (tx) => {
+    const found = await waitingItem(tx, projectId, itemId);
+    if (!found) return notFound();
+    const { item, decision } = found;
+    const handoff = handoffById(item.handoff);
+    const a = decidersOf(await assignmentsOf(tx, projectId), item.handoff);
+    if (handoff?.protectedApproval) {
+      if (!decides(a, principal.personId)) return forbidden();
+      return refuse(409, { message: 'Protected approvals cannot be handed on.' });
+    }
+    if (!a || a.approverId !== principal.personId) return forbidden();
+    if (decision || !a.delegateId || item.handedTo) return refuse(409, { message: 'This item cannot be handed on.' });
+    await tx.update(reviewItem).set({ handedTo: a.delegateId, handedBy: principal.personId }).where(eq(reviewItem.id, item.id));
+    const to = (await namesOf(tx, [a.delegateId])).get(a.delegateId) ?? '';
+    await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Review', `Handed ${item.title} to ${to}`);
+    return { ok: true as const, value: { to, title: item.title } };
+  });
+}
+
+const DECIDED_WORDS: Record<string, string> = { accept: 'accepted', revise: 'asked for a revision of', reject: 'rejected', withdraw: 'withdrew' };
+export const decidedWord = (decision: string) => DECIDED_WORDS[decision] ?? decision;
+
+export async function withdrawItem(principal: Principal, projectId: string, itemId: string): Promise<ReviewResult<{ title: string; deciders: string[] }>> {
+  if (isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  return db().transaction(async (tx) => {
+    const found = await waitingItem(tx, projectId, itemId);
+    if (!found) return notFound();
+    const { item, decision } = found;
+    if (item.sentBy !== principal.personId) return forbidden();
+    if (decision) {
+      const by = (await namesOf(tx, [decision.decidedBy])).get(decision.decidedBy) ?? '';
+      const zone = 'America/Toronto';
+      const time = new Intl.DateTimeFormat('en-GB', { timeZone: zone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(decision.decidedAt);
+      const day = new Intl.DateTimeFormat('en-GB', { timeZone: zone, day: 'numeric', month: 'long' }).format(decision.decidedAt);
+      const word = decision.decision === 'revise' ? 'asked for a revision of' : decidedWord(decision.decision);
+      return {
+        ...refuse(409, { message: `Not withdrawn: ${by} ${word} it at ${time} on ${day}.` }),
+        decided: { by, decision: decision.decision, at: decision.decidedAt },
+      };
+    }
+    await tx.insert(reviewDecision).values({ id: newId(), itemId: item.id, decision: 'withdraw', feedback: '', decidedBy: principal.personId, decidedAt: new Date() });
+    await log(tx, { kind: 'project', id: projectId }, principal.personId, 'Review', `Withdrew ${item.title}`);
+    const a = decidersOf(await assignmentsOf(tx, projectId), item.handoff);
+    const names = await namesOf(tx, [a?.approverId, a?.delegateId]);
+    const deciders = [a?.approverId, a?.delegateId].flatMap((id) => (id && names.get(id) ? [names.get(id) ?? ''] : []));
+    return { ok: true as const, value: { title: item.title, deciders } };
+  });
+}
+
+// Only an AI reviewer adds a recommendation, and nothing turns one into a decision (AC-30).
+export async function addRecommendation(
+  principal: Principal,
+  projectId: string,
+  itemId: string,
+  input: { result: Decision; reason: string },
+): Promise<ReviewResult<{ id: string }>> {
+  if (!isAgent(principal)) return forbidden();
+  if (!isId(projectId)) return notFound();
+  const reason = input.reason.trim();
+  const tooLong = lengthError('the reason', reason, TEXT_MAX);
+  if (!reason || tooLong) return refuse(400, { fields: { reason: tooLong ?? 'Give a reason.' } });
+  return db().transaction(async (tx) => {
+    if (!(await can(tx, projectId, principal.personId, 'open-project'))) return forbidden();
+    const found = await waitingItem(tx, projectId, itemId);
+    if (!found) return notFound();
+    if (found.decision) return refuse(409, { message: 'This item has been decided.' });
+    const checked = await checkReviewText(tx, projectId, [{ field: 'reason', text: reason }], undefined);
+    if ('ok' in checked) return checked;
+    const id = newId();
+    await tx.insert(reviewRecommendation).values({ id, itemId: found.item.id, result: input.result, reason, at: new Date() });
+    return { ok: true as const, value: { id } };
+  });
 }

@@ -4,3 +4,4 @@ export * from './records';
 export * from './facts';
 export * from './identifiers';
 export * from './slice2';
+export * from './gates';
