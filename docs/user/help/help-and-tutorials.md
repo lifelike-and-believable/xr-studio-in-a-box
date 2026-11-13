@@ -2,8 +2,8 @@
 id: docs-help-and-tutorials
 status: approved
 derived-from:
-  - design-trying-the-product: 15a4dcda5632
-  - story-project-record-follow-a-tutorial#acceptance-criteria: dbd3dda82ec1
+  - design-trying-the-product: bd5c78fd5a86
+  - story-project-record-follow-a-tutorial#acceptance-criteria: 61ac0ed21873
 covers:
   - /help
   - /help/{area}
@@ -31,7 +31,9 @@ The line at the top of a help page shows where you are: Help, the part of XR Stu
 2. The tutorial opens. It says who it is for, and under "Before you start" what you need: an account, a role, or an earlier tutorial.
 3. Follow the steps in XR Studio with your own account. Keep the tutorial open in a second tab.
 
-A step that begins with another person's name is done by that person. In your own production, ask the person with that role: "Before you start" says which roles the tutorial needs.
+A step that begins with another person's name, such as "As Riley:", is done by that person. The names are the made-up people of the trial copies. "Before you start" says which role each one has. In your own production, ask the person with that role.
+
+Where a step says to open an email, open it in your own mailbox.
 
 A tutorial names pages and controls only. You need no command and no setting to follow one.
 
@@ -48,4 +50,4 @@ Everyone. Help holds no project information, so it is the same for every role.
 ## If something goes wrong
 
 - **This page is not available** on a help address: the page was moved or renamed. Select **Back to XR Studio**, then **Help**.
-- A tutorial step does not match what you see: your role may not allow that step. "Before you start" names the role each person needs. If your role is right, tell the person who looks after your XR Studio.
+- A tutorial step does not match what you see: your role may not allow that step. "Before you start" names the role each person needs. If your role is right, tell your producer or director.

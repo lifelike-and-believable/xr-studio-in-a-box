@@ -2,7 +2,7 @@
 id: docs-trying-xr-studio
 status: approved
 derived-from:
-  - design-trying-the-product: 15a4dcda5632
+  - design-trying-the-product: bd5c78fd5a86
   - story-project-record-try-from-a-link#acceptance-criteria: 74fb3e25a279
 covers:
   - /try
@@ -19,12 +19,12 @@ Every page of a trial copy has this line at the top: "Trial copy. The people, pr
 
 ## Open a trial copy
 
-1. Open the link you were given. **Sign in** opens, with the trial line above it.
+1. Open the link to the trial copy. It is in the description of the change you were asked to decide on, under "Try it", with the tutorials to follow. If you are asked to sign in to Vercel first, do so; if you cannot, ask the person who sent you the change for access. **Sign in** opens, with the trial line above it.
 2. Select **Try XR Studio** in the trial line.
 
 ![Try XR Studio](../../design/trying-the-product/try.png)
 
-A person on the team who has XR Studio's files can start a trial copy on their own computer instead. The command for it is in the repository's own notes, not here. It prints the address of **Try XR Studio**.
+A person on the team who has XR Studio's files can start a trial copy on their own computer instead. In the repository's folder they run `pnpm run try`. It prints the address of **Try XR Studio**, and stopping it deletes the copy.
 
 ## Start a tutorial
 
@@ -36,7 +36,7 @@ You see, for example, "This copy now holds the starting point for Record a proje
 
 You do not have to do the earlier tutorials first: **Start** puts the copy where they would have left it. Select **Start** again at any time to do a tutorial again.
 
-A trial copy opened from a link is one copy for everyone who has the link. If someone else is using it, **Start** replaces their work too.
+**Start** signs everyone out of the copy. A trial copy opened from a link is one copy for everyone who has the link, so if someone else is using it, **Start** replaces their work too. It is also made again, from the beginning, each time the change it belongs to is updated.
 
 ## Sign in as a person
 

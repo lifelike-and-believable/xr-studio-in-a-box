@@ -7,7 +7,7 @@ derived-from:
 
 # Organisations
 
-This area is an organisation's page: its facts, its standard work samples and its identifier formats. The people who look after an organisation keep them: Jordan, the producer, when Jordan created it or is listed as looking after it. Everyone on the organisation's projects who uses the dashboard can read the general facts.
+This area is an organisation's page: its facts, its standard work samples and its identifier formats. The people who look after an organisation keep them: Jordan, the producer, when Jordan is listed as looking after it. Everyone on the organisation's projects who uses the dashboard can read the general facts.
 
 ## The ideas you need
 

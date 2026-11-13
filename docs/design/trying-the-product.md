@@ -3,10 +3,10 @@ id: design-trying-the-product
 status: approved
 derived-from:
   - story-project-record-try-from-a-link#acceptance-criteria: 74fb3e25a279
-  - story-project-record-follow-a-tutorial#acceptance-criteria: dbd3dda82ec1
+  - story-project-record-follow-a-tutorial#acceptance-criteria: 61ac0ed21873
   - persona-director#goals: a92ca172be83
   - persona-sound-designer#skills-and-tools: c8a8a4959cf9
-  - design-architecture#trying-the-product: 74d475ed003f
+  - design-architecture#trying-the-product: e67e560ceac9
   - design-architecture#amendment-2026-11-13-previews-hold-made-up-data-and-may-be-hosted-outside-canada: e8875ba9ecc8
   - decision-navigation-and-urls#decision: 0eed88adf12e
 ---
@@ -25,7 +25,7 @@ A trial copy is XR Studio with made-up people and data, for following the tutori
 
 ### Morgan tries a change from a link
 
-1. Morgan opens the preview link on a pull request. **Sign in** opens, with the trial line above it and a link, **Try XR Studio**.
+1. The pull request's description has a "Try it" section, written by the workflow: the preview's link and the tutorials the change adds or touches. Morgan opens the link. A preview is protected, so Morgan is signed in to Vercel as a member of the team; nothing is installed. **Sign in** opens, with the trial line above it and a link, **Try XR Studio**.
 2. **Try XR Studio** lists the tutorials. Morgan selects **Start** beside one. A dialog says what the trial copy will hold and that what is there now is replaced. Morgan selects **Start**.
 3. The page shows a notice naming the starting point, and **Open the tutorial**. Under **Sign in as a person**, Morgan selects **Sign in as Jordan**. Jordan is signed in, on the page Jordan would land on.
 4. Morgan follows the tutorial. Where a step is done by another person, Morgan opens a private window, opens **Try XR Studio** there and selects that person.
@@ -57,29 +57,31 @@ Wireframes. Each HTML file beside its image is the editable source.
 | Email sent by this copy | ![Email sent by this copy](trying-the-product/try-mail.png) | Newest first. |
 | Email sent by this copy, none yet | ![No email yet](trying-the-product/try-mail-empty.png) | |
 | One email | ![One email](trying-the-product/try-mail-message.png) | The link in the message can be followed. |
-| A dashboard page in a trial copy, with Help | ![Board with Help, in a trial copy](trying-the-product/board-help-trial.png) | The trial line sits above the header on every page. In the deployed product the page is the same without the line. |
+| A dashboard page in a trial copy, with Help | ![Board with Help, in a trial copy](trying-the-product/board-help-trial.png) | Phone: ![Header with Help at 320px](trying-the-product/board-help-trial-phone.png). The trial line sits above the header on every page. In the deployed product the page is the same without the line. |
 | Help for a page | ![Help for the board](trying-the-product/help-page.png) | Phone: ![Help at 320px](trying-the-product/help-page-phone.png). Opened by **Help** on a project's board. |
-| A tutorial in Help | ![A tutorial in Help](trying-the-product/help-tutorial.png) | In a trial copy, a line above the steps links to **Try XR Studio**. |
+| Sign in as a person who is not added yet | ![Not added yet](trying-the-product/try-not-added.png) | Reached only by typing the address. |
+| Help, the first page | ![Help, the first page](trying-the-product/help-start.png) | The start page of the user documentation. An area's overview has the same layout, with its pages listed. |
+| A tutorial in Help | ![A tutorial in Help](trying-the-product/help-tutorial.png) | In a trial copy, a notice above the steps links to **Try XR Studio**. In the deployed product the page is the same without the notice. |
 
-The pages of **Try XR Studio** do not exist outside a trial copy. Opening their addresses there shows **This page is not available**, the page design-dashboard-shell already has, so it has no new mock-up.
+The pages of **Try XR Studio** do not exist outside a trial copy. Opening their addresses there shows **This page is not available**, the page design-dashboard-shell already has, so it has no new mock-up. A help address that does not exist shows the same page, with **Back to XR Studio** in place of its link to Projects.
 
 ## Layout
 
-- **The trial line.** In a trial copy, every page has one line above the header: "Trial copy. The people, projects and files here are made up. Do not enter real information." followed by the link **Try XR Studio**. It is text on a bordered band, not colour alone, and it is in the page before the skip link's target, so a screen reader meets it once at the top.
+- **The trial line.** In a trial copy, every page has one line above the header: "Trial copy. The people, projects and files here are made up. Do not enter real information." followed by the link **Try XR Studio**. It is text on a bordered band, not colour alone, and it is in the page before the skip link's target, so a screen reader reads it once at the top.
 - **Try XR Studio** (`/try`) has no project navigation. It has three parts, in this order:
   - **Choose a tutorial**: a table with the columns **Tutorial**, **For**, **Starts with**, and a **Start** button for each row. Each button's accessible name includes the tutorial, for example "Start: Record a project's facts". The tutorial's title links to it in Help.
   - **Sign in as a person**: a line saying who is signed in in this browser ("Nobody is signed in in this browser." or "Signed in as Jordan Lee."), then one row for each of the five people with their role and a link styled as a button: **Sign in as Jordan**, **Sign in as Morgan**, **Sign in as Riley**, **Sign in as Sam**, **Sign in as Drew**. A person who is not on a project yet at this starting point has no button and the text "Not added yet. Jordan adds Riley in the tutorial." Below: "To act as two people at once, open a private window for the second person."
   - **Email**: the link **Email sent by this copy**, and the sentence "No email leaves a trial copy."
-- **The Start dialog** has the heading "Start <tutorial>?", the text "Everything done in this trial copy so far is replaced by the tutorial's starting point: <starting point>. Anyone else using this copy loses their place.", and the buttons **Keep what is here** and **Start**, in that order.
+- **The Start dialog** has the heading "Start <tutorial>?", the text "Everything done in this trial copy so far is replaced by the tutorial's starting point: <starting point>. Anyone else using this copy loses what they did.", and the buttons **Keep what is here** and **Start**, in that order.
 - **Email sent by this copy** (`/try/mail`) is a table with **To**, **Subject**, **Sent** and a link **Open** for each message. A message's page shows the same three facts and the text, with its link live, and **Back to email sent by this copy**.
-- **Help** is a link in the header, after the main navigation and before the person's name, on every signed-in page. design-dashboard-shell is not edited; this design adds the link to its header. Sign-in pages keep no navigation (approver's decision, 2026-11-12, design-sign-in).
+- **Help** is a link in the header, after the main navigation and before the person's name, on every signed-in page. design-dashboard-shell and decision-navigation-and-urls are not edited in this packet, to keep its revision small: this design adds the link to the header, and sets the addresses under `/try` and `/help`. Both documents take them in at their next revision. Sign-in pages keep no navigation (approver's decision, 2026-11-12, design-sign-in).
 - **Help pages** (`/help`, `/help/<area>`, `/help/<area>/<page>`, `/help/tutorials/<tutorial>`) have the product name, a link **Back to XR Studio**, a trail ("Help", the area, the page), and the page's text in one column no wider than 720 pixels. Images in the pages are the approved mock-ups, as today. At 320 pixels the trail wraps and nothing scrolls sideways.
 - Control names, exactly as the user documentation uses them: **Try XR Studio**, **Start**, **Keep what is here**, **Open the tutorial**, **Sign in as Jordan** (and the other four), **Email sent by this copy**, **Open**, **Back to email sent by this copy**, **Help**, **Back to XR Studio**, **Try it**.
 
 ## States and errors
 
 - **A new trial copy:** it is at the starting point of the first tutorial: nothing exists, and only Jordan can sign in.
-- **After Start:** a notice, which takes focus: "This copy now holds the starting point for <tutorial>: <starting point>. Sign in as <first person> to begin." with **Open the tutorial**.
+- **After Start:** everyone is signed out of the copy, in every browser. A notice, which takes focus: "This copy now holds the starting point for <tutorial>: <starting point>. Sign in as <first person> to begin." with **Open the tutorial**.
 - **Start while someone else is using the copy:** a preview is one copy for everyone with its link. The dialog says so. There is no lock.
 - **Sign in as a person who is not added yet** (by typing the address): the page says "Riley is not on a project in this copy yet. Jordan adds Riley in Start a production and bring in your team." with a link back to **Try XR Studio**.
 - **Sign in as a person with an open invitation:** it accepts the invitation, as the link in their email would, and lands where that link lands.
@@ -89,7 +91,7 @@ The pages of **Try XR Studio** do not exist outside a trial copy. Opening their 
 - **Help for a page with no help of its own:** **Help** opens the overview of the area the address is in, or else the start page. It never shows an error.
 - **A help address that does not exist:** **This page is not available**, with **Back to XR Studio**.
 - **The local command cannot start:** it says which of these is wrong, and how to put it right: Docker is not running and no database address was given; the port is in use; the build failed. It leaves nothing behind.
-- **Loading:** pages are rendered on the server. **Start** shows "Starting" on the button until the page reloads.
+- **Loading:** pages are rendered on the server. **Start** in the dialog reads "Starting" and cannot be selected again until the page reloads; it has no other change, so it has no mock-up of its own.
 
 ## How it works
 
@@ -174,7 +176,7 @@ A starting point is the result of a tutorial that others start from. The loader 
 
 ## The tutorials after the delivery
 
-One for each task a person does. Each is `runner: web`, is named for the task, and is linked from its user documentation page with **Try it**. The four existing tutorials and their three Playwright scripts are removed when these pass. People are named by first name in the steps (`As **Riley**:`), and "Before you start" names them by role for a reader in the deployed product.
+One for each task a person does. Each is `runner: web`, is named for the task, and is linked from its user documentation page with **Try it**. The four existing tutorials and their three Playwright scripts are removed when these pass. Tutorial 1 adds Morgan, Riley, Sam and Drew to the project, so every later starting point has all five people. The runner needs a step done by another person to begin with their name (`As **Riley**:`). "Before you start" gives each name its role ("Riley is an artist on your project"), so a reader in the deployed product knows whom to ask. A step that reads an email is written for the reader's mailbox ("Open the link in the email"); in a trial copy, the notice above the tutorial's steps in Help adds that the email is under **Email sent by this copy**.
 
 | # | Title (file in `docs/tutorials/`) | For | Takes over | `starts-from` | People |
 |---|---|---|---|---|---|
@@ -214,7 +216,7 @@ Build in this order. Each step ends with something that runs.
 3. **The tutorials.** Write the twelve as `runner: web`, each with its starting point in the loader, and run them with `tutorial-run` against the try command's product. Add **Try it** to each user documentation page, linking its tutorial: sign-in to 2; your-projects, organisations-and-projects and people-and-roles to 1; project-facts to 3; organisation-facts to 4; identifier-formats to 5; approvers to 6; review to 7 and 8; board to 9; versions-and-feedback to 10; what-needs-you to 11; activity to 12.
 4. **Remove what they replace.** `web/e2e/tutorial-board.spec.ts`, `tutorial-facts.spec.ts` and `tutorial-review.spec.ts`, and the four old tutorials, in the pull request where the new ones pass.
 5. **Turn the rules on.** Set `lasting-tutorials: fail` in the `with:` of `.github/workflows/rfr-process.yml` once the tutorials pass the rules.
-6. **Help.** The `/help` pages and the **Help** link. This step can follow the lead's validation of slices 2 to 4: until it is built, the pull request's "Try it" section links each tutorial's file, and the titles on **Try XR Studio** link to those files.
+6. **Help.** The `/help` pages and the **Help** link. This step can follow the lead's validation of slices 2 to 4: until it is built, the pull request's "Try it" section links each tutorial's file in the repository, the titles on **Try XR Studio** link to those files, and the lead reads them there. **Try it** is added to the pages in step 3 as a link to the tutorial's file, which is what Help serves.
 
 What the delivery must know:
 

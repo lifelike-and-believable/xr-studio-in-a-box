@@ -2,7 +2,7 @@
 id: docs-area-help
 status: approved
 derived-from:
-  - design-trying-the-product#layout: 5e03fbe6ad17
+  - design-trying-the-product#layout: c5c0ea94204e
   - decision-navigation-and-urls#decision: 0eed88adf12e
 ---
 
