@@ -3,9 +3,9 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { addedEmail, invitationEmail, signInLinkEmail } from '../src/mail/templates';
 
-// The emails' wording is approved user documentation (docs/user/sign-in.md, "The emails XR
+// The emails' wording is approved user documentation (docs/user/signing-in/sign-in.md, "The emails XR
 // Studio sends"); each template must read exactly as documented once its placeholders are filled.
-const docs = readFileSync(path.resolve(import.meta.dirname, '../../docs/user/sign-in.md'), 'utf8');
+const docs = readFileSync(path.resolve(import.meta.dirname, '../../docs/user/signing-in/sign-in.md'), 'utf8');
 
 function documented(heading: string, fill: Record<string, string>) {
   const after = docs.split(`### ${heading}\n`)[1] ?? '';

@@ -1,6 +1,6 @@
 import { joinLabels, type RoleId } from '@xr/contracts';
 
-// The three emails, worded exactly as docs/user/sign-in.md ("The emails XR Studio sends").
+// The three emails, worded exactly as docs/user/signing-in/sign-in.md ("The emails XR Studio sends").
 export type MailContent = { subject: string; text: string };
 
 export function signInLinkEmail({ link }: { link: string }): MailContent {

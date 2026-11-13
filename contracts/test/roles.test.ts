@@ -8,7 +8,7 @@ import {
   usesDashboard,
 } from '../src/index';
 
-// The table in docs/user/people-and-roles.md, "What each role can do".
+// The table in docs/user/people/people-and-roles.md, "What each role can do".
 // Slice 2 adds see-facts, see-budget, edit-facts and read-activity
 // (layer1-facts-identifiers-activity, Roles and permissions). Slice 3 adds manage-gates
 // (layer1-gates-and-queue, Roles and permissions). Slice 4 adds plan-work
