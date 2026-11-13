@@ -33,7 +33,7 @@ derived-from:
   - docs-people-and-roles#send-an-invitation-again: 5e1a1f06f355
   - docs-people-and-roles#change-someones-roles: 7010d46c1d6a
   - docs-people-and-roles#changing-your-own-roles: e5b85461223f
-  - docs-people-and-roles#remove-someone-from-a-project: ae68fb4a73e9
+  - docs-people-and-roles#remove-someone-from-a-project: 7404fad48384
   - docs-people-and-roles#what-each-role-can-do: 164e4eb4b418
   - docs-people-and-roles#who-can-do-this: 3ed014ecda8d
   - docs-people-and-roles#if-something-goes-wrong: 9f8d3bf3bfab

@@ -15,7 +15,6 @@ import {
   isProtectedId,
   protectedLabel,
   slotFor,
-  type AreaId,
   type Decision,
   type ProtectedId,
   type Slot,

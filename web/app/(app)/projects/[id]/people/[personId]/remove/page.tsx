@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { LAST_MANAGER } from '@/record/commands';
-import { personOn } from '@/record/queries';
+import { managers, personOn } from '@/record/queries';
+import { approvalsHeldOn } from '@/record/review';
+import { firstName } from '@/record/commands';
 import { openProject } from '@/ui/project-access';
 import { FocusHeading } from '@/ui/focus-heading';
 import { removeAction } from '../../actions';
@@ -21,8 +23,29 @@ export default async function Remove({ params, searchParams }: Props) {
   const { view } = await openProject(id, `/projects/${id}/people/${personId}/remove`);
   if (view.state !== 'open') return null;
   if (!view.can.has('manage-people')) notFound();
-  const { target } = await personOn(id, personId);
+  const { people, target } = await personOn(id, personId);
   if (!target) notFound();
+  // The last person who can manage people stays for that reason first, as the command decides.
+  const lastManager = managers(people).filter((p) => p.id !== target.id).length === 0 && managers([target]).length === 1;
+  // Someone who approves, delegates or holds an approval stays until those go to someone else
+  // (layer1-gates-and-queue#AC-11).
+  const holds = lastManager ? null : await approvalsHeldOn(id, target.id);
+  if (holds) {
+    return (
+      <section aria-labelledby="remove-title">
+        <FocusHeading id="remove-title">{`${target.display} cannot be removed yet`}</FocusHeading>
+        <p>{holds}</p>
+        <div className="actions">
+          <Link href={`/projects/${id}/people`} className="button secondary">
+            Keep {firstName(target.display)}
+          </Link>
+          <Link href={`/projects/${id}/approvers`} className="button">
+            Go to Approvers
+          </Link>
+        </div>
+      </section>
+    );
+  }
   // Refused because they are the last person who can manage people (AC-33).
   if (error === 'last-manager') {
     return (

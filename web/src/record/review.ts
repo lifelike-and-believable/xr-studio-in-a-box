@@ -14,7 +14,7 @@ import {
 import { and, asc, desc, eq, inArray } from 'drizzle-orm';
 import { db } from '../db/client';
 import { person, reviewDecision, reviewItem, reviewRecommendation, storedFile } from '../db/schema';
-import { assignmentsOf, decidersOf, firstName } from './commands';
+import { approvalsHeldBy, assignmentsOf, decidersOf, firstName } from './commands';
 import { peopleOn } from './queries';
 import { displayName } from './principal';
 
@@ -234,3 +234,6 @@ export async function reviewFileFor(projectId: string, itemId: string) {
     .limit(1);
   return rows[0]?.file ?? null;
 }
+
+// Why a person cannot be removed yet, or null (AC-11).
+export const approvalsHeldOn = (projectId: string, personId: string) => approvalsHeldBy(db(), projectId, personId);

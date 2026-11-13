@@ -6,7 +6,7 @@ derived-from:
   - docs-sign-in: fd75a535d2b1
   - docs-your-projects: b6b8557f98b6
   - docs-organisations-and-projects: e2a19ab061fa
-  - docs-people-and-roles: ad185b267db1
+  - docs-people-and-roles: d32ee2eab0f8
 ---
 
 # Tutorial: start a production and bring in your team

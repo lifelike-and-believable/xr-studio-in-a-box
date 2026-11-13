@@ -28,8 +28,8 @@ derived-from:
   - docs-identifier-filter#remove-a-format-you-added: 5d639a925d3a
   - docs-identifier-filter#who-can-do-this: faf12f82ab66
   - docs-identifier-filter#if-something-goes-wrong: d37c31c290fa
-  - docs-activity-log#read-a-projects-activity: ca6a436f518d
-  - docs-activity-log#filter-the-activity: 18487b9e2eb4
+  - docs-activity-log#read-a-projects-activity: 759961dac622
+  - docs-activity-log#filter-the-activity: 66e90e1035e3
   - docs-activity-log#read-an-organisations-activity: 52200c927d11
   - docs-activity-log#entries-nobody-can-change: 1fbbb53961e4
   - docs-activity-log#who-can-do-this: 34d9091ea09f
