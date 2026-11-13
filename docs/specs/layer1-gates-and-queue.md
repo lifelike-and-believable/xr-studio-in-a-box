@@ -24,6 +24,7 @@ derived-from:
   - decision-navigation-and-urls: f6531b0599e9
   - decision-identity-and-roles#decision: 402e397cf1b0
   - decision-project-record-model#decision: cd1dfeb7a4dd
+tests-commit: 32925eb
 unlocks:
   - contracts/test/roles.test.ts: Roles and permissions. Slice 1's test compares each role's permissions with an exact list; the Director and Producer list gains `manage-gates` as the spec's Roles and permissions section gives it. Every earlier permission is still checked, and so is the rule that no permission is an approval.
 ---
