@@ -51,7 +51,7 @@ export default async function Approvers({ params, searchParams }: Props) {
   if (search.notice === 'holder' && held) message = `${held.label} saved: ${held.holder?.display} holds it.`;
   const who = managers(await peopleOn(id)).map((p) => p.display);
   return (
-    <section aria-labelledby="approvers-title">
+    <>
       {message ? <Notice title={outcome(search) ?? undefined}>{message}</Notice> : null}
       <h2 id="approvers-title">Approvers</h2>
       <p className="lead">Who decides the work that waits at each gate. Hand-offs not listed here, such as a build for rehearsal, move on without waiting for anyone.</p>
@@ -123,6 +123,6 @@ export default async function Approvers({ params, searchParams }: Props) {
         </tbody>
       </table>
       <p>One person can hold every approval. When a project starts, its owner holds them all.</p>
-    </section>
+    </>
   );
 }
