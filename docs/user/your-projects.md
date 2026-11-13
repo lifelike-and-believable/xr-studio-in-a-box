@@ -9,7 +9,7 @@ derived-from:
 
 # Your projects
 
-After you sign in, **Projects** lists every project you are on. Selecting **XR Studio** at the top of any page brings you back to it.
+After you sign in, you see **What needs you**: what is waiting for you on all your projects (see [What needs you](what-needs-you.md)). If you are not on any project yet, you see **Projects** instead. **Projects**, in the menu at the top of every page, lists every project you are on. Selecting **XR Studio** at the top of any page brings you back to **What needs you**.
 
 ## Find a project
 
@@ -26,7 +26,7 @@ Inside a project, the header has a button **Project: <project name>**.
 1. Select it. Your projects are listed, grouped by organisation.
 2. Select another project, or **All projects** to go back to **Projects**.
 
-The header also has **Projects** and **Organisations**, which take you to those lists.
+The header also has **What needs you**, **Projects** and **Organisations**, which take you to those pages.
 
 ## Your account and signing out
 

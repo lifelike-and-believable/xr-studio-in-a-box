@@ -14,7 +14,7 @@ derived-from:
   - docs-sign-in#if-something-goes-wrong: 19f4f2ff5756
   - docs-sign-in#the-emails-xr-studio-sends: 29e7df8c437b
   - docs-your-projects#find-a-project: 920dbbcd7246
-  - docs-your-projects#move-between-projects: cfafa2a8f7f8
+  - docs-your-projects#move-between-projects: dc32c7cdafe1
   - docs-your-projects#your-account-and-signing-out: 37eb865924db
   - docs-your-projects#what-you-see-depends-on-your-roles: c2ab48583d70
   - docs-your-projects#if-something-goes-wrong: a5fe61c78855

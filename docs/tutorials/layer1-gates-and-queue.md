@@ -9,7 +9,7 @@ derived-from:
   - docs-approvers#removing-someone-who-approves: da8035c6b6a4
   - docs-approvers#if-something-goes-wrong: 049938a5f7fa
   - docs-review#send-work-for-review: 581b7cdcd5d4
-  - docs-review#see-what-you-have-sent: 3d1805497e98
+  - docs-review#see-what-you-have-sent: fea857dae05d
   - docs-review#see-everything-that-is-waiting: 386a5b787fcc
   - docs-review#clear-your-review-queue: ae12b606ef54
   - docs-review#decide-on-an-item: 0e33882d3059
