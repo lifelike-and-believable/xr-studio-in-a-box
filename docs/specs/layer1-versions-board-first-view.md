@@ -25,6 +25,8 @@ derived-from:
   - design-what-needs-you: f2ad84583dbc
   - decision-navigation-and-urls: 2dd0e158ee13
 tests-commit:
+unlocks:
+  - contracts/test/roles.test.ts: Roles and permissions. Slice 1's test compares each role's permissions with an exact list; the Director and Producer list gains `plan-work` as the spec's Roles and permissions section gives it. Every earlier permission is still checked.
 ---
 
 # Layer 1, slice 4: versions, the board and the first view
