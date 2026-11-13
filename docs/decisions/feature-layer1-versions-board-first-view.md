@@ -37,3 +37,7 @@ Choices the approved user documentation, designs and mock-ups left open, made du
 19. **A work's page updates itself** by asking for the project's latest change every 15 seconds, as the board does, and redraws in place when it changes, with "Updated <time>." in its status line.
 20. **The "latest change" stamp** that tells a page something changed is the project's activity log: every command writes its entry in the same transaction as its change, so a new entry is a change.
 21. **The slice 3 tutorial's step 14** (`docs/tutorials/layer1-gates-and-queue.md`, still a draft) now follows the new **Send a revised version** form and withdraws from the work's page, and its runner changes with it, so the slice 3 tutorial still matches the product.
+
+## Found while delivering
+
+22. **`slice 2 pages pass axe and keyboard checks` fails now and then on `main` too.** Its check after **It is none of these** on a held fact sometimes finds the page title empty (axe `document-title`, line 78 of `web/e2e/slice2-accessibility.spec.ts`). Run alone and repeated, it failed 1 time in 14 on a build of `main` and 2 times in 22 on this branch, always at that line. It is outside this slice, so it is left as it is and listed here; a retry of the run clears it.
