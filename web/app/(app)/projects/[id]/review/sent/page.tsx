@@ -43,8 +43,9 @@ export default async function Sent({ params, searchParams }: Props) {
       };
     }
   }
-  const again = (r: (typeof rows)[number]) =>
-    `/projects/${id}/review/new?${new URLSearchParams({ from: r.id })}`;
+  // The same form as on the work's page, so the new item is the work's next version
+  // (layer1-versions-board-first-view#AC-27).
+  const again = (r: (typeof rows)[number]) => `/projects/${id}/review/new?${new URLSearchParams({ work: r.workId })}`;
   return (
     <>
       {notice ? <Notice title={notice.lead}>{notice.text}</Notice> : null}
@@ -86,21 +87,25 @@ export default async function Sent({ params, searchParams }: Props) {
                   ) : r.state === 'withdraw' && r.decision ? (
                     <>
                       Withdrawn by you, {entryTime(r.decision.at, zone)}
-                      <br />
-                      <Link href={again(r)}>
-                        Send it again<span className="visually-hidden">: {r.title}</span>
-                      </Link>
+                      {r.isLatest ? (
+                        <>
+                          <br />
+                          <Link href={again(r)}>
+                            Send it again<span className="visually-hidden">: {r.title}</span>
+                          </Link>
+                        </>
+                      ) : null}
                     </>
                   ) : r.decision ? (
                     <>
                       {STATUS[r.state]} {r.decision.by}, {entryTime(r.decision.at, zone)}
                       {r.decision.feedback ? <span className="quote">{r.decision.feedback}</span> : null}
-                      {r.state === 'revise' ? (
+                      {r.state === 'revise' && r.isLatest ? (
                         <Link href={again(r)}>
                           Send a revised version<span className="visually-hidden"> of {r.title}</span>
                         </Link>
                       ) : null}
-                      {r.state === 'reject' ? (
+                      {r.state === 'reject' && r.isLatest ? (
                         <Link href={again(r)}>
                           Send it again<span className="visually-hidden">: {r.title}</span>
                         </Link>

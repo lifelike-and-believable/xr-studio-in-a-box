@@ -112,7 +112,8 @@ export async function sendAnotherLink(requestId: string, headers: Headers): Prom
 }
 
 // Opening an invitation (AC-5): a valid link is used up, then signs the person in through a
-// sign-in link the app takes for itself, and opens the project.
+// sign-in link the app takes for itself, and opens What needs you, where a newcomer's first task
+// is (layer1-versions-board-first-view#AC-32).
 export async function openInvitation(token: string, headers: Headers): Promise<string> {
   const rows = await db()
     .select({ invitation, email: person.email })
@@ -145,7 +146,7 @@ export async function openInvitation(token: string, headers: Headers): Promise<s
   const capture: { url?: string } = {};
   await linkCapture.run(capture, () =>
     auth().api.signInMagicLink({
-      body: { email: found.email, callbackURL: `/projects/${projectId}`, errorCallbackURL: '/sign-in/no-longer-works' },
+      body: { email: found.email, callbackURL: '/what-needs-you', errorCallbackURL: '/sign-in/no-longer-works' },
       headers,
     }),
   );

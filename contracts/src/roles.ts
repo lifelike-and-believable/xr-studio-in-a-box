@@ -24,6 +24,8 @@ export const RoleIdSchema = z.enum(ROLE_IDS);
 // Slice 2 adds the facts and activity permissions (layer1-facts-identifiers-activity, Roles and
 // permissions): general facts, the budget, editing facts and work samples, and the activity log.
 // Slice 3 adds manage-gates, naming approvers, delegates and holders (layer1-gates-and-queue).
+// Slice 4 adds plan-work: adding work, changing its owner and removing it
+// (layer1-versions-board-first-view).
 export const PERMISSIONS = [
   'open-project',
   'see-people',
@@ -34,6 +36,7 @@ export const PERMISSIONS = [
   'edit-facts',
   'read-activity',
   'manage-gates',
+  'plan-work',
 ] as const;
 export type Permission = (typeof PERMISSIONS)[number];
 
@@ -47,6 +50,7 @@ const MANAGER: Permission[] = [
   'edit-facts',
   'read-activity',
   'manage-gates',
+  'plan-work',
 ];
 const VIEWER: Permission[] = ['open-project', 'see-people', 'see-facts'];
 

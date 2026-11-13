@@ -32,7 +32,7 @@ export function ProjectSwitcher({ current, groups }: { current: string; groups: 
             </div>
           ))}
           <hr />
-          <Link href="/" onClick={() => setOpen(false)}>
+          <Link href="/projects" onClick={() => setOpen(false)}>
             All projects
           </Link>
         </nav>

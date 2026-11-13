@@ -39,6 +39,7 @@ export default async function Waiting({ params }: Props) {
               <tr key={r.id}>
                 <th scope="row">
                   <Link href={`/projects/${id}/review/${r.id}`}>{r.title}</Link>
+                  {r.version > 1 ? <span className="version"> Version {r.version}</span> : null}
                   {r.blocking ? <span className="tag">Blocking</span> : null}
                 </th>
                 <td data-label="Stage">{r.stage}</td>

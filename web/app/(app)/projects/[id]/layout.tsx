@@ -14,7 +14,7 @@ export default async function ProjectLayout({ children, params }: { children: Re
         <h1>You no longer have access to this project</h1>
         <p>Your roles on this project were changed or removed. Ask the project&apos;s producer or director if you think this is a mistake.</p>
         <p>
-          <Link href="/">Go to your projects</Link>
+          <Link href="/projects">Go to your projects</Link>
         </p>
       </main>
     );

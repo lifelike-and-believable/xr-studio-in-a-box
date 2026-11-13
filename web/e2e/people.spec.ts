@@ -123,7 +123,7 @@ test('send an invitation again (layer1-organisations-projects-people#AC-31)', as
   await rileyPage.goto(first);
   await expect(rileyPage.getByRole('heading', { name: 'This sign-in link no longer works' })).toBeVisible();
   await acceptInvitation(rileyPage, riley);
-  await expect(rileyPage).toHaveURL(new RegExp(`/projects/${project}$`));
+  await expect(rileyPage).toHaveURL(/\/what-needs-you$/);
   await other.close();
 });
 

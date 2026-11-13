@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { crew, setArea } from './support/slice3';
 import { addWorkFor, checkNow, decideItem, sendWork, updates } from './support/slice4';
-import { uniq } from './support/world';
+import { addPerson, uniq } from './support/world';
 
 // The board, adding work and its owner (layer1-versions-board-first-view#AC-5 to AC-17, AC-43).
 
@@ -91,12 +91,7 @@ test('states and their detail lines (layer1-versions-board-first-view#AC-8)', as
   await expect(page.getByRole('row', { name: /Tide poster/ })).toContainText(new RegExp(`Version 1: rejected by Morgan Ray, ${DATE}\\.`));
 
   // An owner who leaves the project.
-  await page.goto(`/projects/${c.project}/people/new`);
-  const alex = `${uniq('alex-')}@xr.test`;
-  await page.getByLabel('Email address').fill(alex);
-  await page.getByLabel('Name (optional)').fill('Alex Kim');
-  await page.getByRole('checkbox', { name: 'Show operator', exact: true }).check();
-  await page.getByRole('button', { name: 'Add person' }).click();
+  await addPerson(page, c.project, { email: `${uniq('alex-')}@xr.test`, name: 'Alex Kim', roles: ['Show operator'] });
   await addWorkFor(page, c.project, { title: 'Opening cue list', handoff: 'cue-list', owner: 'Alex Kim' });
   await page.goto(`/projects/${c.project}/people`);
   await page.getByRole('link', { name: 'Change roles or remove Alex Kim' }).click();
@@ -199,10 +194,11 @@ test('add work errors (layer1-versions-board-first-view#AC-14)', async ({ page, 
   await page.getByRole('button', { name: 'Add work' }).click();
   await expect(summary).toContainText('Keep the title to 120 characters or fewer.');
   await expect(page.getByLabel('Stage')).toHaveValue('environments');
-  await page.getByLabel('Title').fill('Payee 046 454 286');
+  // A confirmed title is logged, so the number is one slice 2's whole-database check does not look for.
+  await page.getByLabel('Title').fill('Payee 555 444 333');
   await page.getByLabel('Owner').selectOption({ label: 'Riley Chen' });
   await page.getByRole('button', { name: 'Add work' }).click();
-  await expect(summary).toContainText('046 454 286');
+  await expect(summary).toContainText('555 444 333');
   await page.getByRole('button', { name: /^It is (not a|none of these)/ }).click();
   await page.getByLabel('What is it?').fill('A catalogue number');
   await page.getByRole('button', { name: 'Add work' }).click();

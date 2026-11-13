@@ -11,7 +11,7 @@ import {
   type AreaId,
   type ProtectedId,
 } from '@xr/contracts';
-import { and, asc, desc, eq, inArray } from 'drizzle-orm';
+import { and, asc, desc, eq, inArray, sql } from 'drizzle-orm';
 import { db } from '../db/client';
 import { person, reviewDecision, reviewItem, reviewRecommendation, storedFile } from '../db/schema';
 import { approvalsHeldBy, assignmentsOf, decidersOf, firstName } from './commands';
@@ -21,7 +21,7 @@ import { displayName } from './principal';
 // Reads for slice 3 (layer1-gates-and-queue). Who can decide what is worked out here from the
 // current assignments on every read, so a change of approver shows at once (AC-10).
 
-type Named = { id: string; display: string };
+export type Named = { id: string; display: string };
 
 async function names(ids: (string | null | undefined)[]): Promise<Map<string, string>> {
   const wanted = [...new Set(ids.filter((id): id is string => !!id))];
@@ -54,23 +54,26 @@ export async function approverChoices(projectId: string): Promise<{ id: string; 
     .map((p) => ({ id: p.id, label: p.status === 'Invited, not signed in yet' ? `${p.display} (invited, not signed in yet)` : p.display }));
 }
 
-type Deciders = { kind: 'area'; area: AreaId; approver: Named; delegate: Named | null } | { kind: 'protected'; approval: ProtectedId; holder: Named };
+export type Deciders = { kind: 'area'; area: AreaId; approver: Named; delegate: Named | null } | { kind: 'protected'; approval: ProtectedId; holder: Named };
 
-async function decidersFor(projectId: string) {
-  const assignments = await assignmentsOf(db(), projectId);
-  const map = await names([...assignments.values()].flatMap((a) => [a.approverId, a.delegateId]));
-  return (handoffId: string): Deciders | null => {
-    const handoff = handoffById(handoffId);
-    const slot = handoff ? slotFor(handoff) : null;
-    const a = decidersOf(assignments, handoffId);
-    if (!slot || !a) return null;
-    const [kind, id] = slot.split(':');
-    if (kind === 'protected') return { kind: 'protected', approval: id as ProtectedId, holder: { id: a.approverId, display: map.get(a.approverId) ?? '' } };
-    return { kind: 'area', area: id as AreaId, approver: { id: a.approverId, display: map.get(a.approverId) ?? '' }, delegate: named(map, a.delegateId) };
-  };
+// Who decides a hand-off, with their names, from the current assignments.
+export function decidersWith(assignments: Awaited<ReturnType<typeof assignmentsOf>>, map: Map<string, string>, handoffId: string): Deciders | null {
+  const handoff = handoffById(handoffId);
+  const slot = handoff ? slotFor(handoff) : null;
+  const a = decidersOf(assignments, handoffId);
+  if (!slot || !a) return null;
+  const [kind, id] = slot.split(':');
+  if (kind === 'protected') return { kind: 'protected', approval: id as ProtectedId, holder: { id: a.approverId, display: map.get(a.approverId) ?? '' } };
+  return { kind: 'area', area: id as AreaId, approver: { id: a.approverId, display: map.get(a.approverId) ?? '' }, delegate: named(map, a.delegateId) };
 }
 
-const ids = (d: Deciders | null) => (!d ? [] : d.kind === 'protected' ? [d.holder.id] : [d.approver.id, ...(d.delegate ? [d.delegate.id] : [])]);
+export async function decidersFor(projectId: string) {
+  const assignments = await assignmentsOf(db(), projectId);
+  const map = await names([...assignments.values()].flatMap((a) => [a.approverId, a.delegateId]));
+  return (handoffId: string): Deciders | null => decidersWith(assignments, map, handoffId);
+}
+
+export const deciderIds = (d: Deciders | null) => (!d ? [] : d.kind === 'protected' ? [d.holder.id] : [d.approver.id, ...(d.delegate ? [d.delegate.id] : [])]);
 export const deciderNames = (d: Deciders | null) =>
   !d ? [] : d.kind === 'protected' ? [d.holder.display] : [d.approver.display, ...(d.delegate ? [d.delegate.display] : [])];
 
@@ -83,7 +86,7 @@ export function whoDecides(d: Deciders | null): string {
 }
 
 // "Waiting for" in Sent by you and Everything waiting (AC-33, AC-36).
-function waitingFor(d: Deciders | null, handedTo: string | null, viewer?: string): string {
+export function waitingFor(d: Deciders | null, handedTo: string | null, viewer?: string): string {
   if (!d) return '';
   const say = (n: Named) => (n.id === viewer ? 'You' : n.display);
   if (d.kind === 'protected') return say(d.holder);
@@ -139,7 +142,9 @@ async function itemsWith(projectId: string, rows: ItemRow[]) {
       state: (decision?.decision ?? 'waiting') as 'waiting' | 'accept' | 'revise' | 'reject' | 'withdraw',
       decision: decision ? { by: map.get(decision.decidedBy) ?? '', at: decision.decidedAt, feedback: decision.feedback } : null,
       deciders,
-      deciderIds: ids(deciders),
+      deciderIds: deciderIds(deciders),
+      workId: r.workId,
+      version: r.version,
     };
   });
 }
@@ -215,7 +220,20 @@ export async function sentBy(personId: string, projectId: string) {
     .from(reviewItem)
     .where(and(eq(reviewItem.projectId, projectId), eq(reviewItem.sentBy, personId)))
     .orderBy(desc(reviewItem.sentAt));
-  return (await itemsWith(projectId, rows)).map((i) => ({ ...i, waitingFor: waitingFor(i.deciders, i.handedTo?.id ?? null) }));
+  // Only the latest version of a piece of work offers Send a revised version or Send it again
+  // (layer1-versions-board-first-view#AC-27).
+  const latest = rows.length
+    ? await db()
+        .select({ workId: reviewItem.workId, version: sql<number>`max(${reviewItem.version})::int` })
+        .from(reviewItem)
+        .where(inArray(reviewItem.workId, [...new Set(rows.map((r) => r.workId))]))
+        .groupBy(reviewItem.workId)
+    : [];
+  return (await itemsWith(projectId, rows)).map((i) => ({
+    ...i,
+    waitingFor: waitingFor(i.deciders, i.handedTo?.id ?? null),
+    isLatest: latest.some((l) => l.workId === i.workId && l.version === i.version),
+  }));
 }
 
 export async function waitingOn(projectId: string, viewerId: string) {

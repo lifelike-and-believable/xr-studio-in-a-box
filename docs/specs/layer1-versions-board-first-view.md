@@ -24,9 +24,21 @@ derived-from:
   - design-work-and-versions: 93d6a3b09864
   - design-what-needs-you: f2ad84583dbc
   - decision-navigation-and-urls: 2dd0e158ee13
-tests-commit:
+tests-commit: fb61f61
 unlocks:
   - contracts/test/roles.test.ts: Roles and permissions. Slice 1's test compares each role's permissions with an exact list; the Director and Producer list gains `plan-work` as the spec's Roles and permissions section gives it. Every earlier permission is still checked.
+  - web/test/work-commands.test.ts: AC-14. The confirmed title used 046 454 286, which slice 2's test `stores none of them in versions, files, confirmations or entries` looks for across the whole database; a confirmed title is logged, so the test now confirms 555 444 333, a Business Number outside that list. No assertion changes.
+  - web/e2e/board.spec.ts: AC-14. The same change of number in `add work errors`, which runs against the same database. AC-8: `states and their detail lines` now adds Alex with the shared add-person step, which waits for the person to be added before the next step uses them. No assertion changes.
+  - web/e2e/approvers.spec.ts: AC-5. The project tabs gain **Board** after **Review**, so the two expected tab lists gain it. Nothing else changes.
+  - web/e2e/facts.spec.ts: AC-5. The same **Board** tab in the three expected tab lists. Nothing else changes.
+  - web/e2e/tutorial-facts.spec.ts: AC-5. The same **Board** tab in the slice 2 tutorial runner's tab list. Nothing else changes.
+  - web/e2e/hardening.spec.ts: AC-32. Accepting an invitation now lands on **What needs you**, so the test opens the project before checking its heading. No assertion changes.
+  - web/e2e/organisations.spec.ts: AC-32. **Projects** is at `/projects` (`/` sends a person on a project to **What needs you**), and an invitation lands on **What needs you**, so the tests open `/projects`, or the project, before checking it. No assertion changes.
+  - web/e2e/people.spec.ts: AC-32. A second invitation link lands on **What needs you**, not on the project; the expected address changes to `/what-needs-you`.
+  - web/e2e/projects.spec.ts: AC-32. **XR Studio** goes to **What needs you** for a person on a project, so AC-13 expects `/what-needs-you` and checks the card on `/projects`; AC-16 and AC-17 open the project after accepting the invitation. No other assertion changes.
+  - web/e2e/sign-in.spec.ts: AC-32. Sign-in with no return address, and an invitation, land a person on a project on **What needs you**: AC-4 expects `/what-needs-you` and its heading; AC-5 expects `/what-needs-you`, then opens the project and checks its heading; AC-6 opens the project after the invitation. No other assertion changes.
+  - web/e2e/review.spec.ts: AC-26, AC-27. **Send a revised version** in **Sent by you** now opens the form for the item's piece of work, with its title and stage fixed (shown, not asked), so AC-35's test checks **Work**, **Stage** and the waiting choice instead of the **Title** and **Stage** fields.
+  - web/e2e/tutorial-review.spec.ts: AC-26, AC-27. The same change in step 14 of the slice 3 tutorial runner: the form shows the work, sending opens the work's page with "Sent for review: <title>, version 2. ...", and **Withdraw version 2** is on that page. The tutorial's step 14 text changes with it.
 ---
 
 # Layer 1, slice 4: versions, the board and the first view
