@@ -29,7 +29,11 @@ function createAuth() {
     trustedOrigins: origins,
     // Per-address mail limits are the record's own (one email a minute, AC-3); this per-IP limit
     // only guards the auth routes against floods, so a studio behind one address is not blocked.
-    rateLimit: { window: 60, max: 600 },
+    // The library resets a path's count only after a whole window with no requests, so a limit on
+    // checking sign-in links became a lifetime cap for an address that signs someone in at least
+    // once a minute. Those links are single use and about 190 bits long, so checking them is not
+    // limited; sending them still is (one email a minute per address, and the per-IP limit).
+    rateLimit: { window: 60, max: 600, customRules: { '/magic-link/verify': false } },
     database: drizzleAdapter(db(), {
       provider: 'pg',
       schema: {

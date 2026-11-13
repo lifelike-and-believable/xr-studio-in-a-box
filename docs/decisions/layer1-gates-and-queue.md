@@ -21,3 +21,7 @@ Choices the approved user documentation and designs left open, made during deliv
 12. **.gltf files** are JSON text, so their text is checked for identifiers like a PDF's or Word document's. .glb, .fbx and .usdz are binary and are not.
 13. **The PDF preview** uses the browser's own PDF viewer in an `object` element, with "<file>, PDF" as its fallback. Rendering a page to an image would need a canvas library.
 14. **Sending for review** is refused for agent sessions in slice 3, as the documentation says agents send work from a later release.
+
+## Found while delivering
+
+15. **Sign-in links stopped working after 120 checks from one address.** The auth library resets a path's rate-limit count only after a whole minute with no requests to it, so its limit of 120 on checking sign-in links was a lifetime cap for any address that signs someone in at least once a minute: a studio behind one address would be locked out. The full end-to-end suite reached it once slice 3's tests were added. Checking a link is no longer limited (the links are single use and about 190 bits long); sending links still is. A separate commit with `Change: fix` and its own test, `sign-in links keep working after many have been checked from one address`. It is outside slice 3, so the approver may prefer it as its own pull request.
