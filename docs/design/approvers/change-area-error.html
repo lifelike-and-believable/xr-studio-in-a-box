@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error: Not saved - Creative: approver and delegate - The Lantern Keeper - XR Studio</title>
+<link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+<p class="state-label">Wireframe. State: the same person chosen as approver and delegate; focus on the summary</p>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app">
+  <a class="brand" href="#">XR Studio</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#" aria-current="true">Projects</a></li>
+    <li><a href="#">Organisations</a></li>
+  </ul></nav>
+  <div class="switcher"><button type="button" class="secondary" aria-expanded="false" aria-controls="project-menu">Project: The Lantern Keeper</button></div>
+  <div class="account"><button type="button" class="secondary" aria-expanded="false" aria-controls="account-menu">Morgan Ray</button></div>
+</header>
+<main id="main">
+<p><a href="#">Approvers</a></p>
+<h1>Creative: approver and delegate</h1>
+<p class="lead">Creative covers look and concept art, character design, mesh and rig, environments, visual effects, sound and music, and interaction design.</p>
+<div class="error-summary" role="alert" tabindex="-1" aria-labelledby="err-title"><h2 id="err-title">Not saved</h2><ul><li><a href="#delegate">Choose someone other than the approver as delegate, or No delegate.</a></li></ul></div>
+<form method="post">
+<div class="field"><label for="approver">Approver</label><span class="hint" id="approver-hint">Only people on this project who use the dashboard are listed. An agent can never approve.</span><select id="approver" name="approver" aria-describedby="approver-hint"><option>Jordan Lee</option><option selected>Morgan Ray</option><option>Riley Chen (invited, not signed in yet)</option><option>Sam Okafor</option></select></div>
+<div class="field"><label for="delegate">Delegate <span class="optional">(optional)</span></label><span class="hint" id="delegate-hint">The delegate can decide every item in Creative, and the approver can hand items to them.</span><span class="error-message" id="delegate-error">Choose someone other than the approver as delegate, or No delegate.</span><select id="delegate" name="delegate" aria-describedby="delegate-error delegate-hint" aria-invalid="true"><option>No delegate</option><option>Jordan Lee</option><option selected>Morgan Ray</option><option>Riley Chen (invited, not signed in yet)</option><option>Sam Okafor</option></select></div>
+<div class="actions"><button type="submit">Save Creative</button><a href="#">Cancel</a></div>
+</form>
+</main>
+</body>
+</html>

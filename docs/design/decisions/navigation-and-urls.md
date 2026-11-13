@@ -58,8 +58,15 @@ Addresses (the user documentation names pages, not addresses, so these can chang
 | Add a format | `/organisations/<organisation id>/identifier-formats/new` |
 | An organisation's identifier formats | `/organisations/<organisation id>/identifier-formats` |
 | An organisation's activity | `/organisations/<organisation id>/activity` |
+| A project's review queue (added with the slice 3 designs) | `/projects/<project id>/review` |
+| Send for review | `/projects/<project id>/review/new` |
+| Sent by you | `/projects/<project id>/review/sent` |
+| One review item | `/projects/<project id>/review/<item id>` |
+| A project's approvers | `/projects/<project id>/approvers` |
+| Change an area's approver and delegate | `/projects/<project id>/approvers/<area>` |
+| Change a protected approval's holder | `/projects/<project id>/approvers/protected/<approval>` |
 
-The `<fact>` part is a fixed slug, never an id: for projects `description`, `plan`, `budget`, `credits`, `collaborators`, `schedule`, `capacity`; for organisations `legal-name`, `bio`, `company-history`, and `funder-profile-<funder>` with the funder slugs `canada-council-for-the-arts`, `canada-media-fund`, `creative-bc` and `epic-megagrants` (added with the slice 2 designs). Work samples have their own page rather than an edit page.
+The `<fact>` part is a fixed slug, never an id: for projects `description`, `plan`, `budget`, `credits`, `collaborators`, `schedule`, `capacity`; for organisations `legal-name`, `bio`, `company-history`, and `funder-profile-<funder>` with the funder slugs `canada-council-for-the-arts`, `canada-media-fund`, `creative-bc` and `epic-megagrants` (added with the slice 2 designs). Work samples have their own page rather than an edit page. The `<area>` part is `creative`, `performance-and-behaviour`, `builds-and-operations` or `business`, and `<approval>` is `contracts-and-licence-terms`, `funding-applications-and-reports`, `publishing-and-marketing` or `audience-facing-safety-and-consent` (added with the slice 3 designs).
 
 Ids are the record's UUIDv7 ids (decision-project-record-model), not names, so a rename never breaks a link. A page a person may not see answers the same "This page is not available" page, with the same status, whether it does not exist or their role does not allow it, so addresses do not reveal which projects exist (design-dashboard-shell). The one exception is a person who had a role on that project and lost it: they see "You no longer have access to this project" (design-people-and-roles).
 

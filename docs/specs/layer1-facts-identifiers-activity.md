@@ -39,7 +39,7 @@ derived-from:
   - design-identifier-filter: 069c84a56674
   - design-activity-log: 69b55595cccd
   - design-dashboard-shell: a56bdc0e80ae
-  - decision-navigation-and-urls: c3755f7064e2
+  - decision-navigation-and-urls: b1edbf1848ce
   - decision-identity-and-roles#decision: 402e397cf1b0
   - decision-project-record-model#decision: cd1dfeb7a4dd
   - decision-protected-store#decision: 1c1b55830ba3
