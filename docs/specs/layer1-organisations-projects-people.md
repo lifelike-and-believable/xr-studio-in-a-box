@@ -41,7 +41,7 @@ derived-from:
   - design-dashboard-shell: a56bdc0e80ae
   - design-organisations-and-projects: 202a8d9fef23
   - design-people-and-roles: a2487b05978f
-  - decision-navigation-and-urls: b1edbf1848ce
+  - decision-navigation-and-urls: f6531b0599e9
   - decision-identity-and-roles#decision: 402e397cf1b0
   - decision-project-record-model#decision: cd1dfeb7a4dd
 tests-commit: 8bd0a36
