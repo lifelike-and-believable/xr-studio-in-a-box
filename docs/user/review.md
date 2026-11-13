@@ -2,7 +2,7 @@
 id: docs-review
 status: approved
 derived-from:
-  - design-review-queue: dbfb1c876c68
+  - design-review-queue: 5ae80c4a15b8
   - story-review-and-status-hold-gated-hand-off#acceptance-criteria: a7373f33f9bf
   - story-review-and-status-see-review-queue#acceptance-criteria: 0cf0b45ffc70
   - story-review-and-status-decide-on-items#acceptance-criteria: 09f7ac5e0805
@@ -34,7 +34,7 @@ In this release XR Studio sends no email or alert when something is waiting for 
 
 Keep bank details and tax numbers out of the title, **What changed** and the file: agents can read them. XR Studio checks the text, and the text of PDFs and Word documents, as it does for facts and work samples (see [Identifier formats](identifier-formats.md)).
 
-Builds are not sent by hand. They reach their gates from the build pipeline, in a later release.
+Builds are not sent by hand, so the build stages are not listed under **Stage**. They reach their gates from the build pipeline, in a later release.
 
 ## See what you have sent
 
@@ -49,9 +49,17 @@ Any feedback the reviewer wrote is shown under the status.
 
 ![Sent by you](../design/review-queue/sent.png)
 
+### Withdraw something you sent
+
+While an item is still waiting, select **Withdraw** beside it in **Sent by you**, or on its page. It leaves the queue at once, and you see, for example, "Withdrawn: Ferry pilot character sheet. It has left the queue of Morgan Ray and Sam Okafor. To send it again, use Send it again." Its status becomes "Withdrawn by you, <date and time>".
+
+You cannot edit something you sent. To correct the stage, the file or the text, withdraw it and send it again.
+
+![Withdrawn](../design/review-queue/sent-withdrawn.png)
+
 ### Send a revised version
 
-Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection). **Send for review** opens with the title, stage and blocking choice filled in. Choose the new file, say what changed, and send it. In this release the new item is not linked to the old one: both stay in **Sent by you**, the old one with its decision and the new one waiting. Comparing versions comes in a later release.
+Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection or a withdrawal). **Send for review** opens with the title, stage and blocking choice filled in. Choose the new file, say what changed, and send it. In this release the new item is not linked to the old one: both stay in **Sent by you**, the old one with its decision and the new one waiting. Comparing versions comes in a later release.
 
 ## See everything that is waiting
 
@@ -67,7 +75,7 @@ Items are grouped by stage, with the area beside each group. Groups with blockin
 
 - **Blocking**: another stage waits on this decision, for example "Mesh and rig waits on this decision."
 - **Handed to <name>**: the approver handed it to the delegate.
-- **AI recommendation, not a decision**: an AI check's suggested result, in a dashed box. It is only advice. In this release no AI checks run yet, so you will not see one.
+- **AI recommendation, not a decision**: an AI check's suggested result, in a dashed box. It is only advice. In this release no AI checks run yet, so you will not see one; the pictures on this page show how it will look.
 
 A line above the groups counts them, for example "5 items waiting for your decision, 1 blocking."
 
@@ -112,10 +120,10 @@ Protected approvals cannot be handed on.
 
 ## Who can do this
 
-- Anyone on the project who uses the dashboard can send work for review, see what they sent, and see everything waiting.
+- Anyone on the project who uses the dashboard can send work for review, withdraw it while it waits, see what they sent, and see everything waiting.
 - Only the approver or delegate of the item's area, or the holder of its protected approval, can decide it.
 - Agents cannot accept, request a revision, reject or hand on. An AI recommendation never passes a gate.
-- Every send, hand-on and decision is recorded in the project's **Activity**, under the area Review. Feedback is not copied there.
+- Every send, withdrawal, hand-on and decision is recorded in the project's **Activity**, under the area Review. Feedback is not copied there.
 
 ## If something goes wrong
 
@@ -128,6 +136,8 @@ Protected approvals cannot be handed on.
 | A notice that your file is held | The text of your PDF or Word document looks like it holds a bank or tax number. It is not sent, and is deleted after 24 hours unless you confirm. | If it is not such a number, confirm with **It is not a <format>, add <file>**. If the document really holds one, such as a signed contract or a funding report, send a copy with those numbers removed and keep the original outside XR Studio. |
 | "Write feedback for <requester>: say what to change." | You asked for a revision without feedback. Nothing was recorded. | Write what to change, then select **Request revision** again. |
 | "Write the feedback each requester will see." | You asked for a revision of several items without feedback. | Write what to change, then confirm again. |
+| "Your decision was not recorded: Riley Chen withdrew this item at 09:05 on 13 November." | The sender withdrew it while you had it open. | Nothing to do. Select **Back to Review**. |
+| "Not withdrawn: Morgan Ray accepted it at 09:04 on 13 November." | It was decided before you withdrew it. | If it needs changing, send a new item. |
 | "Select at least one item." | You chose a batch action with nothing ticked. | Tick the items first. |
 | "Your decision was not recorded: Sam Okafor accepted this item at 14:18 on 13 November, while you had it open. It has left your queue." | Someone else who can decide it got there first. | Nothing to do. Select **Back to Review**. In a batch, the others were decided, and the notice names the ones that were not. |
 | "Nothing is waiting for your decision" | Your queue is empty. | Items appear when someone sends work at a stage you approve. |
