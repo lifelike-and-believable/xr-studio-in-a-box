@@ -14,7 +14,9 @@ Work at a gated stage waits until a person accepts it. You send the work for rev
 
 In this release you send work for review yourself. In later releases agents and pipeline steps send their work the same way, and AI checks add recommendations.
 
-Everything here is on the project's **Review** tab, which sits after **Overview**. Everyone on the project who uses the dashboard can open it.
+Everything here is on the project's **Review** tab, which sits after **Overview**. Everyone on the project who uses the dashboard can open it. Work at a stage that does not need approval moves on without waiting, so it is never sent here.
+
+In this release XR Studio sends no email or alert when something is waiting for you, or when your work is decided: check **Review**. Alerts come in a later release.
 
 ## Send work for review
 
@@ -23,7 +25,7 @@ Everything here is on the project's **Review** tab, which sits after **Overview*
 3. Choose the **Stage** the work is at. Only stages that need someone's approval are listed, grouped by area. A line appears under it saying who decides, for example "Morgan Ray, the Creative approver, or Sam Okafor, the delegate, decides this."
 4. Say in **What changed** what the reviewer should look at.
 5. Choose the **File**: a video, image, audio, PDF, Word or 3D model file (.glb, .gltf, .fbx or .usdz).
-6. If another stage cannot start until this is decided, choose it under **Is other work waiting on this decision?**. The item is then marked as blocking, and its approver sees it first. Otherwise leave **Nothing is waiting**.
+6. If another stage cannot start until this is decided, choose it under **Is other work waiting on this decision?**. The item is then marked as blocking, and its approver sees it before items that are not blocking. In this release only the sender can mark an item as blocking, so an item nobody marked is not tagged even if something waits on it. Otherwise leave **Nothing is waiting**.
 7. Select **Send for review**.
 
 **Sent by you** opens with a notice, for example "Sent for review: Ferry pilot character sheet. It waits for Morgan Ray or Sam Okafor."
@@ -39,7 +41,7 @@ Builds are not sent by hand. They reach their gates from the build pipeline, in 
 Select **Sent by you**. Everything you have sent on this project is listed, newest first, with its stage, when you sent it, and its status:
 
 - "Waiting for Morgan Ray or Sam Okafor (delegate)", or the holder for a protected approval: nobody has decided yet.
-- "Accepted by <name>, <date and time>": it can move on.
+- "Accepted by <name>, <date and time>": the work has passed the gate. In this release nothing starts the next stage for you; the people working on it carry on.
 - "Revision requested by <name>, <date and time>", with their feedback and **Send a revised version**.
 - "Rejected by <name>, <date and time>", with any feedback and **Send it again**.
 
@@ -49,7 +51,7 @@ Any feedback the reviewer wrote is shown under the status.
 
 ### Send a revised version
 
-Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection). **Send for review** opens with the title, stage and blocking choice filled in. Choose the new file, say what changed, and send it. In this release the new item is not linked to the old one; comparing versions comes in a later release.
+Select **Send a revised version** (after a revision request) or **Send it again** (after a rejection). **Send for review** opens with the title, stage and blocking choice filled in. Choose the new file, say what changed, and send it. In this release the new item is not linked to the old one: both stay in **Sent by you**, the old one with its decision and the new one waiting. Comparing versions comes in a later release.
 
 ## See everything that is waiting
 
@@ -61,7 +63,7 @@ Select **Everything waiting** to see all the work held at a gate on this project
 
 If you approve an area, are its delegate, or hold a protected approval, the **Review** tab shows every item waiting for your decision on this project, and only those.
 
-Items are grouped by stage, with the area beside each group. Groups with blocking items come first, oldest first. Each item shows a preview, its title, **Stage**, **Requested by** and **What changed**. You may also see:
+Items are grouped by stage, with the area beside each group. Groups with blocking items come first, oldest first. Each item shows a preview, its title, **Stage**, **Requested by** and **What changed**. Images, videos and PDFs show a picture; audio, Word and 3D model files show only their file name, so open them to check. You may also see:
 
 - **Blocking**: another stage waits on this decision, for example "Mesh and rig waits on this decision."
 - **Handed to <name>**: the approver handed it to the delegate.
@@ -94,7 +96,7 @@ If you can decide an item you sent yourself, you may: so one person can run a wh
 3. Check the list in the confirmation. To request a revision, write the **Feedback** every requester will see; to reject, feedback is optional.
 4. Confirm, for example with **Accept 2 items**, or select **Go back**.
 
-To accept a whole group, select **Accept all <n> in <stage>** above the group, and confirm.
+To accept a whole group of two or more items, select **Accept all <n> in <stage>** above the group, and confirm.
 
 You see, for example, "Accepted 2 items in Character design."
 
@@ -125,6 +127,7 @@ Protected approvals cannot be handed on.
 | An error saying text looks like a bank account, tax or card number | The title, **What changed** or feedback matches one of your organisation's identifier formats. | Take the number out and send again, or, if it is not that kind of number, select **It is not a <format>** and say what it is (see [Identifier formats](identifier-formats.md)). |
 | A notice that your file is held | The text of your PDF or Word document looks like it holds a bank or tax number. It is not sent, and is deleted after 24 hours unless you confirm. | If it is not such a number, confirm with **It is not a <format>, add <file>**. If the document really holds one, such as a signed contract or a funding report, send a copy with those numbers removed and keep the original outside XR Studio. |
 | "Write feedback for <requester>: say what to change." | You asked for a revision without feedback. Nothing was recorded. | Write what to change, then select **Request revision** again. |
+| "Write the feedback each requester will see." | You asked for a revision of several items without feedback. | Write what to change, then confirm again. |
 | "Select at least one item." | You chose a batch action with nothing ticked. | Tick the items first. |
 | "Your decision was not recorded: Sam Okafor accepted this item at 14:18 on 13 November, while you had it open. It has left your queue." | Someone else who can decide it got there first. | Nothing to do. Select **Back to Review**. In a batch, the others were decided, and the notice names the ones that were not. |
 | "Nothing is waiting for your decision" | Your queue is empty. | Items appear when someone sends work at a stage you approve. |

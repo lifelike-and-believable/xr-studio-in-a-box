@@ -36,7 +36,7 @@ You need the Director or Producer role on the project.
 
 1. On the **Approvers** tab, select **Change** beside the area.
 2. Choose the **Approver**.
-3. Choose a **Delegate**, or **No delegate**.
+3. Choose a **Delegate (optional)**, or **No delegate**.
 4. Select **Save <area>**, for example **Save Creative**.
 
 You see, for example, "Creative saved: Morgan Ray approves it, with Sam Okafor as delegate. Items already waiting in Creative now wait for them."
