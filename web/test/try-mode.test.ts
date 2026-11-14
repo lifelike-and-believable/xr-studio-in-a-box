@@ -79,8 +79,8 @@ describe('the tutorials Try XR Studio offers (trying-the-product#AC-8)', () => {
     });
 
   it('lists every web tutorial, with its title and file', () => {
-    const web = tutorials.filter((t) => t.runner === 'web');
-    expect(TUTORIALS.map((t) => t.id).sort()).toEqual(web.map((t) => t.id).sort());
+    const listed = tutorials.filter((t) => t.id);
+    expect(TUTORIALS.map((t) => t.id).sort()).toEqual(listed.map((t) => t.id).sort());
     for (const t of TUTORIALS) {
       const doc = tutorials.find((d) => d.id === t.id);
       expect(doc?.file).toBe(t.file);

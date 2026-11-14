@@ -33,3 +33,7 @@ export function tutorialLink(t: TrialTutorial): string {
 // Where Try XR Studio puts the Start dialog: above the table, so the dialog's Start comes before
 // every row's Start in the page (the tutorial runner clicks the first one it finds).
 export const DIALOGS = 'try-dialogs';
+
+// The made-up files the tutorials choose, offered on Try XR Studio (help-tutorials-and-previews#AC-12).
+export type TryFile = { name: string; about: string };
+export const TRY_FILES: readonly TryFile[] = [];
