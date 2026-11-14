@@ -2,7 +2,7 @@
 // preview's database when this is a preview on Vercel in try mode, then the app.
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
-import { preparePreviewDatabase } from '../src/try/preview-build.ts';
+import { pnpmCommand, preparePreviewDatabase } from '../src/try/preview-build.ts';
 
 const web = path.resolve(import.meta.dirname, '..');
 const run = (cmd, args) => {
@@ -21,4 +21,4 @@ try {
   console.error(error instanceof Error ? error.message : 'trial copy: the database could not be prepared');
   process.exit(1);
 }
-run('pnpm', ['exec', 'next', 'build']);
+run(...pnpmCommand(['exec', 'next', 'build']));
