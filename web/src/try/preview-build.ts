@@ -3,8 +3,8 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import pg from 'pg';
-import { tryMode, type Env } from './mode';
-import { APP_TABLES } from './tables';
+import { tryMode, type Env } from './mode.ts';
+import { APP_TABLES } from './tables.ts';
 
 export type PreviewBuild = 'skipped' | 'prepared';
 type Owner = { query: (text: string) => Promise<unknown> };

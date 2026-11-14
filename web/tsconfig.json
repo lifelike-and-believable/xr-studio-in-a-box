@@ -5,6 +5,8 @@
     "lib": ["dom", "dom.iterable", "es2023"],
     "allowJs": false,
     "incremental": true,
+    // web/scripts run some modules in src/ with Node's type stripping, which needs the .ts extension.
+    "allowImportingTsExtensions": true,
     "plugins": [{ "name": "next" }],
     "paths": { "@/*": ["./src/*"] }
   },

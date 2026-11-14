@@ -4,7 +4,7 @@ This run was started by the delivery routine with no feature name. `delivery.mjs
 
 ## Choices that most need the lead's eye
 
-1. **This delivery is step 1 of the design's six, not all of them.** design-trying-the-product, "Notes for delivery", says to build in order and that each step ends with something that runs. Step 1 (the try command and sign-in) is self-contained and is what this branch builds, as `docs/specs/trying-the-product.md`. The spec derives from `docs-trying-xr-studio` only, so after this merges the process still lists Help (`docs-help-and-tutorials`, `docs-start` and the area overviews) as open, and the routine starts it as the next delivery. The other steps:
+1. **This delivery was step 1 of the design's six.** The approver then asked for steps 2 to 6 on this branch; see "Steps 2 to 6" below. design-trying-the-product, "Notes for delivery", says to build in order and that each step ends with something that runs. Step 1 (the try command and sign-in) is self-contained and is what this branch builds, as `docs/specs/trying-the-product.md`. The spec derives from `docs-trying-xr-studio` only, so after this merges the process still lists Help (`docs-help-and-tutorials`, `docs-start` and the area overviews) as open, and the routine starts it as the next delivery. The other steps:
    - Step 2, previews: the lead connects the Vercel project and the Neon integration first (the design's checks only a person can do, and NODE-002). Not started here.
    - Steps 3 to 5, the twelve task tutorials, removing the four old ones and their scripts, and `lasting-tutorials: fail`: each tutorial needs its starting point in the loader. Not started here; the loader is built so that each one adds a function.
    - Step 6, Help: the next delivery, as above.
@@ -75,3 +75,37 @@ From the design's "Notes for delivery", for this step:
 - Run `pnpm run try` on a machine with Docker, follow `docs/tutorials/try-xr-studio-in-a-trial-copy.md`, and stop it with Ctrl+C.
 - A manual pass of **Try XR Studio** with a screen reader.
 - The rest of the design's list (the Vercel project, the Neon integration, the preview bypass secret, production's settings) belongs to step 2.
+
+## Steps 2 to 6, asked for on the pull request
+
+The approver's review on pull request #369 asked, "deliver slice 2-6". They are built on this branch, under a second spec, `docs/specs/help-tutorials-and-previews.md`, whose `derived-from` takes in Help, the start page and the area overviews, so that no part of the "Trying the product" packet is left open.
+
+### Choices
+
+1. **Help is made at build time by this repository's own script** (`web/scripts/help-content.mjs`), not by rules-for-robots' `checks/docs-map.mjs`, which the design names. The build runs where no rules-for-robots checkout exists (CI's `verify` job, Vercel). The script reads the areas and pages the same way: the start page's links, then each overview's "Pages" list, approved pages only.
+2. **A new dependency, `marked` 18.2.0** (MIT, maintained, its latest release), renders the pages' Markdown. Raw HTML is escaped and HTML comments are left out.
+3. **Five tutorials are `runner: manual`**: 3, 5, 7, 9 and 10, because each chooses a file and the tutorial runner has no sentence for that yet (checked at rules-for-robots `0efba3c`). Tutorials 8, 11 and 12 start from manual ones, so a full run of the runner skips them. That is a failure of the runner's run, not of the tutorials. Each was run here on its own after **Start** loaded its starting point (see "Tutorial runs").
+4. **Where tutorials 9 and 11 meet.** The design gives tutorial 11 Morgan's decision from **What needs you**, and tutorial 9 the board changing when that decision is made. A tutorial cannot do both, because tutorials 10 and 11 start from where 9 ends. Tutorial 9's end leaves the character sheet waiting, Morgan decides it in tutorial 11, and tutorial 9 leaves out watching the board change without a reload. The end-to-end tests still cover that.
+5. **Steps the tutorials leave out**, each covered by the end-to-end tests: the prop list stopped at sending (gates step 8; tutorial 5 shows the same check on a fact and a file), withdrawing a version (gates step 14, second half), and the second invitation email (slice 1). Tutorial 1 names the organisation Harbourfront Puppet Co. and leaves out renaming it.
+6. **Signing in as a made-up person names the account** from the list ("Signed in as Jordan Lee."), as the design's layout gives it. This replaces the earlier choice above, under "Other choices", to name nobody.
+7. **The preview's build step runs only on Vercel** (`VERCEL=1` with try mode on). A local `pnpm run build` with `XR_TRY=1` never touches a database: the end-to-end suite and `pnpm run try` make their own trial databases.
+8. **The preview workflow is pinned to one rules-for-robots commit** (`0efba3c`) and passed only `RFR_PREVIEW_BYPASS`, as the design asks. This goes against the standing preference to follow rules-for-robots `@main` everywhere (docs/preferences.md, Tooling). The design gives the reason: the bypass token with the sign-in path opens every preview. The process workflow still follows `@main`.
+9. **`vercel.json` names the build command** (`pnpm run build`), so that Vercel runs the build script and not `next build` alone.
+10. **Recorded again, one reason for all:** the four slice specs, the first spec and the new tutorials cite user documentation pages that gained a **Try it** line, or lost a stray closing line. No wording, step, control name or message changed.
+
+### Not done
+
+- **Connecting the preview** is the lead's: the Vercel project, the Neon integration on Preview only, `XR_TRY=1` and the trial secrets for Preview, and the `RFR_PREVIEW_BYPASS` secret (NODE-002). Until then the preview workflow has no deployment to run against, and none of step 2's code has run on Vercel. `VERCEL_URL` and `VERCEL_BRANCH_URL` are assumed to be the deployment's host names, as the design marks them.
+- **The tutorial runner cannot choose a file.** Raising it for rules-for-robots is the lead's, as the design says.
+
+### Tutorial runs
+
+Against a local trial copy started by `TRY_DATABASE_URL=<an empty database> TRY_PORT=3200 pnpm run try`, with rules-for-robots' `checks/tutorial-run.mjs` at `0efba3c`:
+
+- Tutorial 1, then 2, 4 and 6 starting from it, in one run: `ok` (9, 6, 5 and 6 steps; tutorial 2's three passkey and email steps are manual).
+- Tutorial 8 after **Start** loaded its starting point: `ok` (7 steps).
+- Tutorial 11 after **Start**: `ok` (4 steps).
+- Tutorial 12 after **Start**: `ok` (3 steps).
+- `--coverage` with the lasting-tutorial rules failing: "13 tutorial(s): runners and steps are in order."
+
+The five manual tutorials were not followed by hand here.
