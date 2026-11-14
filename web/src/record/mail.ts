@@ -58,7 +58,7 @@ export async function sendLimited(address: string, kind: string, content: MailCo
   return withAddressLock(address, async (tx) => {
     if (LIMITED.has(kind) && (await sentWithinAMinute(address, tx))) return 'limited';
     try {
-      deliver({ to: address, ...content });
+      await deliver({ to: address, ...content });
     } catch {
       // The reason can name the transport's settings; the caller only needs to know it failed.
       console.error(`mail: a ${kind} email could not be sent`);

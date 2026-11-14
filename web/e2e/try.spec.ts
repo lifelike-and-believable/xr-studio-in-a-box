@@ -75,7 +75,8 @@ test('outside try mode every /try address is not available (trying-the-product#A
 test('the trial line is on every page of a trial copy and only there (trying-the-product#AC-6)', async ({ page }) => {
   for (const address of ['/sign-in', '/try', '/no-such-page', '/projects']) {
     await page.goto(`${TRY}${address}`);
-    const band = page.locator('body > :first-child');
+    // Next.js puts a hidden element of its own first in the body; the line is the first one shown.
+    const band = page.locator('body > :not([hidden]):not(script)').first();
     await expect(band).toContainText(LINE);
     await expect(band.getByRole('link', { name: 'Try XR Studio', exact: true })).toHaveAttribute('href', '/try');
     await expect(band).not.toHaveAttribute('aria-live', /.+/);
@@ -176,12 +177,18 @@ test.describe.serial('Try XR Studio', () => {
       await notAvailable(TRY, 'GET', `/try/sign-in?as=${encodeURIComponent(as)}`);
     }
 
-    const prefetches: Record<string, string>[] = [{ 'next-router-prefetch': '1' }, { purpose: 'prefetch' }, { 'sec-purpose': 'prefetch' }];
+    const links = async () => Number((await tryDb('select count(*)::int as n from verification')).rows[0].n);
+    const before = await links();
+    const prefetches: Record<string, string>[] = [{ purpose: 'prefetch' }, { 'sec-purpose': 'prefetch' }];
     for (const header of prefetches) {
       const r = await fetch(`${TRY}/try/sign-in?as=Jordan`, { redirect: 'manual', headers: header });
       expect(r.status, JSON.stringify(header)).toBe(404);
-      expect(r.headers.get('set-cookie') ?? '').not.toMatch(/session_token/);
     }
+    // Next.js removes Next-Router-Prefetch before the page sees it, and answers its router's
+    // prefetches (RSC with Next-Router-Prefetch) without running the page.
+    const routerPrefetch = await fetch(`${TRY}/try/sign-in?as=Jordan`, { redirect: 'follow', headers: { rsc: '1', 'next-router-prefetch': '1' } });
+    expect(routerPrefetch.headers.get('set-cookie') ?? '').not.toMatch(/session_token/);
+    expect(await links()).toBe(before);
     const r = await fetch(`${TRY}/try/sign-in?as=Jordan`, { redirect: 'manual' });
     expect(r.headers.get('cache-control')).toMatch(/no-store/);
   });

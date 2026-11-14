@@ -502,3 +502,18 @@ export const workFeedback = pgTable(
   },
   (t) => [index('work_feedback_item_idx').on(t.itemId, t.at)],
 );
+
+// --- Trial copies (trying-the-product)
+
+// Email a trial copy would have sent: kept here, never delivered (trying-the-product#AC-16).
+export const tryMail = pgTable(
+  'try_mail',
+  {
+    id: uuid('id').primaryKey(),
+    address: text('address').notNull(),
+    subject: text('subject').notNull(),
+    text: text('text').notNull(),
+    sentAt: at('sent_at').notNull().defaultNow(),
+  },
+  (t) => [index('try_mail_sent_idx').on(t.sentAt)],
+);

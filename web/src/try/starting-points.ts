@@ -22,11 +22,10 @@ export const TUTORIALS: readonly TrialTutorial[] = [
 ];
 
 export function tutorialById(id: string): TrialTutorial | undefined {
-  void id;
-  return TUTORIALS[0];
+  return TUTORIALS.find((t) => t.id === id);
 }
 
 // Until Help is built (design-trying-the-product, delivery step 6), a title links to the file.
 export function tutorialLink(t: TrialTutorial): string {
-  return t.file;
+  return `https://github.com/lifelike-and-believable/xr-studio-in-a-box/blob/main/${t.file}`;
 }

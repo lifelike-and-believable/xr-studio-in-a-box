@@ -111,6 +111,8 @@ export async function sendAnotherLink(requestId: string, headers: Headers): Prom
   return result.ok ? result.requestId : null;
 }
 
+type FoundInvitation = { invitation: typeof invitation.$inferSelect; email: string };
+
 // Opening an invitation (AC-5): a valid link is used up, then signs the person in through a
 // sign-in link the app takes for itself, and opens What needs you, where a newcomer's first task
 // is (layer1-versions-board-first-view#AC-32).
@@ -121,7 +123,13 @@ export async function openInvitation(token: string, headers: Headers): Promise<s
     .innerJoin(person, eq(person.id, invitation.personId))
     .where(eq(invitation.tokenHash, hashToken(token)))
     .limit(1);
-  const found = rows[0];
+  return acceptInvitation(rows[0], headers);
+}
+
+// Uses up the invitation and returns where its person goes next: the sign-in link that starts
+// their session, or the "no longer works" page. Shared with signing in as a person in a trial
+// copy, which accepts an invitation as its link would (trying-the-product#AC-12).
+export async function acceptInvitation(found: FoundInvitation | undefined, headers: Headers): Promise<string> {
   const noLongerWorks = async () => {
     if (!found) return '/sign-in/no-longer-works';
     const requestId = newId();
@@ -143,14 +151,20 @@ export async function openInvitation(token: string, headers: Headers): Promise<s
     .returning({ projectId: invitation.projectId });
   const projectId = used[0]?.projectId;
   if (!projectId || !(await canSignIn(found.email))) return noLongerWorks();
+  return (await takeSignInLink(found.email, '/what-needs-you', headers)) ?? (await noLongerWorks());
+}
+
+// A sign-in link the app takes for itself instead of mailing it, to start a session it has
+// already decided on: after an invitation, or in a trial copy.
+export async function takeSignInLink(email: string, callbackURL: string, headers: Headers): Promise<string | undefined> {
   const capture: { url?: string } = {};
   await linkCapture.run(capture, () =>
     auth().api.signInMagicLink({
-      body: { email: found.email, callbackURL: '/what-needs-you', errorCallbackURL: '/sign-in/no-longer-works' },
+      body: { email, callbackURL, errorCallbackURL: '/sign-in/no-longer-works' },
       headers,
     }),
   );
-  return capture.url ?? (await noLongerWorks());
+  return capture.url;
 }
 
 export type MailOutcome = SendOutcome | 'none';

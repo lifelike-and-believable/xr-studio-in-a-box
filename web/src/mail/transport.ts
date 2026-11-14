@@ -2,14 +2,18 @@ import 'server-only';
 import { randomUUID } from 'node:crypto';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { keepMail } from '../try/mail';
+import { tryMode } from '../try/mode';
 import type { MailContent } from './templates';
 
 export type OutgoingMail = MailContent & { to: string };
 
 // One transport for slice 1: each message is written as a JSON file to MAIL_CAPTURE_DIR, and
 // nothing leaves the machine (layer1-organisations-projects-people#AC-12). The production
-// transport (Amazon SES in ca-central-1) is added before the first deployment.
-export function deliver(mail: OutgoingMail): void {
+// transport (Amazon SES in ca-central-1) is added before the first deployment. In a trial copy the
+// only transport keeps the message in the database (trying-the-product#AC-16).
+export async function deliver(mail: OutgoingMail): Promise<void> {
+  if (tryMode()) return keepMail(mail);
   const dir = process.env.MAIL_CAPTURE_DIR;
   if (!dir) throw new Error('mail: no transport is configured (set MAIL_CAPTURE_DIR)');
   // The .invalid top-level domain can never receive mail (RFC 2606), so the capture transport

@@ -10,7 +10,7 @@ export const PEOPLE: readonly TrialPerson[] = [
   { first: 'Drew', name: 'Drew Patel', role: 'Sound designer', email: 'drew@xr.test' },
 ];
 
+// Only a first name in the list, exactly: never an address or an id (trying-the-product#AC-12).
 export function personByFirstName(first: string): TrialPerson | undefined {
-  void first;
-  return PEOPLE[4];
+  return PEOPLE.find((p) => p.first === first);
 }

@@ -1,6 +1,9 @@
 ---
 id: spec-trying-the-product
 status: approved
+tests-commit: 13625b6
+unlocks:
+  - web/e2e/try.spec.ts: AC-14. Next.js removes `Next-Router-Prefetch` from every request before the proxy or a page sees it, so that header alone is not a prefetch to Next.js and cannot be refused; the test now sends a real router prefetch (with `RSC: 1`) and checks that no sign-in link is minted and no session is set, and checks `Purpose` and `Sec-Purpose` for 404 as before. AC-6: Next.js puts a hidden element of its own first in the body, so the test reads the first element shown instead of the first child. No assertion changes.
 derived-from:
   - docs-trying-xr-studio#open-a-trial-copy: b47ec19dfb98
   - docs-trying-xr-studio#start-a-tutorial: ef458aeef4e0
@@ -56,7 +59,7 @@ The lead validates a delivery by following its tutorial, and today that means bu
 - **AC-11.** **Sign in as a person** starts with "Nobody is signed in in this browser." or "Signed in as <name>.", then one row for each of the five people with their name and role. A person who can sign in at this point (AC-12) has a link styled as a button, **Sign in as Jordan** (and the other four by first name), to `/try/sign-in?as=<first name>`. A person who cannot has no link and the text "Not added yet. Jordan adds <first name> in the tutorial." Below the rows: "To act as two people at once, open a private window for the second person." Source: design "Layout"; user documentation "Sign in as a person"; story, third criterion.
 - **AC-12.** `/try/sign-in?as=<first name>` accepts only the five first names, never an address or an id; any other name answers **This page is not available** with 404. It signs in only the account whose address is that person's in the list. It checks the person may sign in, as the sign-in form does (`canSignIn`), and then mints a one-time sign-in link inside the app, as an invitation does, and follows it, so the session is an ordinary one and the person lands where an ordinary sign-in lands. A person with an open invitation (not used, not replaced, not expired) has it accepted, as its emailed link would, and lands where that link lands (**What needs you**). Source: design "Signing in as a tutorial's person", conditions 3; "States and errors"; user documentation "Sign in as a person".
 - **AC-13.** A person who cannot sign in and has no open invitation gets the page "<first name> is not on a project in this copy yet. Jordan adds <first name> in Start a production and bring in your team." with a link back to **Try XR Studio**. Source: design "States and errors"; user documentation "If something goes wrong".
-- **AC-14.** `/try/sign-in` answers with `Cache-Control: no-store`, and refuses a request marked as a prefetch (`Next-Router-Prefetch`, `Purpose: prefetch` or `Sec-Purpose: prefetch`) with 404 before it signs anyone in or accepts any invitation. The **Sign in as** links are not prefetched. Source: design "Signing in as a tutorial's person".
+- **AC-14.** `/try/sign-in` answers with `Cache-Control: no-store`, and refuses a request the browser marks as a prefetch (`Purpose: prefetch` or `Sec-Purpose: prefetch`) with 404 before it signs anyone in or accepts any invitation. The **Sign in as** links are plain links, which the Next.js router does not prefetch; a Next.js router prefetch (`RSC: 1` with `Next-Router-Prefetch: 1`) is answered by Next.js without running the page, so it mints no sign-in link. Source: design "Signing in as a tutorial's person".
 
 ### Starting points
 

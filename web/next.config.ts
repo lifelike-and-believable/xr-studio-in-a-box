@@ -7,6 +7,7 @@ const tryBuild = process.env.XR_TRY === '1';
 
 const nextConfig: NextConfig = {
   transpilePackages: ['@xr/contracts'],
+  pageExtensions: tryBuild ? ['try.tsx', 'try.ts', 'tsx', 'ts'] : ['tsx', 'ts'],
   distDir: tryBuild ? '.next-try' : '.next',
 };
 
