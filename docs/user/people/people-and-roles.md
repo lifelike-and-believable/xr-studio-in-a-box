@@ -103,5 +103,3 @@ Choose one or more. A person can see and do what any of their roles allows. Dire
 | A notice that the email could not be sent | The person was added, but the invitation did not go out. | Check the address with them, then select **Send the sign-in link again**. To fix a wrong address, remove them and add them again. |
 | "You can send another in a minute" | You sent an invitation to this person less than a minute ago. | Wait a minute, then try again. |
 | "You are the only person on this project who can add people and change roles, so this role stays until you give someone else the Director or Producer role." | Removing your role would leave nobody able to manage people. | Give someone else Director or Producer first: select **Change roles or remove** beside them, tick **Director** or **Producer** and select **Save roles**. Then change your own roles. |
-</content>
-</invoke>

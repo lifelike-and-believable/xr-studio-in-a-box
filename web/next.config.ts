@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   transpilePackages: ['@xr/contracts'],
   pageExtensions: tryBuild ? ['try.tsx', 'try.ts', 'tsx', 'ts'] : ['tsx', 'ts'],
   distDir: tryBuild ? '.next-try' : '.next',
+  // Help reads the content the build made (web/scripts/help-content.mjs).
+  outputFileTracingIncludes: { '/**/*': ['./.help/content.json'] },
 };
 
 export default nextConfig;

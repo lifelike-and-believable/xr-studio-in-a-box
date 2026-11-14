@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { AccountMenu } from '@/ui/account-menu';
+import { HelpLink } from '@/ui/help-link';
 import { MainNav } from '@/ui/main-nav';
 import { TimeZoneCookie } from '@/ui/time-zone';
 import { currentPerson } from '@/ui/session';
@@ -18,6 +19,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
             XR Studio
           </Link>
           <MainNav />
+          <HelpLink />
           <AccountMenu name={me.person.display} />
         </header>
       ) : null}

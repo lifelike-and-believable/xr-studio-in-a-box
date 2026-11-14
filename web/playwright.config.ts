@@ -51,7 +51,7 @@ export default defineConfig({
       env: { DATABASE_URL: unreachableDatabase },
     },
     {
-      command: 'pnpm exec next build && pnpm exec next start -p 3102 -H 127.0.0.1',
+      command: 'pnpm run build && pnpm exec next start -p 3102 -H 127.0.0.1',
       url: 'http://127.0.0.1:3102',
       reuseExistingServer: false,
       timeout: 300_000,

@@ -106,7 +106,7 @@ test.describe.serial('Try XR Studio', () => {
     const table = page.getByRole('table', { name: /tutorial/i });
     await expect(table.getByRole('columnheader')).toHaveText(['Tutorial', 'For', 'Starts with', 'Start a tutorial']);
     const row = table.getByRole('row').nth(1);
-    await expect(row.getByRole('link', { name: FIRST_TUTORIAL })).toHaveAttribute('href', /docs\/tutorials\/try-xr-studio-in-a-trial-copy\.md$/);
+    await expect(row.getByRole('link', { name: FIRST_TUTORIAL })).toHaveAttribute('href', '/help/tutorials/try-xr-studio-in-a-trial-copy');
     await expect(row).toContainText('Morgan, the director');
     await expect(row).toContainText('A new installation where Jordan can sign in');
 

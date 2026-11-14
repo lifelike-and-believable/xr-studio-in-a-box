@@ -25,9 +25,9 @@ export function tutorialById(id: string): TrialTutorial | undefined {
   return TUTORIALS.find((t) => t.id === id);
 }
 
-// Until Help is built (design-trying-the-product, delivery step 6), a title links to the file.
+// A tutorial in Help (help-tutorials-and-previews#AC-7).
 export function tutorialLink(t: TrialTutorial): string {
-  return `https://github.com/lifelike-and-believable/xr-studio-in-a-box/blob/main/${t.file}`;
+  return `/help/tutorials/${t.file.replace(/^docs\/tutorials\//, '').replace(/\.md$/, '')}`;
 }
 
 // Where Try XR Studio puts the Start dialog: above the table, so the dialog's Start comes before

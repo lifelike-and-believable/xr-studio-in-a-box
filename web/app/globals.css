@@ -133,3 +133,10 @@ summary { cursor: pointer; font-weight: 600; min-height: 24px; padding: 0.25rem 
 .try-people li { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 0.5rem 0; }
 .try-people .who { display: flex; flex-direction: column; }
 .try-message { white-space: pre-wrap; }
+/* Help (help-tutorials-and-previews). */
+main.help { max-width: 45rem; }
+.trail { list-style: none; display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; padding: 0; margin: 0 0 1rem; }
+.trail li + li::before { content: '/'; margin-right: 0.5rem; color: var(--muted); }
+.help-text img { max-width: 100%; height: auto; }
+.help-text table { display: block; overflow-x: auto; }
+.help-text pre { overflow-x: auto; }

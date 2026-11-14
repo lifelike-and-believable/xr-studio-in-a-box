@@ -12,12 +12,12 @@ derived-from:
   - docs-sign-in#who-can-do-this: 29bc314a2061
   - docs-sign-in#the-first-person-on-a-new-installation: de382cf411d4
   - docs-sign-in#if-something-goes-wrong: 19f4f2ff5756
-  - docs-sign-in#the-emails-xr-studio-sends: 29e7df8c437b
+  - docs-sign-in#the-emails-xr-studio-sends: 0ebebb9fb2ae
   - docs-your-projects#find-a-project: f807e7e6ac2d
   - docs-your-projects#move-between-projects: dc32c7cdafe1
   - docs-your-projects#your-account-and-signing-out: e579080715d0
   - docs-your-projects#what-you-see-depends-on-your-roles: c2ab48583d70
-  - docs-your-projects#if-something-goes-wrong: a5fe61c78855
+  - docs-your-projects#if-something-goes-wrong: efc999a4cafe
   - docs-organisations-and-projects#create-an-organisation: 30ec0d7b608c
   - docs-organisations-and-projects#start-a-project: 5ea24f2dbe3c
   - docs-organisations-and-projects#roles-when-the-project-starts: 4e0f2abc848b
@@ -27,7 +27,7 @@ derived-from:
   - docs-organisations-and-projects#an-organisations-page: 1a8a175ac547
   - docs-organisations-and-projects#see-your-organisations: 1d1f5655b61a
   - docs-organisations-and-projects#who-can-do-this: 32d64a12bc9a
-  - docs-organisations-and-projects#if-something-goes-wrong: 535191ea052a
+  - docs-organisations-and-projects#if-something-goes-wrong: 9af2337c150c
   - docs-people-and-roles#see-who-is-on-a-project: 2f7e969a2722
   - docs-people-and-roles#add-a-person: 1bd3650f35f8
   - docs-people-and-roles#send-an-invitation-again: 5e1a1f06f355
@@ -36,7 +36,7 @@ derived-from:
   - docs-people-and-roles#remove-someone-from-a-project: 7404fad48384
   - docs-people-and-roles#what-each-role-can-do: 164e4eb4b418
   - docs-people-and-roles#who-can-do-this: 3ed014ecda8d
-  - docs-people-and-roles#if-something-goes-wrong: 9f8d3bf3bfab
+  - docs-people-and-roles#if-something-goes-wrong: e561f5682de3
   - design-sign-in: da4b611e6a00
   - design-dashboard-shell: a56bdc0e80ae
   - design-organisations-and-projects: 202a8d9fef23

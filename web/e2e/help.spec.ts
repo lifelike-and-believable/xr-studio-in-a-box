@@ -64,7 +64,7 @@ test('a help address that does not exist (help-tutorials-and-previews#AC-5)', as
     const r = await page.goto(address);
     expect(r?.status(), address).toBe(404);
     await expect(page.getByRole('heading', { name: 'This page is not available' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Back to XR Studio' })).toBeVisible();
+    await expect(page.locator('main').getByRole('link', { name: 'Back to XR Studio' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Go to your projects' })).toHaveCount(0);
   }
 });

@@ -133,4 +133,3 @@ Sent when someone adds you to a project and you already use XR Studio.
 > <name of the person who added you> added you to <project name> as <roles>.
 >
 > Open the project: <link to the project>
-</content>

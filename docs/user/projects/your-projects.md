@@ -45,4 +45,3 @@ You see only the projects you are on, and inside each project only what your rol
 | **This page is not available** | The page does not exist, or none of your roles lets you see it. | If someone sent you the link, ask them to check you are on the project. Select **Go to your projects**. |
 | "You no longer have access to this project" | Your roles on this project were changed or removed while you were using it. | Select **Go to your projects**. Ask the project's producer or director if you think this is a mistake. |
 | "Nothing in the dashboard for you yet" | Your roles (for example Performer) do not use the dashboard. | Nothing to do. You will get an email with a link to your own page when there is something for you. If you need a different role, contact the person who added you. |
-</content>
