@@ -20,9 +20,16 @@ export function AddPasskey() {
         type="button"
         onClick={async () => {
           setFailed(false);
-          const result = await authClient.passkey.addPasskey({ name: deviceName() });
-          if (result?.error) setFailed(true);
-          else router.refresh();
+          // Better Auth gives the browser the name passed here as the passkey's account name, which a
+          // password manager shows. Without one, it gives the person's address; the device name,
+          // for XR Studio's own list, is set after the passkey exists.
+          const result = await authClient.passkey.addPasskey();
+          if (!result?.data) {
+            setFailed(true);
+            return;
+          }
+          await authClient.passkey.updatePasskey({ id: result.data.id, name: deviceName() });
+          router.refresh();
         }}
       >
         Add a passkey

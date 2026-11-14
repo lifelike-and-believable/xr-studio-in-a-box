@@ -205,6 +205,23 @@ test('add and remove a passkey (layer1-organisations-projects-people#AC-7)', asy
   await context.close();
 });
 
+// The browser or password manager shows a passkey under the account name it was given, so two
+// people's passkeys on one device must not both be called "Chrome on Windows".
+test('a passkey is saved under the person, and the list names its device (layer1-organisations-projects-people#AC-7)', async ({ browser }) => {
+  const context = await browser.newContext({ baseURL: 'http://localhost:3100' });
+  const page = await context.newPage();
+  const { cdp, authenticatorId } = await withAuthenticator(page, true);
+  await signIn(page, FIRST.keys);
+  await page.goto('/account');
+  const named = page.getByRole('listitem').filter({ hasText: /^Chrome on \S+\. Made on/ });
+  const namedBefore = await named.count();
+  await page.getByRole('button', { name: 'Add a passkey' }).click();
+  await expect(named).toHaveCount(namedBefore + 1);
+  const { credentials } = await cdp.send('WebAuthn.getCredentials', { authenticatorId });
+  expect(credentials.map((c) => c.userName)).toEqual([FIRST.keys]);
+  await context.close();
+});
+
 test('sign in with a passkey (layer1-organisations-projects-people#AC-8)', async ({ browser }) => {
   const context = await browser.newContext({ baseURL: 'http://localhost:3100' });
   const page = await context.newPage();
