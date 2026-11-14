@@ -35,6 +35,8 @@ A person can start a project, record its facts once, give people roles, and see 
 - Set up an organisation and keep its company facts (legal name, funder applicant profiles, history, bio and standard work samples), which every project in it reads and never retypes.
 - Close a project in one step: end people's access and agent grants, take a final backup, and leave it read-only with its records under retention.
 - Show a person who joins part way through how the project was set up.
+- Try a change to XR Studio from a link, in a trial copy with made-up people and data, before a production relies on it.
+- Follow a tutorial for a task, and open help for the page you are on.
 
 ## Stories
 
@@ -47,11 +49,14 @@ A person can start a project, record its facts once, give people roles, and see 
 - story-project-record-set-up-organisation
 - story-project-record-close-project
 - story-project-record-see-how-it-was-set-up
+- story-project-record-try-from-a-link
+- story-project-record-follow-a-tutorial
 
 ## Release groups
 
 - Starting a project, recording its facts and adding people ship together: a project nobody else can join is not useful.
 - Backup and restore can ship on their own, but before any real project work is stored.
+- Trying a change from a link and following a tutorial ship together: the tutorials are what a person follows in a trial copy.
 
 ## Dependencies
 

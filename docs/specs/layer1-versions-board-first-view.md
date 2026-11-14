@@ -2,25 +2,25 @@
 id: spec-layer1-versions-board-first-view
 status: approved
 derived-from:
-  - docs-board#see-where-everything-stands: eb1e0ba19f25
-  - docs-board#show-only-blocked-work: 8626926d160e
-  - docs-board#when-things-change: e859d541e842
-  - docs-board#how-work-gets-on-the-board: f3dc395cf332
+  - docs-board#see-where-everything-stands: 9d6237da4331
+  - docs-board#show-only-blocked-work: 06080b0b13f5
+  - docs-board#when-things-change: aacd00b8f0c4
+  - docs-board#how-work-gets-on-the-board: 865b9134cbcb
   - docs-board#who-can-do-this: c797b10ca846
-  - docs-board#if-something-goes-wrong: 070cf05cab1e
-  - docs-versions-and-feedback#see-a-piece-of-work-and-its-feedback: 3c5f504df8ed
-  - docs-versions-and-feedback#give-feedback-on-a-version: ac491689f685
-  - docs-versions-and-feedback#send-a-revised-version: 9c0a8dc0bc33
-  - docs-versions-and-feedback#compare-two-versions: 69cf359f89b6
-  - docs-versions-and-feedback#restore-an-earlier-version: 32b3e0cf64b7
+  - docs-board#if-something-goes-wrong: dff1e40634d1
+  - docs-versions-and-feedback#see-a-piece-of-work-and-its-feedback: b7e2d10a12b5
+  - docs-versions-and-feedback#give-feedback-on-a-version: 884eb0a3610a
+  - docs-versions-and-feedback#send-a-revised-version: bb4d7f109c99
+  - docs-versions-and-feedback#compare-two-versions: 23c9eb871975
+  - docs-versions-and-feedback#restore-an-earlier-version: b68968e83f0a
   - docs-versions-and-feedback#who-can-do-this: 9b811d54a515
-  - docs-versions-and-feedback#if-something-goes-wrong: 9fdbedc6adb5
-  - docs-what-needs-you#find-what-to-do-next: 9b223e63823b
-  - docs-what-needs-you#if-you-are-new-to-a-project: d7f3a3bbc11c
-  - docs-what-needs-you#when-things-change: 3cfd2d9ed993
+  - docs-versions-and-feedback#if-something-goes-wrong: 373792e6158f
+  - docs-what-needs-you#find-what-to-do-next: 808b191a578e
+  - docs-what-needs-you#if-you-are-new-to-a-project: 16c45b6a1213
+  - docs-what-needs-you#when-things-change: 6b30ef912722
   - docs-what-needs-you#if-something-goes-wrong: 4529bfaae6df
-  - docs-review#see-what-you-have-sent: fea857dae05d
-  - docs-your-projects: 9f550e665a71
+  - docs-review#see-what-you-have-sent: 800dc109d101
+  - docs-your-projects: b0b632ebac5e
   - design-work-and-versions: 93d6a3b09864
   - design-what-needs-you: f2ad84583dbc
   - decision-navigation-and-urls: 2dd0e158ee13

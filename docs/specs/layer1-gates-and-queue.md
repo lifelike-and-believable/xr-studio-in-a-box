@@ -2,22 +2,22 @@
 id: spec-layer1-gates-and-queue
 status: approved
 derived-from:
-  - docs-approvers#see-who-approves-what: 91cd1cd3028f
-  - docs-approvers#name-an-approver-and-a-delegate-for-an-area: e0c6ceae13dc
-  - docs-approvers#name-the-holder-of-a-protected-approval: 5a9c1bcfe507
+  - docs-approvers#see-who-approves-what: 4bffc3e2ef34
+  - docs-approvers#name-an-approver-and-a-delegate-for-an-area: d44000e3283e
+  - docs-approvers#name-the-holder-of-a-protected-approval: 40fa29fe4e53
   - docs-approvers#what-happens-to-work-already-waiting: dc772f8103c8
-  - docs-approvers#removing-someone-who-approves: da8035c6b6a4
+  - docs-approvers#removing-someone-who-approves: 115bbfe3785d
   - docs-approvers#who-can-do-this: 970417b09920
   - docs-approvers#if-something-goes-wrong: 049938a5f7fa
-  - docs-review#send-work-for-review: 581b7cdcd5d4
-  - docs-review#see-what-you-have-sent: fea857dae05d
-  - docs-review#see-everything-that-is-waiting: 386a5b787fcc
-  - docs-review#clear-your-review-queue: ae12b606ef54
-  - docs-review#decide-on-an-item: 0e33882d3059
-  - docs-review#decide-on-several-items-at-once: c8aa8ff50c72
+  - docs-review#send-work-for-review: 9883b5386bdf
+  - docs-review#see-what-you-have-sent: 800dc109d101
+  - docs-review#see-everything-that-is-waiting: 43bc68df81ec
+  - docs-review#clear-your-review-queue: cc8f096ce493
+  - docs-review#decide-on-an-item: 3e2d314f2287
+  - docs-review#decide-on-several-items-at-once: 0422562a8dfb
   - docs-review#hand-an-item-to-your-delegate: 3560c6b466ca
   - docs-review#who-can-do-this: 92af0a744227
-  - docs-review#if-something-goes-wrong: d4da1b19f200
+  - docs-review#if-something-goes-wrong: 318196a7e498
   - design-approvers: 983b149cfa2a
   - design-review-queue: 5ae80c4a15b8
   - design-identifier-filter: 069c84a56674

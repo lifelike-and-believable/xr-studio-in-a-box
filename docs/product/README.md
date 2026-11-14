@@ -2,7 +2,7 @@
 
 Every epic and story, grouped by layer. This page is generated, so change the epics or stories and run `node scripts/product-index.mjs`.
 
-39 epics, 269 proposed stories, 266 written, 0 open questions.
+39 epics, 271 proposed stories, 268 written, 0 open questions.
 
 - [Concept](concept.md)
 - [Requirements](requirements/)
@@ -14,7 +14,7 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 | Epic | Stories written | Open questions |
 |---|---|---|
 | [Direct agents safely](epics/agent-work.md) | 6 of 6 | 0 |
-| [One project, one set of facts](epics/project-record.md) | 9 of 9 | 0 |
+| [One project, one set of facts](epics/project-record.md) | 11 of 11 | 0 |
 | [Keep the terms, and know where every asset came from](epics/provenance-and-policy.md) | 6 of 6 | 0 |
 | [Review, approve and see where everything stands](epics/review-and-status.md) | 9 of 9 | 0 |
 
@@ -43,12 +43,14 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - [Add a person with a role](stories/project-record/add-person.md) (approved)
 - [Back up and restore a project](stories/project-record/back-up-and-restore.md) (approved)
 - [Close a project](stories/project-record/close-project.md) (approved)
+- [Follow a tutorial for a task](stories/project-record/follow-a-tutorial.md) (approved)
 - [Name approvers and delegates](stories/project-record/name-approvers.md) (approved)
 - [Record the project's facts](stories/project-record/record-facts.md) (approved)
 - [See the same project state everywhere](stories/project-record/same-project-state.md) (approved)
 - [Show a newcomer how the project was set up](stories/project-record/see-how-it-was-set-up.md) (approved)
 - [Set up an organisation and its facts](stories/project-record/set-up-organisation.md) (approved)
 - [Start a new project](stories/project-record/start-project.md) (approved)
+- [Try a change from a link](stories/project-record/try-from-a-link.md) (approved)
 
 - Start a new project with a name, a brief and an owner.
 - Record and edit the project's facts: description, plan, budget, credits, collaborators, schedule and samples.
@@ -59,6 +61,8 @@ Every epic and story, grouped by layer. This page is generated, so change the ep
 - Set up an organisation and keep its company facts (legal name, funder applicant profiles, history, bio and standard work samples), which every project in it reads and never retypes.
 - Close a project in one step: end people's access and agent grants, take a final backup, and leave it read-only with its records under retention.
 - Show a person who joins part way through how the project was set up.
+- Try a change to XR Studio from a link, in a trial copy with made-up people and data, before a production relies on it.
+- Follow a tutorial for a task, and open help for the page you are on.
 
 </details>
 

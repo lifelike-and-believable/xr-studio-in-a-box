@@ -5,17 +5,19 @@ derived-from:
   - design-dashboard-shell: a56bdc0e80ae
   - story-project-record-start-project#acceptance-criteria: 83fa11a80149
   - story-project-record-add-person#acceptance-criteria: 8f5b1df665e2
+covers:
+  - /projects
 ---
 
 # Your projects
 
-After you sign in, you see **What needs you**: what is waiting for you on all your projects (see [What needs you](what-needs-you.md)). If you are not on any project yet, you see **Projects** instead. **Projects**, in the menu at the top of every page, lists every project you are on. Selecting **XR Studio** at the top of any page brings you back to **What needs you**.
+After you sign in, you see **What needs you**: what is waiting for you on all your projects (see [What needs you](../what-needs-you/what-needs-you.md)). If you are not on any project yet, you see **Projects** instead. **Projects**, in the menu at the top of every page, lists every project you are on. Selecting **XR Studio** at the top of any page brings you back to **What needs you**.
 
 ## Find a project
 
 On **Projects**, each project shows its name, its organisation, **Your roles** on it, and an **Owner** tag if you own it. Select a project to open it.
 
-![Projects](../design/dashboard-shell/home-projects.png)
+![Projects](../../design/dashboard-shell/home-projects.png)
 
 If you are not on any projects yet, you see "You are not on any projects." If you were invited to a project, open the link in your invitation email instead, or ask its producer or director to add you. If you are setting up your own production, select **Start a project** (you do not need to create an organisation first) or **Create an organisation** (see [Organisations and projects](organisations-and-projects.md)).
 
@@ -30,7 +32,7 @@ The header also has **What needs you**, **Projects** and **Organisations**, whic
 
 ## Your account and signing out
 
-Select your name at the top of any page. The menu has **Your account**, where you add passkeys (see [Signing in](sign-in.md)), and **Sign out**.
+Select your name at the top of any page. The menu has **Your account**, where you add passkeys (see [Signing in](../signing-in/sign-in.md)), and **Sign out**.
 
 ## What you see depends on your roles
 

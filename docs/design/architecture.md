@@ -152,9 +152,41 @@ Solid lines are built in Layer 1. Dotted lines are boundaries that Layer 1 keeps
 ## Approver's decisions (2026-11-12)
 
 - The project record runs in the cloud: Next.js on Vercel, managed Postgres and object storage (decision-system-shape).
-- Everything is hosted in Canada: AWS Aurora PostgreSQL for the record and, separately, the protected store, S3 with Object Lock and AWS KMS, all in ca-central-1, and Vercel functions in `yul1` (Montréal). The region check was done before slice 0 (decision-protected-store, decision-project-record-model).
+- Everything is hosted in Canada: AWS Aurora PostgreSQL for the record and, separately, the protected store, S3 with Object Lock and AWS KMS, all in ca-central-1, and Vercel functions in `yul1` (Montréal). The region check was done before slice 0 (decision-protected-store, decision-project-record-model). Amended on 2026-11-13 for previews that hold only made-up data: see "Amendment (2026-11-13)" below.
 - Chat with agents is in the dashboard. Technical roles whose roles cannot see protected-store data may also use their own Claude Code over the record's MCP endpoint. It is the person's own tool, not a project agent: it acts as the person, is logged as such, and the agent rules and spend limit do not apply to it (decision-agent-runtime).
 - The architect's recommendations were accepted for the rest: the agents' model use counts under the spend limit; the first runner is an always-on cloud worker; granting a tool approves sending its inputs to that vendor; generation outside the pipeline is caught at the adapter and by an import check; offline role changes take effect at the next show package refresh; backups at a second provider are kept 90 days with quarterly restore drills; staff sign in with email links and passkeys; extensions are reviewed by pull request and a review item; the spend limit is in CAD; closing a project is built with or after keep-records; show content uses Git LFS with locking.
+
+## Amendment (2026-11-13): previews hold made-up data and may be hosted outside Canada
+
+The project lead decided this on 2026-11-13.
+
+- A preview is a trial copy of XR Studio deployed for one pull request. It holds only made-up fixture data: made-up people, projects, files and email.
+- A preview may be hosted outside Canada. The rule above, that everything is hosted in Canada, does not apply to it.
+- Real data never goes in a preview. A preview never holds a production secret, and never connects to the production database, object storage, protected store or email.
+- Nothing else changes. The deployed product, and anything that holds real project data, stays in Canada as decided on 2026-11-12. The decision notes that say where real data lives (decision-system-shape, decision-project-record-model, decision-protected-store) are unchanged.
+
+"Trying the product" below says what a preview is made of. design-trying-the-product says how the rule "real data never goes in a preview" is kept.
+
+## Trying the product
+
+Added on 2026-11-13 with design-trying-the-product. XR Studio can be tried in two places besides the deployed product. Both are trial copies: builds started with the trying setting on, holding only made-up fixture data.
+
+- **Local trial copy:** started on a person's own machine with one command, and deleted when it stops.
+- **Preview:** deployed for each pull request, and deleted when the pull request closes.
+
+Each external service the deployed product uses has a stand-in in a trial copy. The lead approves this table with the architecture.
+
+| Service in the deployed product | Local trial copy | Preview | What the stand-in hides |
+|---|---|---|---|
+| Record database: Aurora PostgreSQL in ca-central-1 | PostgreSQL in a container that the command starts and removes | A Postgres database made for that pull request only, at a managed provider outside Canada, removed when the pull request closes | Aurora's own behaviour: failover, point-in-time recovery, how its login user joins the `xr_app` role, and the latency of the Canadian region. The same migrations create `xr_app` and `xr_retention` in every place, so the append-only rules are real in a trial copy, except that **Start** empties the copy as the database's owner (design-trying-the-product). |
+| Web functions: Vercel, region `yul1` | The production build, run on the person's machine | A Vercel preview deployment, with its functions in `yul1` like production's | Locally, cold starts and regional latency. In a preview, the short distance between the functions and the database: the preview's database is further away. |
+| Object storage: S3 with Object Lock and AWS KMS in ca-central-1 (the S3 transport is not built yet) | A folder that the command creates and removes | The preview's own database: file bytes are kept in a table, with a limit of 4 MB for each file | Upload from the browser straight to storage through a signed address; in a preview, files up to 2 GB and the progress bar on a long upload; Object Lock; encryption with KMS. |
+| Email: Amazon SES in ca-central-1 (not built yet) | Nothing is sent. Each message is kept in the trial copy's database and listed on its **Email sent by this copy** page. | The same | Delivery: bounces, spam filters, security scanners that use up a single-use link, how a message looks in a mail program, and sending limits. |
+| Scheduled jobs: Vercel Cron (deleting held uploads every 5 minutes; later digests, backups and retention) | Not run | Not run | A held file is not deleted after 24 hours in a trial copy. It is already hidden and cannot be confirmed after that time. The job has its own tests. |
+| Passkeys: the person's browser or password manager | Real, for the local address | Real, for that preview's own address | A passkey made in one trial copy does not work in another, or in the deployed product. |
+| Write-once ledger copy, backups at a second provider, the protected store and its key service, the agent runner with its metering proxy and model provider, the record's MCP endpoint for a person's own Claude Code, Git LFS for show content, and Tripo | Not built yet, so absent | Not built yet, so absent | Everything about them. The slice that builds each one adds its row here before it is built. A paid or metered service gets a fake in a trial copy, never a real key. |
+
+No tutorial yet needs a service that a stand-in cannot give. When one does, it names the service in its `needs:` line, and it runs in one shared staging place with real services, hosted in Canada, before a release. That place is not built, and is decided when the first such tutorial is written.
 
 ## Build order
 
