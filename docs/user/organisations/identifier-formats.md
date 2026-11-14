@@ -27,6 +27,8 @@ Sometimes ordinary text only looks like an identifier: a catalogue number, a tic
 
 Matching ignores spaces, hyphens and dots between characters, so "046 454 286", "046-454-286" and "046454286" all match the same format. The formats used are those turned on for the project's organisation; see [Keep the list of identifier formats](#keep-the-list-of-identifier-formats).
 
+Try it: [Keep bank details and tax numbers out](../../tutorials/keep-bank-details-and-tax-numbers-out.md)
+
 ## Text that looks like an identifier
 
 When you save a fact whose text matches a format, nothing is saved. The edit page comes back with your text still in the box and a message such as "Not saved: this looks like a bank account number". It quotes the matching text and says which format it matches.

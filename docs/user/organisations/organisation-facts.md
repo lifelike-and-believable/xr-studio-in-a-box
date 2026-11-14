@@ -24,6 +24,8 @@ Open the organisation's page from **Organisations**, or from **Organisation: <or
 
 A fact that has never been saved shows "Not recorded yet." with **Add**.
 
+Try it: [Keep your organisation's facts](../../tutorials/keep-your-organisations-facts.md)
+
 ## How projects use them
 
 Each project in the organisation shows the legal name and bio under **From <organisation>** on its **Facts** tab. They are read from the organisation each time, not copied, so when you change the bio, every project shows the new bio the next time its page is opened.

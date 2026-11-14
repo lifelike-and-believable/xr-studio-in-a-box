@@ -33,6 +33,8 @@ Select a title to open it. Work that came back or is assigned to you opens on it
 
 You only see work on projects you are on, and only what your roles there allow.
 
+Try it: [Find what needs you](../../tutorials/find-what-needs-you.md)
+
 ## If you are new to a project
 
 Each stage has a gate: the point where a named person must accept your work before it moves on. Under the lists, **Your stages** has a panel for each of your projects, **How work moves on <project>**. It says which stages your roles work in and who decides each one. It is open until you send your first piece of work on that project; after that, select it to open it again.

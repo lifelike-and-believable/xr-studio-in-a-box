@@ -2,8 +2,8 @@
 id: spec-layer1-organisations-projects-people
 status: implemented
 derived-from:
-  - docs-sign-in#accept-an-invitation: ea81ef051e97
-  - docs-sign-in#what-you-see-the-first-time: 55017c219fb8
+  - docs-sign-in#accept-an-invitation: 369bc431f5d2
+  - docs-sign-in#what-you-see-the-first-time: 1fde574a19b1
   - docs-sign-in#sign-in-with-an-email-link: dcea76654f4b
   - docs-sign-in#if-the-email-does-not-arrive: caa08b37efda
   - docs-sign-in#add-a-passkey: 0586d53555c8
@@ -13,12 +13,12 @@ derived-from:
   - docs-sign-in#the-first-person-on-a-new-installation: de382cf411d4
   - docs-sign-in#if-something-goes-wrong: 19f4f2ff5756
   - docs-sign-in#the-emails-xr-studio-sends: 0ebebb9fb2ae
-  - docs-your-projects#find-a-project: f807e7e6ac2d
+  - docs-your-projects#find-a-project: aa61be068dbb
   - docs-your-projects#move-between-projects: dc32c7cdafe1
   - docs-your-projects#your-account-and-signing-out: e579080715d0
   - docs-your-projects#what-you-see-depends-on-your-roles: c2ab48583d70
   - docs-your-projects#if-something-goes-wrong: efc999a4cafe
-  - docs-organisations-and-projects#create-an-organisation: 30ec0d7b608c
+  - docs-organisations-and-projects#create-an-organisation: bd9996239077
   - docs-organisations-and-projects#start-a-project: 5ea24f2dbe3c
   - docs-organisations-and-projects#roles-when-the-project-starts: 4e0f2abc848b
   - docs-organisations-and-projects#if-you-are-not-on-any-organisation-yet: eb5f28a840c2
@@ -28,7 +28,7 @@ derived-from:
   - docs-organisations-and-projects#see-your-organisations: 1d1f5655b61a
   - docs-organisations-and-projects#who-can-do-this: 32d64a12bc9a
   - docs-organisations-and-projects#if-something-goes-wrong: 9af2337c150c
-  - docs-people-and-roles#see-who-is-on-a-project: 2f7e969a2722
+  - docs-people-and-roles#see-who-is-on-a-project: 20b14cec8536
   - docs-people-and-roles#add-a-person: 1bd3650f35f8
   - docs-people-and-roles#send-an-invitation-again: 5e1a1f06f355
   - docs-people-and-roles#change-someones-roles: 7010d46c1d6a

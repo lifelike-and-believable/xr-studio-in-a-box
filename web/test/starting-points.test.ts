@@ -72,12 +72,12 @@ describe('starting points (help-tutorials-and-previews#AC-11)', { timeout: 60_00
     expect(await q('select count(*)::int as n from review_decision')).toEqual([{ n: 0 }]);
   });
 
-  it('tutorials 10 and 11 start where tutorial 9 ends: work on the board, a revision asked for', async () => {
+  it('tutorials 10 and 11 start where tutorial 9 ends: work on the board, the sheet waiting', async () => {
     await loadStartingPoint('tutorial-find-what-needs-you');
     const work = await q('select w.title, p.name as owner from work w join person p on p.id = w.owner_id order by w.title');
     expect(work.map((w) => w.title)).toEqual(['Harbour ambience', 'Lantern Keeper character sheet', 'Lantern Keeper mesh and rig']);
     expect(work.find((w) => w.title === 'Harbour ambience')?.owner).toBe('Drew Patel');
-    expect(await q("select d.decision from review_decision d join review_item i on i.id = d.item_id where i.title = 'Lantern Keeper character sheet'")).toEqual([{ decision: 'revise' }]);
+    expect(await q("select d.decision from review_decision d join review_item i on i.id = d.item_id where i.title = 'Lantern Keeper character sheet'")).toEqual([]);
   });
 
   it('tutorial 12 starts where tutorial 10 ends: version 3 accepted', async () => {

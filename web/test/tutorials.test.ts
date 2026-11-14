@@ -12,14 +12,14 @@ const TABLE: { file: string; title: string; for: string; startsFrom: string | nu
   { file: 'sign-in-and-add-a-passkey', title: 'Sign in and add a passkey', for: 'Riley, the artist', startsFrom: '1', runner: 'web', doc: ['sign-in'] },
   { file: 'record-a-projects-facts', title: "Record a project's facts", for: 'Jordan, the producer', startsFrom: '1', runner: 'manual', doc: ['project-facts'] },
   { file: 'keep-your-organisations-facts', title: "Keep your organisation's facts", for: 'Jordan, the producer', startsFrom: '1', runner: 'web', doc: ['organisation-facts'] },
-  { file: 'keep-bank-details-and-tax-numbers-out', title: 'Keep bank details and tax numbers out', for: 'Jordan, the producer', startsFrom: '1', runner: 'manual', doc: ['identifier-formats'] },
+  { file: 'keep-bank-details-and-tax-numbers-out', title: 'Keep bank details and tax numbers out', for: 'Jordan, the producer', startsFrom: '1', runner: 'manual', doc: ['identifier-filter'] },
   { file: 'name-who-approves-what', title: 'Name who approves what', for: 'Jordan, the producer', startsFrom: '1', runner: 'web', doc: ['approvers'] },
   { file: 'send-work-for-review', title: 'Send work for review', for: 'Riley, the artist', startsFrom: '6', runner: 'manual', doc: ['review'] },
   { file: 'clear-your-review-queue', title: 'Clear your review queue', for: 'Morgan, the director', startsFrom: '7', runner: 'web', doc: ['review'] },
   { file: 'see-where-everything-stands', title: 'See where everything stands', for: 'Jordan, the producer', startsFrom: '6', runner: 'manual', doc: ['board'] },
   { file: 'give-feedback-and-compare-versions', title: 'Give feedback and compare versions', for: 'Riley, the artist', startsFrom: '9', runner: 'manual', doc: ['versions-and-feedback'] },
   { file: 'find-what-needs-you', title: 'Find what needs you', for: 'Drew, the sound designer', startsFrom: '9', runner: 'web', doc: ['what-needs-you'] },
-  { file: 'read-who-changed-what', title: 'Read who changed what', for: 'Jordan, the producer', startsFrom: '10', runner: 'web', doc: ['activity'] },
+  { file: 'read-who-changed-what', title: 'Read who changed what', for: 'Jordan, the producer', startsFrom: '10', runner: 'web', doc: ['activity-log'] },
 ];
 
 const idOf = (file: string) => `tutorial-${file}`;

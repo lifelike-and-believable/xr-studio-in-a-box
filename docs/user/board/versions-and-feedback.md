@@ -25,6 +25,8 @@ Beside the version (below it on a phone) is **Feedback on version <n>**, oldest 
 
 Under it, **Versions** lists every version, newest first, with who sent it, when, what changed and its decision. Select a version's number to open it.
 
+Try it: [Give feedback and compare versions](../../tutorials/give-feedback-and-compare-versions.md)
+
 ## Give feedback on a version
 
 1. Under **Add feedback on version <n>**, write your feedback.

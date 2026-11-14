@@ -37,6 +37,8 @@ The organisation's page opens. People who look after an organisation can rename 
 
 ![Create an organisation](../../design/organisations-and-projects/create-organisation.png)
 
+Try it: [Start a production and bring in your team](../../tutorials/start-a-production-and-bring-in-your-team.md)
+
 ## Start a project
 
 1. On **Projects**, select **Start a project**. On an organisation's page, you can select **Start a project in this organisation** instead.

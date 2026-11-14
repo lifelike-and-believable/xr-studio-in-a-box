@@ -25,6 +25,8 @@ Open the project and select **People**. Each person is listed with their roles, 
 
 ![People](../../design/people-and-roles/people-list.png)
 
+Try it: [Start a production and bring in your team](../../tutorials/start-a-production-and-bring-in-your-team.md)
+
 ## Add a person
 
 You need the Director or Producer role on the project.

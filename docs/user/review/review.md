@@ -42,6 +42,10 @@ Keep bank details and tax numbers out of the title, **What changed** and the fil
 
 Builds are not sent by hand, so the build stages are not listed under **Stage**. They reach their gates from the build pipeline, in a later release.
 
+Try it: [Send work for review](../../tutorials/send-work-for-review.md)
+
+Try it: [Clear your review queue](../../tutorials/clear-your-review-queue.md)
+
 ## See what you have sent
 
 Select **Sent by you**. Everything you have sent on this project is listed, newest first, with its stage, when you sent it, and its status:

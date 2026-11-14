@@ -2,25 +2,25 @@
 id: spec-layer1-versions-board-first-view
 status: approved
 derived-from:
-  - docs-board#see-where-everything-stands: 9d6237da4331
+  - docs-board#see-where-everything-stands: 493ea576f63b
   - docs-board#show-only-blocked-work: 06080b0b13f5
   - docs-board#when-things-change: aacd00b8f0c4
   - docs-board#how-work-gets-on-the-board: 865b9134cbcb
   - docs-board#who-can-do-this: c797b10ca846
   - docs-board#if-something-goes-wrong: dff1e40634d1
-  - docs-versions-and-feedback#see-a-piece-of-work-and-its-feedback: b7e2d10a12b5
+  - docs-versions-and-feedback#see-a-piece-of-work-and-its-feedback: dd1953f071fa
   - docs-versions-and-feedback#give-feedback-on-a-version: 884eb0a3610a
   - docs-versions-and-feedback#send-a-revised-version: bb4d7f109c99
   - docs-versions-and-feedback#compare-two-versions: 23c9eb871975
   - docs-versions-and-feedback#restore-an-earlier-version: b68968e83f0a
   - docs-versions-and-feedback#who-can-do-this: 9b811d54a515
   - docs-versions-and-feedback#if-something-goes-wrong: 373792e6158f
-  - docs-what-needs-you#find-what-to-do-next: 808b191a578e
+  - docs-what-needs-you#find-what-to-do-next: d49d2dc9c66a
   - docs-what-needs-you#if-you-are-new-to-a-project: 16c45b6a1213
   - docs-what-needs-you#when-things-change: 6b30ef912722
   - docs-what-needs-you#if-something-goes-wrong: 4529bfaae6df
   - docs-review#see-what-you-have-sent: 800dc109d101
-  - docs-your-projects: d4f9fbe34a2c
+  - docs-your-projects: 525e5dc47ab6
   - design-work-and-versions: 93d6a3b09864
   - design-what-needs-you: f2ad84583dbc
   - decision-navigation-and-urls: 2dd0e158ee13

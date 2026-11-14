@@ -7,6 +7,8 @@ unlocks:
   - web/e2e/try.spec.ts (title links): AC-7. **Try XR Studio**'s tutorial titles now link to the tutorial in Help, not its file in the repository (trying-the-product AC-8 said so "until Help is built"); the test expects the Help address.
   - web/e2e/try.spec.ts (signed in as): AC-11. The starting points name the five people, and signing in as a first address now names the account from the list too, as the design's layout gives it ("Signed in as Jordan Lee."), so the test expects Jordan Lee rather than the address.
   - web/e2e/try.spec.ts (sections): AC-12. **Files for the tutorials** now shows, because tutorials on the page choose files (trying-the-product AC-7 shows it only then), so the expected headings gain it between **Sign in as a person** and **Email**.
+  - web/test/starting-points.test.ts: AC-11. Tutorial 9's end, where tutorials 10 and 11 start, leaves the character sheet waiting for Morgan, so that Morgan decides it from What needs you in tutorial 11 (the design gives tutorial 11 that step); the test expects no decision on it yet. Tutorial 10's end is unchanged.
+  - web/test/tutorials.test.ts: AC-9. Two user documentation pages have ids that differ from their file names (`identifier-formats.md` is `docs-identifier-filter`, `activity.md` is `docs-activity-log`); the test expected `docs-identifier-formats` and `docs-activity` in `derived-from`, and now expects the pages' real ids.
   - web/test/try-mode.test.ts: AC-11. **Try XR Studio** lists every tutorial, including the five that are `runner: manual` because they choose a file, so the test compares the list with every tutorial in `docs/tutorials/`, not only the web ones.
 derived-from:
   - docs-help-and-tutorials#open-help-for-the-page-you-are-on: aa1c89712b43

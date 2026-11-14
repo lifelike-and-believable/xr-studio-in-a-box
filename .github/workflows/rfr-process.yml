@@ -17,7 +17,9 @@ jobs:
     # @main follows rules-for-robots as it changes. For stable CI, pin this and rules-ref below to
     # the same release tag or commit.
     uses: lifelike-and-believable/rules-for-robots/.github/workflows/rfr-process.yml@main
-    # with:
+    # The tutorials follow the lasting-tutorial rules (help-tutorials-and-previews#AC-14).
+    with:
+      lasting-tutorials: fail
     #   rules-ref: <the same tag or commit>
     permissions:
       contents: read

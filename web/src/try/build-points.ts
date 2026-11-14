@@ -2,9 +2,9 @@ import 'server-only';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { RoleId } from '@xr/contracts';
-import { and, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { db } from '../db/client';
-import { project as projectTable, reviewItem } from '../db/schema';
+import { project as projectTable } from '../db/schema';
 import {
   addFeedback,
   addPerson,
@@ -125,22 +125,22 @@ async function afterSendWork(): Promise<void> {
   await send(riley, project, { title: 'Licence for the harbour recordings', handoff: 'contracts-and-licence-terms', file: 'harbour-recordings-licence.pdf', whatChanged: 'The licence to sign.' });
 }
 
-// Tutorial 9, See where everything stands: work on the board, and a revision asked for.
-async function afterSeeWhereEverythingStands(): Promise<{ workId: string }> {
-  const [jordan, riley, morgan, drew, sam, project] = [await idOf('Jordan'), await idOf('Riley'), await idOf('Morgan'), await idOf('Drew'), await idOf('Sam'), await projectId()];
+// Tutorial 9, See where everything stands: work on the board, with the character sheet waiting
+// for Morgan, who decides it in Find what needs you.
+async function afterSeeWhereEverythingStands(): Promise<{ workId: string; itemId: string }> {
+  const [jordan, riley, drew, sam, project] = [await idOf('Jordan'), await idOf('Riley'), await idOf('Drew'), await idOf('Sam'), await projectId()];
   must(await addWork(as(jordan), project, { title: 'Harbour ambience', handoff: 'sound-and-music', ownerId: drew }), 'add Harbour ambience');
   const sheet = await send(riley, project, { title: 'Lantern Keeper character sheet', handoff: 'character-design', file: 'character-sheet.png', waitingOn: 'mesh-and-rig', whatChanged: 'Front and side views.' });
   must(await addWork(as(jordan), project, { title: 'Lantern Keeper mesh and rig', handoff: 'mesh-and-rig', ownerId: sam }), 'add the mesh and rig');
-  must(await decide(as(morgan), project, [sheet.itemId], { decision: 'revise', feedback: 'Shorten the coat.' }), 'ask for a revision');
-  return { workId: sheet.workId };
+  return { workId: sheet.workId, itemId: sheet.itemId };
 }
 
 // Tutorial 10, Give feedback and compare versions: version 3, restored from version 1, accepted.
 async function afterGiveFeedback(): Promise<void> {
-  const { workId } = await afterSeeWhereEverythingStands();
+  const { workId, itemId } = await afterSeeWhereEverythingStands();
   const [riley, morgan, sam, project] = [await idOf('Riley'), await idOf('Morgan'), await idOf('Sam'), await projectId()];
-  const v1 = (await db().select({ id: reviewItem.id }).from(reviewItem).where(and(eq(reviewItem.workId, workId), eq(reviewItem.version, 1))).limit(1))[0];
-  if (v1) must(await addFeedback(as(sam), project, v1.id, { text: 'The long coat will catch on the lighthouse stairs.' }), 'add feedback');
+  must(await addFeedback(as(sam), project, itemId, { text: 'The long coat will catch on the lighthouse stairs.' }), 'add feedback');
+  must(await decide(as(morgan), project, [itemId], { decision: 'revise', feedback: 'Shorten the coat, as Sam says.' }), 'ask for a revision');
   const v2 = await send(riley, project, { title: 'Lantern Keeper character sheet', handoff: 'character-design', file: 'character-sheet.png', workId, waitingOn: 'mesh-and-rig', whatChanged: 'Coat shortened to the knee.' });
   must(await decide(as(morgan), project, [v2.itemId], { decision: 'revise', feedback: 'The long coat read better from the back rows. Go back to version 1.' }), 'ask for a second revision');
   const restored = await restoreVersion(as(riley), project, workId, { version: 1, whatChanged: 'Restored version 1. Morgan asked for the long coat.' });

@@ -30,6 +30,8 @@ Below them, **From <organisation>** shows the organisation's legal name and bio,
 
 A fact that has never been saved shows "Not recorded yet." with **Add** instead of **Edit**.
 
+Try it: [Record a project's facts](../../tutorials/record-a-projects-facts.md)
+
 ## Edit a fact
 
 You need the Director or Producer role on the project.

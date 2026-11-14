@@ -36,6 +36,8 @@ A line above the list says how many there are, for example "Showing the newest 5
 
 An entry says what was saved, never the text or figures of a fact, so an entry about the budget does not show the budget. The one free text an entry can hold is a person's answer when they confirmed that some text is not an identifier, for example "Saved the description (version 5) after confirming that text in it is not a bank account number ("Catalogue number for the lantern prop")".
 
+Try it: [Read who changed what](../../tutorials/read-who-changed-what.md)
+
 ## Filter the activity
 
 1. Above the list, choose any of:
