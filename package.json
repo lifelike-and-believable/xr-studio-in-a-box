@@ -11,6 +11,7 @@
     "test": "pnpm -r --if-present run test",
     "build": "pnpm -r --if-present run build",
     "e2e": "pnpm -r --if-present run e2e",
+    "try": "node web/scripts/try.mjs",
     "verify": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build && pnpm run e2e"
   },
   "devDependencies": {
