@@ -29,3 +29,13 @@ export function originOf(headers: Headers): string {
   const origins = appOrigins();
   return origins.includes(candidate) ? candidate : (origins[0] ?? 'http://localhost:3000');
 }
+
+export function originsFrom(env: Record<string, string | undefined>): string[] {
+  void env;
+  return [];
+}
+
+export function passkeyFrom(env: Record<string, string | undefined>): { rpID: string; origins: string[] } {
+  void env;
+  return { rpID: '', origins: [] };
+}

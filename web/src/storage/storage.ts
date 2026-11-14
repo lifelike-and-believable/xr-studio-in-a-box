@@ -152,3 +152,6 @@ export const newStorageKey = () => {
   const b = randomBytes(16).toString('hex');
   return `${b.slice(0, 8)}-${b.slice(8, 12)}-${b.slice(12, 16)}-${b.slice(16, 20)}-${b.slice(20)}`;
 };
+
+export const TRY_FILE_LIMIT = 0;
+export const TRY_FILE_TOO_BIG = '';

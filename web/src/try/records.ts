@@ -2,43 +2,14 @@ import 'server-only';
 import { Pool } from 'pg';
 import { writeTrialMark } from '../record/commands';
 import { BUILDERS } from './build-points';
+import { APP_TABLES } from './tables';
 import { isMarked, TRIAL_MARK } from './mark';
 import { tryMode } from './mode';
 import { tutorialById } from './starting-points';
 
 export { isMarked, TRIAL_MARK };
 
-// XR Studio's own tables, emptied by name (trying-the-product#AC-15). app_meta keeps the mark; a
-// unit test checks this list against the schema, so a new table cannot be missed.
-export const APP_TABLES: readonly string[] = [
-  'auth_user',
-  'session',
-  'account',
-  'verification',
-  'passkey',
-  'person',
-  'organisation',
-  'organisation_steward',
-  'project',
-  'project_role',
-  'project_role_removed',
-  'invitation',
-  'email_send',
-  'sign_in_request',
-  'fact_version',
-  'stored_file',
-  'upload',
-  'identifier_format',
-  'identifier_confirmation',
-  'activity_entry',
-  'approval_assignment',
-  'review_item',
-  'review_decision',
-  'review_recommendation',
-  'work',
-  'work_feedback',
-  'try_mail',
-];
+export { APP_TABLES };
 
 
 function refuseOutsideTryMode() {
