@@ -34,6 +34,8 @@ Work at a gate that is not listed, such as a build for rehearsal, moves on witho
 
 Three of the protected approvals are Business gates and one, audience-facing safety and consent, is a Performance and behaviour gate. Items at those gates go to the holder, not to the area's approver or delegate.
 
+Try it: [Name who approves what](../../tutorials/name-who-approves-what.md)
+
 ## Name an approver and a delegate for an area
 
 You need the Director or Producer role on the project.

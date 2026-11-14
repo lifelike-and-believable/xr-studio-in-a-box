@@ -1,5 +1,8 @@
 node_modules/
 .next/
+.next-try/
+web/.help/
+web/public/help-images/
 next-env.d.ts
 *.tsbuildinfo
 test-results/

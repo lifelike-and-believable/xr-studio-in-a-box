@@ -2,3 +2,7 @@
 # Approvers are GitHub logins or teams (@org/team). A list means any one of them can approve.
 mode: team                 # solo: approval is the approver merging the pull request; team: an approving review
 default: [atgoldberg]      # required; used for every stage without its own entry
+try:
+  local: pnpm run try                  # starts a local trial copy and prints its address
+  preview: true                        # each pull request gets a preview
+  sign-in: /try/sign-in?as={name}      # trial copies only

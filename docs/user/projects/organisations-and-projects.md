@@ -37,6 +37,8 @@ The organisation's page opens. People who look after an organisation can rename 
 
 ![Create an organisation](../../design/organisations-and-projects/create-organisation.png)
 
+Try it: [Start a production and bring in your team](../../tutorials/start-a-production-and-bring-in-your-team.md)
+
 ## Start a project
 
 1. On **Projects**, select **Start a project**. On an organisation's page, you can select **Start a project in this organisation** instead.
@@ -95,4 +97,3 @@ It shows the organisation's name, who it is **Looked after by**, **Start a proje
 | "You already look after an organisation called Harbourfront Puppet Co. Choose a different name." | You look after an organisation with this name already. | Choose a different name. |
 | "The person you chose can no longer own a project here. Choose another owner." | The owner you picked was removed from the organisation's projects while you were filling in the form. | Choose another **Owner**. |
 | You cannot untick yourself under **Looked after by** | You are the only person looking after the organisation. | Tick another person in the **Looked after by** list, then untick yourself and select **Save changes**. |
-</content>

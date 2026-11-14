@@ -4,13 +4,44 @@ import { createReadStream } from 'node:fs';
 import { mkdir, open, readFile, rename, rm, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
+import { eq, sql } from 'drizzle-orm';
 import { z } from 'zod';
+import { db } from '../db/client';
+import { tryFile } from '../db/schema';
+import { tryMode } from '../try/mode';
 
 // Object storage for work samples (layer1-facts-identifiers-activity, Scope). In tests and local
 // work it is a folder (STORAGE_DIR); the S3 transport is added before the first deployment. Bytes
-// reach it only through a signed upload token, never through the database.
+// reach it only through a signed upload token. A preview keeps them in its database instead.
 
 const TOKEN_SECONDS = 60 * 60;
+
+// A preview on Vercel keeps files in its own database, 4 MB at most; a local trial copy and every
+// other place keep them in the folder, with no such limit (help-tutorials-and-previews#AC-18).
+export const TRY_FILE_LIMIT = 4 * 1024 * 1024;
+export const TRY_FILE_TOO_BIG = 'In a trial copy on the web, a file can be 4 MB at most. This limit is not in XR Studio itself.';
+const inDatabase = () => tryMode() && process.env.VERCEL === '1';
+
+async function storedBytes(key: string): Promise<Buffer | null> {
+  const rows = await db().select({ bytes: tryFile.bytes }).from(tryFile).where(eq(tryFile.key, KeySchema.parse(key))).limit(1);
+  return rows[0]?.bytes ?? null;
+}
+
+async function receiveIntoDatabase(key: string, max: number, body: Uint8Array | ReadableStream<Uint8Array> | null): Promise<Received> {
+  if (await storedBytes(key)) return { ok: false, status: 409, message: 'This upload address has been used.' };
+  const parts: Uint8Array[] = [];
+  let size = 0;
+  for await (const chunk of body instanceof Uint8Array ? [body] : body ? streamChunks(body) : []) {
+    size += chunk.length;
+    if (size > TRY_FILE_LIMIT) return { ok: false, status: 413, message: TRY_FILE_TOO_BIG };
+    if (size > max) return { ok: false, status: 413, message: 'The file is larger than the size declared for it.' };
+    parts.push(chunk);
+  }
+  // The write is the command layer's (layer1-organisations-projects-people#AC-37); loaded here, not
+  // above, because the command layer also loads this module.
+  const { keepTrialFile } = await import('../record/commands');
+  return (await keepTrialFile(key, Buffer.concat(parts))) ? { ok: true } : { ok: false, status: 409, message: 'This upload address has been used.' };
+}
 
 function dir(): string {
   const value = process.env.STORAGE_DIR;
@@ -63,6 +94,7 @@ export type Received = { ok: true } | { ok: false; status: 403 | 409 | 413; mess
 export async function receiveUpload(token: string, body: Uint8Array | ReadableStream<Uint8Array> | null): Promise<Received> {
   const claim = await readToken(token);
   if (!claim) return { ok: false, status: 403, message: 'The upload address is not valid or has expired.' };
+  if (inDatabase()) return receiveIntoDatabase(claim.key, claim.max, body);
   await mkdir(dir(), { recursive: true });
   const final = fileFor(claim.key);
   const part = `${final}.part`;
@@ -115,6 +147,10 @@ async function exists(file: string): Promise<boolean> {
 
 // The stored size, or null when no bytes arrived.
 export async function storedSize(key: string): Promise<number | null> {
+  if (inDatabase()) {
+    const rows = await db().select({ size: sql<number>`octet_length(${tryFile.bytes})` }).from(tryFile).where(eq(tryFile.key, KeySchema.parse(key))).limit(1);
+    return rows[0] ? Number(rows[0].size) : null;
+  }
   try {
     return (await stat(fileFor(key))).size;
   } catch {
@@ -123,6 +159,7 @@ export async function storedSize(key: string): Promise<number | null> {
 }
 
 export async function readStart(key: string, bytes: number): Promise<Uint8Array> {
+  if (inDatabase()) return new Uint8Array((await storedBytes(key))?.subarray(0, bytes) ?? []);
   const handle = await open(fileFor(key), 'r');
   try {
     const buffer = Buffer.alloc(bytes);
@@ -134,16 +171,30 @@ export async function readStart(key: string, bytes: number): Promise<Uint8Array>
 }
 
 export async function readAll(key: string): Promise<Uint8Array> {
+  if (inDatabase()) {
+    const found = await storedBytes(key);
+    if (!found) throw new Error('storage: no such file');
+    return new Uint8Array(found);
+  }
   return new Uint8Array(await readFile(fileFor(key)));
 }
 
 export async function sha256Of(key: string): Promise<string> {
+  if (inDatabase()) {
+    const hash = createHash('sha256');
+    hash.end(await readAll(key));
+    return (hash.read() as Buffer).toString('hex');
+  }
   const hash = createHash('sha256');
   await pipeline(createReadStream(fileFor(key)), hash);
   return (hash.read() as Buffer).toString('hex');
 }
 
 export async function removeStored(key: string): Promise<void> {
+  if (inDatabase()) {
+    const { removeTrialFile } = await import('../record/commands');
+    return removeTrialFile(KeySchema.parse(key));
+  }
   await rm(fileFor(key), { force: true });
   await rm(`${fileFor(key)}.part`, { force: true });
 }

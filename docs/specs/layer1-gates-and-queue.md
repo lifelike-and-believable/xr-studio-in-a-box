@@ -2,14 +2,14 @@
 id: spec-layer1-gates-and-queue
 status: approved
 derived-from:
-  - docs-approvers#see-who-approves-what: 4bffc3e2ef34
+  - docs-approvers#see-who-approves-what: 3fd5430cc1af
   - docs-approvers#name-an-approver-and-a-delegate-for-an-area: d44000e3283e
   - docs-approvers#name-the-holder-of-a-protected-approval: 40fa29fe4e53
   - docs-approvers#what-happens-to-work-already-waiting: dc772f8103c8
   - docs-approvers#removing-someone-who-approves: 115bbfe3785d
   - docs-approvers#who-can-do-this: 970417b09920
   - docs-approvers#if-something-goes-wrong: 049938a5f7fa
-  - docs-review#send-work-for-review: 9883b5386bdf
+  - docs-review#send-work-for-review: 7d6546841422
   - docs-review#see-what-you-have-sent: 800dc109d101
   - docs-review#see-everything-that-is-waiting: 43bc68df81ec
   - docs-review#clear-your-review-queue: cc8f096ce493

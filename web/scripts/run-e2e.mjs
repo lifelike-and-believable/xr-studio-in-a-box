@@ -6,6 +6,9 @@ import { randomBytes } from 'node:crypto';
 import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { migrate } from 'drizzle-orm/node-postgres/migrator';
+import pg from 'pg';
 
 export const FIRST_ADDRESSES = [
   'jordan@xr.test',
@@ -31,10 +34,38 @@ const env = {
   CRON_SECRET: process.env.CRON_SECRET || randomBytes(32).toString('hex'),
 };
 
+// The try build (trying-the-product) runs against a database of its own, because Start empties
+// it: made afresh for each run beside the test database, under a name of its own so it can never be
+// someone's database, migrated, marked as a trial copy, and dropped when the run ends.
+const trialName = `xr_try_e2e_${randomBytes(6).toString('hex')}`;
+
+async function freshTrialDatabase(base) {
+  const url = new URL(base);
+  const name = trialName;
+  const admin = new pg.Pool({ connectionString: base });
+  await admin.query(`create database "${name}"`);
+  await admin.end();
+  url.pathname = `/${name}`;
+  const pool = new pg.Pool({ connectionString: url.toString() });
+  await migrate(drizzle({ client: pool }), { migrationsFolder: path.resolve(import.meta.dirname, '../drizzle') });
+  await pool.query("insert into app_meta (key, value) values ('trial-copy', 'yes')");
+  await pool.end();
+  return url.toString();
+}
+
+if (!process.env.DATABASE_URL) {
+  console.error('Set DATABASE_URL to the test database (see .env.example).');
+  process.exit(1);
+}
+env.TRY_E2E_DATABASE_URL = await freshTrialDatabase(process.env.DATABASE_URL);
+
 // `pnpm run e2e -- <args>` passes a leading '--' through; Playwright does not want it.
 const args = process.argv.slice(2).filter((arg, i) => !(i === 0 && arg === '--'));
 const result = spawnSync('pnpm', ['exec', 'playwright', 'test', ...args], {
   stdio: 'inherit',
   env,
 });
+const admin = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+await admin.query(`drop database if exists "${trialName}" with (force)`);
+await admin.end();
 process.exit(result.status ?? 1);

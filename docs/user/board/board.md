@@ -44,6 +44,8 @@ Nobody sets these states by hand. They change by themselves when work is sent, d
 
 The three Builds and operations stages stay empty in this release: builds reach them from the build pipeline in a later release.
 
+Try it: [See where everything stands](../../tutorials/see-where-everything-stands.md)
+
 ## Show only blocked work
 
 Select **Blocked work only**. Only the stages with blocked work are shown, and the line reads, for example, "1 piece of work is blocked." Select **All work** to see everything again.

@@ -65,6 +65,8 @@ import {
   reviewItem,
   reviewRecommendation,
   storedFile,
+  tryFile,
+  tryMail,
   upload,
   work,
   workFeedback,
@@ -1988,4 +1990,27 @@ export async function restoreVersion(
     );
     return { ok: true as const, value: { itemId, version, restored: earlier.version, title: found.title, deciders: await decidersNames(tx, projectId, found.handoff) } };
   });
+}
+
+// --- Trial copies (trying-the-product). Their callers in src/try ask tryMode() first.
+
+// Keeps an email a trial copy would have sent, in place of sending it (AC-16).
+export async function keepTrialMail(mail: { to: string; subject: string; text: string }): Promise<void> {
+  await db().insert(tryMail).values({ id: newId(), address: mail.to, subject: mail.subject, text: mail.text });
+}
+
+// Marks a database as a trial copy (AC-4), through the owner connection the loader holds.
+export async function writeTrialMark(owner: { query: (text: string) => Promise<unknown> }): Promise<void> {
+  await owner.query("insert into app_meta (key, value) values ('trial-copy', 'yes') on conflict (key) do nothing");
+}
+
+// Keeps and removes a preview's file bytes in its database (help-tutorials-and-previews#AC-18).
+// Returns false when the key has bytes already: an upload address is used once.
+export async function keepTrialFile(key: string, data: Uint8Array): Promise<boolean> {
+  const rows = await db().insert(tryFile).values({ key, bytes: Buffer.from(data) }).onConflictDoNothing().returning({ key: tryFile.key });
+  return rows.length > 0;
+}
+
+export async function removeTrialFile(key: string): Promise<void> {
+  await db().delete(tryFile).where(eq(tryFile.key, key));
 }

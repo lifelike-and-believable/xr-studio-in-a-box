@@ -21,6 +21,8 @@ On **Projects**, each project shows its name, its organisation, **Your roles** o
 
 If you are not on any projects yet, you see "You are not on any projects." If you were invited to a project, open the link in your invitation email instead, or ask its producer or director to add you. If you are setting up your own production, select **Start a project** (you do not need to create an organisation first) or **Create an organisation** (see [Organisations and projects](organisations-and-projects.md)).
 
+Try it: [Start a production and bring in your team](../../tutorials/start-a-production-and-bring-in-your-team.md)
+
 ## Move between projects
 
 Inside a project, the header has a button **Project: <project name>**.
@@ -45,4 +47,3 @@ You see only the projects you are on, and inside each project only what your rol
 | **This page is not available** | The page does not exist, or none of your roles lets you see it. | If someone sent you the link, ask them to check you are on the project. Select **Go to your projects**. |
 | "You no longer have access to this project" | Your roles on this project were changed or removed while you were using it. | Select **Go to your projects**. Ask the project's producer or director if you think this is a mistake. |
 | "Nothing in the dashboard for you yet" | Your roles (for example Performer) do not use the dashboard. | Nothing to do. You will get an email with a link to your own page when there is something for you. If you need a different role, contact the person who added you. |
-</content>

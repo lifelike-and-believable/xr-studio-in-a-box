@@ -32,6 +32,8 @@ Some email systems open links to check them, which uses up a single-use link. If
 
 The project opens on its **Overview**. If you have the Director or Producer role, you can edit the project and add people. With any other role you see the project's name and brief and, on **People**, who is on it, with a line naming who can make changes. The tools for your role come in later releases. **Projects** lists every project you are on.
 
+Try it: [Sign in and add a passkey](../../tutorials/sign-in-and-add-a-passkey.md)
+
 ## Sign in with an email link
 
 1. Open XR Studio. You see **Sign in**.
@@ -133,4 +135,3 @@ Sent when someone adds you to a project and you already use XR Studio.
 > <name of the person who added you> added you to <project name> as <roles>.
 >
 > Open the project: <link to the project>
-</content>
