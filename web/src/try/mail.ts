@@ -2,14 +2,15 @@ import 'server-only';
 import { desc, eq } from 'drizzle-orm';
 import { db } from '../db/client';
 import { tryMail } from '../db/schema';
-import { isId, newId } from '../record/ids';
+import { keepTrialMail } from '../record/commands';
+import { isId } from '../record/ids';
 import type { OutgoingMail } from '../mail/transport';
 
 export type KeptMail = OutgoingMail & { id: string; sentAt: Date };
 
 // The email stand-in of a trial copy (trying-the-product#AC-16): kept, never delivered.
 export async function keepMail(mail: OutgoingMail): Promise<void> {
-  await db().insert(tryMail).values({ id: newId(), address: mail.to, subject: mail.subject, text: mail.text });
+  await keepTrialMail(mail);
 }
 
 const fields = { id: tryMail.id, to: tryMail.address, subject: tryMail.subject, text: tryMail.text, sentAt: tryMail.sentAt };

@@ -104,7 +104,7 @@ test.describe.serial('Try XR Studio', () => {
     await expect(page.locator('nav[aria-label="Project"]')).toHaveCount(0);
 
     const table = page.getByRole('table', { name: /tutorial/i });
-    await expect(table.getByRole('columnheader')).toHaveText(['Tutorial', 'For', 'Starts with', 'Start']);
+    await expect(table.getByRole('columnheader')).toHaveText(['Tutorial', 'For', 'Starts with', 'Start a tutorial']);
     const row = table.getByRole('row').nth(1);
     await expect(row.getByRole('link', { name: FIRST_TUTORIAL })).toHaveAttribute('href', /docs\/tutorials\/try-xr-studio-in-a-trial-copy\.md$/);
     await expect(row).toContainText('Morgan, the director');
@@ -215,7 +215,7 @@ test.describe.serial('Try XR Studio', () => {
 
     await page.goto(`${TRY}/try/mail`);
     const table = page.getByRole('table');
-    await expect(table.getByRole('columnheader')).toHaveText(['To', 'Subject', 'Sent', 'Open']);
+    await expect(table.getByRole('columnheader')).toHaveText(['To', 'Subject', 'Sent', 'Open a message']);
     const row = table.getByRole('row').nth(1);
     await expect(row).toContainText('riley@xr.test');
     await row.getByRole('link', { name: /^Open/ }).click();

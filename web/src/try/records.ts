@@ -2,6 +2,7 @@ import 'server-only';
 import { eq } from 'drizzle-orm';
 import { Pool } from 'pg';
 import { db } from '../db/client';
+import { writeTrialMark } from '../record/commands';
 import { appMeta } from '../db/schema';
 import { tryMode } from './mode';
 import { tutorialById } from './starting-points';
@@ -71,8 +72,6 @@ export async function isMarked(): Promise<boolean> {
   return rows.length > 0;
 }
 
-const MARK = `insert into app_meta (key, value) values ('${TRIAL_MARK}', 'yes') on conflict (key) do nothing`;
-
 export async function markTrialCopy(): Promise<void> {
   refuseOutsideTryMode();
   await asOwner(async (pool) => {
@@ -80,7 +79,7 @@ export async function markTrialCopy(): Promise<void> {
       'select (select count(*) from person) + (select count(*) from organisation) + (select count(*) from project) as n',
     );
     if (Number(held.rows[0]?.n ?? 0) > 0) throw new Error('trial copy: the database holds a record, so it is not marked as a trial copy');
-    await pool.query(MARK);
+    await writeTrialMark(pool);
   });
 }
 
@@ -96,7 +95,7 @@ export async function loadStartingPoint(tutorialId: string): Promise<void> {
     try {
       await client.query('begin');
       await client.query(`truncate ${APP_TABLES.map((t) => `"${t}"`).join(', ')}`);
-      await client.query(MARK);
+      await writeTrialMark(client);
       await client.query('commit');
     } catch (error) {
       await client.query('rollback');

@@ -3,6 +3,8 @@ id: spec-trying-the-product
 status: approved
 tests-commit: 13625b6
 unlocks:
+  - web/test/try-records.test.ts: AC-4. Dropping the scratch database at the end also ends the connections still closing, which surfaced as an unhandled error; the test's pool now ignores that error. No assertion changes.
+  - web/e2e/try.spec.ts (headers): AC-8, AC-17. The spec names no header for the column of **Start** buttons or of **Open** links; the test had "Start" and "Open", which the tutorial runner found before the dialog's **Start** and the row's **Open**. The headers are now "Start a tutorial" and "Open a message", visually hidden as in the mock-ups, and the test expects those.
   - web/e2e/try.spec.ts: AC-14. Next.js removes `Next-Router-Prefetch` from every request before the proxy or a page sees it, so that header alone is not a prefetch to Next.js and cannot be refused; the test now sends a real router prefetch (with `RSC: 1`) and checks that no sign-in link is minted and no session is set, and checks `Purpose` and `Sec-Purpose` for 404 as before. AC-6: Next.js puts a hidden element of its own first in the body, so the test reads the first element shown instead of the first child. No assertion changes.
 derived-from:
   - docs-trying-xr-studio#open-a-trial-copy: b47ec19dfb98

@@ -34,8 +34,8 @@ export function StartDialog({ id, title, startsWith }: { id: string; title: stri
   };
   return (
     <>
-      <button ref={opener} type="button" aria-label={`Start: ${title}`} onClick={() => setOpen(true)}>
-        Start
+      <button ref={opener} type="button" onClick={() => setOpen(true)}>
+        Start<span className="visually-hidden">: {title}</span>
       </button>
       {open ? (
         <dialog

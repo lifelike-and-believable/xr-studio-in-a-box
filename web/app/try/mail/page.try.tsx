@@ -30,7 +30,9 @@ export default async function TryMailPage() {
               <th scope="col">To</th>
               <th scope="col">Subject</th>
               <th scope="col">Sent</th>
-              <th scope="col">Open</th>
+              <th scope="col">
+                <span className="visually-hidden">Open a message</span>
+              </th>
             </tr>
           </thead>
           <tbody>

@@ -19,6 +19,8 @@ const { deliver } = await import('../src/mail/transport');
 const { checkStartUp } = await import('../src/try/start-up');
 
 const pool = new Pool({ connectionString: scratch.url });
+// Dropping the scratch database ends the app's own connections to it too.
+pool.on('error', () => {});
 const q = (text: string, values: unknown[] = []) => pool.query(text, values);
 const FIRST = 'tutorial-try-xr-studio-in-a-trial-copy';
 

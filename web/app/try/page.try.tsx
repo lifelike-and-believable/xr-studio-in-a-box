@@ -44,7 +44,9 @@ export default async function TryPage({ searchParams }: Props) {
             <th scope="col">Tutorial</th>
             <th scope="col">For</th>
             <th scope="col">Starts with</th>
-            <th scope="col">Start</th>
+            <th scope="col">
+              <span className="visually-hidden">Start a tutorial</span>
+            </th>
           </tr>
         </thead>
         <tbody>
