@@ -1,6 +1,7 @@
 import 'server-only';
 import { Pool } from 'pg';
 import { writeTrialMark } from '../record/commands';
+import { BUILDERS } from './build-points';
 import { isMarked, TRIAL_MARK } from './mark';
 import { tryMode } from './mode';
 import { tutorialById } from './starting-points';
@@ -39,12 +40,6 @@ export const APP_TABLES: readonly string[] = [
   'try_mail',
 ];
 
-// What each starting point holds beyond an empty record, built with the record's own commands as
-// the made-up people (design-trying-the-product, "Starting points"). The first holds nothing:
-// Jordan can sign in because pnpm run try sets SIGN_IN_FIRST_ADDRESSES.
-const BUILDERS: Record<string, () => Promise<void>> = {
-  'tutorial-try-xr-studio-in-a-trial-copy': async () => {},
-};
 
 function refuseOutsideTryMode() {
   if (!tryMode()) throw new Error('trial copy: try mode is off');

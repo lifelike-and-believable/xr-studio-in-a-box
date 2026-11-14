@@ -5,7 +5,7 @@ import { currentPerson } from '@/ui/session';
 import { tryMode } from '@/try/mode';
 import { PEOPLE } from '@/try/people';
 import { whoCanSignIn } from '@/try/sign-in';
-import { DIALOGS, TUTORIALS, tutorialById, tutorialLink } from '@/try/starting-points';
+import { DIALOGS, TRY_FILES, TUTORIALS, tutorialById, tutorialLink } from '@/try/starting-points';
 import { StartDialog } from './start-dialog';
 
 type Props = { searchParams: Promise<{ started?: string }> };
@@ -90,6 +90,22 @@ export default async function TryPage({ searchParams }: Props) {
         ))}
       </ul>
       <p>To act as two people at once, open a private window for the second person.</p>
+
+      {TRY_FILES.length > 0 ? (
+        <>
+          <h2>Files for the tutorials</h2>
+          <ul>
+            {TRY_FILES.map((f) => (
+              <li key={f.name}>
+                <a href={`/try-files/${f.name}`} download>
+                  {f.name}
+                </a>
+                : {f.about}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
 
       <h2>Email</h2>
       <p>

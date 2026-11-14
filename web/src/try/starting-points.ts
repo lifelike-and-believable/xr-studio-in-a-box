@@ -19,6 +19,102 @@ export const TUTORIALS: readonly TrialTutorial[] = [
     startsWith: 'A new installation where Jordan can sign in',
     firstPerson: 'Jordan',
   },
+  {
+    id: 'tutorial-start-a-production-and-bring-in-your-team',
+    title: 'Start a production and bring in your team',
+    file: 'docs/tutorials/start-a-production-and-bring-in-your-team.md',
+    for: 'Jordan, the producer',
+    startsWith: 'A new installation where Jordan can sign in',
+    firstPerson: 'Jordan',
+  },
+  {
+    id: 'tutorial-sign-in-and-add-a-passkey',
+    title: 'Sign in and add a passkey',
+    file: 'docs/tutorials/sign-in-and-add-a-passkey.md',
+    for: 'Riley, the artist',
+    startsWith: 'The Lantern Keeper with its team',
+    firstPerson: 'Riley',
+  },
+  {
+    id: 'tutorial-record-a-projects-facts',
+    title: 'Record a project\'s facts',
+    file: 'docs/tutorials/record-a-projects-facts.md',
+    for: 'Jordan, the producer',
+    startsWith: 'The Lantern Keeper with its team',
+    firstPerson: 'Jordan',
+  },
+  {
+    id: 'tutorial-keep-your-organisations-facts',
+    title: 'Keep your organisation\'s facts',
+    file: 'docs/tutorials/keep-your-organisations-facts.md',
+    for: 'Jordan, the producer',
+    startsWith: 'The Lantern Keeper with its team',
+    firstPerson: 'Jordan',
+  },
+  {
+    id: 'tutorial-keep-bank-details-and-tax-numbers-out',
+    title: 'Keep bank details and tax numbers out',
+    file: 'docs/tutorials/keep-bank-details-and-tax-numbers-out.md',
+    for: 'Jordan, the producer',
+    startsWith: 'The Lantern Keeper with its team',
+    firstPerson: 'Jordan',
+  },
+  {
+    id: 'tutorial-name-who-approves-what',
+    title: 'Name who approves what',
+    file: 'docs/tutorials/name-who-approves-what.md',
+    for: 'Jordan, the producer',
+    startsWith: 'The Lantern Keeper with its team',
+    firstPerson: 'Jordan',
+  },
+  {
+    id: 'tutorial-send-work-for-review',
+    title: 'Send work for review',
+    file: 'docs/tutorials/send-work-for-review.md',
+    for: 'Riley, the artist',
+    startsWith: 'The Lantern Keeper with its approvers named',
+    firstPerson: 'Riley',
+  },
+  {
+    id: 'tutorial-clear-your-review-queue',
+    title: 'Clear your review queue',
+    file: 'docs/tutorials/clear-your-review-queue.md',
+    for: 'Morgan, the director',
+    startsWith: 'Six items Riley has sent for review',
+    firstPerson: 'Morgan',
+  },
+  {
+    id: 'tutorial-see-where-everything-stands',
+    title: 'See where everything stands',
+    file: 'docs/tutorials/see-where-everything-stands.md',
+    for: 'Jordan, the producer',
+    startsWith: 'The Lantern Keeper with its approvers named',
+    firstPerson: 'Jordan',
+  },
+  {
+    id: 'tutorial-give-feedback-and-compare-versions',
+    title: 'Give feedback and compare versions',
+    file: 'docs/tutorials/give-feedback-and-compare-versions.md',
+    for: 'Riley, the artist',
+    startsWith: 'Work on the board, and a revision asked for',
+    firstPerson: 'Riley',
+  },
+  {
+    id: 'tutorial-find-what-needs-you',
+    title: 'Find what needs you',
+    file: 'docs/tutorials/find-what-needs-you.md',
+    for: 'Drew, the sound designer',
+    startsWith: 'Work on the board, and a revision asked for',
+    firstPerson: 'Drew',
+  },
+  {
+    id: 'tutorial-read-who-changed-what',
+    title: 'Read who changed what',
+    file: 'docs/tutorials/read-who-changed-what.md',
+    for: 'Jordan, the producer',
+    startsWith: 'A character sheet accepted at its third version',
+    firstPerson: 'Jordan',
+  },
 ];
 
 export function tutorialById(id: string): TrialTutorial | undefined {
@@ -36,4 +132,12 @@ export const DIALOGS = 'try-dialogs';
 
 // The made-up files the tutorials choose, offered on Try XR Studio (help-tutorials-and-previews#AC-12).
 export type TryFile = { name: string; about: string };
-export const TRY_FILES: readonly TryFile[] = [];
+export const TRY_FILES: readonly TryFile[] = [
+  { name: 'character-sheet.png', about: 'A character sheet, for Send work for review and the versions tutorials' },
+  { name: 'harbour-lighting.png', about: 'A lighting pass, for Send work for review' },
+  { name: 'lighthouse-concept.png', about: 'Concept art, for Send work for review' },
+  { name: 'bell-sounds.png', about: 'Bell sounds, for Send work for review' },
+  { name: 'harbour-recordings-licence.pdf', about: 'A licence, for Send work for review' },
+  { name: 'lantern-test.png', about: "A work sample, for Record a project's facts" },
+  { name: 'grant-letter.pdf', about: 'A letter with a made-up GST/HST number, for Keep bank details and tax numbers out' },
+];

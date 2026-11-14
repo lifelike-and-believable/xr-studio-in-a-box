@@ -56,8 +56,8 @@ export async function signInAs(first: string, headers: Headers): Promise<SignInA
   if (open) return { kind: 'go', url: await acceptInvitation(open, headers) };
   if (!(await canSignIn(p.email))) return { kind: 'not-added', first: p.first };
   // A first address signs in before anyone has added it, so its account is made now, as the
-  // ordinary sign-in does.
-  if (firstAddresses().has(p.email)) await ensureAccount(p.email, null);
+  // ordinary sign-in does, named as the list names the person ("Signed in as Jordan Lee.").
+  if (firstAddresses().has(p.email)) await ensureAccount(p.email, p.name);
   const url = await takeSignInLink(p.email, '/', headers);
   return url ? { kind: 'go', url } : { kind: 'not-found' };
 }

@@ -100,7 +100,7 @@ test.describe.serial('Try XR Studio', () => {
     await page.goto(`${TRY}/try`);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Try XR Studio');
     const headings = await page.getByRole('heading', { level: 2 }).allTextContents();
-    expect(headings).toEqual(['Choose a tutorial', 'Sign in as a person', 'Email']);
+    expect(headings).toEqual(['Choose a tutorial', 'Sign in as a person', 'Files for the tutorials', 'Email']);
     await expect(page.locator('nav[aria-label="Project"]')).toHaveCount(0);
 
     const table = page.getByRole('table', { name: /tutorial/i });
@@ -149,9 +149,9 @@ test.describe.serial('Try XR Studio', () => {
     await page.goto(`${TRY}/try`);
     await page.getByRole('link', { name: 'Sign in as Jordan', exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`^${TRY}/(projects|what-needs-you)?$`));
-    await expect(page.getByRole('button', { name: /jordan@xr\.test/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Jordan Lee/ })).toBeVisible();
     await page.goto(`${TRY}/try`);
-    await expect(page.getByText('Signed in as jordan@xr.test.')).toBeVisible();
+    await expect(page.getByText('Signed in as Jordan Lee.')).toBeVisible();
 
     await page.getByRole('button', { name: `Start: ${FIRST_TUTORIAL}`, exact: true }).click();
     const start = page.getByRole('dialog').getByRole('button', { name: 'Start', exact: true });
