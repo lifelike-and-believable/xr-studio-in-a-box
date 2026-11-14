@@ -12,6 +12,7 @@ One line each: the preference, the date, and where it came from (an issue, a pul
 - Avoid em dashes. 2026-11-12, the lead's standing preferences; also applied to every product document.
 - Avoid metaphors and similes, unless explaining something to non-experts. 2026-11-12, the lead's standing preferences.
 - Product documents use British spelling ("behaviour", "licence") and plain, short sentences. 2026-11-12, the Layer 1 to 7 story reviews.
+- A tutorial's "Before you start" describes what exists before step 1, not what its steps make. 2026-11-14, the lead in session on the trial-copy tutorial.
 - Stories use the persona wording "As <Name>, the <role>," exactly; CI's process-trace rejects other forms. 2026-11-12, PR #83 review.
 
 ## Code

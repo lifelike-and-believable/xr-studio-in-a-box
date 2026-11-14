@@ -14,9 +14,9 @@ You open a trial copy, put it at a tutorial's starting point, and act as two of 
 
 ## Before you start
 
-- A trial copy of XR Studio. Open it from the link under "Try it" in the description of the change you were asked to decide on, and sign in to Vercel if you are asked to.
+- A trial copy of XR Studio. [Trying XR Studio](../user/help/trying-xr-studio.md#open-a-trial-copy) says how to open one.
 - A browser that can open a private window, to be Riley while you are Jordan.
-- Jordan Lee is the producer of the made-up project. Riley Chen is an artist on it. Neither needs an email address or a password.
+- Jordan Lee is a producer who can start projects. Jordan starts The Lantern Keeper and adds Riley Chen as an artist. Neither needs an email address or a password.
 
 ## Steps
 
