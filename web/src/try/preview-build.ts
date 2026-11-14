@@ -39,3 +39,13 @@ export async function preparePreviewDatabase(env: Env, migrationsFolder: string,
     await pool.end();
   }
 }
+
+// The command that starts pnpm from the scripts beside build.mjs (try.mjs, run-e2e.mjs, build.mjs),
+// kept here because they load this module already. On Windows `pnpm` is a .cmd file, which Node
+// cannot start without a shell, so they start the pnpm that runs them (npm_execpath): a native pnpm
+// directly, a JavaScript one with Node.
+export function pnpmCommand(args: string[], env: Env = process.env): [string, string[]] {
+  const own = env.npm_execpath;
+  if (!own) return ['pnpm', args];
+  return /\.[cm]?js$/.test(own) ? [process.execPath, [own, ...args]] : [own, args];
+}

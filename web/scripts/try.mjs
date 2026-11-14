@@ -9,6 +9,7 @@ import path from 'node:path';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import pg from 'pg';
+import { pnpmCommand } from '../src/try/preview-build.ts';
 
 const web = path.resolve(import.meta.dirname, '..');
 const port = Number(process.env.TRY_PORT || 3000);
@@ -172,10 +173,10 @@ try {
   fail('the migrations could not be applied to the database.');
 }
 
-const build = spawnSync('pnpm', ['run', 'build'], { cwd: web, env, stdio: 'inherit' });
+const build = spawnSync(...pnpmCommand(['run', 'build']), { cwd: web, env, stdio: 'inherit' });
 if (build.status !== 0) fail('the build failed; its output is above. Fix it and run pnpm run try again.');
 
-app = spawn('pnpm', ['exec', 'next', 'start', '-p', String(port), '-H', '127.0.0.1'], { cwd: web, env, stdio: ['ignore', 'ignore', 'inherit'] });
+app = spawn(...pnpmCommand(['exec', 'next', 'start', '-p', String(port), '-H', '127.0.0.1']), { cwd: web, env, stdio: ['ignore', 'ignore', 'inherit'] });
 await waitForApp();
 app.on('exit', () => {
   cleanUp();

@@ -9,6 +9,7 @@ import path from 'node:path';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import pg from 'pg';
+import { pnpmCommand } from '../src/try/preview-build.ts';
 
 export const FIRST_ADDRESSES = [
   'jordan@xr.test',
@@ -61,7 +62,7 @@ env.TRY_E2E_DATABASE_URL = await freshTrialDatabase(process.env.DATABASE_URL);
 
 // `pnpm run e2e -- <args>` passes a leading '--' through; Playwright does not want it.
 const args = process.argv.slice(2).filter((arg, i) => !(i === 0 && arg === '--'));
-const result = spawnSync('pnpm', ['exec', 'playwright', 'test', ...args], {
+const result = spawnSync(...pnpmCommand(['exec', 'playwright', 'test', ...args]), {
   stdio: 'inherit',
   env,
 });
