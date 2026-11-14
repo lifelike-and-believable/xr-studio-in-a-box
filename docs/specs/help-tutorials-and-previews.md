@@ -3,7 +3,7 @@ id: spec-help-tutorials-and-previews
 status: approved
 tests-commit: [377ea23, 2315041, 830d265]
 unlocks:
-  - web/e2e/help.spec.ts: AC-5. A missing help address has **Back to XR Studio** twice, in the help header and in place of the link to projects, as the design gives it; the test now looks for the one in the page. No assertion changes.
+  - web/e2e/help.spec.ts: AC-5. A missing help address has **Back to XR Studio** twice, in the help header and in place of the link to projects, as the design gives it; the test now looks for the one in the page. No assertion changes. AC-2: the start page's tutorials now include a second one for Morgan (Clear your review queue), so the test reads "for Morgan, the director" in the item for Try XR Studio in a trial copy.
   - web/e2e/try.spec.ts (title links): AC-7. **Try XR Studio**'s tutorial titles now link to the tutorial in Help, not its file in the repository (trying-the-product AC-8 said so "until Help is built"); the test expects the Help address.
   - web/e2e/try.spec.ts (signed in as): AC-11. The starting points name the five people, and signing in as a first address now names the account from the list too, as the design's layout gives it ("Signed in as Jordan Lee."), so the test expects Jordan Lee rather than the address.
   - web/e2e/try.spec.ts (sections): AC-12. **Files for the tutorials** now shows, because tutorials on the page choose files (trying-the-product AC-7 shows it only then), so the expected headings gain it between **Sign in as a person** and **Email**.

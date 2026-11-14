@@ -42,7 +42,7 @@ test('the start page, an area and a page (help-tutorials-and-previews#AC-2, AC-3
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('XR Studio');
   await expect(page.getByRole('heading', { name: 'Tutorials', level: 2 })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Try XR Studio in a trial copy' })).toHaveAttribute('href', '/help/tutorials/try-xr-studio-in-a-trial-copy');
-  await expect(page.getByText('for Morgan, the director')).toBeVisible();
+  await expect(page.getByRole('listitem').filter({ hasText: 'Try XR Studio in a trial copy' })).toContainText('for Morgan, the director');
   await expect(page.getByRole('link', { name: 'Back to XR Studio' })).toHaveAttribute('href', '/');
   await fits(page, '/help');
 
