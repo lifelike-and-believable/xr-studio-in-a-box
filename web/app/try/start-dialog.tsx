@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useId, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useFormStatus } from 'react-dom';
+import { DIALOGS } from '@/try/starting-points';
 import { startTutorial } from './actions.try';
 
 function StartButton() {
@@ -34,10 +36,10 @@ export function StartDialog({ id, title, startsWith }: { id: string; title: stri
   };
   return (
     <>
-      <button ref={opener} type="button" onClick={() => setOpen(true)}>
-        Start<span className="visually-hidden">: {title}</span>
+      <button ref={opener} type="button" aria-label={`Start: ${title}`} onClick={() => setOpen(true)}>
+        Start
       </button>
-      {open ? (
+      {open ? createPortal(
         <dialog
           ref={dialog}
           className="dialog"
@@ -60,7 +62,8 @@ export function StartDialog({ id, title, startsWith }: { id: string; title: stri
             </button>
             <StartButton />
           </form>
-        </dialog>
+        </dialog>,
+        document.getElementById(DIALOGS) ?? document.body,
       ) : null}
     </>
   );

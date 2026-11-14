@@ -3,12 +3,14 @@ import { headers } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 import { signInAs } from '@/try/sign-in';
 import { tryMode } from '@/try/mode';
+import { personByFirstName } from '@/try/people';
 
 
 type Props = { searchParams: Promise<{ as?: string }> };
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  return { title: `${(await searchParams).as ?? ''} is not added yet` };
+  const p = tryMode() ? personByFirstName((await searchParams).as ?? '') : undefined;
+  return { title: p ? `${p.first} is not added yet` : 'This page is not available' };
 }
 
 // Sign in as a person (trying-the-product#AC-12 to AC-14): a selection on Try XR Studio, never a

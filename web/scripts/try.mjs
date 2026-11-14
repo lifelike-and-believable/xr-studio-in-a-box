@@ -65,7 +65,11 @@ async function startContainer() {
   const name = `xr-try-${randomBytes(4).toString('hex')}`;
   const password = randomBytes(16).toString('hex');
   const dbPort = await freePort();
-  const run = spawnSync('docker', ['run', '-d', '--rm', '--name', name, '-e', 'POSTGRES_USER=xr', '-e', `POSTGRES_PASSWORD=${password}`, '-e', 'POSTGRES_DB=xr_try', '-p', `127.0.0.1:${dbPort}:5432`, 'postgres:18'], { stdio: ['ignore', 'ignore', 'inherit'] });
+  const run = spawnSync('docker', ['run', '-d', '--rm', '--name', name, '-e', 'POSTGRES_USER=xr', '-e', 'POSTGRES_PASSWORD', '-e', 'POSTGRES_DB=xr_try', '-p', `127.0.0.1:${dbPort}:5432`, 'postgres:18'], {
+    // The password goes in the environment, not on the command line, where other users could read it.
+    env: { ...process.env, POSTGRES_PASSWORD: password },
+    stdio: ['ignore', 'ignore', 'inherit'],
+  });
   if (run.status !== 0) fail('Docker could not start PostgreSQL. Check that Docker can pull postgres:18.');
   cleanups.push(() => spawnSync('docker', ['rm', '-f', name], { stdio: 'ignore' }));
   const url = `postgres://xr:${password}@127.0.0.1:${dbPort}/xr_try`;
@@ -124,6 +128,12 @@ async function waitForApp() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
   fail('XR Studio did not answer within a minute; its output is above.');
+}
+
+// The production setting wins whatever else is set (design-trying-the-product, condition 2).
+const production = process.env.XR_PRODUCTION ?? '';
+if ((production !== '' && production !== '0') || process.env.VERCEL_ENV === 'production') {
+  fail('the production setting (XR_PRODUCTION or VERCEL_ENV=production) is on in this shell. A trial copy is never made where it is; unset it and run pnpm run try again.');
 }
 
 if (!(await portIsFree(port))) fail(`port ${port} is in use. Stop what is using it, or set TRY_PORT to another port.`);

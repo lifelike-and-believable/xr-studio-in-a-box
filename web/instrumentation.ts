@@ -6,7 +6,7 @@ export async function register() {
   const { serverEnv } = await import('./src/env');
   serverEnv();
   const { checkStartUp } = await import('./src/try/start-up');
-  const { isMarked } = await import('./src/try/records');
+  const { isMarked } = await import('./src/try/mark');
   // An unreachable database is the health check's to report, not a reason to stop here.
   const readMark = () => isMarked().catch(() => false);
   await checkStartUp(process.env, readMark, (message) => console.error(message));

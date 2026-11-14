@@ -35,13 +35,15 @@ const env = {
 };
 
 // The try build (trying-the-product) runs against a database of its own, because Start empties
-// it: made afresh for each run beside the test database, migrated, and marked as a trial copy.
+// it: made afresh for each run beside the test database, under a name of its own so it can never be
+// someone's database, migrated, marked as a trial copy, and dropped when the run ends.
+const trialName = `xr_try_e2e_${randomBytes(6).toString('hex')}`;
+
 async function freshTrialDatabase(base) {
   const url = new URL(base);
-  const name = `${url.pathname.slice(1)}_try`;
+  const name = trialName;
   const admin = new pg.Pool({ connectionString: base });
-  await admin.query(`drop database if exists ${name} with (force)`);
-  await admin.query(`create database ${name}`);
+  await admin.query(`create database "${name}"`);
   await admin.end();
   url.pathname = `/${name}`;
   const pool = new pg.Pool({ connectionString: url.toString() });
@@ -63,4 +65,7 @@ const result = spawnSync('pnpm', ['exec', 'playwright', 'test', ...args], {
   stdio: 'inherit',
   env,
 });
+const admin = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+await admin.query(`drop database if exists "${trialName}" with (force)`);
+await admin.end();
 process.exit(result.status ?? 1);

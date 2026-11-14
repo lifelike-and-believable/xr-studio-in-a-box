@@ -7,7 +7,7 @@ import { firstAddresses } from '../record/settings';
 import { acceptInvitation, ensureAccount, takeSignInLink } from '../record/sign-in';
 import { tryMode } from './mode';
 import { personByFirstName, PEOPLE, type TrialPerson } from './people';
-import { isMarked } from './records';
+import { isMarked } from './mark';
 
 export type SignInAs = { kind: 'not-found' } | { kind: 'not-added'; first: string } | { kind: 'go'; url: string };
 
@@ -16,6 +16,14 @@ export type SignInAs = { kind: 'not-found' } | { kind: 'not-added'; first: strin
 // running the page, and removes their header, so only the browser's are seen here.
 export function isPrefetch(headers: Headers): boolean {
   return headers.get('purpose')?.toLowerCase() === 'prefetch' || (headers.get('sec-purpose') ?? '').toLowerCase().includes('prefetch');
+}
+
+// A selection is a link on Try XR Studio (same origin) or an address typed in the browser (none).
+// A request from another site, or from a program that names no fetch site (a link preview in a
+// chat or mail app), is not one, so it cannot use up an invitation or sign a browser in.
+export function isSelection(headers: Headers): boolean {
+  const site = headers.get('sec-fetch-site');
+  return site === 'same-origin' || site === 'none';
 }
 
 // The open invitation of a person, if any: not used, not replaced, not expired. Accepting it
@@ -41,7 +49,7 @@ export async function whoCanSignIn(): Promise<Map<string, boolean>> {
 
 // /try/sign-in?as=<first name> (trying-the-product#AC-12, AC-13, AC-14).
 export async function signInAs(first: string, headers: Headers): Promise<SignInAs> {
-  if (!tryMode() || isPrefetch(headers)) return { kind: 'not-found' };
+  if (!tryMode() || isPrefetch(headers) || !isSelection(headers)) return { kind: 'not-found' };
   const p = personByFirstName(first);
   if (!p || !(await isMarked())) return { kind: 'not-found' };
   const open = await openInvitationOf(p);

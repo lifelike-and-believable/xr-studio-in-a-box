@@ -44,7 +44,25 @@ This run was started by the delivery routine with no feature name. `delivery.mjs
 - **`pnpm run try` with Docker was not run.** This environment has no Docker daemon. The command was run with `TRY_DATABASE_URL` (below), and the end-to-end tests check that it says so when Docker is not running. The container path (PostgreSQL 18, a fresh password, removed on exit) is untested here; the lead's first `pnpm run try` on a machine with Docker is its first run.
 - **AC-19's happy path has no automated test.** A test would build a second try build into the folder the end-to-end try server is using. It is checked by the tutorial run below; AC-20's three refusals are tested.
 - **Local runs used PostgreSQL 16**, the version installed here; CI uses 18.
-- The design's security review against the four conditions was done by an independent reviewer agent before pushing; see below.
+- The design's security review against the four conditions was done by an independent reviewer agent (rfr-core's `security-reviewer`); see "Security review" below.
+
+## Security review
+
+It found the four conditions met in the app, no blocker, and these. Fixed, each with a new test in `web/test/try-hardening.test.ts` or `web/e2e/try-hardening.spec.ts`:
+
+- **Start checked the mark on one connection and emptied through another.** If `DATABASE_URL_UNPOOLED` named a different, unmarked database, Start would have emptied it. The mark is now checked again, and locked, inside the transaction that empties.
+- **`pnpm run try` blanked the production setting instead of refusing it.** It now stops when `XR_PRODUCTION` or `VERCEL_ENV=production` is set in its shell.
+- **Sign-in as a person was a link anything could fetch:** a link preview in a chat app could use up an invitation, and another site could sign a visitor's browser in. Only a selection now works: `Sec-Fetch-Site` of `same-origin` (a link on **Try XR Studio**) or `none` (a typed address). AC-14 says so.
+- **`pnpm run e2e` dropped `<test database>_try` on whatever server it was given.** Its trial database now has a random name of its own, quoted, and is dropped when the run ends.
+- **Marking checked three tables for "holds anything".** It now checks every one of XR Studio's tables.
+- Smaller: the container's password is passed in the environment, not on Docker's command line; the try pages' titles ask `tryMode()` first and name only one of the five; the start-up and health checks read the mark from a small module, so the ordinary build does not bring the loader in.
+
+**Two questions for the lead, left as built:**
+
+1. **Email sent by this copy shows every message, including sign-in links for addresses that are not the five.** So in a trial copy anyone can sign in as an address listed in `SIGN_IN_FIRST_ADDRESSES`, or as a person added under a real address, by asking for a link and reading it there. The design says such people "can never receive the invitation", which is no longer a protection once the page shows it. The user documentation promises "each message XR Studio would have sent can be read", so the page was left showing all of them. The conservative alternatives are to keep only mail to `@xr.test`, or to never set a real address in a preview's `SIGN_IN_FIRST_ADDRESSES` (the design's step 2 checks). Say which.
+2. **Every web address in a kept message is a live link**, including one typed into a project name. React escapes it and only `http` and `https` links are made; links could be limited to the copy's own address if the lead prefers.
+
+The reviewer also noted that `pnpm run e2e` needs `DATABASE_URL` exported in the shell (it makes the trial database before Next.js reads `web/.env`), while AGENTS.md says `web/.env` is enough. AGENTS.md now says so.
 
 ## Tutorial run
 

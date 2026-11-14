@@ -1,15 +1,11 @@
 import 'server-only';
-import { eq } from 'drizzle-orm';
 import { Pool } from 'pg';
-import { db } from '../db/client';
 import { writeTrialMark } from '../record/commands';
-import { appMeta } from '../db/schema';
+import { isMarked, TRIAL_MARK } from './mark';
 import { tryMode } from './mode';
 import { tutorialById } from './starting-points';
 
-// app_meta's key for the trial-copy mark (trying-the-product#AC-4). web/scripts/try.mjs and
-// web/scripts/run-e2e.mjs write the same row.
-export const TRIAL_MARK = 'trial-copy';
+export { isMarked, TRIAL_MARK };
 
 // XR Studio's own tables, emptied by name (trying-the-product#AC-15). app_meta keeps the mark; a
 // unit test checks this list against the schema, so a new table cannot be missed.
@@ -67,18 +63,12 @@ async function asOwner<T>(work: (pool: Pool) => Promise<T>): Promise<T> {
   }
 }
 
-export async function isMarked(): Promise<boolean> {
-  const rows = await db().select({ key: appMeta.key }).from(appMeta).where(eq(appMeta.key, TRIAL_MARK)).limit(1);
-  return rows.length > 0;
-}
-
 export async function markTrialCopy(): Promise<void> {
   refuseOutsideTryMode();
   await asOwner(async (pool) => {
-    const held = await pool.query(
-      'select (select count(*) from person) + (select count(*) from organisation) + (select count(*) from project) as n',
-    );
-    if (Number(held.rows[0]?.n ?? 0) > 0) throw new Error('trial copy: the database holds a record, so it is not marked as a trial copy');
+    // Anything in any of XR Studio's tables counts (design-trying-the-product, condition 1).
+    const held = await pool.query(`select ${APP_TABLES.map((t) => `exists (select 1 from "${t}")`).join(' or ')} as held`);
+    if (held.rows[0]?.held) throw new Error('trial copy: the database holds a record, so it is not marked as a trial copy');
     await writeTrialMark(pool);
   });
 }
@@ -94,6 +84,10 @@ export async function loadStartingPoint(tutorialId: string): Promise<void> {
     const client = await pool.connect();
     try {
       await client.query('begin');
+      // The mark is checked again on the connection that empties, in case the two connection
+      // settings name different databases.
+      const marked = await client.query('select 1 from app_meta where key = $1 for update', [TRIAL_MARK]);
+      if (marked.rowCount === 0) throw new Error('trial copy: this database is not a trial copy');
       await client.query(`truncate ${APP_TABLES.map((t) => `"${t}"`).join(', ')}`);
       await writeTrialMark(client);
       await client.query('commit');

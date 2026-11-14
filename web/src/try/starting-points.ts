@@ -29,3 +29,7 @@ export function tutorialById(id: string): TrialTutorial | undefined {
 export function tutorialLink(t: TrialTutorial): string {
   return `https://github.com/lifelike-and-believable/xr-studio-in-a-box/blob/main/${t.file}`;
 }
+
+// Where Try XR Studio puts the Start dialog: above the table, so the dialog's Start comes before
+// every row's Start in the page (the tutorial runner clicks the first one it finds).
+export const DIALOGS = 'try-dialogs';

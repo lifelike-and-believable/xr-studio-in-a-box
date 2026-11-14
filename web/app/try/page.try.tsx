@@ -5,12 +5,13 @@ import { currentPerson } from '@/ui/session';
 import { tryMode } from '@/try/mode';
 import { PEOPLE } from '@/try/people';
 import { whoCanSignIn } from '@/try/sign-in';
-import { TUTORIALS, tutorialById, tutorialLink } from '@/try/starting-points';
+import { DIALOGS, TUTORIALS, tutorialById, tutorialLink } from '@/try/starting-points';
 import { StartDialog } from './start-dialog';
 
 type Props = { searchParams: Promise<{ started?: string }> };
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  if (!tryMode()) return {};
   const started = tutorialById((await searchParams).started ?? '');
   return { title: started ? `Started ${started.title}` : 'Try XR Studio' };
 }
@@ -36,6 +37,7 @@ export default async function TryPage({ searchParams }: Props) {
         </>
       ) : null}
 
+      <div id={DIALOGS} />
       <h2>Choose a tutorial</h2>
       <table>
         <caption className="visually-hidden">Tutorials you can start in this trial copy</caption>

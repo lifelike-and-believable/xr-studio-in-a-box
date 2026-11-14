@@ -2,7 +2,7 @@ import { eq } from 'drizzle-orm';
 import { db } from '../db/client';
 import { appMeta } from '../db/schema';
 import { productionSetting } from '../try/mode';
-import { TRIAL_MARK } from '../try/records';
+import { TRIAL_MARK } from '../try/mark';
 import { MARKED_IN_PRODUCTION } from '../try/start-up';
 
 // Reading app_meta shows the database is reachable and migrated. A production instance on a
