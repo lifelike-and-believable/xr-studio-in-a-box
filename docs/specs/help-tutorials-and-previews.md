@@ -1,7 +1,7 @@
 ---
 id: spec-help-tutorials-and-previews
 status: approved
-tests-commit: [377ea23, 2315041]
+tests-commit: [377ea23, 2315041, 830d265]
 unlocks:
   - web/e2e/help.spec.ts: AC-5. A missing help address has **Back to XR Studio** twice, in the help header and in place of the link to projects, as the design gives it; the test now looks for the one in the page. No assertion changes.
   - web/e2e/try.spec.ts (title links): AC-7. **Try XR Studio**'s tutorial titles now link to the tutorial in Help, not its file in the repository (trying-the-product AC-8 said so "until Help is built"); the test expects the Help address.
@@ -82,7 +82,7 @@ A test cites a criterion as `help-tutorials-and-previews#AC-1`. "Help content" i
 ### Previews (step 2)
 
 - **AC-15.** `.github/workflows/rfr-tutorials-preview.yml` is the rfr-process template, passing only the `RFR_PREVIEW_BYPASS` secret, with the reusable workflow and `rules-ref` pinned to one commit. Source: design "Notes for delivery", step 2.
-- **AC-16.** The build command (`web/scripts/build.mjs`, which Vercel runs for every environment) runs `next build` alone unless try mode is on. In try mode it first checks the database is empty or marked as a trial copy and stops the build otherwise, empties XR Studio's own tables, applies the migrations and loads the first starting point. With the production setting on it never touches the database. Source: design "Previews, and where their data lives" (Fresh at each deployment).
+- **AC-16.** The build command (`web/scripts/build.mjs`, which Vercel runs for every environment) makes the help content and runs `next build`. Only on Vercel (`VERCEL=1`) in try mode does it first prepare the preview's database: it checks the database is empty or marked as a trial copy and stops the build otherwise; empties XR Studio's own tables when it is marked; applies the migrations; and marks it, which loads the first starting point. With the production setting on, or off Vercel, it never touches the database. Source: design "Previews, and where their data lives" (Fresh at each deployment).
 - **AC-17.** In try mode on Vercel (`VERCEL=1`), the app takes its allowed origins and its passkey address from the address Vercel gives the deployment (`VERCEL_URL`, `VERCEL_BRANCH_URL`); otherwise from `APP_ORIGINS` and the passkey settings, as today. Source: design "Its addresses".
 - **AC-18.** In try mode on Vercel, uploaded files are kept in the database (`try_file`), and a file over 4 MB is refused with "In a trial copy on the web, a file can be 4 MB at most. This limit is not in XR Studio itself." A local trial copy keeps files in its folder with no such limit. Source: design "States and errors", design-architecture "Trying the product"; docs-trying-xr-studio "What a trial copy does not show".
 

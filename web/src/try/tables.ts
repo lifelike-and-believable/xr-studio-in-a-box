@@ -28,4 +28,5 @@ export const APP_TABLES: readonly string[] = [
   'work',
   'work_feedback',
   'try_mail',
+  'try_file',
 ];

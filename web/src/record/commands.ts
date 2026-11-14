@@ -65,6 +65,7 @@ import {
   reviewItem,
   reviewRecommendation,
   storedFile,
+  tryFile,
   tryMail,
   upload,
   work,
@@ -2001,4 +2002,15 @@ export async function keepTrialMail(mail: { to: string; subject: string; text: s
 // Marks a database as a trial copy (AC-4), through the owner connection the loader holds.
 export async function writeTrialMark(owner: { query: (text: string) => Promise<unknown> }): Promise<void> {
   await owner.query("insert into app_meta (key, value) values ('trial-copy', 'yes') on conflict (key) do nothing");
+}
+
+// Keeps and removes a preview's file bytes in its database (help-tutorials-and-previews#AC-18).
+// Returns false when the key has bytes already: an upload address is used once.
+export async function keepTrialFile(key: string, data: Uint8Array): Promise<boolean> {
+  const rows = await db().insert(tryFile).values({ key, bytes: Buffer.from(data) }).onConflictDoNothing().returning({ key: tryFile.key });
+  return rows.length > 0;
+}
+
+export async function removeTrialFile(key: string): Promise<void> {
+  await db().delete(tryFile).where(eq(tryFile.key, key));
 }

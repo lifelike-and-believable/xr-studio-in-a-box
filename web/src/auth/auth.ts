@@ -10,7 +10,7 @@ import * as schema from '../db/schema';
 import { signInLinkEmail } from '../mail/templates';
 import { canSignIn } from '../record/eligibility';
 import { sendLimited } from '../record/mail';
-import { appOrigins } from '../record/settings';
+import { appOrigins, passkeyFrom } from '../record/settings';
 
 // A sign-in link lasts 15 minutes (layer1-organisations-projects-people#AC-2).
 export const SIGN_IN_LINK_SECONDS = 15 * 60;
@@ -64,11 +64,8 @@ function createAuth() {
         rpName: 'XR Studio',
         // Discoverable passkeys, so a person can sign in with one without typing their address (AC-8).
         authenticatorSelection: { residentKey: 'required', userVerification: 'preferred' },
-        rpID: process.env.PASSKEY_RP_ID ?? 'localhost',
-        origin: (process.env.PASSKEY_ORIGINS ?? origins.join(','))
-          .split(',')
-          .map((o) => o.trim())
-          .filter(Boolean),
+        rpID: passkeyFrom(process.env).rpID,
+        origin: passkeyFrom(process.env).origins,
       }),
       nextCookies(),
     ],

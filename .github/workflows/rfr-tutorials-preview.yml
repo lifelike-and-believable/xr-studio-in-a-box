@@ -1,0 +1,26 @@
+# From the rfr-process template (templates/workflows/rfr-tutorials-preview.yml). When a preview
+# deployment succeeds, it runs the `runner: web` tutorials against it and uploads the recording as the
+# `tutorials` build artifact (help-tutorials-and-previews#AC-15).
+#
+# Previews are protected: save Vercel's Protection Bypass for Automation secret as the
+# RFR_PREVIEW_BYPASS repository secret. It is sent only to the preview's own origin.
+#
+# Pinned, and passed only the bypass secret, because the bypass token and the sign-in path together
+# open every preview (design-trying-the-product, "Notes for delivery", step 2). Move both pins to a
+# newer rules-for-robots commit together.
+name: tutorials on preview
+
+on:
+  deployment_status:
+
+jobs:
+  tutorials:
+    if: github.event.deployment_status.state == 'success' && !contains(github.event.deployment.environment, 'Production') && !contains(github.event.deployment.environment, 'production')
+    uses: lifelike-and-believable/rules-for-robots/.github/workflows/rfr-tutorials-preview.yml@0efba3ca88c5cfe9a2e1bd34d84eece4fac97636
+    with:
+      base-url: ${{ github.event.deployment_status.environment_url }}
+      rules-ref: 0efba3ca88c5cfe9a2e1bd34d84eece4fac97636
+    permissions:
+      contents: read
+    secrets:
+      RFR_PREVIEW_BYPASS: ${{ secrets.RFR_PREVIEW_BYPASS }}

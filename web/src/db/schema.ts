@@ -3,6 +3,7 @@ import {
   bigint,
   boolean,
   check,
+  customType,
   index,
   integer,
   jsonb,
@@ -517,3 +518,12 @@ export const tryMail = pgTable(
   },
   (t) => [index('try_mail_sent_idx').on(t.sentAt)],
 );
+
+const bytes = customType<{ data: Buffer }>({ dataType: () => 'bytea' });
+
+// A preview's uploaded files, kept in its own database, 4 MB at most (help-tutorials-and-previews#AC-18).
+export const tryFile = pgTable('try_file', {
+  key: text('key').primaryKey(),
+  bytes: bytes('bytes').notNull(),
+  createdAt: at('created_at').notNull().defaultNow(),
+});
