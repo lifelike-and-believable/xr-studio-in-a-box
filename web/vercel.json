@@ -1,5 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm run build",
+  "installCommand": "npx --yes pnpm@12.18.0 install --frozen-lockfile",
+  "buildCommand": "npx --yes pnpm@12.18.0 run build",
+  "ignoreCommand": "if [ \"$VERCEL_ENV\" = production ]; then exit 0; else exit 1; fi",
+  "regions": ["yul1"],
   "crons": [{ "path": "/api/v1/jobs/held-uploads", "schedule": "*/5 * * * *" }]
 }
