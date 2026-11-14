@@ -19,12 +19,21 @@ Every page of a trial copy has this line at the top: "Trial copy. The people, pr
 
 ## Open a trial copy
 
-1. Open the link to the trial copy. It is in the description of the change you were asked to decide on, under "Try it", with the tutorials to follow. If you are asked to sign in to Vercel first, do so. A trial copy opens only for members of the team's Vercel account; if you are not one, ask the project lead. **Sign in** opens, with the trial line above it.
+You can start a trial copy on your own computer, or open one from a link.
+
+**On your own computer.** You need XR Studio's files.
+
+1. In XR Studio's folder, run `pnpm run try`. It prints the address of **Try XR Studio**.
+2. Open that address.
+
+Stopping the command deletes the copy and everything in it.
+
+**From a link.** When someone asks you to decide on a change to XR Studio, they send you a link to a trial copy that has the change.
+
+1. Open the link. **Sign in** opens, with the trial line above it. A trial copy on the web opens only for the team that runs it, so you may be asked to sign in before you see it. If you have no account for that, ask the person who sent the link.
 2. Select **Try XR Studio** in the trial line.
 
 ![Try XR Studio](../../design/trying-the-product/try.png)
-
-A person on the team who has XR Studio's files can start a trial copy on their own computer instead. In the repository's folder they run `pnpm run try`. It prints the address of **Try XR Studio**, and stopping it deletes the copy.
 
 ## Start a tutorial
 
